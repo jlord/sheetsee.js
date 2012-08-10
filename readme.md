@@ -4,15 +4,15 @@ If you have a public Google Spreadsheet you can visualize that data through a fe
 
 # Pie Chart
 
-Using tabletop.js you can feed raphel.js the data it needs to make pie charts.
+Using [tabletop.js](http://builtbybalance.com/Tabletop/) you can feed [raphael.js](http://raphaeljs.com/) the data it needs to make pie charts.
 
 # Maps
 
-Using tabletop.js you can feed leaflet the data it needs to make maps.
+Using [tabletop.js](http://builtbybalance.com/Tabletop/) you can feed [leaflet.js](http://leaflet.cloudmade.com/) the data it needs to make maps.
 
 # STATS
 
-Using tabletop.js and handlebars.js you can create templates for you website that includes data from your spreadsheet.
+Using [tabletop.js](http://builtbybalance.com/Tabletop/) and [mustache.js](http://mustache.github.com/) you can create templates for you website that includes data from your spreadsheet.
 
 
 
