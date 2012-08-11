@@ -10,8 +10,9 @@
   <meta name="description" content="">
 
   <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="style.css">
-  <script src="tabletop.js" type="text/javascript"></script> 
+  <link rel="stylesheet" href="pie.css">
+  <script src="sheetsee.js" type="text/javascript"></script>
+  <script src="tabletop.js" type="text/javascript"></script>
   <script src="raphael-min.js" type="text/javascript"></script>  
   <script src="pie.js" type="text/javascript"></script> 
 </head>
@@ -19,30 +20,23 @@
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
   <div id="holder">
   </div>
-
-  <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', runWebsite)
+  <script type="text/javascript">    
+    document.addEventListener('DOMContentLoaded', function() {
+      loadSpreadsheet(showInfo)
+    })
     
-    function runWebsite() {
-      var public_spreadsheet_url = 'https://docs.google.com/spreadsheet/pub?key=0Aj3c4mZCQQaMdGE2TVphOWlXMUMyclRXa2Z1c0g5MGc&single=true&gid=1&output=html';
+    function showInfo(data, tabletop) {
 
-      Tabletop.init( { key: public_spreadsheet_url,
-                       callback: showInfo,
-                       simpleSheet: true } )
-
-      function showInfo(data, tabletop) {
-  
-        function pushBits(element) {
-          values.push(parseInt(element.total))
-          labels.push(element.project)
-        }
-        
-        var values = [],
-            labels = [];
-            data.forEach(pushBits)
-            
-        Raphael("holder", 900, 700).pieChart(350, 350, 200, values, labels, "#fff");
+      function pushBits(element) {
+        values.push(parseInt(element.total))
+        labels.push(element.project)
       }
+
+      var values = [],
+          labels = [];
+          data.forEach(pushBits)
+
+      Raphael("holder", 900, 700).pieChart(350, 350, 200, values, labels, "#fff");
     }
   </script>
 </body>

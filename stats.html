@@ -1,0 +1,96 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title></title>
+  <meta name="description" content="">
+
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="stats.css">
+  <link href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <script src="tabletop.js" type="text/javascript"></script> 
+  <script src="ICanHaz.js" type="text/javascript"></script> 
+  <script src="accounting.js" type="text/javascript"></script> 
+  <script src="sheetsee.js" type="text/javascript"></script>
+  
+  <style>
+  body {font-family: 'Arvo';}
+  thead {padding-bottom: 20px;}
+  th {background-color: #DDDDDD; font-size: 16px; font-weight: 400; padding: 6px; }
+  tbody {padding: 15px 4px;}
+  td {min-width: 70px; vertical-align: middle; height: 28px; padding: 3px;}
+  .project {padding-right: 10px;}
+  .yrdolls {font-size: 12px; text-align: center;}
+  .total {font-weight: 700; font-size: 12px;}
+  tr {border-bottom: 1px dotted #acacac;}
+  .tableheader {border: none;} 
+  h4 {font-size: 22px; font-weight: 400;}
+  .statHighlight {background-color: #BCEDDC; padding: 4px; margin-right: 3px;}
+  </style>
+</head>
+<body>
+  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+  <div id="table"></div>
+  <div id="stats"></div>
+
+  <script id="stats" type="text/html">
+    <h4><span class="statHighlight">{{numberActive}} of {{numberTotalProjects}}</span> projects are active</h4>
+    <h4><span class="statHighlight">{{numberCompletedProjects}}</span> projects are completed</h4>
+    <h4><span class="statHighlight">{{totalSpent}}</span> has been spent as of {{currentDate}} </h4>
+  </script>
+
+  <script id="schedule" type="text/html">
+    <table>
+    <thead>
+    <tr class="tableheader">
+    <th>PROJECT</th><th>TOTAL</th><th>2012</th><th>2013</th><th>2014</th><th>2015</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th>
+    </tr>
+    </thead>
+    {{#rows}}
+      <tr><td class = "project">{{project}}</td><td class="total">{{total}}</td><td class="yrdolls">{{year2012}}</td><td class="yrdolls">{{year2013}}</td><td class="yrdolls">{{year2014}}</td><td class="yrdolls">{{year2015}}</td><td class="yrdolls">{{year2016}}</td><td class="yrdolls">{{year2017}}</td><td class="yrdolls">{{year2018}}</td><td class="yrdolls">{{year2019}}</td></tr>
+    {{/rows}}
+    </table>
+  </script>
+  <script type="text/javascript">    
+    document.addEventListener('DOMContentLoaded', function() {
+      loadSpreadsheet(showInfo)
+    })
+    
+    function showInfo(data, tabletop) {
+
+      accounting.settings.currency.precision = 0
+
+      var edProjects = getType(data, "Economic Development")
+      var drProjects = getType(data, "Debt Retirement")
+      var raProjects = getType(data, "Rec & Cultural Arts")
+      var psProjects = getType(data, "Public Safety")
+
+      var numberActive = getActiveProjects(edProjects).length
+      var numberTotalProjects = 2
+      var numberCompletedProjects = completedProjects(edProjects)
+      var totalSpent = amountSpent(edProjects)
+
+      var schedule = ich.schedule({
+        "rows": turnCurrency(edProjects)
+      })
+
+      var stats = ich.stats({
+        "numberActive": numberActive,
+        "numberTotalProjects": numberTotalProjects,
+        "numberCompletedProjects": numberCompletedProjects,
+        "totalSpent": accounting.formatMoney(totalSpent),
+        "currentDate": getCurrentYear()
+      })
+
+      document.getElementById('table').innerHTML = schedule;
+      document.getElementById('stats').innerHTML = stats; 
+    }
+    
+  </script>
+    
+</body>
+</html>
