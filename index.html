@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="leaflet.css" />
 <script src="leaflet.js"></script>
 <script src="sheetsee.js"></script>
+<script src="raphael-min.js" type="text/javascript"></script>  
+<script src="pie.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -84,24 +86,30 @@
         </ul>
       </div><!-- #menu END -->
       <div class="searcher">
-    			<?php get_search_form(); ?>
-    		</div>
+    	</div><!-- this searcher is just in my wordpress version -->
       </div><!-- #sidebar END -->  
       
       
       <div id="maincontainer" class="overview" >
+         
          <h3>Economic Development Projects</h3>
-            <p class="intro">This is a sample page to illustrate using a Google spreadsheet and tabletop.js to fill tables, templates, maps and more. A piechart to come soon. Everything below this text is generated from (Sheet 2 of) <a href="https://docs.google.com/a/codeforamerica.org/spreadsheet/ccc?key=0Aj3c4mZCQQaMdGE2TVphOWlXMUMyclRXa2Z1c0g5MGc" target="_blank">this spreadsheet</a>. The github repo is <a href="https://github.com/jllord/sheetsee.js" target="_blank">here</a>. </p>
+            <p class="intro">This is a sample page to illustrate using a Google spreadsheet and tabletop.js to fill tables, templates, maps, charts... Everything below this text is generated from (Sheet 2 of) <a href="https://docs.google.com/a/codeforamerica.org/spreadsheet/ccc?key=0Aj3c4mZCQQaMdGE2TVphOWlXMUMyclRXa2Z1c0g5MGc" target="_blank">this spreadsheet</a>. The github repo is <a href="https://github.com/jllord/sheetsee.js" target="_blank">here</a>. </p>
+           <p><small>Note, the spreadsheet contains more rows ("projects") than are displayed here because I'm planning on filtering projects by page type. This page focuses on Economic Development so each thing is filtering out all non-Economic Development projects.</small></p>
          <h3>Economic Development Quick Stats</h3>
-         <div id="stats"></div>
+            <div id="stats"></div>
          <h3>Project Locations</h3>
-
-          <div id="map"></div>
+            <div id="map"></div>
+          <h3>Category Funding Comparison</h3>
+            <div id="holder"></div>
           <h3>Project Funding Schedule</h3>
-
-        <div id="table"></div><!-- end #table -->
-          </div><!-- end #maincontainer -->
-
+            <div id="table"></div><!-- end #table -->
+          <h3>Relevant Links</h3>
+            <ul class="linkList">
+              <li class="linkList"><a href="#">Downtown Corridor Planning Initiative</a></li>
+              <li class="linkList"><a href="#">Macon Centreplex Official Website</a></li>
+            </ul>
+        
+      </div><!-- end #maincontainer -->
 
           <script id="stats" type="text/html">
              <p><span class="statHighlight">{{numberActive}} of {{numberTotalProjects}}</span> projects are active</p>
@@ -129,7 +137,8 @@
              })    
 
              function showInfo(data, tabletop) {
-
+               
+               
                accounting.settings.currency.precision = 0
 
                var edProjects = getType(data, "Economic Development")
@@ -141,6 +150,19 @@
                edProjects.forEach(function (edProject){
                  displayAddress(map, edProject)
                })
+
+               function pushBits(element) {
+                  values.push(parseInt(element.total))
+                  labels.push(element.project)
+                }
+
+                var values = []
+                var labels = []
+                
+                edProjects.forEach(pushBits)
+
+                Raphael("holder", 400, 400).pieChart(200, 200, 125, values, labels, "#fff");
+
 
 
                var numberActive = getActiveProjects(edProjects).length
