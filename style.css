@@ -299,5 +299,6 @@ h4 {font-size: 22px; font-weight: 400; }
 .statHighlight {background-color: #BCEDDC; padding: 4px; margin-right: 3px;}
 #stats p {margin-bottom: 9px;}
 #map {height: 300px; width: 100%; margin: 20px 0px;}
+.intro a {border-bottom: 1px dotted #acacac; padding-bottom: 2px;}
 
 #stats {margin-bottom: 15px;}
