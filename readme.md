@@ -2,7 +2,7 @@
 
 If you have a public Google Spreadsheet you can visualize that data through a few different js libraries. Since the spreadsheet updates automatically, so will your visualizations. That's cool. 
 
-You can view a working sample of the bits in action at [jllord.github.com/sheetsee.js](http://jllord.github.com/sheetsee.js)
+You can view a working sample of the bits in action at [jllord.github.com/sheetsee.js/](http://jllord.github.com/sheetsee.js/)
 
 ## What's it all for?
 
