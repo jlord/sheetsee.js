@@ -745,7 +745,7 @@ Raphael.g = {
     //                    return colors; 
     //            })(),
     // defining it myself! need to write function to generate it based on project. 
-     colors: ["rgb(45, 247, 170)", "rgb(45, 247, 170)", "rgb(45, 247, 170)", "rgb(45, 247, 170)", "rgb(45, 247, 170)", "rgb(79, 198, 198)", "rgb(79, 198, 198)", "rgb(188, 255, 82)", "rgb(188, 255, 82)", "rgb( 102, 226, 26)", "rgb( 102, 226, 26)", "rgb( 102, 226, 26)", "rgb( 102, 226, 26)", "rgb( 102, 226, 26)"],     
+     colors: ["rgb(188, 255, 82)", "rgb(188, 255, 82)", "rgb(45, 247, 170)", "rgb(45, 247, 170)", "rgb(45, 247, 170)", "rgb(79, 198, 198)", "rgb(79, 198, 198)", "rgb(188, 255, 82)", "rgb(188, 255, 82)", "rgb( 102, 226, 26)", "rgb( 102, 226, 26)", "rgb( 102, 226, 26)", "rgb( 102, 226, 26)", "rgb( 102, 226, 26)"],     
   
     snapEnds: function(from, to, steps) {
         var f = from,
