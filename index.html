@@ -12,7 +12,9 @@
 <script src="leaflet.js"></script>
 <script src="sheetsee.js"></script>
 <script src="raphael-min.js" type="text/javascript"></script>  
-<script src="pie.js" type="text/javascript"></script>
+<script src="g.raphael.js"></script>
+<script src="g.pie.js"></script>
+
 </head>
 
 <body>
@@ -64,7 +66,7 @@
 
       <div class="menu">
         <ul class="menu_cat">
-        <li class="ed"><a href="#">Economic Development Overview</a></li>
+        <li class="category ed"><a href="#">Economic Development Overview</a></li>
         </ul>
 
         <ul>
@@ -100,14 +102,36 @@
          <h3>Project Locations</h3>
             <div id="map"></div>
           <h3>Category Funding Comparison</h3>
+            <p>Below, a funds comparison between this category's projects.</p>
+            <div class="menu"> <ul>
+              <li class="ed first"><a href="#">Centreplex</a></li>
+              <li class="ed second"><a href="#">Downtown Corridor</a></li>
+              </ul></div>
+           <!--  wait for it
+            <div class="menu">
+            <ul class="menu_cat">
+              <li class="category ps"><a href="#">Public Safety Overview</a></li>
+            </ul>
+            <ul class="menu_cat">
+            <li class="category dr"><a href="#">Debt Retirement Overview</a></li>
+            </ul>
+           <ul class="menu_cat">
+            <li class="category ed"><a href="#">Economic Development Overview</a></li>
+           </ul>
+           <ul class="menu_cat">
+           <li class="category ra"><a href="#">Rec & Cultural ArtsOverview</a></li>
+           </ul> -->
             <div id="holder"></div>
           <h3>Project Funding Schedule</h3>
+          <p>A breakdown of the projects, their total funds and fund dispersal over the course of this SPLOST.</p>
+          
             <div id="table"></div><!-- end #table -->
           <h3>Relevant Links</h3>
             <ul class="linkList">
               <li class="linkList"><a href="#">Downtown Corridor Planning Initiative</a></li>
               <li class="linkList"><a href="#">Macon Centreplex Official Website</a></li>
             </ul>
+            
         
       </div><!-- end #maincontainer -->
 
@@ -155,16 +179,37 @@
                   values.push(parseInt(element.total))
                   labels.push(element.project)
                 }
-
+              
+                var r = Raphael("holder")
                 var values = []
                 var labels = []
-                
-                edProjects.forEach(pushBits)
+                    edProjects.forEach(pushBits)
 
-                Raphael("holder", 400, 400).pieChart(200, 200, 125, values, labels, "#fff");
+                    // Creates pie chart at with center at 320, 200,
+                    // radius 100 and data
+                    pie = r.piechart(230, 230, 170, values, { legend:  labels, legendpos: "east", href: ["#", "#"]});
 
+                // pshhh r.text(320, 100, "Hello cool world.").attr({ font: "30px Futura" });
+                pie.hover(function () {
+                    this.sector.stop();
+                    this.sector.scale(1.1, 1.1, this.cx, this.cy);
 
+                    if (this.label) {
+                        this.label[0].stop();
+                        this.label[0].attr({ r: 9.5 }); //changed radius of the label's marker
+                        this.label[1].attr({ "font-weight": 800 });
+                    }
+                }, function () {
+                    this.sector.animate({ transform: 's1 1 ' + this.cx + ' ' + this.cy }, 500, "bounce");
 
+                    if (this.label) {
+                        this.label[0].animate({ r: 5 }, 500, "bounce");
+                        this.label[1].attr({ "font-weight": 400 });
+                    }
+                });
+          
+                  
+  
                var numberActive = getActiveProjects(edProjects).length
                var numberTotalProjects = 2
                var numberCompletedProjects = completedProjects(edProjects)

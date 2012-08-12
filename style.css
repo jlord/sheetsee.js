@@ -215,6 +215,7 @@ p.subtitle {position: relative; font-family: 'Arvo', serif; font-size: 13px; col
 .menu li a:hover, .welcome_menu li a:hover {display: block; background: #e6e6e6; color: #777;}
 
 
+
 .welcome_menu    {width: 30%;}
 .welcome_menu li {padding-right: 7px;}
 
@@ -306,6 +307,6 @@ h4 {font-size: 22px; font-weight: 400; }
 
 #stats {margin-bottom: 15px;}
 
-#holder {height: 400px; text-align: center;}
+#holder {margin: 0 auto; width: 640px; height: 480px;}
 small {line-height: .5em;}
 ul.linkList, li.linkList {list-style: circle; margin-bottom: 8px; margin-left: 10px;}
