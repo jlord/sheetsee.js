@@ -113,6 +113,7 @@ function displayAddress(map, project) {
 
 function loadMap() {
   var	map = new L.Map('map', {
+    touchZoom: true,
     scrollWheelZoom: false,
     dragging: true});
 	var cloudmade = new L.TileLayer('http://tile.stamen.com/toner/{z}/{x}/{y}.png', {

@@ -178,18 +178,23 @@
                function pushBits(element) {
                   values.push(parseInt(element.total))
                   labels.push(element.project)
+                  hexcolors.push(element.hexcolor)
                 }
               
                 var r = Raphael("holder")
                 var values = []
                 var labels = []
+                var hexcolors = []
                     edProjects.forEach(pushBits)
 
-                    // Creates pie chart at with center at 320, 200,
-                    // radius 100 and data
-                    pie = r.piechart(230, 230, 170, values, { legend:  labels, legendpos: "east", href: ["#", "#"]});
+                   
+                pie = r.piechart(230, 230, 170, values, { 
+                  legend: labels, 
+                  legendpos: "east", 
+                  href: ["#", "#"],
+                  colors: hexcolors
+                  })
 
-                // pshhh r.text(320, 100, "Hello cool world.").attr({ font: "30px Futura" });
                 pie.hover(function () {
                     this.sector.stop();
                     this.sector.scale(1.1, 1.1, this.cx, this.cy);
@@ -208,8 +213,11 @@
                     }
                 });
           
-                  
-  
+              
+               
+          
+          
+          
                var numberActive = getActiveProjects(edProjects).length
                var numberTotalProjects = 2
                var numberCompletedProjects = completedProjects(edProjects)

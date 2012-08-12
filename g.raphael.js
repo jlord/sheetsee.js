@@ -154,7 +154,10 @@ Raphael.el.tag = function (angle, r, x, y) {
         case 'circle':
         case 'ellipse': center = true; break;
         default: center = false;
+        
     }
+    
+     
 
     angle = angle || 0;
     x = typeof x == 'number' ? x : (center ? bb.x + bb.width / 2 : bb.x);
@@ -617,6 +620,7 @@ Raphael.el.lighter = function (times) {
 
     this.attr({fill: "hsb(" + [fs[0].h, fs[0].s, fs[0].b] + ")", stroke: "hsb(" + [fs[1].h, fs[1].s, fs[1].b] + ")"});
     return this;
+    
 };
 
 /*\
@@ -721,7 +725,7 @@ Raphael.g = {
      > Default value
      | { font: '12px Arial, sans-serif', fill: '#fff' }
      \*/  
-    txtattr: { font: '12px Arial, sans-serif', fill: '#fff' },
+    txtattr: { font: '12px Arvo, sans-serif', fill: '#fff' }, //matchy matchy! 
 
     /*\
      * g.colors
@@ -745,7 +749,7 @@ Raphael.g = {
     //                    return colors; 
     //            })(),
     // defining it myself! need to write function to generate it based on project. 
-     colors: ["rgb(188, 255, 82)", "rgb(188, 255, 82)", "rgb(45, 247, 170)", "rgb(45, 247, 170)", "rgb(45, 247, 170)", "rgb(79, 198, 198)", "rgb(79, 198, 198)", "rgb(188, 255, 82)", "rgb(188, 255, 82)", "rgb( 102, 226, 26)", "rgb( 102, 226, 26)", "rgb( 102, 226, 26)", "rgb( 102, 226, 26)", "rgb( 102, 226, 26)"],     
+    // colors: ["rgb(188, 255, 82)", "rgb(188, 255, 82)", "rgb(45, 247, 170)", "rgb(45, 247, 170)", "rgb(45, 247, 170)", "rgb(79, 198, 198)", "rgb(79, 198, 198)", "rgb(188, 255, 82)", "rgb(188, 255, 82)", "rgb( 102, 226, 26)", "rgb( 102, 226, 26)", "rgb( 102, 226, 26)", "rgb( 102, 226, 26)", "rgb( 102, 226, 26)"],     
   
     snapEnds: function(from, to, steps) {
         var f = from,

@@ -141,6 +141,8 @@
             return this;
         };
 
+        
+
         // x: where label could be put
         // y: where label could be put
         // value: value to show
@@ -215,8 +217,8 @@
                 values[i].others && (labels[j] = otherslabel || "Others");
                 labels[j] = chartinst.labelise(labels[j], values[i], total);
                 chart.labels.push(paper.set());
-                chart.labels[i].push(paper[mark](x + 5, h, 5).attr({ fill: clr, stroke: "none" }));
-                chart.labels[i].push(txt = paper.text(x + 20, h, labels[j] || values[j]).attr(chartinst.txtattr).attr({ fill: opts.legendcolor || "#000", "text-anchor": "start"}));
+                chart.labels[i].push(paper[mark](x + 5, h, 5).attr({ fill: clr, stroke: "none" })); //the legend circle 
+                chart.labels[i].push(txt = paper.text(x + 20, h, labels[j] || values[j]).attr(chartinst.txtattr).attr({ fill: opts.legendcolor || "#333", "text-anchor": "start"}));
                 covers[i].label = chart.labels[i];
                 h += txt.getBBox().height * 1.2;
             }
@@ -240,7 +242,7 @@
         chart.push(series, covers);
         chart.series = series;
         chart.covers = covers;
-
+      
         return chart;
     };
     
@@ -253,5 +255,9 @@
     Raphael.fn.piechart = function(cx, cy, r, values, opts) {
         return new Piechart(this, cx, cy, r, values, opts);
     }
+    
+     
+   
+ 
     
 })();
