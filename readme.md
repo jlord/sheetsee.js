@@ -10,7 +10,7 @@ I'm creating a bond referendum budget website for the City of Macon as a part of
 
 # Pie Chart
 
-Using [tabletop.js](http://builtbybalance.com/Tabletop/) you can feed [raphael.js](http://raphaeljs.com/) the data it needs to make pie charts.
+Using [tabletop.js](http://builtbybalance.com/Tabletop/) you can feed [raphael.js](http://raphaeljs.com/) the data it needs to make pie charts. The "R" filename denotes using regular Raphael, the "g" denotes using gRaphael. I prefer the latter. 
 
 # Maps
 
