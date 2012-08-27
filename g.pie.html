@@ -30,38 +30,45 @@
     
     function showInfo(data, tabletop) {
 
-      function pushBits(element) {
-        values.push(parseInt(element.total))
-        labels.push(element.project)
-      }
+        function pushBits(element) {
+           values.push(parseInt(element.total))
+           labels.push(element.project)
+           hexcolors.push(element.hexcolor)
+         }
+              
+         var r = Raphael("holder")
+         var values = []
+         var labels = []
+         var hexcolors = []
+             data.forEach(pushBits)
+
+                   
+         pie = r.piechart(230, 230, 170, values, { 
+           legend: labels, 
+           legendpos: "east", 
+           href: ["#", "#"],
+           colors: hexcolors
+           })
+
+         pie.hover(function () {
+             this.sector.stop();
+             this.sector.scale(1.1, 1.1, this.cx, this.cy);
+                    
+
+             if (this.label) {
+                 this.label[0].stop();
+                 this.label[0].attr({ r: 9.5 }); //changed radius of the label's marker
+                 this.label[1].attr({ "font-weight": 800 });
+             }
+         }, function () {
+             this.sector.animate({ transform: 's1 1 ' + this.cx + ' ' + this.cy }, 500, "bounce");
+
+             if (this.label) {
+                 this.label[0].animate({ r: 5 }, 500, "bounce");
+                 this.label[1].attr({ "font-weight": 400 });
+             }
+         });
       
-      var r = Raphael("holder")
-      var values = []
-      var labels = []
-          data.forEach(pushBits)
-          
-          // Creates pie chart at with center at 320, 200,
-          // radius 100 and data
-          pie = r.piechart(230, 230, 170, values, { legend:  labels, legendpos: "east", href: ["#", "#"]});
-
-      // pshhh r.text(320, 100, "Hello cool world.").attr({ font: "30px Futura" });
-      pie.hover(function () {
-          this.sector.stop();
-          this.sector.scale(1.1, 1.1, this.cx, this.cy);
-
-          if (this.label) {
-              this.label[0].stop();
-              this.label[0].attr({ r: 9.5 }); //changed radius of the label's marker
-              this.label[1].attr({ "font-weight": 800 });
-          }
-      }, function () {
-          this.sector.animate({ transform: 's1 1 ' + this.cx + ' ' + this.cy }, 500, "bounce");
-
-          if (this.label) {
-              this.label[0].animate({ r: 5 }, 500, "bounce");
-              this.label[1].attr({ "font-weight": 400 });
-          }
-      });
 
     }
   </script>
