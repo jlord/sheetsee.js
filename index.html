@@ -171,8 +171,8 @@
                var psProjects = getType(data, "Public Safety")
 
                var map = loadMap()
-               edProjects.forEach(function (edProject){
-                 displayAddress(map, edProject)
+               data.forEach(function (data){
+                 displayAddress(map, data)
                })
 
                function pushBits(element) {
@@ -185,7 +185,7 @@
                 var values = []
                 var labels = []
                 var hexcolors = []
-                    edProjects.forEach(pushBits)
+                    data.forEach(pushBits)
 
                    
                 pie = r.piechart(230, 230, 170, values, { 
@@ -225,7 +225,7 @@
                var totalSpent = amountSpent(edProjects)
 
                var schedule = ich.schedule({
-                 "rows": turnCurrency(edProjects)
+                 "rows": turnCurrency(data)
                })
 
                var stats = ich.stats({
