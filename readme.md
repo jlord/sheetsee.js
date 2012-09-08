@@ -12,7 +12,7 @@ Once you've hooked it up, all you'll need to interact with is the spreadsheet. T
 
 You can view a working sample of the bits in action at [jllord.github.com/sheetsee.js/](http://jllord.github.com/sheetsee.js/)
 
-## The bits
+## The bits*
 
 It all starts with [tabletop.js](http://builtbybalance.com/Tabletop/). With that you can pile on any other library to style and visualize your data. 
 
@@ -21,6 +21,8 @@ You can feed [raphael.js](http://raphaeljs.com/) the data it needs to make pie c
 You can feed [leaflet.js](http://leaflet.cloudmade.com/) the data it needs to make maps.
 
 Use [mustache.js](http://mustache.github.com/) to create templates for the data in your spreadsheet.
+
+*d3 would be awesome to use, too! I'm not using it right now because I need the visualizations to work in IE6. Yeah. I know. 
 
 
 ## What's it all for?
