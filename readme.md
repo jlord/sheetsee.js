@@ -22,12 +22,12 @@ You can feed [leaflet.js](http://leaflet.cloudmade.com/) the data it needs to ma
 
 Use [mustache.js](http://mustache.github.com/) to create templates for the data in your spreadsheet.
 
-*d3 would be awesome to use, too! I'm not using it right now because I need the visualizations to work in IE6. Yeah. I know. 
+*d3 would be awesome to use, too! I'm not using it right now because I need the visualizations to work in IE6. Yeah. I know. See next section. 
 
 
 ## What's it all for?
 
-I'm creating a bond referendum budget website for the City of Macon as a part of my [Code for America](http://www.codeforamerica.org) fellowship. The site is built on Wordpress and will visualize the budget with sheetsee.js. The city's budget staff will be able to make changes to the budget through the linked Google spreadsheet. Will link to site when it's launched.
+I'm creating a bond referendum budget website for the City of Macon as a part of my [Code for America](http://www.codeforamerica.org) fellowship. The site will open up this information to residents. The site is built on Wordpress and will visualize the budget with sheetsee.js. The city's budget staff will be able to make changes to the budget through the linked Google spreadsheet. Will link to site when it's launched.
 
 I'll also be making a website to curate hackathon apps for cities with [mishmosh](https://github.com/mishmosh) using sheetsee to handle all data in an easy-to-contribute-for-all kind of way. More details soon! 
 
