@@ -293,7 +293,7 @@ body {font-family: 'Arvo';}
 thead {padding-bottom: 20px;}
 th {background-color: #DDDDDD; font-size: 16px; font-weight: 400; padding: 6px; }
 tbody {padding: 15px 4px;}
-td {min-width: 68px; vertical-align: middle; height: 28px; padding: 3px;}
+td {min-width: 65px; vertical-align: middle; height: 28px; padding: 3px;}
 .project {padding-right: 10px;}
 .yrdolls {font-size: 12px; text-align: center;}
 .total {font-weight: 700; font-size: 12px;}

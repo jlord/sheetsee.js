@@ -1,29 +1,24 @@
-
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>TESTING TESTING</title>
-<link rel="profile" href="http://gmpg.org/xfn/11">
-<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic'  type='text/css'>
-<link rel="stylesheet" href="style.css" type="text/css">
-<link rel="stylesheet" href="leaflet.css" type="text/css">
-<script type="text/javascript" src="tabletop.js"></script> 
-<script type="text/javascript" src="ICanHaz.js"></script> 
-<script type="text/javascript" src="accounting.js" ></script>
-<script type="text/javascript" src="leaflet.js"></script>
-<script type="text/javascript" src="raphael-min.js"></script>
-<script type="text/javascript" src="g.raphael.js"></script>
-<script type="text/javascript" src="g.bar-min.js"></script>
-<script type="text/javascript" src="g.pie-min.js"></script>
-<script type="text/javascript" src="sheetsee.js"></script>
-        
+<head>
+<title>SPLOST</title>
+<link href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="stylesheet" href="style.css">
+<script src="tabletop.js" type="text/javascript"></script> 
+<script src="ICanHaz.js" type="text/javascript"></script> 
+<script src="accounting.js" type="text/javascript"></script>
+<link rel="stylesheet" href="leaflet.css" />
+<script src="leaflet.js"></script>
+<script src="sheetsee.js"></script>
+<script src="raphael-min.js" type="text/javascript"></script>  
+<script src="g.raphael.js"></script>
+<script src="g.pie.js"></script>
 
-        <style type="text/css">
-#holder {width: 780px; height: 900px;}
-        </style>
-    </head>
-    <body>   
+</head>
 
-<div id="pagewrapper">
+<body>
+  <div id="pagewrapper">
     <div id="header">
       <p class="top-menu"><a href="#">HOME</a> / <a href="#">ABOUT THIS SITE</a> / <a href="#">CONTACT</a> / <a href="#">NEWS</a> </p> 
       <div id="title_container">
@@ -93,20 +88,39 @@
         </ul>
       </div><!-- #menu END -->
       <div class="searcher">
-      </div><!-- this searcher is just in my wordpress version -->
+    	</div><!-- this searcher is just in my wordpress version -->
       </div><!-- #sidebar END -->  
       
       
       <div id="maincontainer" class="overview" >
          
          <h3>Economic Development Projects</h3>
-            <p class="intro">This is a sample page to illustrate using a Google spreadsheet and tabletop.js to fill tables, templates, maps, charts... Everything below this text is generated from (Sheet 2 of) <a href="https://docs.google.com/a/codeforamerica.org/spreadsheet/ccc?key=0Aj3c4mZCQQaMdGE2TVphOWlXMUMyclRXa2Z1c0g5MGc" target="_blank">this spreadsheet</a> (Sheet 2 generates some other stuff I'll set up later). The github repo is <a href="https://github.com/jllord/sheetsee.js" target="_blank">here</a>. Also, this is super in progress.</p>
+            <p class="intro">This is a sample page to illustrate using a Google spreadsheet and tabletop.js to fill tables, templates, maps, charts... Everything below this text is generated from (Sheet 2 of) <a href="https://docs.google.com/a/codeforamerica.org/spreadsheet/ccc?key=0Aj3c4mZCQQaMdGE2TVphOWlXMUMyclRXa2Z1c0g5MGc" target="_blank">this spreadsheet</a>. The github repo is <a href="https://github.com/jllord/sheetsee.js" target="_blank">here</a>. </p>
 
          <h3>Economic Development Quick Stats</h3>
             <div id="stats"></div>
          <h3>Project Locations</h3>
             <div id="map"></div>
-          <h3>Project Funding Comparison</h3>
+          <h3>Category Funding Comparison</h3>
+            <p>Below, a funds comparison between this category's projects.</p>
+            <div class="menu"> <ul>
+              <li class="ed first"><a href="#">Centreplex</a></li>
+              <li class="ed second"><a href="#">Downtown Corridor</a></li>
+              </ul></div>
+           <!--  wait for it
+            <div class="menu">
+            <ul class="menu_cat">
+              <li class="category ps"><a href="#">Public Safety Overview</a></li>
+            </ul>
+            <ul class="menu_cat">
+            <li class="category dr"><a href="#">Debt Retirement Overview</a></li>
+            </ul>
+           <ul class="menu_cat">
+            <li class="category ed"><a href="#">Economic Development Overview</a></li>
+           </ul>
+           <ul class="menu_cat">
+           <li class="category ra"><a href="#">Rec & Cultural ArtsOverview</a></li>
+           </ul> -->
             <div id="holder"></div>
           <h3>Project Funding Schedule</h3>
           <p>A breakdown of the projects, their total funds and fund dispersal over the course of this SPLOST.</p>
@@ -140,7 +154,8 @@
             </table>
           </script>
 
-          <script type="text/javascript">
+
+          <script type="text/javascript">    
             document.addEventListener('DOMContentLoaded', function() {
                loadSpreadsheet(showInfo)
              })    
@@ -165,40 +180,15 @@
                   labels.push(element.project)
                   hexcolors.push(element.hexcolor)
                 }
-
+              
+                var r = Raphael("holder")
                 var values = []
                 var labels = []
                 var hexcolors = []
                     data.forEach(pushBits)
 
-                var r = Raphael("holder");
-
-         
-                // Creates canvas 640 Ã— 480 at 10, 50
-                
-                // Creates a stacked series barchart at 10, 10
-                // width 300, height 220, data: [55, 20, 13],[16,11,5]
-                r.g.hbarchart(170, 15, 480, 480, values, {stacked: true, type: "soft", colors: hexcolors, gutter: "50%"}).hoverColumn(
-                  function() { 
-                    var y = []
-                    var res = []
-
-                        for (var i = this.bars.length; i--;) {
-                            y.push(this.bars[i].y);
-                            res.push(this.bars[i].value || "0");
-                        }
-                        this.flag = r.g.popup(this.bars[0].x, Math.min.apply(Math, y), res.join(", ")).insertBefore(this);
-                }, function() {
-                      this.flag.animate({opacity: 0}, 1500, ">", function () {this.remove();});
-                });
-
-                // axis = r.g.axis(30,560,780,null,null,14,2,labels, "|", 0);
-                // show y-axis by setting orientation to 1 
-                axis = r.g.axis(160,470,435,null, null,13,1, labels.reverse(), null, 1);
-                axis.text.attr({font:"12px Arvo", "font-weight": "regular", "fill": "#333333"});
-
-
-       pie = r.g.piechart(230, 710, 170, values, { 
+                   
+                pie = r.piechart(230, 230, 170, values, { 
                   legend: labels, 
                   legendpos: "east", 
                   href: ["#", "#"],
@@ -216,18 +206,20 @@
                         this.label[1].attr({ "font-weight": 800 });
                     }
                 }, function () {
-                    this.sector.scale(1, 1, this.cx, this.cy);
-                    //this.sector.animate({ transform: 's1 1 ' + this.cx + ' ' + this.cy }, 500, "bounce");
+                    this.sector.animate({ transform: 's1 1 ' + this.cx + ' ' + this.cy }, 500, "bounce");
 
                     if (this.label) {
                         this.label[0].animate({ r: 5 }, 500, "bounce");
                         this.label[1].attr({ "font-weight": 400 });
                     }
                 });
-
-
-
-                               var numberActive = getActiveProjects(data).length
+          
+              
+               
+          
+          
+          
+               var numberActive = getActiveProjects(data).length
                var numberTotalProjects = 14
                var numberCompletedProjects = completedProjects(data)
                var totalSpent = amountSpent(data)
@@ -247,9 +239,17 @@
                document.getElementById('table').innerHTML = schedule;
                document.getElementById('stats').innerHTML = stats; 
 
-            }
+             }
+          </script>
+      
+      
+      
+      
+        <div id="footer">
+          <p>Built by Code for America for Macon, Georgia.</p>
+          </div><!-- #footer end -->
 
-        </script>
+      </div><!-- #pagewrapper end -->
 
-    </body>
-</html>
+      </body>
+      </html>
