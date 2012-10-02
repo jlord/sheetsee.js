@@ -1,5 +1,7 @@
 # Hi!
 
+- hello everyone from the cfa summit! this is the repo for sheetsee.js - it's a work in progress, the fellowship isn't over yet! I'll be cleaning it up, making it better and doing documentation in the next few weeks. You can also go to the repo for the Wordpress theme to see it's usage there, [see penny work theme](http://github.com/codeforamerica/wp-splost)
+
 Sheetsee.js is a javascript library mashup that allows you to manage visualized web content through Google Spreadsheets. 
 
 The web content and visualizations will update with every auto save by Google. That's cool. No pushing or uploading changes. 
