@@ -1,6 +1,6 @@
 # Hi!
 
-- hello everyone from the cfa summit! this is the repo for sheetsee.js - it's a work in progress, the fellowship isn't over yet! I'll be cleaning it up, making it better and doing documentation in the next few weeks. You can also go to the repo for the Wordpress theme to see it's usage there, [see penny work theme](http://github.com/codeforamerica/wp-splost)
+- hello everyone from the cfa summit! this is the repo for sheetsee.js - it's a work in progress, the fellowship isn't over yet! I'll be cleaning it up, making it better and doing documentation in the next few weeks. You can also go to the repo for the Wordpress theme to see its usage there, [see penny work theme](http://github.com/codeforamerica/wp-splost)
 
 Sheetsee.js is a javascript library mashup that allows you to manage visualized web content through Google Spreadsheets. 
 
@@ -31,7 +31,7 @@ Use [mustache.js](http://mustache.github.com/) to create templates for the data 
 
 I'm creating a bond referendum [budget website](http://splost.codeforamerica.org) for the City of Macon as a part of my [Code for America](http://www.codeforamerica.org) fellowship. The project is called [See Penny Work](http://www.seepennywork.in). The site will open up this information to residents. The site is built on Wordpress and will visualize the budget with sheetsee.js. The city's budget staff will be able to make changes to the budget through the linked Google spreadsheet. 
 
-I'll also be making a website to curate hackathon apps for cities with [mishmosh](https://github.com/mishmosh) using sheetsee to handle all data in an easy-to-contribute-for-all kind of way. More details soon! 
+I'll also be making a website to curate hackathon apps for cities with [mishmosh](https://github.com/mishmosh) using sheetsee.js to handle all data in an easy-to-contribute-for-all kind of way. More details soon! 
 
 ## More on how to set it up
 
