@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SPLOST</title>
+<link href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="stylesheet" href="style.css">
+<script src="tabletop.js" type="text/javascript"></script> 
+<script src="ICanHaz.js" type="text/javascript"></script> 
+<script src="accounting.js" type="text/javascript"></script>
+<link rel="stylesheet" href="leaflet.css" />
+<script src="leaflet.js"></script>
+<script src="sheetsee.js"></script>
+<script src="raphael-min.js" type="text/javascript"></script>  
+<script src="g.raphael.js"></script>
+<script src="g.pie.js"></script>
+
+</head>
+
+<body>
+  <div id="pagewrapper">
+    <div id="header">
+      <p class="top-menu"><a href="#">HOME</a> / <a href="#">ABOUT THIS SITE</a> / <a href="#">CONTACT</a> / <a href="#">NEWS</a> </p> 
+      <div id="title_container">
+      <h1 class="tright">MACON CHANGE</h1>
+      <p class="subtitle">Track Macon's SPLOST Project Funding</p>
+      </div>
+    </div><!-- #header END -->
+
+     <div id="bread_box">
+      <div id="breadcrumbs">
+          <div class="left"><p>Overview</p></div>
+          <div class="right"><p>Economic Development</p></div>
+      </div><!-- #breadcrumbs END -->
+     </div><!-- #bread_box END -->
+     
+   <div id="sidebar">
+      <div class="button"><a href="#">SPLOST Overview</a></div>
+      <div style="clear:both;"></div>
+      <h5>SPLOST CATEGORIES & PROJECTS</h5>
+
+      <div class="menu">
+      <ul class="menu_cat">
+        <li class="category ps"><a href="#">Public Safety Overview</a></li>
+        </ul>
+
+        <ul>
+        <li class="ps first"><a href="#">Storm Drainage</a></li>
+        <li class="ps second"><a href="#">Street Maintenance</a></li>
+        <li class="ps first"><a href="#">GMA Lease Pool</a></li>
+        <li class="ps second"><a href="#">Public Safety Equipment</a></li>
+        <li class="ps first"><a href="#">Public Safety Other</a></li>
+        </ul>
+     </div><!-- #menu END -->
+
+     <div class="menu">
+        <ul class="menu_cat">
+        <li class="category dr"><a href="#">Debt Retirement Overview</a></li>
+        </ul>
+
+        <ul>
+        <li class="dr first"><a href="#">Debt Retirement</a></li>
+        <li class="dr second"><a href="#">Bond Repayment</a></li>
+        </ul>
+      </div><!-- #menu END -->
+
+      <div class="menu">
+        <ul class="menu_cat">
+        <li class="category ed"><a href="#">Economic Development Overview</a></li>
+        </ul>
+
+        <ul>
+        <li class="ed first"><a href="#">Centreplex</a></li>
+        <li class="ed second"><a href="#">Downtown Corridor</a></li>
+        </ul>
+      </div><!-- #menu END -->
+
+      <div class="menu">
+        <ul class="menu_cat">
+        <li class="category ra"><a href="#">Rec & Cultural ArtsOverview</a></li>
+        </ul>
+
+        <ul>
+        <li class="ra first"><a href="#">Tubman Museum</a></li>
+        <li class="ra second"><a href="#">Bowden Golf</a></li>
+        <li class="ra first"><a href="#">Rose Hill Cemetery</a></li>
+        <li class="ra second"><a href="#">Ft. Hawkins</a></li>
+        </ul>
+      </div><!-- #menu END -->
+      <div class="searcher">
+    	</div><!-- this searcher is just in my wordpress version -->
+      </div><!-- #sidebar END -->  
+      
+      
+      <div id="maincontainer" class="overview" >
+         
+         <h3>Economic Development Projects</h3>
+            <p class="intro">This is a sample page to illustrate using a Google spreadsheet and tabletop.js to fill tables, templates, maps, charts... Everything below this text is generated from (Sheet 2 of) <a href="https://docs.google.com/a/codeforamerica.org/spreadsheet/ccc?key=0Aj3c4mZCQQaMdGE2TVphOWlXMUMyclRXa2Z1c0g5MGc" target="_blank">this spreadsheet</a>. The github repo is <a href="https://github.com/jllord/sheetsee.js" target="_blank">here</a>. </p>
+
+         <h3>Economic Development Quick Stats</h3>
+            <div id="stats"></div>
+         <h3>Project Locations</h3>
+            <div id="map"></div>
+          <h3>Category Funding Comparison</h3>
+            <p>Below, a funds comparison between this category's projects.</p>
+            <div class="menu"> <ul>
+              <li class="ed first"><a href="#">Centreplex</a></li>
+              <li class="ed second"><a href="#">Downtown Corridor</a></li>
+              </ul></div>
+           <!--  wait for it
+            <div class="menu">
+            <ul class="menu_cat">
+              <li class="category ps"><a href="#">Public Safety Overview</a></li>
+            </ul>
+            <ul class="menu_cat">
+            <li class="category dr"><a href="#">Debt Retirement Overview</a></li>
+            </ul>
+           <ul class="menu_cat">
+            <li class="category ed"><a href="#">Economic Development Overview</a></li>
+           </ul>
+           <ul class="menu_cat">
+           <li class="category ra"><a href="#">Rec & Cultural ArtsOverview</a></li>
+           </ul> -->
+            <div id="holder"></div>
+          <h3>Project Funding Schedule</h3>
+          <p>A breakdown of the projects, their total funds and fund dispersal over the course of this SPLOST.</p>
+          
+            <div id="table"></div><!-- end #table -->
+          <h3>Relevant Links</h3>
+            <ul class="linkList">
+              <li class="linkList"><a href="#">Downtown Corridor Planning Initiative</a></li>
+              <li class="linkList"><a href="#">Macon Centreplex Official Website</a></li>
+            </ul>
+            
+        
+      </div><!-- end #maincontainer -->
+
+          <script id="stats" type="text/html">
+             <p><span class="statHighlight">{{numberActive}} of {{numberTotalProjects}}</span> projects are active</p>
+             <p><span class="statHighlight">{{numberCompletedProjects}}</span> projects are completed</p>
+             <p><span class="statHighlight">{{totalSpent}}</span> has been spent as of {{currentDate}} </p>
+           </script>
+
+         <script id="schedule" type="text/html">
+            <table>
+            <thead>
+            <tr class="tableheader">
+            <th>PROJECT</th><th>TOTAL</th><th>2012</th><th>2013</th><th>2014</th><th>2015</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th>
+            </tr>
+            </thead>
+            {{#rows}}
+              <tr><td class = "project">{{project}}</td><td class="total">{{total}}</td><td class="yrdolls">{{year2012}}</td><td class="yrdolls">{{year2013}}</td><td class="yrdolls">{{year2014}}</td><td class="yrdolls">{{year2015}}</td><td class="yrdolls">{{year2016}}</td><td class="yrdolls">{{year2017}}</td><td class="yrdolls">{{year2018}}</td><td class="yrdolls">{{year2019}}</td></tr>
+            {{/rows}}
+            </table>
+          </script>
+
+
+          <script type="text/javascript">    
+            document.addEventListener('DOMContentLoaded', function() {
+               loadSpreadsheet(showInfo)
+             })    
+
+             function showInfo(data, tabletop) {
+               
+               
+               accounting.settings.currency.precision = 0
+
+               var edProjects = getType(data, "Economic Development")
+               var drProjects = getType(data, "Debt Retirement")
+               var raProjects = getType(data, "Rec & Cultural Arts")
+               var psProjects = getType(data, "Public Safety")
+
+               var map = loadMap()
+               data.forEach(function (data){
+                 displayAddress(map, data)
+               })
+
+               function pushBits(element) {
+                  values.push(parseInt(element.total))
+                  labels.push(element.project)
+                  hexcolors.push(element.hexcolor)
+                }
+              
+                var r = Raphael("holder")
+                var values = []
+                var labels = []
+                var hexcolors = []
+                    data.forEach(pushBits)
+
+                   
+                pie = r.piechart(230, 230, 170, values, { 
+                  legend: labels, 
+                  legendpos: "east", 
+                  href: ["#", "#"],
+                  colors: hexcolors
+                  })
+
+                pie.hover(function () {
+                    this.sector.stop();
+                    this.sector.scale(1.1, 1.1, this.cx, this.cy);
+                    
+
+                    if (this.label) {
+                        this.label[0].stop();
+                        this.label[0].attr({ r: 9.5 }); //changed radius of the label's marker
+                        this.label[1].attr({ "font-weight": 800 });
+                    }
+                }, function () {
+                    this.sector.animate({ transform: 's1 1 ' + this.cx + ' ' + this.cy }, 500, "bounce");
+
+                    if (this.label) {
+                        this.label[0].animate({ r: 5 }, 500, "bounce");
+                        this.label[1].attr({ "font-weight": 400 });
+                    }
+                });
+          
+              
+               
+          
+          
+          
+               var numberActive = getActiveProjects(data).length
+               var numberTotalProjects = 14
+               var numberCompletedProjects = completedProjects(data)
+               var totalSpent = amountSpent(data)
+
+               var schedule = ich.schedule({
+                 "rows": turnCurrency(data)
+               })
+
+               var stats = ich.stats({
+                 "numberActive": numberActive,
+                 "numberTotalProjects": numberTotalProjects,
+                 "numberCompletedProjects": numberCompletedProjects,
+                 "totalSpent": accounting.formatMoney(totalSpent),
+                 "currentDate": getCurrentYear()
+               })
+
+               document.getElementById('table').innerHTML = schedule;
+               document.getElementById('stats').innerHTML = stats; 
+
+             }
+          </script>
+      
+      
+      
+      
+        <div id="footer">
+          <p>Built by Code for America for Macon, Georgia.</p>
+          </div><!-- #footer end -->
+
+      </div><!-- #pagewrapper end -->
+
+      </body>
+      </html>
