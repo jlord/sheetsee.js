@@ -29,7 +29,7 @@ Use [mustache.js](http://mustache.github.com/) to create templates for the data 
 
 ## What's it all for?
 
-I'm creating a bond referendum budget website for the City of Macon as a part of my [Code for America](http://www.codeforamerica.org) fellowship. The site will open up this information to residents. The site is built on Wordpress and will visualize the budget with sheetsee.js. The city's budget staff will be able to make changes to the budget through the linked Google spreadsheet. Will link to site when it's launched.
+I'm creating a bond referendum [budget website](http://splost.codeforamerica.org) for the City of Macon as a part of my [Code for America](http://www.codeforamerica.org) fellowship. The project is called [See Penny Work](http://www.seepennywork.in). The site will open up this information to residents. The site is built on Wordpress and will visualize the budget with sheetsee.js. The city's budget staff will be able to make changes to the budget through the linked Google spreadsheet. 
 
 I'll also be making a website to curate hackathon apps for cities with [mishmosh](https://github.com/mishmosh) using sheetsee to handle all data in an easy-to-contribute-for-all kind of way. More details soon! 
 
