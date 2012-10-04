@@ -37,6 +37,10 @@ I'll also be making a website to curate hackathon apps for cities with [mishmosh
 
 I know, I know. It will come - most definitely before November 16th (end of the CfA fellowship year).
 
+## License 
+
+This repo is BSD Licensed, read more in [license.md](https://github.com/jllord/sheetsee.js/blob/master/license.md).
+
 
 
 
