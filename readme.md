@@ -41,7 +41,11 @@ I know, I know. It will come - most definitely before November 16th (end of the 
 
 This repo is BSD Licensed, read more in [license.md](https://github.com/jllord/sheetsee.js/blob/master/license.md).
 
+# Updates
 
+### 4 Oct 2012
+
+I may have done some funky merging, but things appear to be ok. 
 
 
 
