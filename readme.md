@@ -41,16 +41,11 @@ I know, I know. It will come - most definitely before November 16th (end of the 
 
 This repo is BSD Licensed, read more in [license.md](https://github.com/jllord/sheetsee.js/blob/master/license.md).
 
-<<<<<<< HEAD
-=======
 # Updates
 
 ### 4 Oct 2012
 
-I merged gh-pages with the master branch because gh-pages was more current and master was more out of date experimental bits. 
-
->>>>>>> e975c3e65604a29f05453b3cf9131d6c46a32d63
-
+I may have done some funky merging, but things appear to be ok. 
 
 
 
