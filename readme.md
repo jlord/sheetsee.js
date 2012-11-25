@@ -1,6 +1,8 @@
 ### NOV. 23, 2012 UPDATE
 
-I've actually updated sheetsee.js quite a bit in the project I built it for ([see the repo](https://github.com/jllord/splost-heroku/tree/master/wp-content/themes/wp-splost)) this year at Code for America. I plan on updating this repo to match that current version very shortly.
+I've actually updated sheetsee.js quite a bit in the project I built it for ([see the repo](https://github.com/codeforamerica/wp-splost)) this year at Code for America. I plan on updating this repo to match that current version very shortly.
+
+You should (check out that repo)[https://github.com/codeforamerica/wp-splost] though - I went to town on the readme and how all the elements of the project work together. 
 
 # Hi!
 
