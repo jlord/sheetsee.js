@@ -1,3 +1,7 @@
+### NOV. 23, 2012 UPDATE
+
+I've actually updated sheetsee.js quite a bit in the project I built it for ([see the repo](https://github.com/jllord/splost-heroku/tree/master/wp-content/themes/wp-splost)) this year at Code for America. I plan on updating this repo to match that current version very shortly.
+
 # Hi!
 
 - hello everyone from the cfa summit! this is the repo for sheetsee.js - it's a work in progress, the fellowship isn't over yet! I'll be cleaning it up, making it better and doing documentation in the next few weeks. You can also go to the repo for the Wordpress theme to see its usage there, [see penny work theme](http://github.com/codeforamerica/wp-splost)
