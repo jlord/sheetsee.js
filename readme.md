@@ -2,7 +2,7 @@
 
 I've actually updated sheetsee.js quite a bit in the project I built it for ([see the repo](https://github.com/codeforamerica/wp-splost)) this year at Code for America. I plan on updating this repo to match that current version very shortly.
 
-You should (check out that repo)[https://github.com/codeforamerica/wp-splost] though - I went to town on the readme and how all the elements of the project work together. 
+You should [check out that repo](https://github.com/codeforamerica/wp-splost) though - I went to town on the readme and how all the elements of the project work together. 
 
 # Hi!
 
