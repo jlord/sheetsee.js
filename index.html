@@ -1,256 +1,274 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+  	<title>sheetsee.js | example</title>
+		
+		<link rel="profile" href="http://gmpg.org/xfn/11">
+		<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic'  type='text/css'>
+		<link rel="stylesheet" href="css/normalize.css" type="text/css">
+		<link rel="stylesheet" href="css/style.css" type="text/css">
+		<link rel="stylesheet" href="leaflet.css" type="text/css">
+		<script type="text/javascript" src="js/sheetsee.js"></script>
+		<script type="text/javascript" src="js/tabletop.js"></script>
+		<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script> 
+		<script type="text/javascript" src="js/ICanHaz.js"></script> 
+		<script type="text/javascript" src="js/d3.v2.js"></script> 
+		<script type="text/javascript" src="js/accounting.js" ></script>
+		<script type="text/javascript" src="js/leaflet.js"></script>
+		<script type="text/javascript" src="js/modernizr.custom.33965.js"></script>		
+</head>
 
-<html>
-    <head>
-        <title>sheetsee.js | example</title>
-<link rel="profile" href="http://gmpg.org/xfn/11">
-<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic'  type='text/css'>
-<link rel="stylesheet" href="style.css" type="text/css">
-<link rel="stylesheet" href="leaflet.css" type="text/css">
-<script type="text/javascript" src="tabletop.js"></script> 
-<script type="text/javascript" src="ICanHaz.js"></script> 
-<script type="text/javascript" src="accounting.js" ></script>
-<script type="text/javascript" src="leaflet.js"></script>
-<script type="text/javascript" src="raphael-min.js"></script>
-<script type="text/javascript" src="g.raphael.js"></script>
-<script type="text/javascript" src="g.bar-min.js"></script>
-<script type="text/javascript" src="g.pie-min.js"></script>
-<script type="text/javascript" src="sheetsee.js"></script>
-        
+<body>   
+	<div id="pagewrapper">
+		<div id="header">
+			<p class="top-menu"><a href="#">HOME</a> / <a href="#">ABOUT THIS SITE</a> / <a href="#">CONTACT</a> / <a href="#">NEWS</a> </p> 
+			<div id="title_container">
+				<h1 class="tright">SHEETSEE.JS</h1>
+				<p class="subtitle">Content from a Visualized Google Spreadsheets</p>
+			</div>
+		</div><!-- #header END -->
 
-        <style type="text/css">
-#holder {width: 780px; height: 900px;}
-        </style>
-    </head>
-    <body>   
-
-<div id="pagewrapper">
-    <div id="header">
-      <p class="top-menu"><a href="#">HOME</a> / <a href="#">ABOUT THIS SITE</a> / <a href="#">CONTACT</a> / <a href="#">NEWS</a> </p> 
-      <div id="title_container">
-      <h1 class="tright">MACON CHANGE</h1>
-      <p class="subtitle">Track Macon's SPLOST Project Funding</p>
-      </div>
-    </div><!-- #header END -->
-
-     <div id="bread_box">
-      <div id="breadcrumbs">
-          <div class="left"><p>Overview</p></div>
-          <div class="right"><p>Economic Development</p></div>
-      </div><!-- #breadcrumbs END -->
-     </div><!-- #bread_box END -->
+	<div id="bread_box">
+		<div id="breadcrumbs">
+			<div class="left"><p>Economic Development</p></div>
+			<div class="right"><p>Centreplex</p></div>
+		</div><!-- #breadcrumbs END -->
+	</div><!-- #bread_box END -->
      
-   <div id="sidebar">
-      <div class="button"><a href="#">SPLOST Overview</a></div>
-      <div style="clear:both;"></div>
-      <h5>SPLOST CATEGORIES & PROJECTS</h5>
+	<div id="sidebar">
+		<div class="button"><a href="#">SPLOST Overview</a></div>
+			<div style="clear:both;"></div>
+		<h5>SPLOST CATEGORIES & PROJECTS</h5>
+			<div class="menu">
+				<ul class="menu_cat">
+					<li class="category ps"><a href="#">Public Safety Overview</a></li>
+				</ul>
+					<ul>
+						<li class="ps first"><a href="#">Storm Drainage</a></li>
+						<li class="ps second"><a href="#">Street Maintenance</a></li>
+						<li class="ps first"><a href="#">GMA Lease Pool</a></li>
+						<li class="ps second"><a href="#">Public Safety Equipment</a></li>
+						<li class="ps first"><a href="#">Public Safety Other</a></li>
+					</ul>
+					</div><!-- #menu END -->
+			<div class="menu">
+				<ul class="menu_cat">
+					<li class="category dr"><a href="#">Debt Retirement Overview</a></li>
+				</ul>
+					<ul>
+						<li class="dr first"><a href="#">Debt Retirement</a></li>
+						<li class="dr second"><a href="#">Bond Repayment</a></li>
+					</ul>
+			</div><!-- #menu END -->
+			<div class="menu">
+				<ul class="menu_cat">
+					<li class="category ed"><a href="#">Economic Development Overview</a></li>
+				</ul>
+					<ul>
+						<li class="ed first"><a href="#">Centreplex</a></li>
+						<li class="ed second"><a href="#">Downtown Corridor</a></li>
+					</ul>
+			</div><!-- #menu END -->
+			<div class="menu">
+				<ul class="menu_cat">
+					<li class="category ra"><a href="#">Rec & Cultural ArtsOverview</a></li>
+				</ul>
+				<ul>
+					<li class="ra first"><a href="#">Tubman Museum</a></li>
+					<li class="ra second"><a href="#">Bowden Golf</a></li>
+					<li class="ra first"><a href="#">Rose Hill Cemetery</a></li>
+					<li class="ra second"><a href="#">Ft. Hawkins</a></li>
+				</ul>
+			</div><!-- #menu END -->
+	</div><!-- #sidebar END -->  
+       
+  <div id="maincontainer" class="overview" >
+  	<h3>Sheetsee.js Example</h3>
+			<p class="intro">This is a sample page to illustrate using a Google spreadsheet and tabletop.js to fill tables, templates, maps, charts... Everything below this text is generated from <a href="https://docs.google.com/a/codeforamerica.org/spreadsheet/ccc?key=0Aj3c4mZCQQaMdGE2TVphOWlXMUMyclRXa2Z1c0g5MGc" target="_blank">this Google spreadsheet</a>. The github repo is <a href="https://github.com/jllord/sheetsee.js" target="_blank">here</a>.</p>
+      <p class="intro">This page mimics a real page which is part of a larger project of mine at <a href="http://www.codeforamerica.org">Code for America</a>. The project is <a href="http://www.seepennywork.in" target="_blank">See Penny Work</a>, you can see the example in action for the city of Macon <a href="http://splost.herokuapp.com" target="_blank">here</a>.</p>
+			<p><small>Since this is a sample page, the sidebar and top menu links are just for show, they don't need to be goin' nowhere. The important stuff is below.</small></p>
+	  <div class="articleHolder">
+	    <h3>Location & Quick Stats</h3>
+	      <div id="stats" ></div><!-- holds spot for stats -->
+	      <div id="map" class="fullmap"><img class="spinner" src="images/fbi_spinner.gif"></div><!-- holds spot for map -->
+	      <div class="clear"></div>
+	  </div><!-- end holder -->
 
-      <div class="menu">
-      <ul class="menu_cat">
-        <li class="category ps"><a href="#">Public Safety Overview</a></li>
-        </ul>
+	  <div class="articleHolder">
+	    <h3>Category Funding Comparison</h3>
+	      <p>Below, a funds comparison between the Foucs Areas in Economic Development.</p>
+	      <div id="holder"></div><!-- holds spot for bar chart -->
+	  </div><!-- end holder -->
 
-        <ul>
-        <li class="ps first"><a href="#">Storm Drainage</a></li>
-        <li class="ps second"><a href="#">Street Maintenance</a></li>
-        <li class="ps first"><a href="#">GMA Lease Pool</a></li>
-        <li class="ps second"><a href="#">Public Safety Equipment</a></li>
-        <li class="ps first"><a href="#">Public Safety Other</a></li>
-        </ul>
-     </div><!-- #menu END -->
+	  <div class="articleHolder">
+	    <h3>Funding Schedule</h3>
+	      <p>The projected dispersal of funds for Centreplex.</p>
+	      <div id="table"></div><!-- holds spot for funding schedule -->
+	  </div><!-- end holder -->
 
-     <div class="menu">
-        <ul class="menu_cat">
-        <li class="category dr"><a href="#">Debt Retirement Overview</a></li>
-        </ul>
+	  <div class="articleHolder">
+	    <div id="monthly"><!-- holds spot for monthly expenditures - only if focus area has any -->
+	      <h3>Monthly Expenditure Report</h3>
+	      <p>Nothing yet to report in Centreplex.</p>
+	    </div>
+	  </div><!-- end holder -->
+						
+	  <div id="sharing">
+	    <p>Share this page: </p>
+	    <a href="https://twitter.com/share" class="twitter-share-button" data-via="jllord" data-hashtags="MaconSPLOST">Tweet</a>
+	    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];
+	      if(!d.getElementById(id)){js=d.createElement(s);
+	      js.id=id; js.src="//platform.twitter.com/widgets.js";
+	      fjs.parentNode.insertBefore(js,fjs);}
+	      }(document,"script","twitter-wjs");</script>
+	    <g:plusone size="medium"></g:plusone>
+	    <div class="fb-like" data-send="true" data-layout="button_count" data-width="100" data-show-faces="false"></div>
+	  </div>   
+	</div><!-- end #maincontainer -->
+	 
+	<div id="footer">
+	  <div class="footerThird"><!-- one of the 3 columns in footer -->
+	    <h4>Built by Code for America in partnership with Macon, Georgia.</h4>
+			<p>See the real project and all it's additional Wordpress functionality <a href="http://splost.herokuapp.com">here</a>.</p>
+	  </div>
+	  <div class="footerThird"><!-- one of the 3 columns in footer -->
+	    <h4>Get the Code.</h4>
+			<p>It's on <a href="http://www.github.com/jllord/sheetsee.js">Github</a>.</p>
+	  </div>
+	  <div class="footerThird"><!-- one of the 3 columns in footer -->
+	    <h4>A picture of a cat!</h4>
+			<img src="http://distilleryimage3.s3.amazonaws.com/8b937136367411e2ba2422000a1f9376_7.jpg" width="120" />
+	  </div>
+	</div><!-- #footer end -->
+	</div><!-- #pagewrapper end -->
+						        
+<!-- commence setting up the charts for mustache.js -->
+<script id="monthly" type="text/html">// format the project expenditure table
+<h3>Monthly Expenditure Report</h3>
+  <p>Each month we publish a report on our expenses and tax/bond revenue with active projects. 
+    If this project is active, the chart below will be populated with expenses related to Centreplex.</p>
+  <h6 class="fleft">Monthly Report for:</h6> 
+  <p><span class="statHighlight">  {{reportmonth}} / {{reportyear}}</span></p>
 
-        <ul>
-        <li class="dr first"><a href="#">Debt Retirement</a></li>
-        <li class="dr second"><a href="#">Bond Repayment</a></li>
-        </ul>
-      </div><!-- #menu END -->
+  <table class="monthlytable">
+  <thead>
+  <tr class="tableheader">
+  <th>FOCUS AREA</th><th>PROJECT</th><th>BUDGET</th><th>ACTUAL</th><th>STATUS</th>
+  </tr>
+  </thead>
+  {{#rows}}
+    <tr>
+    <td>{{focusarea}}</td><td >{{project}}</td><td class="yrdolls">{{budget}}</td><td class="yrdolls total">{{ptdactual}}</td><td 						class-"tright">{{status}}</td></tr>
+  {{/rows}}
+  </table>
+</script>
+			
+<script id="stats" type="text/html">// format stats
+ <h5>Centreplex has <span class="statHighlight">{{numberItemizedProjects}}</span> projects, <span class="statHighlight">{{numberInProgress}}</span> of which labeled in progress and <span class="statHighlight">{{completeProjects}}</span> are complete.</h5>
+</script>
+  
+<script id="schedule" type="text/html">// format funding dispersal schedule
+  <table>
+  <thead>
+  <tr class="tableheader">
+  <th>FOCUS AREA</th><th>TOTAL</th><th>2012</th><th>2013</th><th>2014</th><th>2015</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th>
+  </tr>
+  </thead>
+  {{#rows}}
+    <tr><td class = "project">{{focusarea}}</td><td class="total">{{total}}</td><td class="yrdolls">{{year2012}}</td><td class="yrdolls">{{year2013}}</td><td class="yrdolls">{{year2014}}</td><td class="yrdolls">{{year2015}}</td><td class="yrdolls">{{year2016}}</td><td class="yrdolls">{{year2017}}</td><td class="yrdolls">{{year2018}}</td><td class="yrdolls">{{year2019}}</td></tr>
+  {{/rows}}
+  </table>
+</script>
+			
+<script type="text/javascript"> // make all the good stuff!   
+  document.addEventListener('DOMContentLoaded', function() { // IE6 doesn't do DOMContentLoaded
+     loadSpreadsheet(showInfo)
+   })    
+	 
+   function showInfo(data, tabletop) {
+     window.tabletopData = tabletop   
 
-      <div class="menu">
-        <ul class="menu_cat">
-        <li class="category ed"><a href="#">Economic Development Overview</a></li>
-        </ul>
+		 L.Icon.Default.imagePath = "../images"
+     accounting.settings.currency.precision = 0
+     var pageParent = "Economic Development" // get Parent Page name which is Category
+     var pageName = "Centreplex" // get Page name which is Focus Area
+     var thePageParent = getType(data, pageParent) // Filter to array of Category
+     var thePageName  = getProject(data, pageName) // Filte to object of Focus Area
+ 
+     // make map 
 
-        <ul>
-        <li class="ed first"><a href="#">Centreplex</a></li>
-        <li class="ed second"><a href="#">Downtown Corridor</a></li>
-        </ul>
-      </div><!-- #menu END -->
+     var map = loadMap()
+     thePageName.forEach(function (thePageName){ // forEach doesn't exist in IE8 below, see alternate function in sheetsee
+       displayAddress(map, thePageName)
+     })
 
-      <div class="menu">
-        <ul class="menu_cat">
-        <li class="category ra"><a href="#">Rec & Cultural ArtsOverview</a></li>
-        </ul>
+     var noProjsInCat = thePageParent.length 
+     // if user's browswer doesn't support SVG, tell them
+     if (Modernizr.svg) renderGraph(thePageParent, noProjsInCat, "#holder") 
+       else sorrySVG("#holder") 
+     function sorrySVG(divTown) {
+       $(divTown).text("Sorry, to see the chart you'll need to update your browser. <a href='https://www.google.com/intl/en/chrome/browser/'>Google Chrome</a> is great.")
+     }
+    	// These define the tables  	
+      // -- quick stats table
+      var itemizedArea = getActualsArea(tabletop.sheets("actuals").all(), pageName)
+      var completeProjects = getStatusCount(itemizedArea, "Complete")
+      var inProgress = getInProgress(itemizedArea)
+      var sumInProgress = inProgressSpent(itemizedArea)
 
-        <ul>
-        <li class="ra first"><a href="#">Tubman Museum</a></li>
-        <li class="ra second"><a href="#">Bowden Golf</a></li>
-        <li class="ra first"><a href="#">Rose Hill Cemetery</a></li>
-        <li class="ra second"><a href="#">Ft. Hawkins</a></li>
-        </ul>
-      </div><!-- #menu END -->
-      <div class="searcher">
-      </div><!-- this searcher is just in my wordpress version -->
-      </div><!-- #sidebar END -->  
-      
-      
-      <div id="maincontainer" class="overview" >
-         
-         <h3>Economic Development Projects</h3>
-            <p class="intro">This is a sample page to illustrate using a Google spreadsheet and tabletop.js to fill tables, templates, maps, charts... Everything below this text is generated from (Sheet 2 of) <a href="https://docs.google.com/a/codeforamerica.org/spreadsheet/ccc?key=0Aj3c4mZCQQaMdGE2TVphOWlXMUMyclRXa2Z1c0g5MGc" target="_blank">this spreadsheet</a> (Sheet 2 generates some other stuff I'll set up later). The github repo is <a href="https://github.com/jllord/sheetsee.js" target="_blank">here</a>. Also, this is super in progress.</p>
-            <p class="intro">This is all a part of a larger project of mine at <a href="http://www.codeforamerica.org">Code for America</a>. The project is <a href="http://www.seepennywork.in" target="_blank">See Penny Work</a>, you can see the beta example in action for the city of Macon (will be completed by mid November aka end of fellowship!) <a href="http://splost.codeforamerica.org" target="_blank">here</a>.</p>
+      var stats = ich.stats({
+        numberItemizedProjects: itemizedArea.length,
+        numberInProgress: inProgress.length,
+        sumInProgress: accounting.formatMoney(sumInProgress),
+        currentDate: getCurrentYear(),
+        completeProjects: completeProjects
+      })
 
-         <h3>Economic Development Quick Stats</h3>
-            <div id="stats"></div>
-         <h3>Project Locations</h3>
-            <div id="map"></div>
-          <h3>Project Funding Comparison</h3>
-            <div id="holder"></div>
-          <h3>Project Funding Schedule</h3>
-          <p>A breakdown of the projects, their total funds and fund dispersal over the course of this SPLOST.</p>
-          
-            <div id="table"></div><!-- end #table -->
-          <h3>Relevant Links</h3>
-            <ul class="linkList">
-              <li class="linkList"><a href="#">Downtown Corridor Planning Initiative</a></li>
-              <li class="linkList"><a href="#">Macon Centreplex Official Website</a></li>
-            </ul>
-            
-        
-      </div><!-- end #maincontainer -->
+      // -- schedule table
+      var schedule = ich.schedule({
+        rows: turnCurrency(thePageName)
+      }) 
 
-          <script id="stats" type="text/html">
-             <p><span class="statHighlight">{{numberActive}} of {{numberTotalProjects}}</span> projects are active</p>
-             <p><span class="statHighlight">{{numberCompletedProjects}}</span> projects are completed</p>
-             <p><span class="statHighlight">{{totalSpent}}</span> has been spent as of {{currentDate}} </p>
-           </script>
+      // -- monthly expense table
+      var monthlyrev = getActualsArea(tabletop.sheets("actuals").all(), pageName)
+      var reportmonth = getCurrentMonth() - 1
+      var reportyear = getCurrentYear()
+      var monthly = ich.monthly({
+        rows: turnReportCurrency(monthlyrev),
+        reportyear: reportyear,
+        reportmonth: reportmonth
+      })
 
-         <script id="schedule" type="text/html">
-            <table>
-            <thead>
-            <tr class="tableheader">
-            <th>PROJECT</th><th>TOTAL</th><th>2012</th><th>2013</th><th>2014</th><th>2015</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th>
-            </tr>
-            </thead>
-            {{#rows}}
-              <tr><td class = "project">{{project}}</td><td class="total">{{total}}</td><td class="yrdolls">{{year2012}}</td><td class="yrdolls">{{year2013}}</td><td class="yrdolls">{{year2014}}</td><td class="yrdolls">{{year2015}}</td><td class="yrdolls">{{year2016}}</td><td class="yrdolls">{{year2017}}</td><td class="yrdolls">{{year2018}}</td><td class="yrdolls">{{year2019}}</td></tr>
-            {{/rows}}
-            </table>
-          </script>
-
-          <script type="text/javascript">
-            document.addEventListener('DOMContentLoaded', function() {
-               loadSpreadsheet(showInfo)
-             })    
-
-             function showInfo(data, tabletop) {
-               
-               
-               accounting.settings.currency.precision = 0
-
-               var edProjects = getType(data, "Economic Development")
-               var drProjects = getType(data, "Debt Retirement")
-               var raProjects = getType(data, "Rec & Cultural Arts")
-               var psProjects = getType(data, "Public Safety")
-
-               var map = loadMap()
-               data.forEach(function (data){
-                 displayAddress(map, data)
-               })
-
-               function pushBits(element) {
-                  values.push(parseInt(element.total))
-                  labels.push(element.project)
-                  hexcolors.push(element.hexcolor)
-                }
-
-                var values = []
-                var labels = []
-                var hexcolors = []
-                    data.forEach(pushBits)
-
-                var r = Raphael("holder");
-
-         
-                // Creates canvas 640 Ã— 480 at 10, 50
-                
-                // Creates a stacked series barchart at 10, 10
-                // width 300, height 220, data: [55, 20, 13],[16,11,5]
-                r.g.hbarchart(170, 15, 480, 480, values, {stacked: true, type: "soft", colors: hexcolors, gutter: "50%"}).hoverColumn(
-                  function() { 
-                    var y = []
-                    var res = []
-
-                        for (var i = this.bars.length; i--;) {
-                            y.push(this.bars[i].y);
-                            res.push(this.bars[i].value || "0");
-                        }
-                        this.flag = r.g.popup(this.bars[0].x, Math.min.apply(Math, y), res.join(", ")).insertBefore(this);
-                }, function() {
-                      this.flag.animate({opacity: 0}, 1500, ">", function () {this.remove();});
-                });
-
-                // axis = r.g.axis(30,560,780,null,null,14,2,labels, "|", 0);
-                // show y-axis by setting orientation to 1 
-                axis = r.g.axis(160,470,435,null, null,13,1, labels.reverse(), null, 1);
-                axis.text.attr({font:"12px Arvo", "font-weight": "regular", "fill": "#333333"});
-
-
-       pie = r.g.piechart(230, 710, 170, values, { 
-                  legend: labels, 
-                  legendpos: "east", 
-                  href: ["#", "#"],
-                  colors: hexcolors
-                  })
-
-                pie.hover(function () {
-                    this.sector.stop();
-                    this.sector.scale(1.1, 1.1, this.cx, this.cy);
-                    
-
-                    if (this.label) {
-                        this.label[0].stop();
-                        this.label[0].attr({ r: 9.5 }); //changed radius of the label's marker
-                        this.label[1].attr({ "font-weight": 800 });
-                    }
-                }, function () {
-                    this.sector.scale(1, 1, this.cx, this.cy);
-                    //this.sector.animate({ transform: 's1 1 ' + this.cx + ' ' + this.cy }, 500, "bounce");
-
-                    if (this.label) {
-                        this.label[0].animate({ r: 5 }, 500, "bounce");
-                        this.label[1].attr({ "font-weight": 400 });
-                    }
-                });
-
-
-
-                               var numberActive = getActiveProjects(data).length
-               var numberTotalProjects = 14
-               var numberCompletedProjects = completedProjects(data)
-               var totalSpent = amountSpent(data)
-
-               var schedule = ich.schedule({
-                 "rows": turnCurrency(data)
-               })
-
-               var stats = ich.stats({
-                 "numberActive": numberActive,
-                 "numberTotalProjects": numberTotalProjects,
-                 "numberCompletedProjects": numberCompletedProjects,
-                 "totalSpent": accounting.formatMoney(totalSpent),
-                 "currentDate": getCurrentYear()
-               })
-
-               document.getElementById('table').innerHTML = schedule;
-               document.getElementById('stats').innerHTML = stats; 
-
-            }
-
-        </script>
-
-    </body>
+     // write these objects to the page
+     $('#stats').html(stats)
+     $('#table').html(schedule)
+     if (monthlyrev.length > 0) $('#monthly').html(monthly)
+   }
+</script>
+<script type="text/javascript">
+  //makes g+ button
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+<div id="fb-root"></div>
+<script>
+  // makes facebook button
+  (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+</body>
 </html>
