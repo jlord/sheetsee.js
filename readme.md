@@ -1,10 +1,13 @@
-# Updates! 
+# Updates! Updates! 
 
-I'm about to spend some more time on sheetsee. Plans to clean it up, add more stuff out of the box and probably most importlantly work on making it easier to stand up. I'm going to leave my gh-pages branch with a working example and in the master branch will be the very general template to use for standing sheetsee up. 
+It's official - I've got a [Knight-Mozilla Open News Code Sprint](http://www.mozillaopennews.org/) grant to take sheetsee.js to the next level!
 
-If you have some suggestions, hit me up at to.jlord@gmail.com. I'll follow up soon with more details on my plans for sheetsee.
+It's a "sprint" so I'll be done in two months. If you can wait two months, you should, otherwise, I'll be working on another branch and this one will remain until the updates are complete.
 
-WoO!
+I'll be cleaning up the code **a lot**, making more out of the box visualizations, caching, user filtering of data, responsivenes, mega awesome documentation and more.
+
+I'm super excited! 
+
 
 # Hi!
 
