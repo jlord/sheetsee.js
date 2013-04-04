@@ -1,10 +1,10 @@
 # Updates! 
 
-I'm about to spend some more time on sheetsee. Plans to clean it up, add more stuff out of the box and probably most importlantly work on making it easier to stand up. I'm going to leave my gh-pages branch with a working example and in the master branch will be the very general template to use for standing sheetsee up. 
+ I'm building the changes to sheetsee.js. Through a Knight-Mozilla Open News Grant I'll be making lots of improvements and working with WBEZ to make a sheetssee awesome. Newness will include: stripping it of all CfA project-specific idiosyncrasies and making it really easy to understand and stand up, more out of the box vizualization options, sortable tables of data, data caching and documentation galore!
 
-If you have some suggestions, hit me up at to.jlord@gmail.com. I'll follow up soon with more details on my plans for sheetsee.
+ This branch will remain for now and branch `twoOh` will be the working one I'll be making updates on. 
 
-WoO!
+ Woo!
 
 # Hi!
 
