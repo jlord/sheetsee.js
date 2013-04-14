@@ -2,7 +2,7 @@
 
  I'm building the changes to sheetsee.js. Through a Knight-Mozilla Open News Grant I'll be making lots of improvements and working with WBEZ to make a sheetssee awesome. Newness will include: stripping it of all CfA project-specific idiosyncrasies and making it really easy to understand and stand up, more out of the box vizualization options, sortable tables of data, data caching and documentation galore!
 
- This branch will remain for now and branch `twoOh` will be the working one I'll be making updates on. 
+ This branch will remain for now and branch `twoOh` will eventually have the new client-side version on it. I'm also working on a server-side version which, for now is here: [github.com/jllord/sheetsee-cache](http://github.com/jllord/sheetsee-cache).
 
  Woo!
 
