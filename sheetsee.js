@@ -10,9 +10,9 @@ var tot = "total"
 
 // get that spreadsheet!
 
-function loadSpreadsheet() {
+function loadSpreadsheet(cb) {
   
-  Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } )
+  Tabletop.init( { key: URL, callback: cb, simpleSheet: true } )
 }
 
 // generic things
