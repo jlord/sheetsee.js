@@ -1,0 +1,53 @@
+/* General */
+
+/*  body {margin: 0px auto;}
+  a {color: #333;}
+  small {padding: 10px 0px;}
+  #wrapper {margin: 0px auto; max-width: 600px;}
+  .button {padding: 5px 4px; background-color: #fff; font-size: 10px;}*/
+  .button:hover {cursor: hand;}
+  input:focus {outline: none;}
+
+/* Table */
+
+  table {text-align: left; width: 100%}
+  th {padding: 10px 0px;}
+  td, text {padding: 3px 20px 3px 0px; font-size: 14px;}
+  #tableFilter, #basicFilter, #dogFilter {margin: 12px 0px; border: none; border-bottom: 1px solid #333; background-color: transparent; padding: 0px; font-family: Merriweather; color: #FCB688; font-size: 13px; height: 22px;}
+  .noMatches {margin-left: 20px; font-size: 11px; font-style: italic; visibility: hidden;}
+
+/* Containers */
+  .container {margin: 14px 0px;}
+  #map {height: 400px; max-width: 800px; background: #DADADA;}
+  #holder {height: 400px; max-width: 600px; background: #FFE4E4;}
+  #bar2 {height: 320px; max-width: 600px; background: #F8CDCD;}
+
+/* Bar Chart */
+
+  .labels text {text-align: right;}
+  .bar .labels text {fill: #333;}
+  .bar rect {fill: #e6e6e6;}
+  .axis {shape-rendering: crispEdges;}
+  .x.axis line {stroke: #FFE4E4; /*stroke-opacity: .2;*/ fill: none;}
+  .x.axis path {fill: none;}
+  .x.axis text {fill: #333;}
+  .xLabel {font-family: sans-serif; font-size: 9px;}
+
+/* Line Chart */
+
+/*  .axis {shape-rendering: crispEdges;}
+  .x.axis .minor, .y.axis .minor {stroke-opacity: .5;}
+  .x.axis {stroke-opacity: 1;}*/
+/*  .y.axis line, .y.axis path, .x.axis path {fill: none; stroke: #acacac; stroke-width: 1;}
+  .x.axis line {stroke: #acacac; stroke-opacity: .75;}*/
+/*  .bigg {-webkit-transition: all .2s ease-in-out; -webkit-transform: scale(2);}
+  path.chartLine {stroke: #14ECC8; stroke-width: 3; fill: none;}*/
+  div.tooltip {position: absolute; text-align: left; padding: 4px 8px; width: auto; font-size: 10px; height: auto; background: #fff; border: 0px; pointer-events: none;}
+  /*circle {fill: #fff;}*/
+
+/* Map */
+
+  .leaflet-popup-content {font-family: Merriweather;}
+  .leaflet-popup-content h2 {margin-bottom: 4px;}
+
+  img.petThumbs {height: 80px; width: 80px; border-radius: 1000px;}
