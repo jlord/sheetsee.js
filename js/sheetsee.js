@@ -223,7 +223,7 @@ function makeColorArrayOfObject(data, colors) {
   var counter = 1
   var colorIndex
   return keys.map(function(key){ 
-    if (keys.length > colors.length) {
+    if (keys.length > colors.length || keys.length <= colors.length ) {
       colorIndex = counter % colors.length
     }
     var h = {label: key, units: data[key], hexcolor: colors[colorIndex]} 
