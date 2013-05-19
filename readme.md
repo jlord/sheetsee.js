@@ -161,7 +161,7 @@ This will return an _array_ of _object_ or _objects_ (if there is a tie) of the 
 
 This will return an _array_ of _object_ or _objects_ (if there is a tie) of the element with the highest number value in the **column** you specify from your **data**.
 
-    getMin(gData, "cuddlability")
+    getMax(gData, "cuddlability")
     // returns {breed: "Teacup Maltese", cuddlability: "5", hexcolor: "#ECECEC", kind: "Dog", lat: "37.74832", long: "-122.402158", name: "Coco"...}
 
 ### Don't Forget JavaScript Math
