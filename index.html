@@ -386,8 +386,8 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
   	Sheetsee.d3BarChart(barData, barOptions)
 
   	var dogKinds = Sheetsee.getOccurance(gData, "kind")
-  	var pieColors = ["#9DEB28", "#82B339"]
-  	var pieData = Sheetsee.makeColorArrayOfObject(dogKinds, pieColors)  
+  	var colors = ["#BDBDBD", "#acacac"]
+  	var pieData = Sheetsee.makeColorArrayOfObject(dogKinds, colors)  
   	console.log(pieData)
   	var pieOptions = {m: [80, 80, 80, 80], w: 800, h: 400, div: "#dogPie", hiColor: "#E4EB29"}
   	Sheetsee.d3PieChart(pieData, pieOptions)
