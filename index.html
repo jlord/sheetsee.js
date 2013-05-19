@@ -230,6 +230,15 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
 		<p><strong>customize popup content</strong></p>
 
 <h2 id="maketable">Make a Table</h2>
+
+	<div class="container example dotted">
+		<h3>Example - Local Pet Friends</h3>
+		<input id="basicFilter" type="text" placeholder="filter by.."></input>
+		<span id="basicClear" class="clear button">Clear</span>
+		<span class="noMatches">no matches</span>
+		<div id="basicTable" class="container"></div>
+	</div>
+
 	<p>Sheetsee.js supports making multiple tables or templates with IcanHas.js. It currently supports sorting and filtering on just one table. For each of these you&#39;ll need a <code data-language="javascript">&lt;div&gt;</code> in your html, a <code data-language="javascript">&lt;script&gt;</code> template and a <code data-language="javascript">&lt;script&gt;</code> that calls table making functions.</p>
 		<h4>Your HTML Placeholder <code data-language="javascript">&lt;div&gt;</code></h4>
 			<p>This is as simple as an empty <code data-language="javascript">&lt;div&gt;</code> with an id. This id should match the script tempate id in the next section.</p>
@@ -278,6 +287,11 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
 	<p>You can also make your own d3 chart in a separate .js file, link to that and pass your data on to it. I&#39;d love to see people building some other charts that will work with Sheetsee.</p>
 
 	<h3>Bar Chart</h3>
+
+	<div class="dotted example container">
+		<div id="dogBar"></div>
+	</div>
+
 		<p>To create a bar chart you&#39;ll need to add a placeholder <code data-language="javascript">&lt;div&gt;</code> in your HTML with an id.</p>
 <pre><code data-language="javascript">&lt;div id=&quot;barChart&quot;&gt;&lt;/div&gt;</code></pre>
 		<p>In your CSS, give it dimensions.</p>
@@ -295,6 +309,11 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
 <pre><code data-language="javascript">Sheetsee.d3BarChart(data, barOptions)</code></pre>
 
 	<h3>Line Chart</h3>
+
+	<div class="dotted example container">
+		<div id="dogLine"></div>
+	</div>
+
 		<p>To create a line chart you&#39;ll need to add a placeholder <code data-language="javascript">&lt;div&gt;</code> in your html with an id.</p>
 <pre><code data-language="javascript">&lt;div id=&quot;lineChart&quot;&gt;&lt;/div&gt;</code></pre>
 		<p>In your CSS, give it dimensions.</p>
@@ -312,6 +331,11 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
 <pre><code data-language="javascript">Sheetsee.d3LineChart(data, lineOptions)</code></pre>
 
 	<h3>Pie Chart</h3>
+
+	<div class="dotted example container">
+		<div id="dogPie"></div>
+	</div>
+
 		<p>To create a bar chart you&#39;ll need to add a placeholder <code data-language="javascript">&lt;div&gt;</code> in your html with an id.</p>
 <pre><code data-language="javascript">&lt;div id=&quot;pieChart&quot;&gt;&lt;/div&gt;</code></pre>
 		<p>In your CSS, give it dimensions.</p>
@@ -334,15 +358,42 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
 	<p>Thanks to all the authors and contributors to Tabletop.js, Mapbox.js, Leaflet.js, jQuery, ICanHas.js and d3.js. Thanks to Google and the Internet for existing and to all those who&#39;ve written tutorials or asked or answered a question on StackOverflow.</p>
 	<p>Thanks to Mom and Dad for getting a computer in 1996 and the mIRC scripts I started writing that I suppose would eventually lead me here.</p>
 
+<script id="basicTable" type="text/html">
+	<table>
+	<tr><th>Pic</th><th class="tHeader">Name</th><th class="tHeader">Breed</th><th class="tHeader">Kind</th><th class="tHeader">Cuddlability</th></tr>
+	  {{#rows}}
+	  	<tr><td><img class="petThumbs" src="{{picurl}}"></td><td>{{name}}</td><td>{{breed}}</td><td>{{kind}}</td><td style="text-align: center;">{{cuddlability}}</td></tr>
+	  {{/rows}}
+  </table>
+</script>
+
 <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', function() { // IE6 doesn't do DOMContentLoaded
+  	var gData
   	var URL = "0AvFUWxii39gXdFhqZzdTeU5DTWtOdENkQ1Y5bHdqT0E"
  		Sheetsee.loadSpreadsheet(URL, showInfo)
    }) 
   function showInfo(data, tabletop) {
      // window.tabletopData = tabletop 
-     var gData = data
+     gData = data
      console.log(gData)
+
+    Sheetsee.makeTable(gData, "#basicTable")
+  	Sheetsee.initiateTableFilter(gData, "#basicFilter", "#basicTable")
+
+  	var barData = Sheetsee.addUnitsLabels(gData, "name", "cuddlability")
+  	var barOptions = {m: [60, 150, 30, 150], w: 800, h: 300, div: "#dogBar", xaxis: "cuddlability", hiColor: "#EE0097"}
+  	Sheetsee.d3BarChart(barData, barOptions)
+
+  	var dogKinds = Sheetsee.getOccurance(gData, "kind")
+  	var pieColors = ["#9DEB28", "#82B339"]
+  	var pieData = Sheetsee.makeColorArrayOfObject(dogKinds, pieColors)  
+  	console.log(pieData)
+  	var pieOptions = {m: [80, 80, 80, 80], w: 800, h: 400, div: "#dogPie", hiColor: "#E4EB29"}
+  	Sheetsee.d3PieChart(pieData, pieOptions)
+
+		// var lineOptions = {m: [80, 100, 120, 100], w: 800, h: 400, div: "#dogLine", yaxis: "cuddlability", hiColor: "#E4EB29"}
+		// Sheetsee.d3LineChart(barData, lineOptions)
   }
 </script>
 

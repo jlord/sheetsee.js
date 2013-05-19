@@ -180,13 +180,14 @@ function mostFrequent(data, category) {
 }
 
 function addUnitsLabels(arrayObj, oldLabel, oldUnits) {
-  for (var i = 0; i < arrayObj.length; i++) {
-    arrayObj[i].label = arrayObj[i][oldLabel]
-    arrayObj[i].units = arrayObj[i][oldUnits]
-    delete arrayObj[i][oldLabel]
-    delete arrayObj[i][oldUnits]
+  var newArray = arrayObj
+  for (var i = 0; i < newArray.length; i++) {
+    newArray[i].label = newArray[i][oldLabel]
+    newArray[i].units = newArray[i][oldUnits]
+    delete newArray[i][oldLabel]
+    delete newArray[i][oldUnits]
   }
-return arrayObj
+return newArray
 }
 
 function getOccurance(data, category) {

@@ -21,7 +21,7 @@ ol {line-height: 24px;}
 
 /*.goToTop {font-size: 9px; font-family: Helvetica; text-transform: uppercase; }*/
 
-#menu {/*background: #47CCFC;*/ color: #fff; padding: 20px; float: left; position: fixed; left: 40px; top: 40px; max-width: 300px; font-family: Helvetica;}
+#menu {/*background: #47CCFC;*/ color: #fff; padding: 20px; float: left; position: fixed; left: 40px; top: 40px; max-width: 300px; font-family: Helvetica; font-size: 14px;}
 #menu ul {list-style: none; margin: 0px; padding: 0px;}
 #menu li {line-height: 34px;}
 #menu li a {padding: 4px 8px; background-color: #F0F0F0; text-decoration: none; border: none;}
@@ -31,9 +31,38 @@ ol {line-height: 24px;}
 #wrapper {margin: 0px auto; max-width: 800px; padding-top: 40px; /*margin-left: 250px;*/}
 pre {word-wrap: break-word; padding: 14px; background: #F0F0F0; }
 code {font-family: "Consolas", "Ubuntu Mono", monospace; line-height: 22px; font-size: 13px; color: #636363; font-weight: normal;}
-.button {padding: 5px 4px; background-color: #E7E7E7; font-size: 10px;}
+.button {padding: 5px 4px; background-color: #fff; font-size: 10px;}
 .dotted {margin: 20px -28px; padding: 20px 28px; background-color: #CCF4FF; border: 8px solid #47CCFC; margin-top: 44px; padding-top: 0px;}
 .dotted li {padding: 0px 2px;}
 .dotted h2 {margin-top: inherit;}
 
  .leaflet-popup-content h2 {margin-bottom: 4px; margin-top: auto;}
+
+ .example {background-color: #CCF4FF;}
+
+/* Bar Chart */
+
+  #dogBar.labels text {text-align: right;}
+  #dogBar.bar .labels text {fill: #333;}
+  #dogBar.bar rect {fill: #e6e6e6;}
+  #dogBar.axis {shape-rendering: crispEdges;}
+  #dogBar .x.axis line {stroke: #CCF4FF; /*stroke-opacity: .2;*/ fill: none;}
+  #dogBar.x.axis path {fill: none;}
+  #dogBar.x.axis text {fill: #333;}
+  #dogBar.xLabel {font-family: sans-serif; font-size: 9px;}
+
+/* Line Chart */
+
+  #dogLine.axis {shape-rendering: crispEdges;}
+  #dogLine.x.axis .minor, #dogLine.y.axis .minor {stroke-opacity: .5;}
+  #dogLine.x.axis {stroke-opacity: 1;}
+  #dogLine.y.axis line, #dogLine.y.axis path, #dogLine.x.axis path {fill: none; stroke: #acacac; stroke-width: 1;}
+  #dogLine .x.axis line {stroke: #acacac; stroke-opacity: .75;}
+  .bigg {-webkit-transition: all .2s ease-in-out; -webkit-transform: scale(2);}
+  path.chartLine {stroke: #14ECC8; stroke-width: 3; fill: none;}
+  div.tooltip {position: absolute; text-align: left; padding: 4px 8px; width: auto; font-size: 10px; height: auto; background: #fff; border: 0px; pointer-events: none;}
+  circle {fill: #fff;}
+
+  .arc path {
+  stroke: #fff;
+}
