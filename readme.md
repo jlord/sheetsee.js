@@ -4,4 +4,4 @@
 
 These are the files for [jllord.github.io/sheetsee.js](jllord.github.io/sheetsee.js), the example and documentation website for [Sheetsee.js](http://www.github.com/jllord/sheetsee.js).
 
-[License BSD!]()
+[License BSD!](https://github.com/jllord/sheetsee.js/blob/gh-pages/license.md)
