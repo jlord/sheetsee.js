@@ -1,350 +1,736 @@
-// globals for everyone! 
+function exportFunctions(exports) {
 
-var YEARS = ["year2012", "year2013", "year2014", "year2015", "year2016", "year2017", "year2018", "year2019"]
-var URL = 'https://docs.google.com/spreadsheet/pub?key=0Aj3c4mZCQQaMdGE2TVphOWlXMUMyclRXa2Z1c0g5MGc&output=html';
-var categoryColumn = "category"
-var focusAreaColumn = "focusarea"
-var projectColumn = "project"
-var tot = "total"
+// // // // // // // // // // // // // // // // // // // // // // // //  // //
+//
+// // // Make Table, Sort and Filter Interactions
+//
+// // // // // // // // // // // // // // // // // // // // // // // //  // //
 
-
-// get that spreadsheet!
-
-function loadSpreadsheet() {
-  
-  Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } )
-}
-
-// generic things
-
-function getCurrentYear() {
-  return new Date().getFullYear()  
-}
-
-function getCurrentMonth() {
-  var month = new Date().getMonth() + 1
-  return month
-}
-
-// ---------------------------------------------------- //
-
-// filtering Category on "projections" spreadsheet
-
-function getType(projects, projectFilter) {
-  var filteredProjects = []
-  projects.forEach(function (element) {
-    var projectType = element[categoryColumn]
-    if (projectType === projectFilter) filteredProjects.push(element)
+function initiateTableFilter(data, filterDiv, tableDiv) {
+  $('.clear').on("click", function() { 
+    console.log(this)
+    $(this.id + ".noMatches").css("visibility", "hidden")
+    $(this.id + filterDiv).val("")
+    makeTable(data, tableDiv)
   })
-  return filteredProjects
+  $(filterDiv).keyup(function(e) {
+    var text = $(e.target).val()
+    searchTable(data, text, tableDiv)
+  })
 }
 
-// ---------------------------------------------------- //
-
-// filtering to Category on "actuals" spreadsheet
-
-function getActualsArea(projects, projectFilter) {
-  var filteredProjects = []
-  projects.forEach(function (element) {
-    var projectType = element[focusAreaColumn]
-    if (projectType === projectFilter) filteredProjects.push(element)
+function searchTable(data, searchTerm, tableDiv) {
+  var filteredList = []
+  data.forEach(function(object) {
+    var stringObject = JSON.stringify(object).toLowerCase()
+    if (stringObject.match(searchTerm)) filteredList.push(object)
   })
-  return filteredProjects
+  // if ($('#tableFilter').val("")) makeTable(data, tableDiv)
+  if (filteredList.length === 0) {
+    console.log("no matchie")
+    $(".noMatches").css("visibility", "inherit")
+    makeTable("no matches", tableDiv)
+  }
+  else $(".noMatches").css("visibility", "hidden")
+  makeTable(filteredList, tableDiv) 
+  return filteredList
 }
 
-// ---------------------------------------------------- //
-
-function getActualsCategory(projects, projectFilter) {
-  var filteredProjects = []
-  projects.forEach(function (element) {
-    var projectType = element[categoryColumn]
-    if (projectType === projectFilter) filteredProjects.push(element)
+function sortThings(data, sorter, sorted) {
+  data.sort(function(a,b){
+    if (a[sorter]<b[sorter]) return -1
+    if (a[sorter]>b[sorter]) return 1
+    return 0
   })
-  return filteredProjects
+  if (sorted === "descending") data.reverse()
+  makeTable(data, "#siteTable")
+  var header 
+  $("#siteTable .tHeader").each(function(i, el){
+    var contents = resolveDataTitle($(el).text())
+    if (contents === sorter) header = el
+  })
+  $(header).attr("data-sorted", sorted)
 }
 
-// ---------------------------------------------------- //
-
-// filteriong to Focus Area
-  
-function getProject(projects, projectFilter){
-  var oneProject = []
-  projects.forEach(function (element) {
-	  var name = element[focusAreaColumn]
-	  if (name === projectFilter) oneProject.push(element)
-  })
-  return oneProject
+function resolveDataTitle(string) {
+  var adjusted = string.toLowerCase().replace(/\s/g, '').replace(/\W/g, '')
+  return adjusted
 }
 
-function getStatusCount(projects, statusFilter) {
-  var statusGroup = []
-  projects.forEach(function (project) {
-    if (project.status.match(statusFilter)) statusGroup.push(project)
-  })
-  return statusGroup.length
-  if (statusGroup = []) return "0" 
+function sendToSort(event) {
+  var tableDiv = "#" + $(event.target).closest("div").attr("id")
+  console.log("came from this table",tableDiv)
+  var dataset = $(tableDiv).attr('dataset')
+  console.log("made with this data", dataset, typeof dataset)
+  var sorted = $(event.target).attr("data-sorted")
+  if (sorted) {
+    if (sorted === "descending") sorted = "ascending"
+    else sorted = "descending"
+  }
+  else { sorted = "ascending" }
+  var sorter = resolveDataTitle(event.target.innerHTML)
+  sortThings(gData, sorter, sorted)
 }
 
-// get column total 
+$(document).on("click", ".tHeader", sendToSort)
 
-function getColumnTotal(projects, column){
-  var dollars = []
-  projects.forEach(function (project) {
-    if (project[column] === "") return 
-    dollars.push(+project[column]) 
+function makeTable(data, targetDiv) {
+  var templateID = targetDiv.replace("#", "")
+  var tableContents = ich[templateID]({
+    rows: data
   })
-  return dollars.reduce(function(a,b) {
+  $(targetDiv).html(tableContents)
+}
+
+// // // // // // // // // // // // // // // // // // // // // // // //  // //
+//
+// // // Sorting, Ordering Data
+//
+// // // // // // // // // // // // // // // // // // // // // // // //  // //
+
+function getGroupCount(data, groupTerm) {
+  var group = []
+  data.forEach(function (d) {
+    if (d.status.match(groupTerm)) group.push(d)
+  })
+  return group.length
+  if (group = []) return "0" 
+}
+
+function getColumnTotal(data, column){
+  var total = []
+  data.forEach(function (d) {
+    if (d[column] === "") return 
+    total.push(+d[column]) 
+  })
+  return total.reduce(function(a,b) {
     return a + b
   })
 }
 
-// ---------------------------------------------------- //
-
-// diff of budgeted and actual
-
-function getDiff(budgeted, actual){
-  var diff = actual - budgeted
-  return diff
+function getColumnAverage(data, column) {
+  var total = getColumnTotal(data, column)
+  var average = total / data.length
+  return average
 }
 
-// turning into currency 
-
-function getMoney(value) {
-  if (value === "") return false
-  return accounting.formatMoney(parseInt(value))  
-}
- 
-function turnCurrency(projects) {
-  projects.forEach(function (project) {
-    var totalMoney = getMoney(project.total)
-    if (totalMoney) project.total = totalMoney
-    YEARS.forEach(function (year){
-      var totalYear = getMoney(project[year])
-      if (totalYear) project[year] = totalYear
-    })
+function getMax(data, column){
+  var result = []
+  data.forEach(function (element){
+    if (result.length === 0) return result.push(element)
+      else {
+        if (element[column].valueOf() > result[0][column].valueOf()) {
+          result.length = 0
+          return result.push(element)
+        }   
+        if (element[column].valueOf() === result[0][column].valueOf()) {
+          return result.push(element)
+        }
+      }
   })
-return projects
+  return result
 }
 
-function turnReportCurrency(projects) {
-  projects.forEach(function (project) {
-    var totalBudget = getMoney(project.budget)
-    if (totalBudget) project.budget = totalBudget
+function getMin(data, column){
+  var result = []
+  data.forEach(function (element){
+    if (result.length === 0) return result.push(element)
+      else {
+        if (element[column].valueOf() < result[0][column].valueOf()) {
+          result.length = 0
+          return result.push(element)
+        }   
+        if (element[column].valueOf() === result[0][column].valueOf()) {
+          return result.push(element)
+        }
+      }
   })
-  projects.forEach(function (project){
-    var totalPTD = getMoney(project.ptdactual)
-    if (totalPTD) project.ptdactual = totalPTD
+  return result
+}
+
+// out of the data, filter something from a category
+function getMatches(data, filter, category) {
+  var matches = []
+  data.forEach(function (element) {
+    var projectType = element[category].toLowerCase()
+    if (projectType === filter.toLowerCase()) matches.push(element)
   })
-  return projects
+  return matches
 }
 
-function turnMonthlyCurrency(projects) {
-  projects.forEach(function (project) {
-  var actualMoney = getMoney(project.actual)
-  var budgetedMoney = getMoney(project.budgeted)
-  if (actualMoney) project.actual = actualMoney
-  if (budgetedMoney) project.budgeted = budgetedMoney
+function mostFrequent(data, category) {
+  var count = {}
+  for (var i = 0; i < data.length; i++)  {
+    if (!count[data[i][category]]) {
+      count[data[i][category]] = 0
+   }
+   count[data[i][category]]++
+}
+    var sortable = []
+    for (var category in count) {
+      sortable.push([category, count[category]])
+  }
+      sortable.sort(function(a, b) {return b[1] - a[1]})
+      return  sortable
+      // returns array of arrays, in order
+}
+
+function addUnitsLabels(arrayObj, oldLabel, oldUnits) {
+  for (var i = 0; i < arrayObj.length; i++) {
+    arrayObj[i].label = arrayObj[i][oldLabel]
+    arrayObj[i].units = arrayObj[i][oldUnits]
+    delete arrayObj[i][oldLabel]
+    delete arrayObj[i][oldUnits]
+  }
+return arrayObj
+}
+
+function getOccurance(data, category) {
+  var occuranceCount = {}
+  for (var i = 0; i < data.length; i++)  {
+   if (!occuranceCount[data[i][category]]) {
+       occuranceCount[data[i][category]] = 0
+   }
+   occuranceCount[data[i][category]]++
+  }
+  return occuranceCount
+  // returns object, keys alphabetical
+}
+
+function makeColorArrayOfObject(data, colors) {
+  var keys = Object.keys(data)
+  var counter = 1
+  var colorIndex
+  return keys.map(function(key){ 
+    if (keys.length > colors.length) {
+      colorIndex = counter % colors.length
+    }
+    var h = {label: key, units: data[key], hexcolor: colors[colorIndex]} 
+    counter++  
+    colorIndex = counter 
+    return h
   })
-  return projects
 }
 
-// ------------------------------------------------ //
-
-// for quick stats table
-
-function getInProgress (projects) {
-  var inProgress = []
-  projects.forEach(function (project) {
-    if (project.status.match(/in progress/i)) inProgress.push(project)
-      else return "0"
-  })
-  return inProgress
-}
-
-function inProgressSpent (projects) {
-  if (projects = []) return "0"
-  var inProgressDollars = []
-  projects.forEach(function (project) {
-    if (project.ptdactual === "") return 
-    inProgressDollars.push(+project.ptdactual) 
-  })
-  return inProgressDollars.reduce(function(a,b) {
-    return a + b
+function makeArrayOfObject(data) {
+  var keys = Object.keys(data)
+  return keys.map(function(key){ 
+    // var h = {label: key, units: data[key], hexcolor: "#FDBDBD"}  
+    var h = {label: key, units: data[key]}        
+    return h
   })
 }
 
-// ------------------------------------------- //
-  
-// function comboArrays(projectsA, projectsB) {
-// 	 var arrayA = projectsA
-// 	 var arrayB = projes
-// 	 var comboArray = arrayA.concat(arrayB)
-// 	 return comboArray
-//  } 
+// // // // // // // // // // // // // // // // // // // // // // //  // //
+// 
+// // // // Mapbox + Leaflet Map
+//
+// // // // // // // // // // // // // // // // // // // // // // // // //  
 
-// function isComplete(element) {
-//   var currentYear = "year" + getCurrentYear()
-//   var dollars = element[currentYear]
-//   if (dollars > 0) return "active"
-//   else 
-//   return "not active"
-// }
-
-// function getPreviousYears() {
-//   var currentYear = "year" + getCurrentYear()
-//   return YEARS.slice(0, YEARS.indexOf(currentYear))
-// }
-
-// function getFutureYears() {
-//   var currentYear = "year" + getCurrentYear()
-//   return YEARS.slice(YEARS.indexOf(currentYear))
-// }
-
-// function hasActiveFuture(element) {
-//   var activeFuture = false
-//   getFutureYears().forEach(function (year){
-//     if (element[year] > 0) activeFuture = true            
-//   })   
-//   return activeFuture
-// }
-
-// function getActiveProjects(projects) {
-//   var activeProjects = []
-//   projects.forEach(function getActive(element) {
-//     if (isActive(element)) activeProjects.push(element)
-//   })
-//   return activeProjects
-// }
-
-// function getProjectTotal(project) {
-//   var projectTotal = project[tot]
-//   return projectTotal
-// }
-
-// function getCatTotal(projects) {
-//   var catTotal = 0
-//   projects.forEach(function (element) {
-//     var projectTotal = element[tot]
-//     catTotal += parseInt(projectTotal)
-//   })
-//   return catTotal
-// }
-
-// function completedProjects(projects) {
-//   var completed = 0
-//   projects.forEach(function (project) {
-//     if (!hasActiveFuture(project)) completed = completed + 1
-//   })
-//   return completed      
-// }
-
-// function isActive(element) {
-//   var currentYear = "year" + getCurrentYear()
-//   var dollars = element[currentYear]
-//   if (dollars > 0) return true
-//   return false
-// }
-
-// function amountSpent(projects) {
-//   var spent = 0
-//   projects.forEach(function (project) {
-//     var currentYear = "year" + getCurrentYear()
-//     var funds = parseInt(project[currentYear]) 
-//     if (funds > 0) spent = spent + funds
-//     getPreviousYears().forEach(function (year) {
-//       var funds = parseInt(project[year])
-//       if (funds > 0) spent = spent + funds 
-//     })
-//   })
-//   return spent
-// } 
-
-// Mappin' with Leaflet.js
-
-function displayAddress(map, project) {
-  var markerLocation = new L.LatLng(project.lat, project.long);
-  setCenter(map, markerLocation)
-  var marker = new L.Marker(markerLocation);
-  map.addLayer(marker);
-  marker.bindPopup(project[focusAreaColumn]).openPopup();
+function buildOptionObject(optionsJSON, lineItem) {
+  var newObj = {}
+  optionsJSON.forEach(function(option) {
+    newObj[option] = lineItem[option]
+  })
+  return newObj
 }
 
-function loadMap() {
-  var	map = new L.Map('map', {
-    touchZoom: true,
-    scrollWheelZoom: false,
-    dragging: true});
-	var cloudmade = new L.TileLayer('http://tile.stamen.com/toner/{z}/{x}/{y}.png', {
-	    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>, Tiles from <a href="http://tiles.stamen.com" target="_blank">Stamen</a>',
-	    maxZoom: 18
-	});
- map.addLayer(cloudmade);
- return map
+// for geocoding: http://mapbox.com/tilemill/docs/guides/google-docs/#geocoding
+// create geoJSON from your spreadsheet's coordinates
+function createGeoJSON(data, optionsJSON) {
+  var geoJSON = []
+  data.forEach(function(lineItem){
+    if (optionsJSON) var optionObj = buildOptionObject(optionsJSON, lineItem)
+    var feature = {
+      type: 'Feature',
+      "geometry": {"type": "Point", "coordinates": [lineItem.long, lineItem.lat]},
+      "properties": {
+        "marker-size": "small",
+        "marker-color": lineItem.hexcolor
+      },
+      "opts": optionObj,
+    }
+    geoJSON.push(feature)
+  })
+  return geoJSON
 }
 
-function setCenter(map, markerLocation) {
-	map.setView(markerLocation, 13)
-}	
+// load basic map with tiles
+function loadMap(mapDiv) {
+  var map = L.mapbox.map(mapDiv)
+  // map.setView(, 4)
+  // map.addLayer(L.tileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png'))
+  map.touchZoom.disable()
+  map.doubleClickZoom.disable()
+  map.scrollWheelZoom.disable()
+  return map
+}
 
-// d3 chartyness
+function addTileLayer(map, tileLayer) {
+  var layer = L.mapbox.tileLayer(tileLayer)
+  layer.addTo(map)
+}
 
-function renderGraph(data, noProjsInCat, divTown) {
+function addMarkerLayer(geoJSON, map, zoomLevel) { 
+  var viewCoords = [geoJSON[0].geometry.coordinates[1], geoJSON[0].geometry.coordinates[0]]
+  var markerLayer = L.mapbox.markerLayer(geoJSON)
+  markerLayer.setGeoJSON(geoJSON)
+  map.setView(viewCoords, zoomLevel)
+  // map.fitBounds(geoJSON)
+  markerLayer.addTo(map)
+  // markerLayer.on('click', function(e) {
+  //   var feature = e.layer.feature
+  //   // $("td").css("background", "none")
+  //   // $("." + feature.properties.id).css("background", "#ff00ff")
+  //   console.log(feature.properties.id)
+  //   var popupContent = '<h2>' + feature.properties.title + '</h2>' + '<small>' + feature.properties.year + '</small>'
+  //   e.layer.bindPopup(popupContent,{
+  //   closeButton: false,
+  //   })
+  // })
+  // addPopups(geoJSON, map, markerLayer)
+  return markerLayer
+}
 
-var m = [30, 60, 10, 200],
-    w = 780 - m[1] - m[3],
-    h = (noProjsInCat * 40) - m[0] - m[2];
+// var popupContent = '<h2>' + feature.properties.one + '</h2>' +
+//                     '<h3>' + feature.properties.two + '</h3>'
 
-var format = d3.format(",.0f");
+function addPopups(map, markerLayer, popupContent) {
+  markerLayer.on('click', function(e) {
+    var feature = e.layer.feature
+    var popupContent = '<img class="petThumbs" src="' + feature.opts.picurl + '">' +
+                        '<h3 style="text-align: center;">' + feature.opts.name + '</h3>'
+    // var popupContent = popupContent
+    e.layer.bindPopup(popupContent,{closeButton: false,})
+  })
+}
 
-var x = d3.scale.linear().range([0, w]),
-    y = d3.scale.ordinal().rangeRoundBands([0, h], .1);
+// // // // // // // // // // // // // // // // // // // // // // //  // //
+// 
+// // // // // D3 Charts
+//
+// // // // // // // // // // // // // // // // // // // // // // // // // 
 
-var xAxis = d3.svg.axis().scale(x).orient("top").tickSize(-h).tickFormat(d3.format(".2s")),
-    yAxis = d3.svg.axis().scale(y).orient("left").tickSize(0);
+// Bar Chart
+// Adapted mostly from http://bl.ocks.org/mbostock/3885705
 
-var svg = d3.select(divTown).append("svg")
-    .attr("width", w + m[1] + m[3])
-    .attr("height", h + m[0] + m[2])
-  .append("g")
-    .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
- 
+function d3BarChart(data, options) {
 
-  // Parse numbers, and sort by value.
-  data.forEach(function(d) { d.total = +d.total; });
-  // data.sort(function(a, b) { return b.total - a.the_post_thumbnail; });
+  //  m = [t0, r1, b2, l3]
+  var m = options.m,
+      w = options.w - m[1] - m[3],
+      h =  options.h - (m[0] + m[2])
+  var format = d3.format(",.0f")
 
-  // Set the scale domain.
-  x.domain([0, d3.max(data, function(d) { return d.total; })]);
-  y.domain(data.map(function(d) { return d.focusarea; }));
+  var x = d3.scale.linear().range([0, w]),
+      y = d3.scale.ordinal().rangeRoundBands([0, h], .1)
+
+  var xAxis = d3.svg.axis().scale(x).orient("top").tickSize(-h).tickFormat(d3.format("1s")),
+      yAxis = d3.svg.axis().scale(y).orient("left").tickSize(0)
+
+  var svg = d3.select(options.div).append("svg")
+      .attr("width", w + m[1] + m[3])
+      .attr("height", h + m[0] + m[2])
+    .append("g")
+      .attr("transform", "translate(" + m[3] + "," + m[0] + ")")
+
+  x.domain([0, d3.max(data, function(d) { return d.units })]) // 0 to max of units
+  y.domain(data.map(function(d) { return d.label })) // makes array of labels
+
+  var mouseOver = function() {
+      var rect = d3.select(this)
+      var indexValue = rect.attr("index_value")
+
+      var barSelector = "." + "rect-" + indexValue
+      var selectedBar = d3.selectAll(barSelector)
+      selectedBar.style("fill", options.hiColor)
+
+      var valueSelector = "." + "value-" + indexValue
+      var selectedValue = d3.selectAll(valueSelector)
+      selectedValue.style("fill", options.hiColor)
+
+      var textSelector = "." + "labels-" + indexValue
+      var selectedText = d3.selectAll(textSelector)
+      selectedText.style("fill", options.hiColor)
+  }
+
+  var mouseOut = function() {
+      var rect = d3.select(this)
+      var indexValue = rect.attr("index_value")
+
+      var barSelector = "." + "rect-" + indexValue
+      var selectedBar = d3.selectAll(barSelector)
+      selectedBar.style("fill", function(d) { return d.hexcolor})
+
+      var valueSelector = "." + "value-" + indexValue
+      var selectedValue = d3.selectAll(valueSelector)
+      selectedValue.style("fill", "#333333")
+
+      var textSelector = "." + "labels-" + indexValue
+      var selectedText = d3.selectAll(textSelector)
+      selectedText.style("fill", "#333")
+  }
 
   var bar = svg.selectAll("g.bar")
-      .data(data)
-    .enter().append("g")
-      .attr("class", "bar")
-      .attr("transform", function(d) { return "translate(0," + y(d.focusarea) + ")"; });
-
-  bar.append("rect")
-      .attr("width", function(d) { return x(d.total); })
-      .attr("height", y.rangeBand())
-      .style("fill", function(d) { return d.hexcolor; });
+    .data(data)
+  .enter().append("g")
+    .attr("class", "bar")
+    .attr("transform", function(d) { return "translate(0," + y(d.label) + ")" })
 
   bar.append("text")
-      .attr("class", "value")
-      .attr("x", function(d) { return x(d.total); })
-      .attr("y", y.rangeBand() / 2)
-      .attr("dx", 60)
-      .attr("dy", ".35em")
-      .attr("text-anchor", "end")
-      .text(function(d) { return format(d.total); });
+    .attr("x", function(d) { return x(d.units) })
+    .attr("y", y.rangeBand() / 2)
+    .attr("dx", 12)
+    .attr("dy", ".35em")
+    .attr("text-anchor", "end")
+    .attr("index_value", function(d, i) { return "index-" + i })
+    .text(function(d) { return format(d.units) })
+    .attr("class", function(d, i) { return "value-" + "index-" + i })
+    .on('mouseover', mouseOver)
+    .on("mouseout", mouseOut)
+
+  bar.append("text")
+    .attr("x", -5)
+    .attr("y", y.rangeBand() / 2)
+    .attr("dx", 0)
+    .attr("dy", ".35em")
+    .attr("text-anchor", "end")
+    .attr("index_value", function(d, i) { return "index-" + i })
+    .text(function(d) { return d.label })
+    .attr("class", function(d, i) { return "value-" + "index-" + i })
+    .on('mouseover', mouseOver)
+    .on("mouseout", mouseOut)
+
+  bar.append("rect")
+    .attr("width", function(d) { return x(d.units)})
+    .attr("height", y.rangeBand())
+    .attr("index_value", function(d, i) { return "index-" + i })
+    .style("fill", function(d) { return d.hexcolor})
+    .on('mouseover', mouseOver)
+    .on("mouseout", mouseOut)
+    .attr("class", function(d, i) { return "rect-" + "index-" + i })
+
+  svg.append("g")
+    .attr("class", "x axis")
+    .call(xAxis)
+  .append("text")
+    // .attr("transform", "rotate(-90)")
+    .attr("y", -20)
+    .attr("x", m[1])
+    .attr("class", "xLabel")
+    .style("text-anchor", "end")
+    .text(function() {
+      if (options.xaxis) return options.xaxis
+      return
+    })
+
+  d3.select("input").on("change", change)
+
+  function change() {
+    // Copy-on-write since in betweens are evaluated after a delay.
+    var y0 = y.domain(data.sort(this.checked
+        ? function(a, b) { return b.units - a.units }
+        : function(a, b) { return d3.ascending(a.label, b.label) })
+        .map(function(d) { return d.label }))
+        .copy()
+
+    var transition = svg.transition().duration(750),
+        delay = function(d, i) { return i * 50 }
+
+    transition.selectAll(".bar")
+        .delay(delay)
+        .attr("transform", function(d) { return "translate(0," + y(d.label) + ")" })
+  }
+}
+
+// Pie Chart
+
+function d3PieChart(data, options) {
+  var width = options.w,
+      height = options.h,
+      radius = Math.min(width, height) / 2.3
+
+  var arc = d3.svg.arc()
+      .outerRadius(radius - 10)
+      .innerRadius(0)
+
+  var arcOver = d3.svg.arc()
+      .outerRadius(radius + .1)
+
+  var pie = d3.layout.pie()
+      .sort(null)
+      .value(function(d) { return d.units })
+
+var svg = d3.select(options.div).append("svg")
+    .attr("width", width)
+    .attr("height", height)
+  .append("g")
+    .attr("transform", "translate(" + width / 3 + "," + height / 2 + ")")
+
+var data = data
+
+  data.forEach(function(d) {
+    d.units = +d.units
+  })
+function mouseOver(d) {
+  d3.select(this).select("path").transition()
+     .duration(500)
+     .attr("d", arcOver)
+  var slice = d3.select(this)
+  var indexValue = slice.attr("index_value")
+
+  var pathSelector = "." + "path-" + indexValue
+  var selectedPath = d3.selectAll(pathSelector)
+  selectedPath.style("fill", options.hiColor)
+
+  var textSelector = "." + "labels-" + indexValue
+  var selectedText = d3.selectAll(textSelector)
+  selectedText.transition()
+    .duration(150)
+    .style("font-size", "12px").style("font-weight", "bold").style("fill", options.hiColor)
+  selectedText.attr("class", function(d, i) { return "labels-" + indexValue + " bigg" })
+}
+function mouseOut(d) {
+  d3.select(this).select("path").transition()
+     .duration(150)
+     .attr("d", arc)
+  var slice = d3.select(this)
+  var indexValue = slice.attr("index_value")
+
+  var pathSelector = "." + "path-" + indexValue
+  var selectedPath = d3.selectAll(pathSelector)
+  selectedPath.style("fill", function(d) { return d.data.hexcolor })
+
+  var textSelector = "." + "labels-" + indexValue
+  var selectedText = d3.selectAll(textSelector)
+  selectedText.transition()
+    .duration(200)
+    .style("font-size", "10px").style("font-weight", "normal").style("fill", function(d) { return d.hexcolor })
+}
+
+  var g = svg.selectAll(".arc")
+      .data(pie(data))
+    .enter().append("g")
+      .attr("index_value", function(d, i) { return "index-" + i })
+      .attr("class", function(d, i) { return "slice-" + "index-" + i + " slice arc" })
+      .on("mouseover", mouseOver)
+      .on("mouseout", mouseOut)
+
+  var path = g.append("path")
+      .attr("d", arc)
+      .attr("index_value", function(d, i) { return "index-" + i })
+      .attr("class", function(d, i) { return "path-" + "index-" + i })
+      .style("fill", function(d) { return d.data.hexcolor})
+      .attr("fill", function(d) { return d.data.hexcolor})
+
+//   g.append("text")
+//       .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")" })
+//       .attr("dy", ".35em")
+//       .attr("dx", ".35em")
+//       .attr("class", "pieTip")
+//       .style("text-anchor", "middle")
+//       .text(function(d) { return d.data.units })
+
+// var labelr = radius + 8 // radius for label anchor
+//   g.append("text")
+//     .attr("transform", function(d) {
+//         var c = arc.centroid(d),
+//             x = c[0],
+//             y = c[1],
+//             // pythagorean theorem for hypotenuse
+//             h = Math.sqrt(x*x + y*y)
+//         return "translate(" + (x/h * labelr) +  ',' +
+//            (y/h * labelr) +  ")"
+//     })
+//     .attr("dy", ".35em")
+//     .attr("fill", "#333")
+//     .attr("class", "pieTip")
+//     .attr("text-anchor", function(d) {
+//         // are we past the center?
+//         return (d.endAngle + d.startAngle)/2 > Math.PI ?
+//             "end" : "start"
+//     })
+//     .text(function(d) { return d.data.units })
+
+    // svg.selectAll("rect")    
+    //   .data(data)         
+    //   .enter().append("g")
+    //     .append("rect")                               
+    //     .attr("width", 100)
+    //     .attr("height", 26) 
+    //     .attr("fill", function(d) { return d.hexcolor }) 
+    //     .attr("x", 0)
+    //     .attr("y", "-140px") // Controls padding to place text above bars
+
+
+
+svg.selectAll("g.labels")
+  .data(data)
+  .enter().append("g") // Append legend elements
+      .append("text")
+        .attr("text-anchor", "start")
+        .attr("x", width / 2.5)
+        .attr("y", function(d, i) { return data.length + i*(data.length * 2)})
+        .attr("dx", 0)
+        .attr("dy", "-140px") // Controls padding to place text above bars
+        .text(function(d) { return d.label + ", " + d.units})
+        .style("fill", function(d) { return d.hexcolor })
+        .attr("index_value", function(d, i) { return "index-" + i })
+        .attr("class", function(d, i) { return "labels-" + "index-" + i + " aLabel "})
+        .on('mouseover', mouseOver)
+        .on("mouseout", mouseOut)
+
+  d3.select("input").on("change", change)
+
+  function change() {
+    console.log("checked/unchecked")
+    // Copy-on-write since in betweens are evaluated after a delay.
+    // pie.sort(function(a, b) { return b.units - a.units })
+    path = path.data(pie(data).sort(function(a, b) { return b.units - a.units; })); // update the data
+    path.attr("d", arc)
+   // path.transition().duration(750).attrTween("d", arcTween)
+
+  // var pie = d3.layout.pie()
+  //     .sort(null)
+  //     .value(function(d) { return d.units })
+
+//   function change() {
+//   clearTimeout(timeout);
+//   path = path.data(pie(dataset[this.value])); // update the data
+//   path.attr("d", arc); // redraw the arcs
+// }
+
+function arcTween(a) {
+  var i = d3.interpolate(this._current, a);
+  this._current = i(0);
+  return function(t) {
+    return arc(i(t));
+  };
+}
+    var transition = svg.transition().duration(750),
+        delay = function(d, i) { return i * 50 }
+
+    transition.selectAll(".path")
+        .delay(delay)
+  }
+}
+
+
+// Line Chart
+
+function d3LineChart(data, options){
+    // Adapted from http://bl.ocks.org/1166403 and
+    // http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html
+    
+    var m = options.m
+    var w = options.w - m[1] - m[3]
+    var h = options.h - m[0] - m[2]
+    var data = data
+
+    var x = d3.scale.ordinal().rangeRoundBands([0, w], 1)
+        x.domain(data.map(function(d) { return d.label }))
+    var y = d3.scale.linear().range([0, h])
+        y.domain([d3.max(data, function(d) { return d.units }) + 2, 0])
+
+    var line = d3.svg.line()
+       .x(function(d, i) { console.log("x", x(i)); return x(i) })
+       .y(function(d) { console.log("y", y(d)); return y(d) })
+
+    var graph = d3.select(options.div).append("svg:svg")
+          .attr("width", w + m[1] + m[3])
+          .attr("height", h + m[0] + m[2])
+        .append("svg:g")
+          .attr("transform", "translate(" + m[3] + "," + m[0] + ")")
+
+    var div = d3.select(options.div).append("div")   
+        .attr("class", "tooltip")               
+        .style("opacity", 0)
+
+    // create yAxis
+    var xAxis = d3.svg.axis().scale(x).tickSize(-h).tickSubdivide(true)
+    // Add the x-axis.
+    graph.append("svg:g")
+          .attr("class", "x axis")
+          .attr("transform", "translate(0," + h + ")")
+          .call(xAxis)
+        .selectAll("text")
+          .style("text-anchor", "end")
+          .attr("dy", "-.5em")
+          .attr('dx', "-1em")
+          .attr("transform", "rotate(-80)")
+          .call(xAxis)
+
+    // create left yAxis
+    var yAxisLeft = d3.svg.axis().scale(y).ticks(4).tickSize(-w).tickSubdivide(true).orient("left")
+    // Add the y-axis to the left
+    graph.append("svg:g")
+          .attr("class", "y axis")
+          .attr("dx", "25")
+          .attr("transform", "translate(0,0)")
+          .call(yAxisLeft)
+        .append("text")
+          .attr("transform", "rotate(-90)")
+          .attr("y", -40)
+          .attr("dy", 0)
+          .style("text-anchor", "end")
+          .text(function() {
+            if (options.yaxis) return options.yaxis
+            return
+          })
       
+   var lineData = data.map(function(d) { return d.units })
+      graph.append("svg:path")
+          .attr("d", line(lineData))
+          .attr("class", "chartLine")
+          .attr("index_value", function(d, i) { return i })
+          // .attr("stroke", options.hiColor).attr("fill", "none")
 
-  svg.append("g")
-      .attr("class", "x axis")
-      .call(xAxis);
-
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis);
-};
-
-
+    graph.selectAll("dot")    
+        .data(data)         
+    .enter().append("circle")                               
+        .attr("r", 3.5) 
+        .attr("fill", options.hiColor)      
+        .attr("cx", function(d) { return x(d.label); })       
+        .attr("cy", function(d) { return y(d.units); })     
+        .on("mouseover", function(d) {      
+            div.transition().duration(200).style("opacity", .9)    
+            div .html(d.label + ", "  + d.units)  
+                .style("left", (d3.event.pageX) + "px")     
+                .style("top", (d3.event.pageY - 28) + "px")   
+            })                  
+        .on("mouseout", function(d) {       
+            div.transition().duration(500).style("opacity", 0) 
+        })
+}
+// tables
+exports.searchTable = searchTable
+exports.initiateTableFilter = initiateTableFilter
+exports.makeTable = makeTable
+exports.sendToSort = sendToSort
+exports.resolveDataTitle = resolveDataTitle
+exports.sortThings = sortThings
+// charts
+exports.d3LineChart = d3LineChart
+exports.d3PieChart = d3PieChart
+exports.d3BarChart = d3BarChart
+// maps
+exports.createGeoJSON = createGeoJSON
+exports.addPopups = addPopups
+exports.addMarkerLayer = addMarkerLayer
+exports.addTileLayer = addTileLayer
+exports.loadMap = loadMap
+// data
+exports.makeArrayOfObject = makeArrayOfObject
+exports.makeColorArrayOfObject = makeColorArrayOfObject
+exports.mostFrequent = mostFrequent
+exports.addUnitsLabels = addUnitsLabels
+exports.getOccurance = getOccurance
+exports.getMatches = getMatches
+exports.getGroupCount = getGroupCount
+exports.getColumnTotal = getColumnTotal
+exports.getMax = getMax
+exports.getMin = getMin
+exports.getColumnAverage = getColumnAverage
+}
+var Sheetsee = {}
+exportFunctions(Sheetsee)

@@ -1,0 +1,39 @@
+/* Page Specific CSS */
+
+body {font-family: Merriweather; background: #fff; color: #333; font-size: 16px; border: 10px #47CCFC solid; margin: 0px; padding: 20px 20px 200px 20px; }
+h1, h2, h3, h4, h5, h6 {font-family: helvetica;}
+h2 {margin-top: 82px;}
+
+h3.functionH {/*background-color: #47CCFC; color: #fff;*/ padding: 4px 8px; margin-top: 52px; border-top: 3px solid #47CCFC; border-left: 3px solid #47CCFC; border-right: 3px solid #47CCFC; margin-left: -14px; padding-left: 14px;
+								padding-top: 9px; }
+img {width: 100%;} 
+
+p a, a {color: #333; text-decoration: none; padding-bottom: 0px; border-bottom: 2px #CCF4FF solid;}
+p a:visted {color: #ff00ff;}
+p a:hover {color: #47CCFC;}
+a:visited {color: #333;}
+small {padding: 10px 0px;}
+p {line-height: 24px;}
+ol {line-height: 24px;}
+
+::selection {background: #ff00ff;} /*#44FFB4*/
+::-moz-selection {background: #ff00ff;}
+
+/*.goToTop {font-size: 9px; font-family: Helvetica; text-transform: uppercase; }*/
+
+#menu {/*background: #47CCFC;*/ color: #fff; padding: 20px; float: left; position: fixed; left: 40px; top: 40px; max-width: 300px; font-family: Helvetica;}
+#menu ul {list-style: none; margin: 0px; padding: 0px;}
+#menu li {line-height: 34px;}
+#menu li a {padding: 4px 8px; background-color: #F0F0F0; text-decoration: none; border: none;}
+#menu li a.a2 {background-color: #CCF4FF;}
+#menu li a:hover {background-color: #e7e7e7;}
+
+#wrapper {margin: 0px auto; max-width: 800px; padding-top: 40px; /*margin-left: 250px;*/}
+pre {word-wrap: break-word; padding: 14px; background: #F0F0F0; }
+code {font-family: "Consolas", "Ubuntu Mono", monospace; line-height: 22px; font-size: 13px; color: #636363; font-weight: normal;}
+.button {padding: 5px 4px; background-color: #E7E7E7; font-size: 10px;}
+.dotted {margin: 20px -28px; padding: 20px 28px; background-color: #CCF4FF; border: 8px solid #47CCFC; margin-top: 44px; padding-top: 0px;}
+.dotted li {padding: 0px 2px;}
+.dotted h2 {margin-top: inherit;}
+
+ .leaflet-popup-content h2 {margin-bottom: 4px; margin-top: auto;}
