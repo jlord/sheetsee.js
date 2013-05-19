@@ -74,8 +74,7 @@ code {font-family: "Consolas", "Ubuntu Mono", monospace; line-height: 22px; font
 
   /* Responsive Town */
 
-@media (max-width: 480px) {
+@media only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 480px) and (max-width: 1024px) {
   #menu {/*background: #47CCFC;*/ color: #fff; padding: 20px; float: none; position: relative; left: auto; top: auto; max-width: 300px; font-family: Helvetica; font-size: 14px;}
   #menu li {line-height: 34px; display: inline-block;}
-
 }
