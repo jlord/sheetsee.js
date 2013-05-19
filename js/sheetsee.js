@@ -175,14 +175,35 @@ function mostFrequent(data, category) {
       // returns array of arrays, in order
 }
 
+// thank you! http://james.padolsey.com/javascript/deep-copying-of-objects-and-arrays/
+function deepCopy(obj) {
+    if (Object.prototype.toString.call(obj) === '[object Array]') {
+        var out = [], i = 0, len = obj.length;
+        for ( ; i < len; i++ ) {
+            out[i] = arguments.callee(obj[i]);
+        }
+        return out;
+    }
+    if (typeof obj === 'object') {
+        var out = {}, i;
+        for ( i in obj ) {
+            out[i] = arguments.callee(obj[i]);
+        }
+        return out;
+    }
+    return obj;
+}
+
 function addUnitsLabels(arrayObj, oldLabel, oldUnits) {
-  for (var i = 0; i < arrayObj.length; i++) {
-    arrayObj[i].label = arrayObj[i][oldLabel]
-    arrayObj[i].units = arrayObj[i][oldUnits]
-    delete arrayObj[i][oldLabel]
-    delete arrayObj[i][oldUnits]
+  var newArray = deepCopy(arrayObj)
+  console.log("newArray aUL", newArray)
+  for (var i = 0; i < newArray.length; i++) {
+    newArray[i].label = newArray[i][oldLabel]
+    newArray[i].units = newArray[i][oldUnits]
+    delete newArray[i][oldLabel]
+    delete newArray[i][oldUnits]
   }
-return arrayObj
+return newArray
 }
 
 function getOccurance(data, category) {
