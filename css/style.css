@@ -22,6 +22,29 @@
   #holder {height: 400px; max-width: 600px; background: #FFE4E4;}
   #bar2 {height: 320px; max-width: 600px; background: #F8CDCD;}
 
+  /* Bar Chart */
+
+  .labels text {text-align: right;}
+  .bar .labels text {fill: #333;}
+  .bar rect {fill: #e6e6e6;}
+  .axis {shape-rendering: crispEdges;}
+  .x.axis line {stroke: #FFE4E4; /*stroke-opacity: .2;*/ fill: none;}
+  .x.axis path {fill: none;}
+  .x.axis text {fill: #333;}
+  .xLabel {font-family: sans-serif; font-size: 9px;}
+
+/* Line Chart */
+
+  .axis {shape-rendering: crispEdges;}
+  .x.axis .minor, .y.axis .minor {stroke-opacity: .5;}
+  .x.axis {stroke-opacity: 1;}
+  .y.axis line, .y.axis path, #dogPie.x.axis path {fill: none; stroke: #acacac; stroke-width: 1;}
+  #dogPie .x.axis line {stroke: #acacac; stroke-opacity: .75;}
+  .bigg {-webkit-transition: all .2s ease-in-out; -webkit-transform: scale(2);}
+  path.chartLine {stroke: #14ECC8; stroke-width: 3; fill: none;}
+  div.tooltip {position: absolute; text-align: left; padding: 4px 8px; width: auto; font-size: 10px; height: auto; background: #fff; border: 0px; pointer-events: none;}
+  circle {fill: #fff;}
+
 
 /* Map */
 
