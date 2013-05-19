@@ -10,7 +10,7 @@ img {width: 100%;}
 
 p a, a {color: #333; text-decoration: none; padding-bottom: 0px; border-bottom: 2px #CCF4FF solid;}
 p a:visted {color: #ff00ff;}
-p a:hover {color: #47CCFC;}
+a:hover {color: #47CCFC;}
 a:visited {color: #333;}
 small {padding: 10px 0px;}
 p {line-height: 24px;}
@@ -26,7 +26,7 @@ ol {line-height: 24px;}
 #menu li {line-height: 34px;}
 #menu li a {padding: 4px 8px; background-color: #F0F0F0; text-decoration: none; border: none;}
 #menu li a.a2 {background-color: #CCF4FF;}
-#menu li a:hover {background-color: #e7e7e7;}
+#menu li a:hover {background-color: #e7e7e7; color: #333;}
 
 #wrapper {margin: 0px auto; max-width: 800px; padding-top: 40px; /*margin-left: 250px;*/}
 pre {word-wrap: break-word; padding: 14px; background: #F0F0F0; }
