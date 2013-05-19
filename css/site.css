@@ -40,7 +40,7 @@ code {font-family: "Consolas", "Ubuntu Mono", monospace; line-height: 22px; font
 
  .example {background-color: #CCF4FF;}
 
- #mostCuddle img.most {width: 400px; border-radius: 9999px; padding-top: 34px;}
+ #mostCuddle img.most {max-width: 400px; border-radius: 9999px; padding-top: 34px;}
  #mostCuddle {text-align: center;}
  #mostCuddle table {width: auto;}
  #mostCuddle li {padding: 10px 0px; font-size: 18px; display: inline-block;}
@@ -70,6 +70,12 @@ code {font-family: "Consolas", "Ubuntu Mono", monospace; line-height: 22px; font
   circle {fill: #fff;}
 
 
-  .arc path {
-  stroke: #fff;
+  .arc path { stroke: #fff;}
+
+  /* Responsive Town */
+
+@media (max-width: 480px) {
+  #menu {/*background: #47CCFC;*/ color: #fff; padding: 20px; float: none; position: relative; left: auto; top: auto; max-width: 300px; font-family: Helvetica; font-size: 14px;}
+  #menu li {line-height: 34px; display: inline-block;}
+
 }
