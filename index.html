@@ -149,8 +149,11 @@
 
 		<h3 class="functionH">Sheetsee.getMax(data, column)</h3>
 			<p>This will return an <em>array</em> of <em>object</em> or <em>objects</em> (if there is a tie) of the element with the highest number value in the <strong>column</strong> you specify from your <strong>data</strong>.</p>
-<pre><code data-language="javascript">getMin(gData, &quot;cuddlability&quot;)
+<pre><code data-language="javascript">getMax(gData, &quot;cuddlability&quot;)
 // returns {breed: &quot;Teacup Maltese&quot;, cuddlability: &quot;5&quot;, hexcolor: &quot;#ECECEC&quot;, kind: &quot;Dog&quot;, lat: &quot;37.74832&quot;, long: &quot;-122.402158&quot;, name: &quot;Coco&quot;...}</code></pre>
+
+	<div id="mostCuddle" class="example dotted container"></div>
+
 
 		<h3>Don&#39;t Forget JavaScript Math</h3>
 			<p>Create variables that are the sums, differences, multiples and so forth of others. Lots of info on that <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Math">here on MDN</a>.</p>
@@ -369,6 +372,18 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
   </table>
 </script>
 
+<script id="mostCuddle" type="text/html">
+	{{#rows}}
+			<img class="most" src="{{picurl}}"></td>
+			<h3>Winner, Most Cuddlable</h3>
+			<ul style="list-style: none;">
+				<li><span class="boxText">Name:</span> {{name}}</li>
+				<li><span class="boxText">Breed:</span> {{breed}}</li>
+				<li><span class="boxText">Cuddlability:</span> {{cuddlability}} / 5</li>
+			</ul>
+	{{/rows}}
+</script>
+
 <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', function() { // IE6 doesn't do DOMContentLoaded
   	var gData
@@ -376,24 +391,50 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
  		Sheetsee.loadSpreadsheet(URL, showInfo)
    }) 
   function showInfo(data, tabletop) {
-     // window.tabletopData = tabletop 
-     gData = data
-     console.log(gData)
+		// window.tabletopData = tabletop 
+		gData = data
+		console.log(gData)
 
+		// make the map 
+    var optionsJSON = ["picurl", "name", "cuddlability"]
+    var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
+		var map = Sheetsee.loadMap("map")
+		Sheetsee.addTileLayer(map, 'examples.map-20v6611k')
+		var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, 11)
+		// customize the popup content
+		addPopups(map, markerLayer)
+		function addPopups(map, markerLayer, popupContent) {
+		  markerLayer.on('click', function(e) {
+		    var feature = e.layer.feature
+		    var popupContent = '<img class="petThumbs" src="' + feature.opts.picurl + '">' +
+		                        '<h3 style="text-align: center;">' + feature.opts.name + '</h3>'
+		    e.layer.bindPopup(popupContent,{closeButton: false,})
+		  })
+		}
+
+		// make a table
     Sheetsee.makeTable(gData, "#basicTable")
   	Sheetsee.initiateTableFilter(gData, "#basicFilter", "#basicTable")
 
+  	// more icanhas for most cuddlable
+  	var mostCuddleIs = Sheetsee.getMax(gData, "cuddlability")
+  	console.log(mostCuddleIs)
+	  var mostCuddle = ich.mostCuddle({
+		   rows: mostCuddleIs
+	  })
+	  $('#mostCuddle').html(mostCuddle)
+
+  	// make a bar chart
   	var barData = Sheetsee.addUnitsLabels(gData, "name", "cuddlability")
   	var barOptions = {m: [60, 150, 30, 150], w: 800, h: 300, div: "#dogBar", xaxis: "cuddlability", hiColor: "#EE0097"}
   	Sheetsee.d3BarChart(barData, barOptions)
-
+  	// make a pie chart
   	var dogKinds = Sheetsee.getOccurance(gData, "kind")
   	var colors = ["#92F9FC", "#28C5CA", "#4B8E91"]
   	var pieData = Sheetsee.makeColorArrayOfObject(dogKinds, colors)  
-  	console.log(pieData)
   	var pieOptions = {m: [80, 80, 80, 80], w: 800, h: 400, div: "#dogPie", hiColor: "#E4EB29"}
   	Sheetsee.d3PieChart(pieData, pieOptions)
-
+  	// make a line chart (uses same data as bar chart)
 		var lineOptions = {m: [80, 100, 120, 100], w: 800, h: 400, div: "#dogLine", yaxis: "cuddlability", hiColor: "#E4EB29"}
 		Sheetsee.d3LineChart(barData, lineOptions)
   }

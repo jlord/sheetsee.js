@@ -200,7 +200,6 @@ function deepCopy(obj) {
 
 function addUnitsLabels(arrayObj, oldLabel, oldUnits) {
   var newArray = deepCopy(arrayObj)
-  console.log("newArray aUL", newArray)
   for (var i = 0; i < newArray.length; i++) {
     newArray[i].label = newArray[i][oldLabel]
     newArray[i].units = newArray[i][oldUnits]
@@ -303,32 +302,20 @@ function addMarkerLayer(geoJSON, map, zoomLevel) {
   map.setView(viewCoords, zoomLevel)
   // map.fitBounds(geoJSON)
   markerLayer.addTo(map)
-  // markerLayer.on('click', function(e) {
-  //   var feature = e.layer.feature
-  //   // $("td").css("background", "none")
-  //   // $("." + feature.properties.id).css("background", "#ff00ff")
-  //   console.log(feature.properties.id)
-  //   var popupContent = '<h2>' + feature.properties.title + '</h2>' + '<small>' + feature.properties.year + '</small>'
-  //   e.layer.bindPopup(popupContent,{
-  //   closeButton: false,
-  //   })
-  // })
-  // addPopups(geoJSON, map, markerLayer)
   return markerLayer
 }
 
-// var popupContent = '<h2>' + feature.properties.one + '</h2>' +
-//                     '<h3>' + feature.properties.two + '</h3>'
-
-function addPopups(map, markerLayer, popupContent) {
-  markerLayer.on('click', function(e) {
-    var feature = e.layer.feature
-    var popupContent = '<img class="petThumbs" src="' + feature.opts.picurl + '">' +
-                        '<h3 style="text-align: center;">' + feature.opts.name + '</h3>'
-    // var popupContent = popupContent
-    e.layer.bindPopup(popupContent,{closeButton: false,})
-  })
-}
+// moved to be used on the .html page for now
+// until I find a better way for users to pass in their
+// customized popup html styles
+// function addPopups(map, markerLayer, popupContent) {
+//   markerLayer.on('click', function(e) {
+//     var feature = e.layer.feature
+//     var popupContent = '<h2>' + feature.opts.city + '</h2>' +
+//                         '<h3>' + feature.opts.placename + '</h3>'
+//     e.layer.bindPopup(popupContent,{closeButton: false,})
+//   })
+// }
 
 // // // // // // // // // // // // // // // // // // // // // // //  // //
 // 
@@ -595,7 +582,8 @@ svg.selectAll("g.labels")
       .append("text")
         .attr("text-anchor", "start")
         .attr("x", width / 2.5)
-        .attr("y", function(d, i) { return data.length + i*(data.length * 2)})
+       // .attr("y", function(d, i) { return data.length + i*(data.length * 10)})
+        .attr("y", function(d, i) { return (height / 2) - i*(data.length * 20)})
         .attr("dx", 0)
         .attr("dy", "-140px") // Controls padding to place text above bars
         .text(function(d) { return d.label + ", " + d.units})
@@ -658,8 +646,8 @@ function d3LineChart(data, options){
         y.domain([d3.max(data, function(d) { return d.units }) + 2, 0])
 
     var line = d3.svg.line()
-       .x(function(d, i) { console.log("x", x(i)); return x(i) })
-       .y(function(d) { console.log("y", y(d)); return y(d) })
+       .x(function(d, i) { return x(i) })
+       .y(function(d) { return y(d) })
 
     var graph = d3.select(options.div).append("svg:svg")
           .attr("width", w + m[1] + m[3])
@@ -740,7 +728,7 @@ exports.d3PieChart = d3PieChart
 exports.d3BarChart = d3BarChart
 // maps
 exports.createGeoJSON = createGeoJSON
-exports.addPopups = addPopups
+// exports.addPopups = addPopups
 exports.addMarkerLayer = addMarkerLayer
 exports.addTileLayer = addTileLayer
 exports.loadMap = loadMap

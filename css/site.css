@@ -40,6 +40,12 @@ code {font-family: "Consolas", "Ubuntu Mono", monospace; line-height: 22px; font
 
  .example {background-color: #CCF4FF;}
 
+ #mostCuddle img.most {width: 400px; border-radius: 9999px; padding-top: 34px;}
+ #mostCuddle {text-align: center;}
+ #mostCuddle table {width: auto;}
+ #mostCuddle li {padding: 10px 0px; font-size: 18px;}
+ .boxText {background-color: #47CCFC; padding: 4px 8px; font-family: Helvetica;}
+
 /* Bar Chart */
 
   #dogBar.labels text {text-align: right;}
