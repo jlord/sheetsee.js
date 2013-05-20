@@ -1,9 +1,5 @@
 function exportFunctions(exports) {
 
-function loadSpreadsheet(URL) {
-  Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } )
-}
-
 // // // // // // // // // // // // // // // // // // // // // // // //  // //
 //
 // // // Make Table, Sort and Filter Interactions
@@ -744,7 +740,6 @@ exports.getColumnTotal = getColumnTotal
 exports.getMax = getMax
 exports.getMin = getMin
 exports.getColumnAverage = getColumnAverage
-exports.loadSpreadsheet = loadSpreadsheet
 }
 var Sheetsee = {}
 exportFunctions(Sheetsee)

@@ -385,12 +385,13 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
 </script>
 
 <script type="text/javascript">
-  document.addEventListener('DOMContentLoaded', function() { // IE6 doesn't do DOMContentLoaded
+  document.addEventListener('DOMContentLoaded', function() {
   	var gData
   	var URL = "0AvFUWxii39gXdFhqZzdTeU5DTWtOdENkQ1Y5bHdqT0E"
- 		Sheetsee.loadSpreadsheet(URL, showInfo)
-   }) 
-  function showInfo(data, tabletop) {
+		Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } ) 
+	}) 
+  	
+  function showInfo(data) {
 		// window.tabletopData = tabletop 
 		gData = data
 		console.log(gData)
@@ -403,7 +404,7 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
 		var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, 11)
 		// customize the popup content
 		addPopups(map, markerLayer)
-		function addPopups(map, markerLayer, popupContent) {
+		function addPopups(map, markerLayer) {
 		  markerLayer.on('click', function(e) {
 		    var feature = e.layer.feature
 		    var popupContent = '<img class="petThumbs" src="' + feature.opts.picurl + '">' +
