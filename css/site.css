@@ -1,7 +1,7 @@
 /* Page Specific CSS */
 
 body {font-family: Merriweather; background: #fff; color: #333; font-size: 16px; border: 10px #47CCFC solid; margin: 0px; padding: 20px 20px 200px 20px; }
-h1, h2, h3, h4, h5, h6 {font-family: helvetica;}
+h1, h2, h3, h4, h5, h6 {font-family: Helvetica, Arial, sans-serif;}
 h2 {margin-top: 82px;}
 
 h3.functionH {/*background-color: #47CCFC; color: #fff;*/ padding: 4px 8px; margin-top: 52px; border-top: 3px solid #47CCFC; border-left: 3px solid #47CCFC; border-right: 3px solid #47CCFC; margin-left: -14px; padding-left: 14px;
@@ -19,9 +19,9 @@ ol {line-height: 24px;}
 ::selection {background: #ff00ff;} /*#44FFB4*/
 ::-moz-selection {background: #ff00ff;}
 
-/*.goToTop {font-size: 9px; font-family: Helvetica; text-transform: uppercase; }*/
+/*.goToTop {font-size: 9px; font-family: Helvetica, Arial, sans-serif; text-transform: uppercase; }*/
 
-#menu {/*background: #47CCFC;*/ color: #fff; padding: 20px; float: left; position: fixed; left: 40px; top: 40px; max-width: 300px; font-family: Helvetica; font-size: 14px;}
+#menu {/*background: #47CCFC;*/ color: #fff; padding: 20px; float: left; position: fixed; left: 40px; top: 40px; max-width: 300px; font-family: Helvetica, Arial, sans-serif; font-size: 14px;}
 #menu ul {list-style: none; margin: 0px; padding: 0px;}
 #menu li {line-height: 34px;}
 #menu li a {padding: 4px 8px; background-color: #F0F0F0; text-decoration: none; border: none;}
@@ -44,7 +44,7 @@ code {font-family: "Consolas", "Ubuntu Mono", monospace; line-height: 22px; font
  #mostCuddle {text-align: center;}
  #mostCuddle table {width: auto;}
  #mostCuddle li {padding: 10px 0px; font-size: 18px; display: inline-block;}
- .boxText {background-color: #47CCFC; padding: 4px 8px; font-family: Helvetica;}
+ .boxText {background-color: #47CCFC; padding: 4px 8px; font-family: Helvetica, Arial, sans-serif;}
 
 /* Bar Chart */
 
@@ -75,6 +75,6 @@ code {font-family: "Consolas", "Ubuntu Mono", monospace; line-height: 22px; font
   /* Responsive Town */
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 480px) and (max-width: 1024px) {
-  #menu {/*background: #47CCFC;*/ color: #fff; padding: 20px; float: none; position: relative; left: auto; top: auto; max-width: 100%; font-family: Helvetica; font-size: 14px;}
+  #menu {/*background: #47CCFC;*/ color: #fff; padding: 20px; float: none; position: relative; left: auto; top: auto; max-width: 100%; font-family: Helvetica, Arial, sans-serif; font-size: 14px;}
   #menu li {line-height: 34px; display: inline-block;}
 }
