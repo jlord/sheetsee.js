@@ -88,10 +88,11 @@
 
 	<h2>Examples</h2>
 		<ol>
-			<li>Small newsrooms with data for stories but small dev teams.</li>
-			<li>Friends or groups collaborating on data for a website/project.</li>
-			<li>Using <a href="http://www.ifttt.com">iftt.com</a> to auto populate spreadsheets which are hooked to a website with Sheetsee.js.</li>
+			<li>Hack Spots</li>
+			<li>Pennies</li>
+			<li><a href="https://twitter.com/jugglingnutcase">James Sconfitto</a> make a <a href="https://github.com/jugglingnutcase/katiejamie">map of his relationship</a> with his wife &lt;3</li>
 		</ol>
+		
 	<h2 id="getstarted">Getting Started</h2>
 		<p>This bit is the same for both client-side and server-side versions.</p>
 	<h3>Your Data</h3>
@@ -120,11 +121,35 @@
 	<h2>Hooking Up Your Data</h2>
 		<p>Here the paths diverge:</p>
 	<h3>Client-side Hookup</h3>
-		<p>Your Key</p>
+		<p>For client-siders, all you need to do is include the depences and sheetsee in your HTML <code>&lt;head&gt;</code> and then in a script tag at the bottom of your page, right before the <code>&lt;/body&gt;</code> tag, you&#39;ll include this:</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
+        var gData
+        var URL = &quot;0AvFUWxii39gXdFhqZzdTeU5DTWtOdENkQ1Y5bHdqT0E&quot;
+        Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } ) 
+    }) 
+    function showInfo(data) {
+        gData = data
+        // 
+        //everything you do with sheetsee goes here
+        //
+    }
+&lt;/script&gt;</code></pre>
+		<p>The <strong>URL</strong> variable is the key from your spreadsheet&#39;s longer URL, explained above. <code>Tabletop.init()</code> takes that URL and execute&#39;s Tabletop, when it&#39;s done generating the table it executes the callback <code>showInfo</code> function. It&#39;s inside of this function that you&#39;ll then use your spreadsheet data, <strong>gData</strong>, to do all the Sheetsee.js goodness with. </p>
 	<h3>Server-side Hookup</h3>
-		<p>Yada.</p>
-	<h4>Running Locally</h4>
-		<p>Yada.</p>
+		<p>The server-side version is in the repo <a href="http://www.github.com/jllord/sheetsee-cache">sheetsee-cache</a>. It uses <a href="http://www.nodejs.org">Node.js</a> to go to Google, get the spreadsheet data (with a Node.js version of <a href="http://npmjs.org/tabletop">Tabletop.js</a>, thanks Max Ogden!) and save it on the server. This means every user that visits the page doesn&#39;t have to wait on Google&#39;s response to load the charts from the data.</p>
+		<p>When the server builds your page, it will build in your data as the variable gData. All you need to do is add your scripts to the bottom of the page. For the tables/templating you&#39;ll need to wrap them in an event listener so that it doesn&#39;t try and build them before the data has settled. </p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    document.addEventListener(&#39;DOMContentLoaded&#39;, function() { // IE6 doesn&#39;t do DOMContentLoaded
+        // table/templating things the rest can be in their own script tags if you&#39;d like
+    }) 
+&lt;/script&gt;</code></pre>
+		<h4>Running Locally</h4>
+			<p>You can run this locally and it will check your internet connection - if you&#39;re not online it will use the last saved data allowing you to develop offline, yay! </p>
+			<p>Once you download the repo, navigate there in Terminal and type:</p>
+<pre><code>npm install 
+node server.js</code></pre>
+			<p>This will launch a local server you can visit and develop locally with in your browser. </p>
 	<h2 id="workdata">Working With Your Data</h2>
 		<p>Tabletop.js will return all of your data and it will be passed into your site as an <em>array of objects</em> called <strong>gData</strong>. Sheetsee.js has functions built in to help you filter or use that data in other ways if you&#39;d like.</p>
 			<h4>Play Along!</h4>
@@ -230,7 +255,16 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
 	<h3 class="functionH">Sheetsee.addPopups(map, markerLayer)</h3>
 		<p>To customize the marker popup content in your map use this function and pass in your <strong>map</strong> and <strong>markerLayer</strong>.</p>
 <pre><code data-language="javascript"> Sheetsee.addPopups(map, markerLayer)</code></pre>
-		<p><strong>customize popup content</strong></p>
+		<p>To customize the marker popup content in your map you&#39;ll need to use this entire function on your website.</p>
+<pre><code>function addPopups(map, markerLayer) {
+  markerLayer.on(&#39;click&#39;, function(e) {
+    var feature = e.layer.feature
+    var popupContent = &#39;&lt;h2&gt;&#39; + feature.opts.name + &#39;&lt;/h2&gt;&#39; +
+                        &#39;&lt;h3&gt;&#39; + feature.opts.breed + &#39;&lt;/h3&gt;&#39;
+    e.layer.bindPopup(popupContent,{closeButton: false,})
+  })
+}</code></pre>
+		<p>You will edit the <strong>popupContent</strong> variable however you&#39;d like your popups to look. To reference the data you sent to you geoJSON you&#39;ll use <code>feature.opts</code> and then one of the column headers you passed into <code>createGeoJSON().</code></p>
 
 <h2 id="maketable">Make a Table</h2>
 
