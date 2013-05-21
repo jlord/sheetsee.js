@@ -36,16 +36,16 @@ function searchTable(data, searchTerm, tableDiv) {
   return filteredList
 }
 
-function sortThings(data, sorter, sorted) {
+function sortThings(data, sorter, sorted, tableDiv) {
   data.sort(function(a,b){
     if (a[sorter]<b[sorter]) return -1
     if (a[sorter]>b[sorter]) return 1
     return 0
   })
   if (sorted === "descending") data.reverse()
-  makeTable(data, "#siteTable")
+  makeTable(data, tableDiv)
   var header 
-  $("#siteTable .tHeader").each(function(i, el){
+  $(tableDiv + " .tHeader").each(function(i, el){
     var contents = resolveDataTitle($(el).text())
     if (contents === sorter) header = el
   })
@@ -60,8 +60,8 @@ function resolveDataTitle(string) {
 function sendToSort(event) {
   var tableDiv = "#" + $(event.target).closest("div").attr("id")
   console.log("came from this table",tableDiv)
-  var dataset = $(tableDiv).attr('dataset')
-  console.log("made with this data", dataset, typeof dataset)
+  // var dataset = $(tableDiv).attr('dataset')
+  // console.log("made with this data", dataset, typeof dataset)
   var sorted = $(event.target).attr("data-sorted")
   if (sorted) {
     if (sorted === "descending") sorted = "ascending"
@@ -69,7 +69,7 @@ function sendToSort(event) {
   }
   else { sorted = "ascending" }
   var sorter = resolveDataTitle(event.target.innerHTML)
-  sortThings(gData, sorter, sorted)
+  sortThings(gData, sorter, sorted, tableDiv)
 }
 
 $(document).on("click", ".tHeader", sendToSort)
