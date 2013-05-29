@@ -88,13 +88,30 @@ function makeTable(data, targetDiv) {
 //
 // // // // // // // // // // // // // // // // // // // // // // // //  // //
 
-function getGroupCount(data, groupTerm) {
+function getKeywordCount(data, keyword) {
+  console.log(data, keyword)
   var group = []
   data.forEach(function (d) {
-    if (d.status.match(groupTerm)) group.push(d)
+    for(var key in d) {
+      var value = d[key].toString().toLowerCase()
+      if (value.match(keyword.toLowerCase())) group.push(d)
+    } 
   })
   return group.length
   if (group = []) return "0" 
+}
+
+function getKeyword(data, keyword) {
+  console.log(data, keyword)
+  var group = []
+  data.forEach(function (d) {
+    for(var key in d) {
+      var value = d[key].toString().toLowerCase()
+      if (value.match(keyword.toLowerCase())) group.push(d)
+    } 
+  })
+  return group
+  if (group = []) return "no matches" 
 }
 
 function getColumnTotal(data, column){
