@@ -165,7 +165,7 @@ Tabletop.js will return all of your data and it will be passed into your site as
 This takes in your data, an _array of objects_, and searches for a _string_, **keyword**, in each piece of your **data** (formerly the cells of your spreadsheet). It returns an array of each element containing a **keyword** match. Similarly, using `getKeywordCount(data, "keyword)` will return the just the number of times the **keyword** occured.
 
     getKeyword(gData, "cat")
-    // [{breed: "Fat", kind: "cat", hexcolor: "#CDCF83"...}, {breed: "Grey", kind: "cat", hexcolor: "#9C9B9A"...}, {breed: "Creepy", kind: "cat", hexcolor: "#918376"...}]
+    // returns [{breed: "Fat", kind: "cat", hexcolor: "#CDCF83"...}, {breed: "Grey", kind: "cat", hexcolor: "#9C9B9A"...}, {breed: "Creepy", kind: "cat", hexcolor: "#918376"...}]
 
 ### Sheetsee.getColumnTotal(data, column)
 
