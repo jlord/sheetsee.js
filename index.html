@@ -430,7 +430,7 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
   function showInfo(data) {
 		// window.tabletopData = tabletop 
 		gData = data
-		console.log(gData)
+		console.log("here is gData", gData)
 
 		// make the map 
     var optionsJSON = ["picurl", "name", "cuddlability"]
@@ -455,7 +455,6 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
 
   	// more icanhas for most cuddlable
   	var mostCuddleIs = Sheetsee.getMax(gData, "cuddlability")
-  	console.log(mostCuddleIs)
 	  var mostCuddle = ich.mostCuddle({
 		   rows: mostCuddleIs
 	  })

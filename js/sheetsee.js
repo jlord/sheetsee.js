@@ -89,7 +89,6 @@ function makeTable(data, targetDiv) {
 // // // // // // // // // // // // // // // // // // // // // // // //  // //
 
 function getKeywordCount(data, keyword) {
-  console.log(data, keyword)
   var group = []
   data.forEach(function (d) {
     for(var key in d) {
@@ -102,7 +101,6 @@ function getKeywordCount(data, keyword) {
 }
 
 function getKeyword(data, keyword) {
-  console.log(data, keyword)
   var group = []
   data.forEach(function (d) {
     for(var key in d) {
@@ -752,7 +750,8 @@ exports.mostFrequent = mostFrequent
 exports.addUnitsLabels = addUnitsLabels
 exports.getOccurance = getOccurance
 exports.getMatches = getMatches
-exports.getGroupCount = getGroupCount
+exports.getKeyword = getKeyword
+exports.getKeywordCount = getKeywordCount
 exports.getColumnTotal = getColumnTotal
 exports.getMax = getMax
 exports.getMin = getMin
