@@ -160,11 +160,11 @@ This will launch a local server you can visit and develop locally with in your b
 
 Tabletop.js will return all of your data and it will be passed into your site as an _array of objects_ called **gData**. Sheetsee.js has functions built in to help you filter or use that data in other ways if you'd like.
 
-### Sheetsee.getGroupCount(data, groupTerm)
+### Sheetsee.getKeyword(data, groupTerm)
 
-This takes in your data, an _array of objects_, and searches for a _string_, **groupTerm**, in each piece of your **data** (formerly the cells of your spreadsheet). It returns the number of times it found the **groupTerm**.
+This takes in your data, an _array of objects_, and searches for a _string_, **keyword**, in each piece of your **data** (formerly the cells of your spreadsheet). It returns of each element containing a **keyword** match. Similarly, using `getKeywordCount(data, "keyword)` will return the just the number of times the **keyword** occured.
 
-    getGroupCount(gData, "cat")
+    getKeyword(gData, "cat")
     // returns 2
 
 ### Sheetsee.getColumnTotal(data, column)
