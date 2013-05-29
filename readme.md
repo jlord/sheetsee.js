@@ -60,9 +60,8 @@ Ignoring some HTML things to conserve space, you get the point. This gives you a
 3. Using [iftt.com](http://www.ifttt.com) to auto populate spreadsheets which are hooked to a website with Sheetsee.js.
 
 ## Examples
-1. Hack Spots
-2. Pennies
-3. [James Sconfitto](https://twitter.com/jugglingnutcase) make a [map of his relationship](https://github.com/jugglingnutcase/katiejamie) with his wife <3
+1. [Hack Spots](http://jlord.github.io/hack-spots)
+2. [James Sconfitto](https://twitter.com/jugglingnutcase) make a [map of his relationship](https://github.com/jugglingnutcase/katiejamie) with his wife <3
 
 ## Getting Started
 
