@@ -1,3 +1,4 @@
+
 <html>
 	<head>
 		<title>Yo, yo, yo!</title>
@@ -43,7 +44,7 @@
 			<p>Sheetsee.js comes with a bare minimum stylesheet. This way you can customize your site to look the way you want to it or to match an existing site&#39;s design.</p>
 
 		<h3>Client-side or Server-side</h3>
-			<p>Sheetsee.js comes in two flavors, <a href="">client-side</a> and <a href="">server-side</a>. The client-side is the most approachable and straightforward, you just include sheetsee.js and the dependencies on your page and use sheetsee.js as normal.</p>
+			<p>Sheetsee.js comes in two flavors, client-side (this repo)</a> and server-side <a href="http://github.com/sheetsee-cache">(sheetsee-cache)</a>. The client-side is the most approachable and straightforward, you just include sheetsee.js and the dependencies on your page and use sheetsee.js as normal.</p>
 			<p>The server-side version is built with <a href="http://www.nodejs.org">Node.js</a> and you&#39;ll need to understand Node and be publishing to a server that runs Node.js apps. This version saves the data on the server so that the browser doesn&#39;t have to fetch from Google at every request, which can sometimes be slow. You can set when the cache expires. It also allows for offline development, huzzah!</p>
 
 		<div class="dotted">
@@ -72,6 +73,7 @@
     &lt;body&gt;
     &lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
     &lt;script&gt;
+    	optionsJSON = ["something", "something"]
         var geoJSON = Sheetsee.createGeoJSON(gData, featureElements)
         var map = Sheetsee.loadMap(&quot;map&quot;)
         Sheetsee.addTileLayer(map, &#39;examples.map-20v6611k&#39;)
@@ -89,7 +91,7 @@
 
 	<h2>Examples</h2>
 		<ol>
-			<li>Hack Spots</li>
+			<li><a href="http://jlord.github.io/hack-spots" target="_blank">Hack Spots</a></li>
 			<li>Pennies</li>
 			<li><a href="https://twitter.com/jugglingnutcase">James Sconfitto</a> make a <a href="https://github.com/jugglingnutcase/katiejamie">map of his relationship</a> with his wife &lt;3</li>
 		</ol>
@@ -141,25 +143,26 @@
 		<p>The server-side version is in the repo <a href="http://www.github.com/jllord/sheetsee-cache">sheetsee-cache</a>. It uses <a href="http://www.nodejs.org">Node.js</a> to go to Google, get the spreadsheet data (with a Node.js version of <a href="http://npmjs.org/tabletop">Tabletop.js</a>, thanks Max Ogden!) and save it on the server. This means every user that visits the page doesn&#39;t have to wait on Google&#39;s response to load the charts from the data.</p>
 		<p>When the server builds your page, it will build in your data as the variable gData. All you need to do is add your scripts to the bottom of the page. For the tables/templating you&#39;ll need to wrap them in an event listener so that it doesn&#39;t try and build them before the data has settled. </p>
 <pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
-    document.addEventListener(&#39;DOMContentLoaded&#39;, function() { // IE6 doesn&#39;t do DOMContentLoaded
+    document.addEventListener(&#39;DOMContentLoaded&#39;, function() { 
         // table/templating things the rest can be in their own script tags if you&#39;d like
     }) 
 &lt;/script&gt;</code></pre>
 		<h4>Running Locally</h4>
 			<p>You can run this locally and it will check your internet connection - if you&#39;re not online it will use the last saved data allowing you to develop offline, yay! </p>
-			<p>Once you download the repo, navigate there in Terminal and type:</p>
-<pre><code>npm install 
+			<p>Once you <a href="http://github.com/jlord/sheetsee-cache">clone the repo</a>, navigate there in Terminal, install the node modules and launch the server.</p>
+<pre><code>cd sheetsee-cache
+npm install 
 node server.js</code></pre>
 			<p>This will launch a local server you can visit and develop locally with in your browser. </p>
 	<h2 id="workdata">Working With Your Data</h2>
 		<p>Tabletop.js will return all of your data and it will be passed into your site as an <em>array of objects</em> called <strong>gData</strong>. Sheetsee.js has functions built in to help you filter or use that data in other ways if you&#39;d like.</p>
 			<h4>Play Along!</h4>
-				<p>This page is using sheetsee. If you (are in Chrome and) right click on the page and select <em>Select Element</em> it will bring up the Web Inspector. Select the <em>Console</em> tab. 
+				<p>This page is using sheetsee. If you (are in Chrome and) right click on the page and select <em>Inspect Element</em> it will bring up the Web Inspector. Select the <em>Console</em> tab. Now you can interact with the data and functions from Sheetsee. Give the functions below a try - <strong>gData</strong> is the variable with the data (from <a href="https://docs.google.com/spreadsheet/ccc?key=0AvFUWxii39gXdFhqZzdTeU5DTWtOdENkQ1Y5bHdqT0E&usp=sharing") target="_blank">this spreadsheet</a>), use it with the functions below.
 				<img src="https://raw.github.com/jllord/sheetsee-cache/master/img/webconsole.png" alt="sheetsee">	
-		<h3 class="functionH">Sheetsee.getGroupCount(data, groupTerm)</h3>
-			<p>This takes in your data, an <em>array of objects</em>, and searches for a <em>string</em>, <strong>groupTerm</strong>, in each piece of your <strong>data</strong> (formerly the cells of your spreadsheet). It returns the number of times it found the <strong>groupTerm</strong>.</p>
-<pre><code data-language="javascript">getGroupCount(gData, &quot;cat&quot;)
-// returns 2</code></pre>
+		<h3 class="functionH">Sheetsee.getKeyword(data, keyword)</h3>
+			<p>This takes in your data, an <em>array of objects</em>, and searches for a <em>string</em>, <strong>keyword</strong>, in each piece of your <strong>data</strong> (formerly the cells of your spreadsheet). It returns an array of each row that contained a keyword match. Similarly, using `getKeywordCount(data, keyword)` will return just the number of times the keyword occured.</p>
+<pre><code data-language="javascript">getKeyword(gData, &quot;cat&quot;)
+// returns [{breed: &quot;Fat&quot;, kind: &quot;cat&quot;, hexcolor: &quot;#CDCF83&quot;...}, {breed: &quot;Grey&quot;, kind: &quot;cat&quot;, hexcolor: &quot;#9C9B9A&quot;...}, {breed: &quot;Creepy&quot;, kind: &quot;cat&quot;, hexcolor: &quot;#918376&quot;...}]</code></pre>
 		<h3 class="functionH">Sheetsee.getColumnTotal(data, column)</h3>
 			<p>Given your <strong>data</strong>, an <em>array of objects</em> and a <em>string</em> <strong>column</strong> header, this functions sums each cell in that column, so they best be numbers.</p>
 <pre><code data-language="javascript">getColumnTotal(gData, &quot;cuddlability&quot;)
@@ -171,7 +174,7 @@ node server.js</code></pre>
 		<h3 class="functionH">Sheetsee.getMin(data, column)</h3>
 			<p>This will return an <em>array</em> of <em>object</em> or <em>objects</em> (if there is a tie) of the element with the lowest number value in the <strong>column</strong> you specify from your <strong>data</strong>.</p>
 <pre><code data-language="javascript">getMin(gData, &quot;cuddlability&quot;)
-// returns {breed: &quot;Fat&quot;, cuddlability: &quot;0&quot;, hexcolor: &quot;#CDCF83&quot;...}, {breed: &quot;Grey&quot;, cuddlability: &quot;0&quot;, hexcolor: &quot;#9C9B9A&quot;...}, {breed: &quot;Creepy&quot;, cuddlability: &quot;0&quot;, hexcolor: &quot;#918376&quot;...}</code></pre>
+// returns [{breed: &quot;Fat&quot;, cuddlability: &quot;0&quot;, hexcolor: &quot;#CDCF83&quot;...}, {breed: &quot;Grey&quot;, cuddlability: &quot;0&quot;, hexcolor: &quot;#9C9B9A&quot;...}, {breed: &quot;Creepy&quot;, cuddlability: &quot;0&quot;, hexcolor: &quot;#918376&quot;...}]</code></pre>
 
 		<h3 class="functionH">Sheetsee.getMax(data, column)</h3>
 			<p>This will return an <em>array</em> of <em>object</em> or <em>objects</em> (if there is a tie) of the element with the highest number value in the <strong>column</strong> you specify from your <strong>data</strong>.</p>
@@ -276,6 +279,7 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
 		<span class="noMatches">no matches</span>
 		<div id="basicTable" class="container"></div>
 	</div>
+	
 
 	<p>Sheetsee.js supports making multiple tables or templates with IcanHas.js. It currently supports sorting and filtering on just one table. For each of these you&#39;ll need a <code data-language="javascript">&lt;div&gt;</code> in your html, a <code data-language="javascript">&lt;script&gt;</code> template and a <code data-language="javascript">&lt;script&gt;</code> that calls table making functions.</p>
 		<h4>Your HTML Placeholder <code data-language="javascript">&lt;div&gt;</code></h4>
@@ -429,7 +433,7 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
   function showInfo(data) {
 		// window.tabletopData = tabletop 
 		gData = data
-		console.log(gData)
+		console.log("here is gData", gData)
 
 		// make the map 
     var optionsJSON = ["picurl", "name", "cuddlability"]
@@ -454,7 +458,6 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
 
   	// more icanhas for most cuddlable
   	var mostCuddleIs = Sheetsee.getMax(gData, "cuddlability")
-  	console.log(mostCuddleIs)
 	  var mostCuddle = ich.mostCuddle({
 		   rows: mostCuddleIs
 	  })
