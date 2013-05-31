@@ -4,7 +4,7 @@ body {font-family: Merriweather; background: #fff; color: #333; font-size: 16px;
 h1, h2, h3, h4, h5, h6 {font-family: Helvetica, Arial, sans-serif;}
 h2 {margin-top: 82px;}
 
-h3.functionH {/*background-color: #47CCFC; color: #fff;*/ padding: 4px 8px; margin-top: 52px; border-top: 3px solid #47CCFC; border-left: 3px solid #47CCFC; border-right: 3px solid #47CCFC; margin-left: -14px; padding-left: 14px;
+h3.functionH {margin-left: -14px; margin-top: 52px; border-top: 3px solid #47CCFC; border-left: 3px solid #47CCFC; border-right: 3px solid #47CCFC; margin-left: -14px; padding-left: 14px;
 								padding-top: 9px; }
 img {width: 100%;} 
 
@@ -13,68 +13,68 @@ p a:visted {color: #ff00ff;}
 a:hover {color: #47CCFC;}
 a:visited {color: #333;}
 small {padding: 10px 0px;}
-p {line-height: 24px;}
-ol {line-height: 24px;}
+p, ol {line-height: 24px;}
 
-::selection {background: #ff00ff;} /*#44FFB4*/
-::-moz-selection {background: #ff00ff;}
+pre {word-wrap: break-word; padding: 14px; background: #F0F0F0; }
+code {font-family: "Consolas", "Ubuntu Mono", monospace; line-height: 22px; font-size: 13px; color: #636363; font-weight: normal;}
 
-/*.goToTop {font-size: 9px; font-family: Helvetica, Arial, sans-serif; text-transform: uppercase; }*/
+/* funsies */
+::selection {background: #44FFB4;}
+::-moz-selection {background: #44FFB4;}
 
-#menu {/*background: #47CCFC;*/ color: #fff; padding: 20px; float: left; position: fixed; left: 40px; top: 40px; max-width: 300px; font-family: Helvetica, Arial, sans-serif; font-size: 14px;}
+.button {padding: 5px 4px; background-color: #fff; font-size: 10px;}
+
+#menu {color: #fff; padding: 20px; float: left; position: fixed; left: 40px; top: 40px; max-width: 300px; font-family: Helvetica, Arial, sans-serif; font-size: 14px;}
 #menu ul {list-style: none; margin: 0px; padding: 0px;}
 #menu li {line-height: 34px;}
 #menu li a {padding: 4px 8px; background-color: #F0F0F0; text-decoration: none; border: none;}
 #menu li a.a2 {background-color: #CCF4FF;}
 #menu li a:hover {background-color: #e7e7e7; color: #333;}
 
-#wrapper {margin: 0px auto; max-width: 800px; padding-top: 40px; /*margin-left: 250px;*/}
-pre {word-wrap: break-word; padding: 14px; background: #F0F0F0; }
-code {font-family: "Consolas", "Ubuntu Mono", monospace; line-height: 22px; font-size: 13px; color: #636363; font-weight: normal;}
-.button {padding: 5px 4px; background-color: #fff; font-size: 10px;}
-.dotted {margin: 20px -28px; padding: 20px 28px; background-color: #CCF4FF; border: 8px solid #47CCFC; margin-top: 44px; padding-top: 0px;}
-.dotted li {padding: 0px 2px;}
-.dotted h2 {margin-top: inherit;}
+#wrapper {margin: 0px auto; max-width: 800px; padding-top: 40px;}
 
- .leaflet-popup-content h2 {margin-bottom: 4px; margin-top: auto;}
+.ssExample {margin: 20px -28px; background-color: #CCF4FF; padding: 20px 28px; background-color: #CCF4FF; border: 8px solid #47CCFC; margin-top: 44px; padding-top: 0px;}
+.ssExample li {padding: 0px 2px;}
+.ssExample h2 {margin-top: inherit;}
 
- .example {background-color: #CCF4FF;}
+/* Map Popup Style */
+.leaflet-popup-content h2 {margin-bottom: 4px; margin-top: auto;}
 
- #mostCuddle img.most {max-width: 400px; border-radius: 9999px; margin-top: 34px;}
- #mostCuddle {text-align: center;}
- #mostCuddle table {width: auto;}
- #mostCuddle li {padding: 10px 0px; font-size: 18px; display: inline-block;}
- .boxText {background-color: #47CCFC; padding: 4px 8px; font-family: Helvetica, Arial, sans-serif;}
+/* Most Cuddleable Template */
+#mostCuddle img.most {max-width: 400px; border-radius: 9999px; margin-top: 34px;}
+#mostCuddle {text-align: center;}
+#mostCuddle table {width: auto;}
+#mostCuddle li {padding: 10px 0px; font-size: 18px; display: inline-block;}
+.boxText {background-color: #47CCFC; padding: 4px 8px; font-family: Helvetica, Arial, sans-serif;}
 
 /* Bar Chart */
-
-  #dogBar.labels text {text-align: right;}
-  #dogBar.bar .labels text {fill: #333;}
-  #dogBar.bar rect {fill: #e6e6e6;}
-  #dogBar.axis {shape-rendering: crispEdges;}
-  #dogBar .x.axis line {stroke: #CCF4FF; /*stroke-opacity: .2;*/ fill: none;}
-  #dogBar.x.axis path {fill: none;}
-  #dogBar.x.axis text {fill: #333;}
-  #dogBar.xLabel {font-family: sans-serif; font-size: 9px;}
+#dogBar.labels text {text-align: right;}
+#dogBar.bar .labels text {fill: #333;}
+#dogBar.bar rect {fill: #e6e6e6;}
+#dogBar.axis {shape-rendering: crispEdges;}
+#dogBar .x.axis line {stroke: #CCF4FF; /*stroke-opacity: .2;*/ fill: none;}
+#dogBar.x.axis path {fill: none;}
+#dogBar.x.axis text {fill: #333;}
+#dogBar.xLabel {font-family: sans-serif; font-size: 9px;}
 
 /* Line Chart */
+#dogLine.axis {shape-rendering: crispEdges;}
+#dogLine.x.axis .minor, #dogLine.y.axis .minor {stroke-opacity: .5;}
+#dogLine.x.axis {stroke-opacity: 1;}
+#dogLine.y.axis line, #dogLine.y.axis path, #dogLine.x.axis path {fill: none; stroke: #acacac; stroke-width: 1;}
+#dogLine .x.axis line {stroke: #acacac; stroke-opacity: .75;}
+.bigg {-webkit-transition: all .2s ease-in-out; -webkit-transform: scale(2);}
+path.chartLine {stroke: #14ECC8; stroke-width: 3; fill: none;}
+div.tooltip {position: absolute; text-align: left; padding: 4px 8px; width: auto; font-size: 10px; height: auto; background: #fff; border: 0px; pointer-events: none;}
+circle {fill: #fff;}
 
-  #dogLine.axis {shape-rendering: crispEdges;}
-  #dogLine.x.axis .minor, #dogLine.y.axis .minor {stroke-opacity: .5;}
-  #dogLine.x.axis {stroke-opacity: 1;}
-  #dogLine.y.axis line, #dogLine.y.axis path, #dogLine.x.axis path {fill: none; stroke: #acacac; stroke-width: 1;}
-  #dogLine .x.axis line {stroke: #acacac; stroke-opacity: .75;}
-  .bigg {-webkit-transition: all .2s ease-in-out; -webkit-transform: scale(2);}
-  path.chartLine {stroke: #14ECC8; stroke-width: 3; fill: none;}
-  div.tooltip {position: absolute; text-align: left; padding: 4px 8px; width: auto; font-size: 10px; height: auto; background: #fff; border: 0px; pointer-events: none;}
-  circle {fill: #fff;}
+/* Pie Chart */
+.arc path { stroke: #fff;}
 
+/* Responsive Town */
 
-  .arc path { stroke: #fff;}
-
-  /* Responsive Town */
-
-@media only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 480px) and (max-width: 1024px) {
-  #menu {/*background: #47CCFC;*/ color: #fff; padding: 20px; float: none; position: relative; left: auto; top: auto; max-width: 100%; font-family: Helvetica, Arial, sans-serif; font-size: 14px;}
-  #menu li {line-height: 34px; display: inline-block;}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 320px) and (max-width: 1024px) {
+  #wrapper {max-width: 100%; padding-top: 20px;}
+  #menu {/*background: #47CCFC;*/ color: #fff; padding: 20px; float: none; position: relative; left: auto; top: auto; max-width: 100%; font-family: Helvetica, Arial, sans-serif; font-size: 18px;}
+  #menu li {line-height: 38px; display: inline-block;}
 }

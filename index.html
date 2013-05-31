@@ -46,7 +46,7 @@
 			<p>Sheetsee.js comes in two flavors, client-side (this repo)</a> and server-side <a href="http://github.com/sheetsee-cache">(sheetsee-cache)</a>. The client-side is the most approachable and straightforward, you just include sheetsee.js and the dependencies on your page and use sheetsee.js as normal.</p>
 			<p>The server-side version is built with <a href="http://www.nodejs.org">Node.js</a> and you&#39;ll need to understand Node and be publishing to a server that runs Node.js apps. This version saves the data on the server so that the browser doesn&#39;t have to fetch from Google at every request, which can sometimes be slow. You can set when the cache expires. It also allows for offline development, huzzah!</p>
 
-		<div class="dotted">
+		<div class="ssExample">
 			<h2 id="shortsweet">The Short &amp; Sweet</h2>
 				<ol>
 					<li>Link to Sheetsee.js and dependencies in your HTML header.</li>
@@ -180,7 +180,7 @@ node server.js</code></pre>
 <pre><code data-language="javascript">getMax(gData, &quot;cuddlability&quot;)
 // returns {breed: &quot;Teacup Maltese&quot;, cuddlability: &quot;5&quot;, hexcolor: &quot;#ECECEC&quot;, kind: &quot;Dog&quot;, lat: &quot;37.74832&quot;, long: &quot;-122.402158&quot;, name: &quot;Coco&quot;...}</code></pre>
 
-	<div id="mostCuddle" class="example dotted container"></div>
+	<div id="mostCuddle" class="ssExample container"></div>
 
 
 		<h3>Don&#39;t Forget JavaScript Math</h3>
@@ -271,7 +271,7 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
 
 <h2 id="maketable">Make a Table</h2>
 
-	<div class="container example dotted">
+	<div class="container ssExample">
 		<h3>Example - Local Pet Friends</h3>
 		<input id="basicFilter" type="text" placeholder="filter by.."></input>
 		<span id="basicClear" class="clear button">Clear</span>
@@ -329,7 +329,7 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
 
 	<h3>Bar Chart</h3>
 
-	<div class="dotted example container">
+	<div class="ssExample container">
 		<div id="dogBar"></div>
 	</div>
 
@@ -351,7 +351,7 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
 
 	<h3>Line Chart</h3>
 
-	<div class="dotted example container">
+	<div class="ssExample container">
 		<div id="dogLine"></div>
 	</div>
 
@@ -373,7 +373,7 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
 
 	<h3>Pie Chart</h3>
 
-	<div class="dotted example container">
+	<div class="ssExample container">
 		<div id="dogPie"></div>
 	</div>
 
