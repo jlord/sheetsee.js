@@ -43,7 +43,7 @@
 			<p>Sheetsee.js comes with a bare minimum stylesheet. This way you can customize your site to look the way you want to it or to match an existing site&#39;s design.</p>
 
 		<h3>Client-side or Server-side</h3>
-			<p>Sheetsee.js comes in two flavors, <a href="">client-side</a> and <a href="">server-side</a>. The client-side is the most approachable and straightforward, you just include sheetsee.js and the dependencies on your page and use sheetsee.js as normal.</p>
+			<p>Sheetsee.js comes in two flavors, client-side (this repo)</a> and server-side <a href="http://github.com/sheetsee-cache">(sheetsee-cache)</a>. The client-side is the most approachable and straightforward, you just include sheetsee.js and the dependencies on your page and use sheetsee.js as normal.</p>
 			<p>The server-side version is built with <a href="http://www.nodejs.org">Node.js</a> and you&#39;ll need to understand Node and be publishing to a server that runs Node.js apps. This version saves the data on the server so that the browser doesn&#39;t have to fetch from Google at every request, which can sometimes be slow. You can set when the cache expires. It also allows for offline development, huzzah!</p>
 
 		<div class="dotted">
@@ -72,6 +72,7 @@
     &lt;body&gt;
     &lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
     &lt;script&gt;
+    	optionsJSON = ["something", "something"]
         var geoJSON = Sheetsee.createGeoJSON(gData, featureElements)
         var map = Sheetsee.loadMap(&quot;map&quot;)
         Sheetsee.addTileLayer(map, &#39;examples.map-20v6611k&#39;)
@@ -89,7 +90,7 @@
 
 	<h2>Examples</h2>
 		<ol>
-			<li>Hack Spots</li>
+			<li><a href="http://jlord.github.io/hack-spots" target="_blank">Hack Spots</a></li>
 			<li>Pennies</li>
 			<li><a href="https://twitter.com/jugglingnutcase">James Sconfitto</a> make a <a href="https://github.com/jugglingnutcase/katiejamie">map of his relationship</a> with his wife &lt;3</li>
 		</ol>
