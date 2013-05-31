@@ -37,6 +37,8 @@ code {font-family: "Consolas", "Ubuntu Mono", monospace; line-height: 22px; font
 .ssExample li {padding: 0px 2px;}
 .ssExample h2 {margin-top: inherit;}
 
+.tHeader::after {content: " \2193 \2191 "; font-size: 10px; padding-left: 3px;}
+
 /* Map Popup Style */
 .leaflet-popup-content h2 {margin-bottom: 4px; margin-top: auto;}
 
