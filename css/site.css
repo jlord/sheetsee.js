@@ -77,8 +77,6 @@ circle {fill: #fff;}
 
 /* Pie Chart */
 .arc path { stroke: #fff;}
-#dogPie.x.axis path {fill: none; stroke: #acacac; stroke-width: 1;}
-#dogPie .x.axis line {stroke: #acacac; stroke-opacity: .75;}
 
 /* Responsive Town */
 
