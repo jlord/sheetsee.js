@@ -21,6 +21,8 @@ code {font-family: "Consolas", "Ubuntu Mono", monospace; line-height: 22px; font
 ::selection {background: #44FFB4;}
 ::-moz-selection {background: #44FFB4;}
 
+img.petThumbs {height: 80px; width: 80px; border-radius: 1000px;}
+
 .button {padding: 5px 4px; background-color: #fff; font-size: 10px;}
 
 #menu {color: #fff; padding: 20px; float: left; position: fixed; left: 40px; top: 40px; max-width: 300px; font-family: Helvetica, Arial, sans-serif; font-size: 14px;}
@@ -42,7 +44,7 @@ code {font-family: "Consolas", "Ubuntu Mono", monospace; line-height: 22px; font
 .tHeader::after {content: " \2193 \2191 "; font-size: 10px; padding-left: 3px;}
 
 /* Map Popup Style */
-.leaflet-popup-content h2 {margin-bottom: 4px; margin-top: auto;}
+.leaflet-popup-content h2 {margin-bottom: 4px; margin-top: auto; font-family: Merriweather;}
 
 /* Most Cuddleable Template */
 #mostCuddle img.most {max-width: 400px; border-radius: 9999px; margin-top: 34px;}
@@ -56,10 +58,11 @@ code {font-family: "Consolas", "Ubuntu Mono", monospace; line-height: 22px; font
 #dogBar.bar .labels text {fill: #333;}
 #dogBar.bar rect {fill: #e6e6e6;}
 #dogBar.axis {shape-rendering: crispEdges;}
-#dogBar .x.axis line {stroke: #CCF4FF; /*stroke-opacity: .2;*/ fill: none;}
+#dogBar .x.axis line {stroke: #CCF4FF; fill: none;}
 #dogBar.x.axis path {fill: none;}
 #dogBar.x.axis text {fill: #333;}
 #dogBar.xLabel {font-family: sans-serif; font-size: 9px;}
+
 
 /* Line Chart */
 #dogLine.axis {shape-rendering: crispEdges;}
@@ -74,6 +77,8 @@ circle {fill: #fff;}
 
 /* Pie Chart */
 .arc path { stroke: #fff;}
+#dogPie.x.axis path {fill: none; stroke: #acacac; stroke-width: 1;}
+#dogPie .x.axis line {stroke: #acacac; stroke-opacity: .75;}
 
 /* Responsive Town */
 
