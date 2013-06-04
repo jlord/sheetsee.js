@@ -7,7 +7,7 @@
   .button:hover {cursor: hand;}
   input:focus {outline: none;}
 
-/* Table */
+  /* Table */
 
   table {text-align: left; width: 100%}
   th {padding: 10px 0px;}
@@ -16,10 +16,14 @@
   .tHeader {/* table column header style */}
   .noMatches {margin-left: 20px; font-size: 11px; font-style: italic; visibility: hidden;}
 
-/* Containers */
+  /* Containers */
   .container {margin: 14px 0px;}
   #map {height: 400px; max-width: 800px; background: #DADADA;}
   #holder {height: 400px; max-width: 600px; background: #FFE4E4;}
+
+  /* Overflow for large tables and chart */
+  .container {overflow-x: auto;}
+  #yourDiv {min-width: 600px}
 
   /* Bar Chart */
 
@@ -45,7 +49,8 @@
 
 /* Map */
 
-  .leaflet-popup-content {font-family: Merriweather;}
-  .leaflet-popup-content h2 {margin-bottom: 4px;}
+  .leaflet-popup-content {}
 
-  img.petThumbs {height: 80px; width: 80px; border-radius: 1000px;}
+  @media only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 320px) and (max-width: 1024px) {
+
+}
