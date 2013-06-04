@@ -53,4 +53,8 @@
 
   @media only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 320px) and (max-width: 1024px) {
 
+<<<<<<< HEAD
 }
+=======
+  img.petThumbs {height: 80px; width: 80px; border-radius: 1000px;}
+>>>>>>> 91c59b43e14e04cea17a7f2d4a743671ea93cf9d
