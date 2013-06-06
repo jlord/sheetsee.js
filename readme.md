@@ -473,7 +473,7 @@ Thanks to [Code for America](http://www.codeforamerica.org) for providing the pl
 
 Thanks to [Dan Sinker](http://www.twitter.com/dansinker) at [Open News](http://www.mozillaopennews.org/) for having faith and getting things together to make this Code Sprint happen and thanks to [Matt Green](https://twitter.com/whatsnewmedia) at WBEZ for being a willing partner.
 
-Thanks to [Max Ogden](http://www.twitter.com/maxogden) for emotional support, teaching me JavaScript and working on the harder parts of Sheetsee.js - especially for making [Tabletop.js for Node.js](npmjs.org/tabletop).
+Thanks to [Max Ogden](http://www.twitter.com/maxogden) for emotional support, teaching me JavaScript and working on the harder parts of Sheetsee.js - especially for making [Tabletop.js for Node.js](https://npmjs.org/tabletop).
 
 Thanks to all the authors and contributors to Tabletop.js, Mapbox.js, Leaflet.js, jQuery, ICanHas.js and d3.js. Thanks to Google and the Internet for existing and to all those who've written tutorials or asked or answered a question on StackOverflow.
 
