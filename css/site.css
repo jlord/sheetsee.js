@@ -21,6 +21,8 @@ code {font-family: "Consolas", "Ubuntu Mono", monospace; line-height: 22px; font
 ::selection {background: #44FFB4;}
 ::-moz-selection {background: #44FFB4;}
 
+img.petThumbs {height: 80px; width: 80px; border-radius: 1000px;}
+
 .button {padding: 5px 4px; background-color: #fff; font-size: 10px;}
 
 #menu {color: #fff; padding: 20px; float: left; position: fixed; left: 40px; top: 40px; max-width: 300px; font-family: Helvetica, Arial, sans-serif; font-size: 14px;}
