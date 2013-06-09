@@ -327,7 +327,7 @@ You will edit the **popupContent** variable however you'd like your popups to lo
 
 ## Make a Table
 
-Sheetsee.js supports making multiple tables or templates with IcanHas.js. It currently supports sorting and filtering on just one table. For each of these you'll need a `<div>` in your html, a `<script>` template and a `<script>` that calls table making functions.
+Sheetsee.js supports making multiple tables or templates with IcanHas.js. The tables can have multiple inputs for filtering and table headers can be used to sort the data in that column. For each of these you'll need a `<div>` in your html, a `<script>` template and a `<script>` that calls table functions.
 
 #### Your HTML Placeholder `<div>`
 
@@ -359,11 +359,14 @@ The variables inside the {{}} must match the column headers in your spreadsheet.
         })
     </script>
 
-To create another table, simply repeat the steps except for `initiateTableFilter()`
+To create another table, simply repeat the steps.
 
     <div id="secondTable"></div>
     <script id="secondTable"> // your table template here </script>
-    <script>Sheetsee.makeTable(otherData, "#secondTable")</script>
+    <script>
+      Sheetsee.makeTable(otherData, "#secondTable")
+      Sheetsee.initiateTableFilter(otherData, "#secondFilter", "#secondTable")
+    </script>
 
  Learn more about the things you can do with [mustache.js](http://mustache.github.io/).
 
