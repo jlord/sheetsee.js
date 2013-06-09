@@ -280,7 +280,7 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
   </div>
   
 
-  <p>Sheetsee.js supports making multiple tables or templates with IcanHas.js. he tables can have multiple inputs for filtering and table headers can be used to sort the data in that column. For each of these you&#39;ll need a <code data-language="javascript">&lt;div&gt;</code> in your html, a <code data-language="javascript">&lt;script&gt;</code> template and a <code data-language="javascript">&lt;script&gt;</code> that calls table functions.</p>
+  <p>Sheetsee.js supports making multiple tables or templates with IcanHas.js. The tables can have multiple inputs for searches and table headers can be used to sort the data in that column. For each of these you&#39;ll need a <code data-language="javascript">&lt;div&gt;</code> in your html, a <code data-language="javascript">&lt;script&gt;</code> template and a <code data-language="javascript">&lt;script&gt;</code> that calls table functions.</p>
     <h4>Your HTML Placeholder <code data-language="javascript">&lt;div&gt;</code></h4>
       <p>This is as simple as an empty <code data-language="javascript">&lt;div&gt;</code> with an id. This id should match the script tempate id in the next section.</p>
 <pre><code data-language="javascript"> &lt;div id=&quot;siteTable&quot;&gt;&lt;/div&gt;</code></pre>
@@ -297,7 +297,7 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
 &lt;/script&gt;</code></pre>
 <h4>Your <code data-language="javascript">&lt;script&gt;</code> Execution</h4>
 <pre><code data-language="javascript">&lt;script type=&quot;text/javascript&quot;&gt;
-    document.addEventListener(&#39;DOMContentLoaded&#39;, function() { // IE6 doesn&#39;t do DOMContentLoaded
+    document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
         Sheetsee.makeTable(gData, &quot;#siteTable&quot;)
         Sheetsee.initiateTableFilter(gData, &quot;#tableFilter&quot;, &quot;#siteTable&quot;)
     })
@@ -307,7 +307,7 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
 &lt;script id=&quot;secondTable&quot;&gt; // your table template here &lt;/script&gt;
 &lt;script&gt;
   Sheetsee.makeTable(otherData, &quot;#secondTable&quot;)
-  Sheetsee.initiateTableFilter(gData, &quot;#tableFilter&quot;, &quot;#siteTable&quot;)
+  Sheetsee.initiateTableFilter(otherData, &quot;#secondFilter&quot;, &quot;#secondTable&quot;)
 &lt;/script&gt;
 </code></pre>
       <p> Learn more about the things you can do with <a href="http://mustache.github.io/">mustache.js</a>.</p>
