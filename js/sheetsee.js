@@ -8,7 +8,6 @@ function exportFunctions(exports) {
 
 function initiateTableFilter(data, filterDiv, tableDiv) {
   $('.clear').on("click", function() { 
-    console.log(this)
     $(this.id + ".noMatches").css("visibility", "hidden")
     $(this.id + filterDiv).val("")
     makeTable(data, tableDiv)
@@ -25,7 +24,6 @@ function searchTable(data, searchTerm, tableDiv) {
     var stringObject = JSON.stringify(object).toLowerCase()
     if (stringObject.match(searchTerm)) filteredList.push(object)
   })
-  // if ($('#tableFilter').val("")) makeTable(data, tableDiv)
   if (filteredList.length === 0) {
     console.log("no matchie")
     $(".noMatches").css("visibility", "inherit")
@@ -60,8 +58,6 @@ function resolveDataTitle(string) {
 function sendToSort(event) {
   var tableDiv = "#" + $(event.target).closest("div").attr("id")
   console.log("came from this table",tableDiv)
-  // var dataset = $(tableDiv).attr('dataset')
-  // console.log("made with this data", dataset, typeof dataset)
   var sorted = $(event.target).attr("data-sorted")
   if (sorted) {
     if (sorted === "descending") sorted = "ascending"
@@ -534,7 +530,6 @@ svg.selectAll("g.labels")
       .append("text")
         .attr("text-anchor", "start")
         .attr("x", width / 2.5)
-       // .attr("y", function(d, i) { return data.length + i*(data.length * 10)})
         .attr("y", function(d, i) { return (height / 2) - i*(data.length * 20)})
         .attr("dx", 0)
         .attr("dy", "-140px") // Controls padding to place text above bars
@@ -545,7 +540,6 @@ svg.selectAll("g.labels")
         .on('mouseover', mouseOver)
         .on("mouseout", mouseOut)
 }
-
 
 // Line Chart
 
@@ -614,6 +608,7 @@ function d3LineChart(data, options){
           .attr("d", line(lineData))
           .attr("class", "chartLine")
           .attr("index_value", function(d, i) { return i })
+          // .attr("stroke", options.hiColor).attr("fill", "none")
 
     graph.selectAll("dot")    
         .data(data)         
