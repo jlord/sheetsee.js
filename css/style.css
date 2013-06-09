@@ -18,7 +18,7 @@
 
   /* Containers */
   .container {margin: 14px 0px;}
-  #map {height: 400px; max-width: 800px; background: #DADADA;}
+  #map {height: 400px; max-width: 800px; background: #DADADA; overflow: hidden;}
   #holder {height: 400px; max-width: 600px; background: #FFE4E4;}
 
   /* Overflow for large tables and chart */
