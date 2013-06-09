@@ -178,7 +178,7 @@ node server.js</code></pre>
     <h3 class="functionH">Sheetsee.getMax(data, column)</h3>
       <p>This will return an <em>array</em> of <em>object</em> or <em>objects</em> (if there is a tie) of the element with the highest number value in the <strong>column</strong> you specify from your <strong>data</strong>.</p>
 <pre><code data-language="javascript">getMax(gData, &quot;cuddlability&quot;)
-// returns [{breed: &quot;Teacup Maltese&quot;, cuddlability: &quot;5&quot;, hexcolor: &quot;#ECECEC&quot;, kind: &quot;Dog&quot;, lat: &quot;37.74832&quot;, long: &quot;-122.402158&quot;, name: &quot;Coco&quot;...}]</code></pre>
+// returns {breed: &quot;Teacup Maltese&quot;, cuddlability: &quot;5&quot;, hexcolor: &quot;#ECECEC&quot;, kind: &quot;Dog&quot;, lat: &quot;37.74832&quot;, long: &quot;-122.402158&quot;, name: &quot;Coco&quot;...}</code></pre>
 
   <div id="mostCuddle" class="ssExample container"></div>
 
@@ -280,7 +280,7 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
   </div>
   
 
-  <p>Sheetsee.js supports making multiple tables or templates with IcanHas.js. It currently supports sorting and filtering on just one table. For each of these you&#39;ll need a <code data-language="javascript">&lt;div&gt;</code> in your html, a <code data-language="javascript">&lt;script&gt;</code> template and a <code data-language="javascript">&lt;script&gt;</code> that calls table making functions.</p>
+  <p>Sheetsee.js supports making multiple tables or templates with IcanHas.js. The tables can have multiple inputs for searches and table headers can be used to sort the data in that column. For each of these you&#39;ll need a <code data-language="javascript">&lt;div&gt;</code> in your html, a <code data-language="javascript">&lt;script&gt;</code> template and a <code data-language="javascript">&lt;script&gt;</code> that calls table functions.</p>
     <h4>Your HTML Placeholder <code data-language="javascript">&lt;div&gt;</code></h4>
       <p>This is as simple as an empty <code data-language="javascript">&lt;div&gt;</code> with an id. This id should match the script tempate id in the next section.</p>
 <pre><code data-language="javascript"> &lt;div id=&quot;siteTable&quot;&gt;&lt;/div&gt;</code></pre>
@@ -297,15 +297,19 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
 &lt;/script&gt;</code></pre>
 <h4>Your <code data-language="javascript">&lt;script&gt;</code> Execution</h4>
 <pre><code data-language="javascript">&lt;script type=&quot;text/javascript&quot;&gt;
-    document.addEventListener(&#39;DOMContentLoaded&#39;, function() { // IE6 doesn&#39;t do DOMContentLoaded
+    document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
         Sheetsee.makeTable(gData, &quot;#siteTable&quot;)
         Sheetsee.initiateTableFilter(gData, &quot;#tableFilter&quot;, &quot;#siteTable&quot;)
     })
 &lt;/script&gt;</code></pre>
-      <p>To create another table, simply repeat the steps except for <code data-language="javascript">initiateTableFilter()</code></p>
+      <p>To create another table, simply repeat the steps with the corresponding data and divs.</p>
 <pre><code data-language="javascript">&lt;div id=&quot;secondTable&quot;&gt;&lt;/div&gt;
 &lt;script id=&quot;secondTable&quot;&gt; // your table template here &lt;/script&gt;
-&lt;script&gt;Sheetsee.makeTable(otherData, &quot;#secondTable&quot;)&lt;/script&gt;</code></pre>
+&lt;script&gt;
+  Sheetsee.makeTable(otherData, &quot;#secondTable&quot;)
+  Sheetsee.initiateTableFilter(otherData, &quot;#secondFilter&quot;, &quot;#secondTable&quot;)
+&lt;/script&gt;
+</code></pre>
       <p> Learn more about the things you can do with <a href="http://mustache.github.io/">mustache.js</a>.</p>
 
   <h3 class="functionH">Sheetsee.makeTable(data, targetDiv)</h3>
