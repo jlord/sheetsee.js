@@ -472,7 +472,7 @@ Then call the `d3PieChart()` function with your **data** and **options**.
 
 ## Big Time Thanks
 
-Thanks to [Code for America](http://www.codeforamerica.org) for providing the platform me to build the first version of sheetsee.js for Macon, Georga.
+Thanks to [Code for America](http://www.codeforamerica.org) for providing the platform me to build the first version of sheetsee.js for Macon, Georgia.
 
 Thanks to [Dan Sinker](http://www.twitter.com/dansinker) at [Open News](http://www.mozillaopennews.org/) for having faith and getting things together to make this Code Sprint happen and thanks to [Matt Green](https://twitter.com/whatsnewmedia) at WBEZ for being a willing partner.
 
