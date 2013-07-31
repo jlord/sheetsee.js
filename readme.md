@@ -53,7 +53,7 @@ Ignoring some HTML things to conserve space, you get the point. This gives you a
 	      function showInfo(data) {
 	        gData = data
 	        optionsJSON = ["something", "something"]
-	        var geoJSON = Sheetsee.createGeoJSON(gData, featureElements)
+	        var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
 	        var map = Sheetsee.loadMap("map")
 	        Sheetsee.addTileLayer(map, 'examples.map-20v6611k')
 	        var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map)
