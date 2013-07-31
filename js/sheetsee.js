@@ -270,6 +270,9 @@ function buildOptionObject(optionsJSON, lineItem) {
 // create geoJSON from your spreadsheet's coordinates
 function createGeoJSON(data, optionsJSON) {
   var geoJSON = []
+  // skip if there are no coords
+  if (!lineItem.long || !lineItem.lat) return
+  if (optionsJSON) var optionObj = buildOptionObject(optionsJSON, lineItem)
   data.forEach(function(lineItem){
     if (optionsJSON) var optionObj = buildOptionObject(optionsJSON, lineItem)
     var feature = {
