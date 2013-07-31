@@ -271,6 +271,8 @@ function buildOptionObject(optionsJSON, lineItem) {
 function createGeoJSON(data, optionsJSON) {
   var geoJSON = []
   data.forEach(function(lineItem){
+    // skip if there are no coords
+    if (!lineItem.long || !lineItem.lat) return
     if (optionsJSON) var optionObj = buildOptionObject(optionsJSON, lineItem)
     var feature = {
       type: 'Feature',
