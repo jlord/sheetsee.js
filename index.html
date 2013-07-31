@@ -80,7 +80,7 @@
       function showInfo(data) {
         gData = data
         optionsJSON = ["something", "something"]
-        var geoJSON = Sheetsee.createGeoJSON(gData, featureElements)
+        var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
         var map = Sheetsee.loadMap(&quot;map&quot;)
         Sheetsee.addTileLayer(map, &#39;examples.map-20v6611k&#39;)
         var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map)
