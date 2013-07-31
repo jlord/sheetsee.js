@@ -38,6 +38,7 @@ Ignoring some HTML things to conserve space, you get the point. This gives you a
 	        <script type="text/javascript" src="js/ICanHaz.js"></script>
 	        <script type="text/javascript" src="js/jquery.js"></script>
 	        <script type="text/javascript" src="js/d3.js"></script>
+	        <script type="text/javascript" src="js/tabletop.js"></script>
 	        <script type="text/javascript" src="js/sheetsee.js"></script>
 	        <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.0/mapbox.css' rel='stylesheet' />
 	    </head>
