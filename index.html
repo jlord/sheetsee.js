@@ -71,12 +71,20 @@
     &lt;style&gt; #map {height: 600px; width: 600px;} &lt;/style&gt;
     &lt;body&gt;
     &lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
-    &lt;script&gt;
-      optionsJSON = ["something", "something"]
+    &lt;script type=&quot;text/javascript&quot;&gt;
+      document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
+        var gData
+        var URL = &quot;0AvFUWxii39gXdFhqZzdTeU5DTWtOdENkQ1Y5bHdqT0E&quot;
+        Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } ) 
+      }) 
+      function showInfo(data) {
+        gData = data
+        optionsJSON = ["something", "something"]
         var geoJSON = Sheetsee.createGeoJSON(gData, featureElements)
         var map = Sheetsee.loadMap(&quot;map&quot;)
         Sheetsee.addTileLayer(map, &#39;examples.map-20v6611k&#39;)
         var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map)
+      }
     &lt;/script&gt;
     &lt;/body&gt;
 &lt;/html&gt;</code></pre>
