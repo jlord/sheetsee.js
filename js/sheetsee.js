@@ -7,7 +7,7 @@ function exportFunctions(exports) {
 // // // // // // // // // // // // // // // // // // // // // // // //  // //
 
 function initiateTableFilter(data, filterDiv, tableDiv) {
-  $('.clear').on("click", function() { 
+  $('.clear').on("click", function() {
     $(this.id + ".noMatches").css("visibility", "hidden")
     $(this.id + filterDiv).val("")
     makeTable(data, tableDiv)
@@ -22,7 +22,7 @@ function searchTable(data, searchTerm, tableDiv) {
   var filteredList = []
   data.forEach(function(object) {
     var stringObject = JSON.stringify(object).toLowerCase()
-    if (stringObject.match(searchTerm)) filteredList.push(object)
+    if (stringObject.match(searchTerm.toLowerCase())) filteredList.push(object)
   })
   if (filteredList.length === 0) {
     console.log("no matchie")
@@ -30,7 +30,7 @@ function searchTable(data, searchTerm, tableDiv) {
     makeTable("no matches", tableDiv)
   }
   else $(".noMatches").css("visibility", "hidden")
-  makeTable(filteredList, tableDiv) 
+  makeTable(filteredList, tableDiv)
   return filteredList
 }
 
@@ -42,7 +42,7 @@ function sortThings(data, sorter, sorted, tableDiv) {
   })
   if (sorted === "descending") data.reverse()
   makeTable(data, tableDiv)
-  var header 
+  var header
   $(tableDiv + " .tHeader").each(function(i, el){
     var contents = resolveDataTitle($(el).text())
     if (contents === sorter) header = el
@@ -90,10 +90,10 @@ function getKeywordCount(data, keyword) {
     for(var key in d) {
       var value = d[key].toString().toLowerCase()
       if (value.match(keyword.toLowerCase())) group.push(d)
-    } 
+    }
   })
   return group.length
-  if (group = []) return "0" 
+  if (group = []) return "0"
 }
 
 function getKeyword(data, keyword) {
@@ -102,17 +102,17 @@ function getKeyword(data, keyword) {
     for(var key in d) {
       var value = d[key].toString().toLowerCase()
       if (value.match(keyword.toLowerCase())) group.push(d)
-    } 
+    }
   })
   return group
-  if (group = []) return "no matches" 
+  if (group = []) return "no matches"
 }
 
 function getColumnTotal(data, column){
   var total = []
   data.forEach(function (d) {
-    if (d[column] === "") return 
-    total.push(+d[column]) 
+    if (d[column] === "") return
+    total.push(+d[column])
   })
   return total.reduce(function(a,b) {
     return a + b
@@ -133,7 +133,7 @@ function getMax(data, column){
         if (element[column].valueOf() > result[0][column].valueOf()) {
           result.length = 0
           return result.push(element)
-        }   
+        }
         if (element[column].valueOf() === result[0][column].valueOf()) {
           return result.push(element)
         }
@@ -150,7 +150,7 @@ function getMin(data, column){
         if (element[column].valueOf() < result[0][column].valueOf()) {
           result.length = 0
           return result.push(element)
-        }   
+        }
         if (element[column].valueOf() === result[0][column].valueOf()) {
           return result.push(element)
         }
@@ -232,31 +232,31 @@ function makeColorArrayOfObject(data, colors) {
   var keys = Object.keys(data)
   var counter = 1
   var colorIndex
-  return keys.map(function(key){ 
+  return keys.map(function(key){
     if (keys.length > colors.length || keys.length <= colors.length ) {
       colorIndex = counter % colors.length
     }
-    var h = {label: key, units: data[key], hexcolor: colors[colorIndex]} 
-    counter++  
-    colorIndex = counter 
+    var h = {label: key, units: data[key], hexcolor: colors[colorIndex]}
+    counter++
+    colorIndex = counter
     return h
   })
 }
 
 function makeArrayOfObject(data) {
   var keys = Object.keys(data)
-  return keys.map(function(key){ 
-    // var h = {label: key, units: data[key], hexcolor: "#FDBDBD"}  
-    var h = {label: key, units: data[key]}        
+  return keys.map(function(key){
+    // var h = {label: key, units: data[key], hexcolor: "#FDBDBD"}
+    var h = {label: key, units: data[key]}
     return h
   })
 }
 
 // // // // // // // // // // // // // // // // // // // // // // //  // //
-// 
+//
 // // // // Mapbox + Leaflet Map
 //
-// // // // // // // // // // // // // // // // // // // // // // // // //  
+// // // // // // // // // // // // // // // // // // // // // // // // //
 
 function buildOptionObject(optionsJSON, lineItem) {
   var newObj = {}
@@ -304,7 +304,7 @@ function addTileLayer(map, tileLayer) {
   layer.addTo(map)
 }
 
-function addMarkerLayer(geoJSON, map, zoomLevel) { 
+function addMarkerLayer(geoJSON, map, zoomLevel) {
   var viewCoords = [geoJSON[0].geometry.coordinates[1], geoJSON[0].geometry.coordinates[0]]
   var markerLayer = L.mapbox.markerLayer(geoJSON)
   markerLayer.setGeoJSON(geoJSON)
@@ -327,10 +327,10 @@ function addMarkerLayer(geoJSON, map, zoomLevel) {
 // }
 
 // // // // // // // // // // // // // // // // // // // // // // //  // //
-// 
+//
 // // // // // D3 Charts
 //
-// // // // // // // // // // // // // // // // // // // // // // // // // 
+// // // // // // // // // // // // // // // // // // // // // // // // //
 
 // Bar Chart
 // Adapted mostly from http://bl.ocks.org/mbostock/3885705
@@ -548,7 +548,7 @@ svg.selectAll("g.labels")
 function d3LineChart(data, options){
     // Adapted from http://bl.ocks.org/1166403 and
     // http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html
-    
+
     var m = options.m
     var w = options.w - m[1] - m[3]
     var h = options.h - m[0] - m[2]
@@ -569,8 +569,8 @@ function d3LineChart(data, options){
         .append("svg:g")
           .attr("transform", "translate(" + m[3] + "," + m[0] + ")")
 
-    var div = d3.select(options.div).append("div")   
-        .attr("class", "tooltip")               
+    var div = d3.select(options.div).append("div")
+        .attr("class", "tooltip")
         .style("opacity", 0)
 
     // create yAxis
@@ -604,7 +604,7 @@ function d3LineChart(data, options){
             if (options.yaxis) return options.yaxis
             return
           })
-      
+
    var lineData = data.map(function(d) { return d.units })
       graph.append("svg:path")
           .attr("d", line(lineData))
@@ -612,21 +612,21 @@ function d3LineChart(data, options){
           .attr("index_value", function(d, i) { return i })
           // .attr("stroke", options.hiColor).attr("fill", "none")
 
-    graph.selectAll("dot")    
-        .data(data)         
-    .enter().append("circle")                               
-        .attr("r", 3.5) 
-        .attr("fill", options.hiColor)      
-        .attr("cx", function(d) { return x(d.label); })       
-        .attr("cy", function(d) { return y(d.units); })     
-        .on("mouseover", function(d) {      
-            div.transition().duration(200).style("opacity", .9)    
-            div .html(d.label + ", "  + d.units)  
-                .style("left", (d3.event.pageX) + "px")     
-                .style("top", (d3.event.pageY - 28) + "px")   
-            })                  
-        .on("mouseout", function(d) {       
-            div.transition().duration(500).style("opacity", 0) 
+    graph.selectAll("dot")
+        .data(data)
+    .enter().append("circle")
+        .attr("r", 3.5)
+        .attr("fill", options.hiColor)
+        .attr("cx", function(d) { return x(d.label); })
+        .attr("cy", function(d) { return y(d.units); })
+        .on("mouseover", function(d) {
+            div.transition().duration(200).style("opacity", .9)
+            div .html(d.label + ", "  + d.units)
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY - 28) + "px")
+            })
+        .on("mouseout", function(d) {
+            div.transition().duration(500).style("opacity", 0)
         })
 }
 // tables
@@ -653,8 +653,8 @@ exports.mostFrequent = mostFrequent
 exports.addUnitsLabels = addUnitsLabels
 exports.getOccurance = getOccurance
 exports.getMatches = getMatches
-exports.getMatches = getMatches
 exports.getKeyword = getKeyword
+exports.getKeywordCount = getKeywordCount
 exports.getColumnTotal = getColumnTotal
 exports.getMax = getMax
 exports.getMin = getMin
