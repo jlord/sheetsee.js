@@ -22,7 +22,7 @@ function searchTable(data, searchTerm, tableDiv) {
   var filteredList = []
   data.forEach(function(object) {
     var stringObject = JSON.stringify(object).toLowerCase()
-    if (stringObject.match(searchTerm)) filteredList.push(object)
+    if (stringObject.match(searchTerm.toLowerCase())) filteredList.push(object)
   })
   if (filteredList.length === 0) {
     console.log("no matchie")
