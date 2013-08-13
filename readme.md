@@ -124,7 +124,7 @@ Here the paths diverge:
 
 ### Client-side Hookup
 
-For client-siders, all you need to do is include the depences and sheetsee in your HTML `<head>` and then in a script tag at the bottom of your page, right before the `</body>` tag, you'll include this:
+For client-siders, all you need to do is include the dependencies and sheetsee in your HTML `<head>` and then in a script tag at the bottom of your page, right before the `</body>` tag, you'll include this:
 
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function() {
