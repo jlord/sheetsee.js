@@ -2,8 +2,8 @@
   <head>
     <title>Yo, yo, yo!</title>
     <script type="text/javascript" src="js/ICanHaz.js"></script> 
-    <script src='http://api.tiles.mapbox.com/mapbox.js/v1.0.0/mapbox.js'></script>
-    <script src='js/jquery.js '></script>
+    <script type="text/javascript" src='http://api.tiles.mapbox.com/mapbox.js/v1.0.0/mapbox.js'></script>
+    <script type="text/javascript" src='js/jquery.js '></script>
     <script type="text/javascript" src='js/d3.js'></script>
     <script type="text/javascript" src='js/tabletop.js'></script>
     <script type="text/javascript" src='js/sheetsee.js'></script>
@@ -64,6 +64,7 @@
         &lt;script type=&quot;text/javascript&quot; src=&quot;http://api.tiles.mapbox.com/mapbox.js/v1.0.0/mapbox.js&quot;&gt;&lt;/script&gt;
         &lt;script type=&quot;text/javascript&quot; src=&quot;js/ICanHaz.js&quot;&gt;&lt;/script&gt;
         &lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery.js&quot;&gt;&lt;/script&gt;
+        &lt;script type=&quot;text/javascript&quot; src=&quot;js/tabletop.js&quot;&gt;&lt;/script&gt;
         &lt;script type=&quot;text/javascript&quot; src=&quot;js/d3.js&quot;&gt;&lt;/script&gt;
         &lt;script type=&quot;text/javascript&quot; src=&quot;js/sheetsee.js&quot;&gt;&lt;/script&gt;
         &lt;link href=&#39;http://api.tiles.mapbox.com/mapbox.js/v1.0.0/mapbox.css&#39; rel=&#39;stylesheet&#39; /&gt;
@@ -71,12 +72,29 @@
     &lt;style&gt; #map {height: 600px; width: 600px;} &lt;/style&gt;
     &lt;body&gt;
     &lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
-    &lt;script&gt;
-      optionsJSON = ["something", "something"]
-        var geoJSON = Sheetsee.createGeoJSON(gData, featureElements)
+    &lt;script type=&quot;text/javascript&quot;&gt;
+      document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
+        var gData
+        var URL = &quot;0AvFUWxii39gXdFhqZzdTeU5DTWtOdENkQ1Y5bHdqT0E&quot;
+        Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } ) 
+      }) 
+      function showInfo(data) {
+        gData = data
+        optionsJSON = ["something", "something"]
+        var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
         var map = Sheetsee.loadMap(&quot;map&quot;)
         Sheetsee.addTileLayer(map, &#39;examples.map-20v6611k&#39;)
         var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map)
+        // customize the popup content
+        addPopups(map, markerLayer)
+        function addPopups(map, markerLayer) {
+          markerLayer.on('click', function(e) {
+            var feature = e.layer.feature
+            var popupContent = '&lt;h3&gt;' + feature.opts.something + '&lt;/h3&gt;'
+            e.layer.bindPopup(popupContent,{closeButton: false})
+          })
+        }
+      }
     &lt;/script&gt;
     &lt;/body&gt;
 &lt;/html&gt;</code></pre>
@@ -91,7 +109,6 @@
   <h2>Examples</h2>
     <ol>
       <li><a href="http://jlord.github.io/hack-spots" target="_blank">Hack Spots</a></li>
-      <li>Pennies</li>
       <li><a href="https://twitter.com/jugglingnutcase">James Sconfitto</a> make a <a href="https://github.com/jugglingnutcase/katiejamie">map of his relationship</a> with his wife &lt;3</li>
     </ol>
 
@@ -203,23 +220,15 @@ var difference = profit09 - profit10</code></pre>
           <p>Returns an object with keys and values for each variation of the category and its occurance.</p>
 <pre><code data-language="javascript">{&quot;dog&quot;: 3, &quot;cat&quot;: 3}</code></pre>
 
-    <h3 class="functionH">Sheetsee.makeColorArrayOfObject(data, colors)</h3>
+<h3 class="functionH">Sheetsee.makeColorArrayOfObject(data, colors)</h3>
       <p>If you use <code data-language="javascript">getOccurance()</code> and want to then chart that data with d3.js, you&#39;ll need to make it into an <em>array</em> (instead of an object) and add colors back in (since the hexcolor column applies to the datapoints in your original dataset and not this new dataset).</p>
-      <p>This function takes in your data, as an <em>object</em>, and an <em>array</em> of hexidecimal color strings which you define.</p>
+      <p>This function takes in your data, as an <em>object</em>, an <em>array</em> of hexidecimal color strings which you define and the <em>category</em> you used in <code data-language="javascript">getOccurance()</code>.</p>
 <pre><code data-language="javascript">var kinds = getOccurance(gData, &quot;kind&quot;)
 var kindColors = [&quot;#ff00ff&quot;, &quot;#DCF13C&quot;]
-var kindData = makeColorArrayOfObjects(mostPopBreeds, kindColors)</code></pre>
-      <p>It will return an array of objects formatted to go directly into a d3 chart with the appropriate <em>units</em> and <em>label keys</em>, like so:</p>
-<pre><code data-language="javascript">[{&quot;label&quot;: &quot;dog&quot;, &quot;units&quot;: 2, &quot;hexcolor&quot;: &quot;#ff00ff&quot;}, {&quot;label&quot;: &quot;cat&quot;, &quot;units&quot;: 3, &quot;hexcolor&quot;: &quot;#DCF13C&quot;}]</code></pre>
+var kindData = makeColorArrayOfObjects(mostPopBreeds, kindColors, "kind")</code></pre>
+      <p>It will return an array of objects with <em>units</em> as the title of the occurance amount like so:</p>
+<pre><code data-language="javascript">[{&quot;kind&quot;: &quot;dog&quot;, &quot;units&quot;: 2, &quot;hexcolor&quot;: &quot;#ff00ff&quot;}, {&quot;kind&quot;: &quot;cat&quot;, &quot;units&quot;: 3, &quot;hexcolor&quot;: &quot;#DCF13C&quot;}]</code></pre>
       <p>If you pass in an array of just one color it will repeat that color for all items. If you pass fewer colors than data elements it will repeat the sequences of colors for the remainder elements.</p>
-
-    <h3 class="functionH">Sheetsee.addUnitsLabels(arrayObj, oldLabel, oldUnits)</h3>
-      <p>If you&#39;re using gData, the data directly from Tabletop, you&#39;ll need to format it before you use the d3 charts. You&#39;ll need to determine what part of your data you want to chart - what will be your label, what your charting, and what will be your units, how many of them are there (this should be a number).</p>
-<pre><code data-language="javascript">var gData =  [{&quot;name&quot;: &quot;coco&quot;, &quot;kind&quot;: &quot;dog&quot;, &quot;cuddablity&quot;: 5}, {&quot;name&quot;: &quot;unagi&quot;, &quot;kind&quot;: &quot;cat&quot;, &quot;cuddlability&quot;: 0}]</code></pre>
-    <p>For istance, if from our original data above we want to chart the age of each cat, we&#39;ll use:</p>
-<pre><code data-language="javascript">Sheetsee.addUnitsLabels(gData, &quot;name&quot;, &quot;cuddlability&quot;)</code></pre>
-    <p>Which will return an array, ready for the d3 charts:</p>
-<pre><code data-language="javascript">[{&quot;label&quot;: &quot;coco&quot;, &quot;kind&quot;: &quot;dog&quot;, &quot;units&quot;: 5}, {&quot;label&quot;: &quot;unagi&quot;, &quot;kind&quot;: &quot;cat&quot;, &quot;units&quot;: 0}]</code></pre>
 
   <h2 id="makemap">Make a Map</h2>
     <div id="map" class="container"></div>
@@ -342,8 +351,10 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
     <p>In your CSS, give it dimensions.</p>
 <pre><code data-language="javascript">#barChart {height: 400px; max-width: 600px; background: #F8CDCD;}</code></pre>
     <p>In a <code data-language="javascript">&lt;script&gt;</code> tag set up your options.</p>
-<pre><code data-language="javascript">var barOptions = {m: [60, 60, 30, 150], w: 600, h: 400, div: &quot;#barChart&quot;, xaxis: &quot;no. of pennies&quot;, hiColor: &quot;#FF317D&quot;}</code></pre>
+<pre><code data-language="javascript">var barOptions = {labels: "name", units: "cuddleability", m: [60, 60, 30, 150], w: 600, h: 400, div: &quot;#barChart&quot;, xaxis: &quot;no. of pennies&quot;, hiColor: &quot;#FF317D&quot;}</code></pre>
       <ul>
+        <li><strong>labels</strong> is a string, usually a column header, it's what you call what you're charting</li>
+        <li><strong>units</strong> is a string, usually a column header, it's the value you're charting</li>
         <li><strong>m</strong> is margins: top, right, bottom, left</li>
         <li><strong>w</strong> and <strong>h</strong> are width and height, this should match your CSS specs</li>
         <li><strong>div</strong> is the id for the <code data-language="javascript">&lt;div&gt;</code> in your HTML</li>
@@ -364,8 +375,10 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
     <p>In your CSS, give it dimensions.</p>
 <pre><code data-language="javascript">#lineChart {height: 400px; max-width: 600px; background: #F8CDCD;}</code></pre>
     <p>In a <code data-language="javascript">&lt;script&gt;</code> tag set up your options.</p>
-<pre><code data-language="javascript">var lineOptions = {m: [80, 100, 120, 100], w: 600, h: 400, div: &quot;#lineChart&quot;, yaxis: &quot;no. of pennies&quot;, hiColor: &quot;#14ECC8&quot;}</code></pre>
+<pre><code data-language="javascript">var lineOptions = {labels: "name", units: "cuddleability", m: [80, 100, 120, 100], w: 600, h: 400, div: &quot;#lineChart&quot;, yaxis: &quot;no. of pennies&quot;, hiColor: &quot;#14ECC8&quot;}</code></pre>
       <ul>
+        <li><strong>labels</strong> is a string, usually a column header, it's what you call what you're charting</li>
+        <li><strong>units</strong> is a string, usually a column header, it's the value you're charting</li>
         <li><strong>m</strong> is your margins: top, right, bottom, left</li>
         <li><strong>w</strong> and <strong>h</strong> are width and height, this should match your CSS specs</li>
         <li><strong>div</strong> is the id for the <code data-language="javascript">&lt;div&gt;</code> in your HTML</li>
@@ -385,9 +398,11 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
 <pre><code data-language="javascript">&lt;div id=&quot;pieChart&quot;&gt;&lt;/div&gt;</code></pre>
     <p>In your CSS, give it dimensions.</p>
 <pre><code data-language="javascript">#pieChart {height: 400px; max-width: 600px; background: #F8CDCD;}</code></pre>
-    <p>In a <code data-language="javascript">&lt;script&gt;</code> tag set up your options.</p>
-<pre><code data-language="javascript">var pieOptions = {m: [80, 80, 80, 80], w: 600, h: 400, div: &quot;#pieChart&quot;, hiColor: &quot;#14ECC8&quot;}</code></pre>
+    <p>In a <code data-language="javascript">&lt;script&gt;</code> tag set up your options. You <strong>must</strong> include <em>labels</em> and <em>units</em>, this tells it what you're charting. Because for the pie chart we're using data we got from <code data-language="javascript">getOccurance()</code> and <code data-language="javascript">makeColorArrayofObject()</code>, our units are already called <em>units</em>. If we were using original data, we might have units as "cuddleability" or something else.</p>
+<pre><code data-language="javascript">var pieOptions = {labels: "kind", units: "units", m: [80, 80, 80, 80], w: 600, h: 400, div: &quot;#pieChart&quot;, hiColor: &quot;#14ECC8&quot;}</code></pre>
       <ul>
+        <li><strong>labels</strong> is a string, usually a column header, it's what you call what you're charting</li>
+        <li><strong>units</strong> is a string, usually a column header, it's the value you're charting</li>
         <li><strong>m</strong> is your margins: top, right, bottom, left</li>
         <li><strong>w</strong> and <strong>h</strong> are width and height, this should match your CSS specs</li>
         <li><strong>div</strong> is the id for the <code data-language="javascript">&lt;div&gt;</code> in your HTML</li>
@@ -395,6 +410,9 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
       </ul>
     <p>Then call the <code data-language="javascript">d3PieChart()</code> function with your <strong>data</strong> and <strong>options</strong>.</p>
 <pre><code data-language="javascript">Sheetsee.d3PieChart(data, pieOptions)</code></pre>
+
+<p><strong>Don't forget, right click this page, select View Source and scroll to the bottom and see exactly how these charts were set up!</strong></p>
+
 
 <h2>Big Time Thanks</h2>
   <p>Thanks to <a href="http://www.codeforamerica.org">Code for America</a> for providing the platform me to build the first version of sheetsee.js for Macon, Georga.</p>
@@ -467,18 +485,17 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
     $('#mostCuddle').html(mostCuddle)
 
     // make a bar chart
-    var barData = Sheetsee.addUnitsLabels(gData, "name", "cuddlability")
-    var barOptions = {m: [60, 150, 30, 150], w: 800, h: 300, div: "#dogBar", xaxis: "cuddlability", hiColor: "#EE0097"}
-    Sheetsee.d3BarChart(barData, barOptions)
+    var barOptions = {units: "cuddlability", labels: "name", m: [60, 150, 30, 150], w: 800, h: 300, div: "#dogBar", xaxis: "cuddlability", hiColor: "#EE0097"}
+    Sheetsee.d3BarChart(gData, barOptions)
     // make a pie chart
     var dogKinds = Sheetsee.getOccurance(gData, "kind")
     var colors = ["#92F9FC", "#28C5CA", "#4B8E91"]
-    var pieData = Sheetsee.makeColorArrayOfObject(dogKinds, colors)  
-    var pieOptions = {m: [80, 80, 80, 80], w: 800, h: 400, div: "#dogPie", hiColor: "#E4EB29"}
+    var pieData = Sheetsee.makeColorArrayOfObject(dogKinds, colors, "kind")
+    var pieOptions = {units: "units", labels: "kind", m: [80, 80, 80, 80], w: 800, h: 400, div: "#dogPie", hiColor: "#E4EB29"}
     Sheetsee.d3PieChart(pieData, pieOptions)
     // make a line chart (uses same data as bar chart)
-    var lineOptions = {m: [80, 100, 120, 100], w: 800, h: 400, div: "#dogLine", yaxis: "cuddlability", hiColor: "#E4EB29"}
-    Sheetsee.d3LineChart(barData, lineOptions)
+    var lineOptions = {units: "cuddlability", labels: "name", m: [80, 100, 120, 100], w: 800, h: 400, div: "#dogLine", yaxis: "cuddlability", hiColor: "#E4EB29"}
+    Sheetsee.d3LineChart(gData, lineOptions)
   }
 </script>
 
