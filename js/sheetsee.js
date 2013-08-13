@@ -205,16 +205,17 @@ function deepCopy(obj) {
     return obj;
 }
 
-function addUnitsLabels(arrayObj, oldLabel, oldUnits) {
-  var newArray = deepCopy(arrayObj)
-  for (var i = 0; i < newArray.length; i++) {
-    newArray[i].label = newArray[i][oldLabel]
-    newArray[i].units = newArray[i][oldUnits]
-    delete newArray[i][oldLabel]
-    delete newArray[i][oldUnits]
-  }
-return newArray
-}
+// no longer need this
+// function addUnitsLabels(arrayObj, oldLabel, oldUnits) {
+//   var newArray = deepCopy(arrayObj)
+//   for (var i = 0; i < newArray.length; i++) {
+//     newArray[i].label = newArray[i][oldLabel]
+//     newArray[i].units = newArray[i][oldUnits]
+//     delete newArray[i][oldLabel]
+//     delete newArray[i][oldUnits]
+//   }
+// return newArray
+// }
 
 function getOccurance(data, category) {
   var occuranceCount = {}

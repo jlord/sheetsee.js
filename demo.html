@@ -231,14 +231,6 @@ var kindData = makeColorArrayOfObjects(mostPopBreeds, kindColors, "kind")</code>
 <pre><code data-language="javascript">[{&quot;kind&quot;: &quot;dog&quot;, &quot;units&quot;: 2, &quot;hexcolor&quot;: &quot;#ff00ff&quot;}, {&quot;kind&quot;: &quot;cat&quot;, &quot;units&quot;: 3, &quot;hexcolor&quot;: &quot;#DCF13C&quot;}]</code></pre>
       <p>If you pass in an array of just one color it will repeat that color for all items. If you pass fewer colors than data elements it will repeat the sequences of colors for the remainder elements.</p>
 
-    <h3 class="functionH">Sheetsee.addUnitsLabels(arrayObj, oldLabel, oldUnits)</h3>
-      <p>If you&#39;re using gData, the data directly from Tabletop, you&#39;ll need to format it before you use the d3 charts. You&#39;ll need to determine what part of your data you want to chart - what will be your label, what your charting, and what will be your units, how many of them are there (this should be a number).</p>
-<pre><code data-language="javascript">var gData =  [{&quot;name&quot;: &quot;coco&quot;, &quot;kind&quot;: &quot;dog&quot;, &quot;cuddablity&quot;: 5}, {&quot;name&quot;: &quot;unagi&quot;, &quot;kind&quot;: &quot;cat&quot;, &quot;cuddlability&quot;: 0}]</code></pre>
-    <p>For istance, if from our original data above we want to chart the age of each cat, we&#39;ll use:</p>
-<pre><code data-language="javascript">Sheetsee.addUnitsLabels(gData, &quot;name&quot;, &quot;cuddlability&quot;)</code></pre>
-    <p>Which will return an array, ready for the d3 charts:</p>
-<pre><code data-language="javascript">[{&quot;label&quot;: &quot;coco&quot;, &quot;kind&quot;: &quot;dog&quot;, &quot;units&quot;: 5}, {&quot;label&quot;: &quot;unagi&quot;, &quot;kind&quot;: &quot;cat&quot;, &quot;units&quot;: 0}]</code></pre>
-
   <h2 id="makemap">Make a Map</h2>
     <div id="map" class="container"></div>
       <p>Sheetsee.js uses <a href="http://mapbox.com/mapbox.js">Mapbox.js</a>, a <a href="http://leafletjs.com/">Leaflet.js</a> plugin, to make maps.</p>
