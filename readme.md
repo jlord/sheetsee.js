@@ -247,7 +247,7 @@ This function takes in your data, as an _object_, and an _array_ of hexidecimal 
     var kinds = getOccurance(gData, "kind")
     var kindColors = ["#ff00ff", "#DCF13C"]
 
-    var kindData = makeColorArrayOfObjects(mostPopBreeds, breedColors)
+    var kindData = makeColorArrayOfObjects(mostPopBreeds, kindColors)
 
 It will return an array of objects formatted to go directly into a d3 chart with the appropriate _units_ and _label keys_, like so:
 
