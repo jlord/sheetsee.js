@@ -7,6 +7,16 @@ Previously Sheetsee required you pass your data through a function, `addUnitsAnd
 
 Now Sheetsee just asks for what you want your _labels_ and _units_ to be in the options you give it when calling the chart function. It then sorts the data correctly on the inside of the chart function. Yay, easier! 
 
-`var options = {labels: "name", units: "cuddleability", m: [60, 60, 30, 150], w: 600, h: 400, div: "#barChart", xaxis: "no. of pennies", hiColor: "#FF317D"}`
+```
+  var options = {
+    labels: "name", 
+    units: "cuddleability", 
+    m: [60, 60, 30, 150], 
+    w: 600, h: 400, 
+    div: "#barChart", 
+    xaxis: "no. of pennies", 
+    hiColor: "#FF317D"
+  }
+```
 
 Thanks @maxogden for the help with this.
