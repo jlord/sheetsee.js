@@ -205,16 +205,17 @@ function deepCopy(obj) {
     return obj;
 }
 
-function addUnitsLabels(arrayObj, oldLabel, oldUnits) {
-  var newArray = deepCopy(arrayObj)
-  for (var i = 0; i < newArray.length; i++) {
-    newArray[i].label = newArray[i][oldLabel]
-    newArray[i].units = newArray[i][oldUnits]
-    delete newArray[i][oldLabel]
-    delete newArray[i][oldUnits]
-  }
-return newArray
-}
+// no longer need this
+// function addUnitsLabels(arrayObj, oldLabel, oldUnits) {
+//   var newArray = deepCopy(arrayObj)
+//   for (var i = 0; i < newArray.length; i++) {
+//     newArray[i].label = newArray[i][oldLabel]
+//     newArray[i].units = newArray[i][oldUnits]
+//     delete newArray[i][oldLabel]
+//     delete newArray[i][oldUnits]
+//   }
+// return newArray
+// }
 
 function getOccurance(data, category) {
   var occuranceCount = {}
@@ -228,7 +229,8 @@ function getOccurance(data, category) {
   // returns object, keys alphabetical
 }
 
-function makeColorArrayOfObject(data, colors) {
+function makeColorArrayOfObject(data, colors, category) {
+  var category = category
   var keys = Object.keys(data)
   var counter = 1
   var colorIndex
@@ -236,7 +238,8 @@ function makeColorArrayOfObject(data, colors) {
     if (keys.length > colors.length || keys.length <= colors.length ) {
       colorIndex = counter % colors.length
     }
-    var h = {label: key, units: data[key], hexcolor: colors[colorIndex]} 
+    var h = {units: data[key], hexcolor: colors[colorIndex]} 
+    h[category] = key
     counter++  
     colorIndex = counter 
     return h
@@ -334,8 +337,16 @@ function addMarkerLayer(geoJSON, map, zoomLevel) {
 
 // Bar Chart
 // Adapted mostly from http://bl.ocks.org/mbostock/3885705
+// options = {units: "string", labels: "string", m: [60, 150, 30, 150], w: 800, h: 300, div: "#dogBar", xaxis: "cuddlability", hiColor: "#EE0097"}
 
 function d3BarChart(data, options) {
+  
+  // format data into units and labels
+  var data = data.map(function(r) {
+    var labels = options.labels
+    var units = options.units
+    return {units: r[units], labels: r[labels], hexcolor: r.hexcolor}
+  })
 
   //  m = [t0, r1, b2, l3]
   var m = options.m,
@@ -356,7 +367,7 @@ function d3BarChart(data, options) {
       .attr("transform", "translate(" + m[3] + "," + m[0] + ")")
 
   x.domain([0, d3.max(data, function(d) { return d.units })]) // 0 to max of units
-  y.domain(data.map(function(d) { return d.label })) // makes array of labels
+  y.domain(data.map(function(d) { return d.labels })) // makes array of labels
 
   var mouseOver = function() {
       var rect = d3.select(this)
@@ -396,7 +407,7 @@ function d3BarChart(data, options) {
     .data(data)
   .enter().append("g")
     .attr("class", "bar")
-    .attr("transform", function(d) { return "translate(0," + y(d.label) + ")" })
+    .attr("transform", function(d) { return "translate(0," + y(d.labels) + ")" })
 
   bar.append("text")
     .attr("x", function(d) { return x(d.units) })
@@ -417,7 +428,7 @@ function d3BarChart(data, options) {
     .attr("dy", ".35em")
     .attr("text-anchor", "end")
     .attr("index_value", function(d, i) { return "index-" + i })
-    .text(function(d) { return d.label })
+    .text(function(d) { return d.labels })
     .attr("class", function(d, i) { return "value-" + "index-" + i })
     .on('mouseover', mouseOver)
     .on("mouseout", mouseOut)
@@ -447,8 +458,18 @@ function d3BarChart(data, options) {
 }
 
 // Pie Chart
+// pieOptions = {units: "string", labels: "string", m: [80, 80, 80, 80], w: 800, h: 400, div: "#dogPie", hiColor: "#E4EB29"}
 
 function d3PieChart(data, options) {
+
+  // format data into units and labels
+  var data = data.map(function(r) {
+    var labels = options.labels
+    var units = options.units
+    return {units: r[units], labels: r[labels], hexcolor: r.hexcolor}
+  })
+
+
   var width = options.w,
       height = options.h,
       radius = Math.min(width, height) / 2.3
@@ -535,7 +556,7 @@ svg.selectAll("g.labels")
         .attr("y", function(d, i) { return (height / 2) - i*(data.length * 20)})
         .attr("dx", 0)
         .attr("dy", "-140px") // Controls padding to place text above bars
-        .text(function(d) { return d.label + ", " + d.units})
+        .text(function(d) { return d.labels + ", " + d.units})
         .style("fill", function(d) { return d.hexcolor })
         .attr("index_value", function(d, i) { return "index-" + i })
         .attr("class", function(d, i) { return "labels-" + "index-" + i + " aLabel "})
@@ -544,10 +565,18 @@ svg.selectAll("g.labels")
 }
 
 // Line Chart
+// Adapted from http://bl.ocks.org/1166403 and
+// http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html
+/// options = {units: "string", labels: "string", m: [80, 100, 120, 100], w: 800, h: 400, div: "#dogLine", yaxis: "cuddlability", hiColor: "#E4EB29"}
 
 function d3LineChart(data, options){
-    // Adapted from http://bl.ocks.org/1166403 and
-    // http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html
+
+    // format data into units and labels
+    var data = data.map(function(r) {
+      var labels = options.labels
+      var units = options.units
+      return {units: r[units], labels: r[labels], hexcolor: r.hexcolor}
+    })
     
     var m = options.m
     var w = options.w - m[1] - m[3]
@@ -555,7 +584,7 @@ function d3LineChart(data, options){
     var data = data
 
     var x = d3.scale.ordinal().rangeRoundBands([0, w], 1)
-        x.domain(data.map(function(d) { return d.label }))
+        x.domain(data.map(function(d) { return d.labels }))
     var y = d3.scale.linear().range([0, h])
         y.domain([d3.max(data, function(d) { return d.units }) + 2, 0])
 
@@ -617,11 +646,11 @@ function d3LineChart(data, options){
     .enter().append("circle")                               
         .attr("r", 3.5) 
         .attr("fill", options.hiColor)      
-        .attr("cx", function(d) { return x(d.label); })       
+        .attr("cx", function(d) { return x(d.labels); })       
         .attr("cy", function(d) { return y(d.units); })     
         .on("mouseover", function(d) {      
             div.transition().duration(200).style("opacity", .9)    
-            div .html(d.label + ", "  + d.units)  
+            div .html(d.labels + ", "  + d.units)  
                 .style("left", (d3.event.pageX) + "px")     
                 .style("top", (d3.event.pageY - 28) + "px")   
             })                  
@@ -650,7 +679,7 @@ exports.loadMap = loadMap
 exports.makeArrayOfObject = makeArrayOfObject
 exports.makeColorArrayOfObject = makeColorArrayOfObject
 exports.mostFrequent = mostFrequent
-exports.addUnitsLabels = addUnitsLabels
+// exports.addUnitsLabels = addUnitsLabels
 exports.getOccurance = getOccurance
 exports.getMatches = getMatches
 exports.getKeyword = getKeyword
