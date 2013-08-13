@@ -228,7 +228,8 @@ function getOccurance(data, category) {
   // returns object, keys alphabetical
 }
 
-function makeColorArrayOfObject(data, colors) {
+function makeColorArrayOfObject(data, colors, category) {
+  var category = category
   var keys = Object.keys(data)
   var counter = 1
   var colorIndex
@@ -236,7 +237,8 @@ function makeColorArrayOfObject(data, colors) {
     if (keys.length > colors.length || keys.length <= colors.length ) {
       colorIndex = counter % colors.length
     }
-    var h = {labels: key, units: data[key], hexcolor: colors[colorIndex]} 
+    var h = {units: data[key], hexcolor: colors[colorIndex]} 
+    h[category] = key
     counter++  
     colorIndex = counter 
     return h
