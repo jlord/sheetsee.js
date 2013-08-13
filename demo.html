@@ -109,7 +109,6 @@
   <h2>Examples</h2>
     <ol>
       <li><a href="http://jlord.github.io/hack-spots" target="_blank">Hack Spots</a></li>
-      <li>Pennies</li>
       <li><a href="https://twitter.com/jugglingnutcase">James Sconfitto</a> make a <a href="https://github.com/jugglingnutcase/katiejamie">map of his relationship</a> with his wife &lt;3</li>
     </ol>
 
@@ -399,7 +398,7 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
 <pre><code data-language="javascript">&lt;div id=&quot;pieChart&quot;&gt;&lt;/div&gt;</code></pre>
     <p>In your CSS, give it dimensions.</p>
 <pre><code data-language="javascript">#pieChart {height: 400px; max-width: 600px; background: #F8CDCD;}</code></pre>
-    <p>In a <code data-language="javascript">&lt;script&gt;</code> tag set up your options. You <strong>must</strong> include <em>labels</em> and <em>units</em>, this tells it what you're charting. Because for the pie chart we're using data we got from <code data-language="javascript">getOccurance()</code>, our units are already called <em>units</em>. If we were using original data, we might have units as "cuddleability" or something else.</p>
+    <p>In a <code data-language="javascript">&lt;script&gt;</code> tag set up your options. You <strong>must</strong> include <em>labels</em> and <em>units</em>, this tells it what you're charting. Because for the pie chart we're using data we got from <code data-language="javascript">getOccurance()</code> and <code data-language="javascript">makeColorArrayofObject()</code>, our units are already called <em>units</em>. If we were using original data, we might have units as "cuddleability" or something else.</p>
 <pre><code data-language="javascript">var pieOptions = {labels: "kind", units: "units", m: [80, 80, 80, 80], w: 600, h: 400, div: &quot;#pieChart&quot;, hiColor: &quot;#14ECC8&quot;}</code></pre>
       <ul>
         <li><strong>labels</strong> is a string, usually a column header, it's what you call what you're charting</li>
@@ -411,6 +410,9 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
       </ul>
     <p>Then call the <code data-language="javascript">d3PieChart()</code> function with your <strong>data</strong> and <strong>options</strong>.</p>
 <pre><code data-language="javascript">Sheetsee.d3PieChart(data, pieOptions)</code></pre>
+
+<p><strong>Don't forget, right click this page, select View Source and scroll to the bottom and see exactly how these charts were set up!</strong></p>
+
 
 <h2>Big Time Thanks</h2>
   <p>Thanks to <a href="http://www.codeforamerica.org">Code for America</a> for providing the platform me to build the first version of sheetsee.js for Macon, Georga.</p>
@@ -483,7 +485,6 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
     $('#mostCuddle').html(mostCuddle)
 
     // make a bar chart
-    // var barData = Sheetsee.addUnitsLabels(gData, "name", "cuddlability")
     var barOptions = {units: "cuddlability", labels: "name", m: [60, 150, 30, 150], w: 800, h: 300, div: "#dogBar", xaxis: "cuddlability", hiColor: "#EE0097"}
     Sheetsee.d3BarChart(gData, barOptions)
     // make a pie chart

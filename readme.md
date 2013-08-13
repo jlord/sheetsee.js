@@ -264,21 +264,6 @@ It will return an array of objects formatted to go directly into a d3 chart with
 
 If you pass in an array of just one color it will repeat that color for all items. If you pass fewer colors than data elements it will repeat the sequences of colors for the remainder elements.
 
-### Sheetsee.addUnitsLabels(arrayObj, oldLabel, oldUnits)
-
-If you're using gData, the data directly from Tabletop, you'll need to format it before you use the d3 charts. You'll need to determine what part of your data you want to chart - what will be your label, what your charting, and what will be your units, how many of them are there (this should be a number).
-
-    var gData =  [{"name": "coco", "kind": "dog", "cuddablity": 5}, {"name": "unagi", "kind": "cat", "cuddlability": 0}]
-
-For istance, if from our original data above we want to chart the age of each cat, we'll use:
-
-    Sheetsee.addUnitsLabels(gData, "name", "cuddlability")
-
-Which will return an array, ready for the d3 charts:
-
-    [{"label": "coco", "kind": "dog", "units": 5}, {"label": "unagi", "kind": "cat", "units": 0}]
-
-
 ## Make a Map
 
 Sheetsee.js uses [Mapbox.js](http://mapbox.com/mapbox.js), a [Leaflet.js](http://leafletjs.com/) plugin, to make maps.
@@ -429,8 +414,10 @@ In your CSS, give it dimensions.
 
 In a `<script>` tag set up your options.
 
-    var barOptions = {m: [60, 60, 30, 150], w: 600, h: 400, div: "#barChart", xaxis: "no. of pennies", hiColor: "#FF317D"}
+    var barOptions = {labels: "name", units: "cuddleability", m: [60, 60, 30, 150], w: 600, h: 400, div: "#barChart", xaxis: "no. of pennies", hiColor: "#FF317D"}
 
+* **labels** is a string, usually a column header, it's what you call what you're charting
+* **units** is a string, usually a column header, it's the value you're charting
 * **m** is margins: top, right, bottom, left
 * **w** and **h** are width and height, this should match your CSS specs
 * **div** is the id for the `<div>` in your HTML
@@ -453,8 +440,10 @@ In your CSS, give it dimensions.
 
 In a `<script>` tag set up your options.
 
-    var lineOptions = {m: [80, 100, 120, 100], w: 600, h: 400, div: "#lineChart", yaxis: "no. of pennies", hiColor: "#14ECC8"}
+    var lineOptions = {labels: "name", units: "cuddleability", m: [80, 100, 120, 100], w: 600, h: 400, div: "#lineChart", yaxis: "no. of pennies", hiColor: "#14ECC8"}
 
+* **labels** is a string, usually a column header, it's what you call what you're charting
+* **units** is a string, usually a column header, it's the value you're charting
 * **m** is your margins: top, right, bottom, left
 * **w** and **h** are width and height, this should match your CSS specs
 * **div** is the id for the `<div>` in your HTML
@@ -475,10 +464,12 @@ In your CSS, give it dimensions.
 
     #pieChart {height: 400px; max-width: 600px; background: #F8CDCD;}
 
-In a `<script>` tag set up your options.
+In a `<script>` tag set up your options. You **must** include **labels** and _units_, this tells it what you're charting. Because for the pie chart we're using data we got from `getOccurance()` and `makeColorArrayOfObject`, our units are already called _units_. If we were using original data, we might have units as "cuddleability" like in the other chart examples.
 
-    var pieOptions = {m: [80, 80, 80, 80], w: 600, h: 400, div: "#pieChart", hiColor: "#14ECC8"}
+    var pieOptions = {labels: "name", units: "units", m: [80, 80, 80, 80], w: 600, h: 400, div: "#pieChart", hiColor: "#14ECC8"}
 
+* **labels** is a string, usually a column header, it's what you call what you're charting
+* **units** is a string, usually a column header, it's the value you're charting
 * **m** is your margins: top, right, bottom, left
 * **w** and **h** are width and height, this should match your CSS specs
 * **div** is the id for the `<div>` in your HTML
@@ -487,6 +478,8 @@ In a `<script>` tag set up your options.
 Then call the `d3PieChart()` function with your **data** and **options**.
 
     Sheetsee.d3PieChart(data, pieOptions)
+
+**Don't forget, right click this page, select View Source and scroll to the bottom and see exactly how these charts were set up!**
 
 ## Big Time Thanks
 
