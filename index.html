@@ -217,7 +217,7 @@ var difference = profit09 - profit10</code></pre>
       <p>This function takes in your data, as an <em>object</em>, and an <em>array</em> of hexidecimal color strings which you define.</p>
 <pre><code data-language="javascript">var kinds = getOccurance(gData, &quot;kind&quot;)
 var kindColors = [&quot;#ff00ff&quot;, &quot;#DCF13C&quot;]
-var kindData = makeColorArrayOfObjects(mostPopBreeds, breedColors)</code></pre>
+var kindData = makeColorArrayOfObjects(mostPopBreeds, kindColors)</code></pre>
       <p>It will return an array of objects formatted to go directly into a d3 chart with the appropriate <em>units</em> and <em>label keys</em>, like so:</p>
 <pre><code data-language="javascript">[{&quot;label&quot;: &quot;dog&quot;, &quot;units&quot;: 2, &quot;hexcolor&quot;: &quot;#ff00ff&quot;}, {&quot;label&quot;: &quot;cat&quot;, &quot;units&quot;: 3, &quot;hexcolor&quot;: &quot;#DCF13C&quot;}]</code></pre>
       <p>If you pass in an array of just one color it will repeat that color for all items. If you pass fewer colors than data elements it will repeat the sequences of colors for the remainder elements.</p>
