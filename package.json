@@ -1,0 +1,29 @@
+{
+  "name": "sheetsee.js",
+  "version": "2.0.0",
+  "description": "visualize data from a google spreadsheet",
+  "main": "js/sheetsee.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jlord/sheetsee.js.git"
+  },
+  "author": "Jessica Lord",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/jlord/sheetsee.js/issues"
+  },
+  "keywords": [
+    "spreadsheet",
+    "map",
+    "graph"
+  ],
+  "dependencies": {
+    "icanhaz": "~0.10.3",
+    "d3": "~3.2.8",
+    "mapbox.js": "~1.3.1"
+  },
+  "devDependencies": {
+    "browserify": "~2.27.1",
+    "uglify-js": "~2.3.6"
+  }
+}

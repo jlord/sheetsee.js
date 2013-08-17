@@ -1,15 +1,13 @@
 <html>
   <head>
     <title>Yo, yo, yo!</title>
-    <script type="text/javascript" src="js/ICanHaz.js"></script> 
-    <script type="text/javascript" src='http://api.tiles.mapbox.com/mapbox.js/v1.0.0/mapbox.js'></script>
-    <script type="text/javascript" src='js/jquery.js '></script>
-    <script type="text/javascript" src='js/d3.js'></script>
-    <script type="text/javascript" src='js/tabletop.js'></script>
-    <script type="text/javascript" src='js/sheetsee.js'></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.1.0/tabletop.min.js"></script>
+    <script type="text/javascript" src='dist/sheetsee.full.js'></script>
     <link rel="shortcut icon" href="https://raw.github.com/jllord/sheetsee-cache/master/favico.png"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.0/mapbox.css' rel='stylesheet' />
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.css' rel='stylesheet' />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600|Merriweather:400,700' rel='stylesheet' />
     <link rel="stylesheet" media="screen" type="text/css" href="css/style.css"> 
     <link rel="stylesheet" media="screen" type="text/css" href="css/site.css"> 
@@ -479,7 +477,7 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
 
     // more icanhas for most cuddlable
     var mostCuddleIs = Sheetsee.getMax(gData, "cuddlability")
-    var mostCuddle = ich.mostCuddle({
+    var mostCuddle = Sheetsee.ich.mostCuddle({
        rows: mostCuddleIs
     })
     $('#mostCuddle').html(mostCuddle)

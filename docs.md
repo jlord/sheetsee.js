@@ -10,6 +10,14 @@ To use sheetsee.js you'll definitely need to know HTML, CSS and know JavaScript 
 
 Sheetsee.js depends on a few other awesome JavaScript libraries to make all this happen. First, [Tabletop.js](http://builtbybalance.com/Tabletop/) gets the data from the Google Spreadsheet and makes it nice. Once you have your data Sheetsee.js makes it easy to set up tables or templates with [IChanHas.js](http://icanhazjs.com/)(built on [mustache.js](http://mustache.github.io/)), maps with [Mapbox.js](http://mapbox.com/mapbox.js/example/v1.0.0/), and charts with [d3.js](http://d3js.org/). And [jQuery](http://jquery.com/) of course powers most of the interactions. It also has many sorting and filtering functions built in so that you can display different parts of your data if you want. Each of these are explained in more detail below.
 
+### Building
+
+```bash
+[sudo] npm install -g browserify uglify-js
+npm install
+make
+```
+
 ### CSS
 
 Sheetsee.js comes with a bare minimum stylesheet. This way you can customize your site to look the way you want to it or to match an existing site's design.
@@ -34,12 +42,10 @@ Ignoring some HTML things to conserve space, you get the point. This gives you a
 
     <html>
         <head>
-            <script type="text/javascript" src="http://api.tiles.mapbox.com/mapbox.js/v1.0.0/mapbox.js"></script>
-            <script type="text/javascript" src="js/ICanHaz.js"></script>
-            <script type="text/javascript" src="js/jquery.js"></script>
-            <script type="text/javascript" src="js/d3.js"></script>
-            <script type="text/javascript" src="js/sheetsee.js"></script>
-            <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.0/mapbox.css' rel='stylesheet' />
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.1.0/tabletop.min.js"></script>
+            <script type="text/javascript" src='dist/sheetsee.full.js'></script>
+            <link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.css' rel='stylesheet' />
         </head>
         <style> #map {height: 600px; width: 600px;} </style>
         <body>
