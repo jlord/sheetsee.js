@@ -32,45 +32,47 @@ The server-side version is built with [Node.js](http://www.nodejs.org) and you'l
 
 Ignoring some HTML things to conserve space, you get the point. This gives you a page with a map of your spreadsheets points.
 
-    <html>
-        <head>
-            <script type="text/javascript" src="http://api.tiles.mapbox.com/mapbox.js/v1.0.0/mapbox.js"></script>
-            <script type="text/javascript" src="js/ICanHaz.js"></script>
-            <script type="text/javascript" src="js/jquery.js"></script>
-            <script type="text/javascript" src="js/tabletop.js"></script>
-            <script type="text/javascript" src="js/d3.js"></script>
-            <script type="text/javascript" src="js/sheetsee.js"></script>
-            <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.0/mapbox.css' rel='stylesheet' />
-        </head>
-        <style> #map {height: 600px; width: 600px;} </style>
-        <body>
-        <div id="map"></div>
-        <script type="text/javascript">
-          document.addEventListener('DOMContentLoaded', function() {
-            var gData
-            var URL = "0AvFUWxii39gXdFhqZzdTeU5DTWtOdENkQ1Y5bHdqT0E"
-            Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } ) 
-          }) 
-          function showInfo(data) {
-            gData = data
-            optionsJSON = ["something", "something"]
-            var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
-            var map = Sheetsee.loadMap("map")
-            Sheetsee.addTileLayer(map, 'examples.map-20v6611k')
-            var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map)
-            // customize the popup content
-            addPopups(map, markerLayer)
-            function addPopups(map, markerLayer) {
-              markerLayer.on('click', function(e) {
-                var feature = e.layer.feature
-                var popupContent = '<h3>' + feature.opts.something + '</h3>'
-                e.layer.bindPopup(popupContent,{closeButton: false})
-              })
-            }
-          }
-        </script>
-        </body>
-    </html>
+```html
+ <html>
+    <head>
+        <script type="text/javascript" src="http://api.tiles.mapbox.com/mapbox.js/v1.0.0/mapbox.js"></script>
+        <script type="text/javascript" src="js/ICanHaz.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/tabletop.js"></script>
+        <script type="text/javascript" src="js/d3.js"></script>
+        <script type="text/javascript" src="js/sheetsee.js"></script>
+        <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.0/mapbox.css' rel='stylesheet' />
+    </head>
+    <style> #map {height: 600px; width: 600px;} </style>
+    <body>
+    <div id="map"></div>
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        var gData
+        var URL = "0AvFUWxii39gXdFhqZzdTeU5DTWtOdENkQ1Y5bHdqT0E"
+        Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } ) 
+      }) 
+      function showInfo(data) {
+        gData = data
+        optionsJSON = ["something", "something"]
+        var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
+        var map = Sheetsee.loadMap("map")
+        Sheetsee.addTileLayer(map, 'examples.map-20v6611k')
+        var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map)
+        // customize the popup content
+        addPopups(map, markerLayer)
+        function addPopups(map, markerLayer) {
+          markerLayer.on('click', function(e) {
+            var feature = e.layer.feature
+            var popupContent = '<h3>' + feature.opts.something + '</h3>'
+            e.layer.bindPopup(popupContent,{closeButton: false})
+          })
+        }
+      }
+    </script>
+    </body>
+</html>
+```
 
 ## Awesome Possibilities
 
@@ -135,19 +137,21 @@ Here the paths diverge:
 
 For client-siders, all you need to do is include the dependencies and sheetsee in your HTML `<head>` and then in a script tag at the bottom of your page, right before the `</body>` tag, you'll include this:
 
-    <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', function() {
-            var gData
-            var URL = "0AvFUWxii39gXdFhqZzdTeU5DTWtOdENkQ1Y5bHdqT0E"
-            Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } ) 
-        }) 
-        function showInfo(data) {
-            gData = data
-            // 
-            //everything you do with sheetsee goes here
-            //
-        }
-    </script>
+```html
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        var gData
+        var URL = "0AvFUWxii39gXdFhqZzdTeU5DTWtOdENkQ1Y5bHdqT0E"
+        Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } ) 
+    }) 
+    function showInfo(data) {
+        gData = data
+        // 
+        //everything you do with sheetsee goes here
+        //
+    }
+</script>
+```
 
 The **URL** variable is the key from your spreadsheet's longer URL, explained above. `Tabletop.init()` takes that URL and execute's Tabletop, when it's done generating the table it executes the callback `showInfo` function. It's inside of this function that you'll then use your spreadsheet data, **gData**, to do all the Sheetsee.js goodness with. 
 
