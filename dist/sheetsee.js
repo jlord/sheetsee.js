@@ -1,1 +1,821 @@
-!function(e){if("function"==typeof bootstrap)bootstrap("sheetsee",e);else if("object"==typeof exports)module.exports=e();else if("function"==typeof define&&define.amd)define(e);else if("undefined"!=typeof ses){if(!ses.ok())return;ses.makeSheetsee=e}else"undefined"!=typeof window?window.Sheetsee=e():global.Sheetsee=e()}(function(){var define,ses,bootstrap,module,exports;return function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s}({1:[function(require,module,exports){var ich=require("icanhaz");var Sheetsee={initiateTableFilter:function(data,filterDiv,tableDiv){$(".clear").on("click",function(){$(this.id+".noMatches").css("visibility","hidden");$(this.id+filterDiv).val("");Sheetsee.makeTable(data,tableDiv)});$(filterDiv).keyup(function(e){var text=$(e.target).val();Sheetsee.searchTable(data,text,tableDiv)})},searchTable:function(data,searchTerm,tableDiv){var filteredList=[];data.forEach(function(object){var stringObject=JSON.stringify(object).toLowerCase();if(stringObject.match(searchTerm.toLowerCase()))filteredList.push(object)});if(filteredList.length===0){console.log("no matchie");$(".noMatches").css("visibility","inherit");Sheetsee.makeTable("no matches",tableDiv)}else $(".noMatches").css("visibility","hidden");Sheetsee.makeTable(filteredList,tableDiv);return filteredList},sortThings:function(data,sorter,sorted,tableDiv){data.sort(function(a,b){if(a[sorter]<b[sorter])return-1;if(a[sorter]>b[sorter])return 1;return 0});if(sorted==="descending")data.reverse();Sheetsee.makeTable(data,tableDiv);var header;$(tableDiv+" .tHeader").each(function(i,el){var contents=Sheetsee.resolveDataTitle($(el).text());if(contents===sorter)header=el});$(header).attr("data-sorted",sorted)},resolveDataTitle:function(string){var adjusted=string.toLowerCase().replace(/\s/g,"").replace(/\W/g,"");return adjusted},sendToSort:function(event){var tableDiv="#"+$(event.target).closest("div").attr("id");console.log("came from this table",tableDiv);var sorted=$(event.target).attr("data-sorted");if(sorted){if(sorted==="descending")sorted="ascending";else sorted="descending"}else{sorted="ascending"}var sorter=Sheetsee.resolveDataTitle(event.target.innerHTML);Sheetsee.sortThings(gData,sorter,sorted,tableDiv)},makeTable:function(data,targetDiv){var templateID=targetDiv.replace("#","");var tableContents=ich[templateID]({rows:data});$(targetDiv).html(tableContents)},getKeywordCount:function(data,keyword){var group=[];data.forEach(function(d){for(var key in d){var value=d[key].toString().toLowerCase();if(value.match(keyword.toLowerCase()))group.push(d)}});return group.length;if(group=[])return"0"},getKeyword:function(data,keyword){var group=[];data.forEach(function(d){for(var key in d){var value=d[key].toString().toLowerCase();if(value.match(keyword.toLowerCase()))group.push(d)}});return group;if(group=[])return"no matches"},getColumnTotal:function(data,column){var total=[];data.forEach(function(d){if(d[column]==="")return;total.push(+d[column])});return total.reduce(function(a,b){return a+b})},getColumnAverage:function(data,column){var total=getColumnTotal(data,column);var average=total/data.length;return average},getMax:function(data,column){var result=[];data.forEach(function(element){if(result.length===0)return result.push(element);else{if(element[column].valueOf()>result[0][column].valueOf()){result.length=0;return result.push(element)}if(element[column].valueOf()===result[0][column].valueOf()){return result.push(element)}}});return result},getMin:function(data,column){var result=[];data.forEach(function(element){if(result.length===0)return result.push(element);else{if(element[column].valueOf()<result[0][column].valueOf()){result.length=0;return result.push(element)}if(element[column].valueOf()===result[0][column].valueOf()){return result.push(element)}}});return result},getMatches:function(data,filter,category){var matches=[];data.forEach(function(element){var projectType=element[category].toString().toLowerCase();if(projectType===filter.toLowerCase())matches.push(element)});return matches},mostFrequent:function(data,category){var count={};for(var i=0;i<data.length;i++){if(!count[data[i][category]]){count[data[i][category]]=0}count[data[i][category]]++}var sortable=[];for(var category in count){sortable.push([category,count[category]])}sortable.sort(function(a,b){return b[1]-a[1]});return sortable},deepCopy:function(obj){if(Object.prototype.toString.call(obj)==="[object Array]"){var out=[],i=0,len=obj.length;for(;i<len;i++){out[i]=arguments.callee(obj[i])}return out}if(typeof obj==="object"){var out={},i;for(i in obj){out[i]=arguments.callee(obj[i])}return out}return obj},getOccurance:function(data,category){var occuranceCount={};for(var i=0;i<data.length;i++){if(!occuranceCount[data[i][category]]){occuranceCount[data[i][category]]=0}occuranceCount[data[i][category]]++}return occuranceCount},makeColorArrayOfObject:function(data,colors,category){var category=category;var keys=Object.keys(data);var counter=1;var colorIndex;return keys.map(function(key){if(keys.length>colors.length||keys.length<=colors.length){colorIndex=counter%colors.length}var h={units:data[key],hexcolor:colors[colorIndex]};h[category]=key;counter++;colorIndex=counter;return h})},makeArrayOfObject:function(data){var keys=Object.keys(data);return keys.map(function(key){var h={label:key,units:data[key]};return h})}};$(document).on("click",".tHeader",Sheetsee.sendToSort);Sheetsee.ich=ich;module.exports=Sheetsee},{icanhaz:2}],2:[function(require,module,exports){!function(){var Mustache=function(){var _toString=Object.prototype.toString;Array.isArray=Array.isArray||function(obj){return _toString.call(obj)=="[object Array]"};var _trim=String.prototype.trim,trim;if(_trim){trim=function(text){return text==null?"":_trim.call(text)}}else{var trimLeft,trimRight;if(/\S/.test(" ")){trimLeft=/^[\s\xA0]+/;trimRight=/[\s\xA0]+$/}else{trimLeft=/^\s+/;trimRight=/\s+$/}trim=function(text){return text==null?"":text.toString().replace(trimLeft,"").replace(trimRight,"")}}var escapeMap={"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"};function escapeHTML(string){return String(string).replace(/&(?!\w+;)|[<>"']/g,function(s){return escapeMap[s]||s})}var regexCache={};var Renderer=function(){};Renderer.prototype={otag:"{{",ctag:"}}",pragmas:{},buffer:[],pragmas_implemented:{"IMPLICIT-ITERATOR":true},context:{},render:function(template,context,partials,in_recursion){if(!in_recursion){this.context=context;this.buffer=[]}if(!this.includes("",template)){if(in_recursion){return template}else{this.send(template);return}}template=this.render_pragmas(template);var html=this.render_section(template,context,partials);if(html===false){html=this.render_tags(template,context,partials,in_recursion)}if(in_recursion){return html}else{this.sendLines(html)}},send:function(line){if(line!==""){this.buffer.push(line)}},sendLines:function(text){if(text){var lines=text.split("\n");for(var i=0;i<lines.length;i++){this.send(lines[i])}}},render_pragmas:function(template){if(!this.includes("%",template)){return template}var that=this;var regex=this.getCachedRegex("render_pragmas",function(otag,ctag){return new RegExp(otag+"%([\\w-]+) ?([\\w]+=[\\w]+)?"+ctag,"g")});return template.replace(regex,function(match,pragma,options){if(!that.pragmas_implemented[pragma]){throw{message:"This implementation of mustache doesn't understand the '"+pragma+"' pragma"}}that.pragmas[pragma]={};if(options){var opts=options.split("=");that.pragmas[pragma][opts[0]]=opts[1]}return""})},render_partial:function(name,context,partials){name=trim(name);if(!partials||partials[name]===undefined){throw{message:"unknown_partial '"+name+"'"}}if(!context||typeof context[name]!="object"){return this.render(partials[name],context,partials,true)}return this.render(partials[name],context[name],partials,true)},render_section:function(template,context,partials){if(!this.includes("#",template)&&!this.includes("^",template)){return false}var that=this;var regex=this.getCachedRegex("render_section",function(otag,ctag){return new RegExp("^([\\s\\S]*?)"+otag+"(\\^|\\#)\\s*(.+)\\s*"+ctag+"\n*([\\s\\S]*?)"+otag+"\\/\\s*\\3\\s*"+ctag+"\\s*([\\s\\S]*)$","g")});return template.replace(regex,function(match,before,type,name,content,after){var renderedBefore=before?that.render_tags(before,context,partials,true):"",renderedAfter=after?that.render(after,context,partials,true):"",renderedContent,value=that.find(name,context);if(type==="^"){if(!value||Array.isArray(value)&&value.length===0){renderedContent=that.render(content,context,partials,true)}else{renderedContent=""}}else if(type==="#"){if(Array.isArray(value)){renderedContent=that.map(value,function(row){return that.render(content,that.create_context(row),partials,true)}).join("")}else if(that.is_object(value)){renderedContent=that.render(content,that.create_context(value),partials,true)}else if(typeof value=="function"){renderedContent=value.call(context,content,function(text){return that.render(text,context,partials,true)})}else if(value){renderedContent=that.render(content,context,partials,true)}else{renderedContent=""}}return renderedBefore+renderedContent+renderedAfter})},render_tags:function(template,context,partials,in_recursion){var that=this;var new_regex=function(){return that.getCachedRegex("render_tags",function(otag,ctag){return new RegExp(otag+"(=|!|>|&|\\{|%)?([^#\\^]+?)\\1?"+ctag+"+","g")})};var regex=new_regex();var tag_replace_callback=function(match,operator,name){switch(operator){case"!":return"";case"=":that.set_delimiters(name);regex=new_regex();return"";case">":return that.render_partial(name,context,partials);case"{":case"&":return that.find(name,context);default:return escapeHTML(that.find(name,context))}};var lines=template.split("\n");for(var i=0;i<lines.length;i++){lines[i]=lines[i].replace(regex,tag_replace_callback,this);if(!in_recursion){this.send(lines[i])}}if(in_recursion){return lines.join("\n")}},set_delimiters:function(delimiters){var dels=delimiters.split(" ");this.otag=this.escape_regex(dels[0]);this.ctag=this.escape_regex(dels[1])},escape_regex:function(text){if(!arguments.callee.sRE){var specials=["/",".","*","+","?","|","(",")","[","]","{","}","\\"];arguments.callee.sRE=new RegExp("(\\"+specials.join("|\\")+")","g")}return text.replace(arguments.callee.sRE,"\\$1")},find:function(name,context){name=trim(name);function is_kinda_truthy(bool){return bool===false||bool===0||bool}var value;if(name.match(/([a-z_]+)\./gi)){var childValue=this.walk_context(name,context);if(is_kinda_truthy(childValue)){value=childValue}}else{if(is_kinda_truthy(context[name])){value=context[name]}else if(is_kinda_truthy(this.context[name])){value=this.context[name]}}if(typeof value=="function"){return value.apply(context)}if(value!==undefined){return value}return""},walk_context:function(name,context){var path=name.split(".");var value_context=context[path[0]]!=undefined?context:this.context;var value=value_context[path.shift()];while(value!=undefined&&path.length>0){value_context=value;value=value[path.shift()]}if(typeof value=="function"){return value.apply(value_context)}return value},includes:function(needle,haystack){return haystack.indexOf(this.otag+needle)!=-1},create_context:function(_context){if(this.is_object(_context)){return _context}else{var iterator=".";if(this.pragmas["IMPLICIT-ITERATOR"]){iterator=this.pragmas["IMPLICIT-ITERATOR"].iterator}var ctx={};ctx[iterator]=_context;return ctx}},is_object:function(a){return a&&typeof a=="object"},map:function(array,fn){if(typeof array.map=="function"){return array.map(fn)}else{var r=[];var l=array.length;for(var i=0;i<l;i++){r.push(fn(array[i]))}return r}},getCachedRegex:function(name,generator){var byOtag=regexCache[this.otag];if(!byOtag){byOtag=regexCache[this.otag]={}}var byCtag=byOtag[this.ctag];if(!byCtag){byCtag=byOtag[this.ctag]={}}var regex=byCtag[name];if(!regex){regex=byCtag[name]=generator(this.otag,this.ctag)}return regex}};return{name:"mustache.js",version:"0.4.0",to_html:function(template,view,partials,send_fun){var renderer=new Renderer;if(send_fun){renderer.send=send_fun}renderer.render(template,view||{},partials);if(!send_fun){return renderer.buffer.join("\n")}}}}();!function(){function trim(stuff){if("".trim)return stuff.trim();else return stuff.replace(/^\s+/,"").replace(/\s+$/,"")}var root=this;var ich={VERSION:"0.10.2",templates:{},$:typeof window!=="undefined"?window.jQuery||window.Zepto||null:null,addTemplate:function(name,templateString){if(typeof name==="object"){for(var template in name){this.addTemplate(template,name[template])}return}if(ich[name]){console.error("Invalid name: "+name+".")}else if(ich.templates[name]){console.error('Template "'+name+'  " exists')}else{ich.templates[name]=templateString;ich[name]=function(data,raw){data=data||{};var result=Mustache.to_html(ich.templates[name],data,ich.templates);return ich.$&&!raw?ich.$(trim(result)):result}}},clearAll:function(){for(var key in ich.templates){delete ich[key]}ich.templates={}},refresh:function(){ich.clearAll();ich.grabTemplates()},grabTemplates:function(){var i,l,scripts=document.getElementsByTagName("script"),script,trash=[];for(i=0,l=scripts.length;i<l;i++){script=scripts[i];if(script&&script.innerHTML&&script.id&&(script.type==="text/html"||script.type==="text/x-icanhaz")){ich.addTemplate(script.id,trim(script.innerHTML));trash.unshift(script)}}for(i=0,l=trash.length;i<l;i++){trash[i].parentNode.removeChild(trash[i])}}};if(typeof exports!=="undefined"){if(typeof module!=="undefined"&&module.exports){exports=module.exports=ich}exports.ich=ich}else{root["ich"]=ich}if(typeof document!=="undefined"){if(ich.$){ich.$(function(){ich.grabTemplates()})}else{document.addEventListener("DOMContentLoaded",function(){ich.grabTemplates()},true)}}}()}()},{}]},{},[1])(1)});
+(function(e){if("function"==typeof bootstrap)bootstrap("sheetsee",e);else if("object"==typeof exports)module.exports=e();else if("function"==typeof define&&define.amd)define(e);else if("undefined"!=typeof ses){if(!ses.ok())return;ses.makeSheetsee=e}else"undefined"!=typeof window?window.Sheetsee=e():global.Sheetsee=e()})(function(){var define,ses,bootstrap,module,exports;
+return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+var ich = require('icanhaz')
+
+var Sheetsee = {
+  // // // // // // // // // // // // // // // // // // // // // // // //  // //
+  //
+  // // // Make Table, Sort and Filter Interactions
+  //
+  // // // // // // // // // // // // // // // // // // // // // // // //  // //
+
+  initiateTableFilter: function(data, filterDiv, tableDiv) {
+    $('.clear').on("click", function() { 
+      $(this.id + ".noMatches").css("visibility", "hidden")
+      $(this.id + filterDiv).val("")
+      Sheetsee.makeTable(data, tableDiv)
+    })
+    $(filterDiv).keyup(function(e) {
+      var text = $(e.target).val()
+      Sheetsee.searchTable(data, text, tableDiv)
+    })
+  },
+
+  searchTable: function(data, searchTerm, tableDiv) {
+    var filteredList = []
+    data.forEach(function(object) {
+      var stringObject = JSON.stringify(object).toLowerCase()
+      if (stringObject.match(searchTerm.toLowerCase())) filteredList.push(object)
+    })
+    if (filteredList.length === 0) {
+      console.log("no matchie")
+      $(".noMatches").css("visibility", "inherit")
+      Sheetsee.makeTable("no matches", tableDiv)
+    }
+    else $(".noMatches").css("visibility", "hidden")
+    Sheetsee.makeTable(filteredList, tableDiv) 
+    return filteredList  
+  },
+
+  sortThings: function(data, sorter, sorted, tableDiv) {
+    data.sort(function(a,b){
+      if (a[sorter]<b[sorter]) return -1
+      if (a[sorter]>b[sorter]) return 1
+      return 0
+    })
+    if (sorted === "descending") data.reverse()
+    Sheetsee.makeTable(data, tableDiv)
+    var header 
+    $(tableDiv + " .tHeader").each(function(i, el){
+      var contents = Sheetsee.resolveDataTitle($(el).text())
+      if (contents === sorter) header = el
+    })
+    $(header).attr("data-sorted", sorted)  
+  },
+
+  resolveDataTitle: function(string) {
+    var adjusted = string.toLowerCase().replace(/\s/g, '').replace(/\W/g, '')
+    return adjusted
+  },
+
+  sendToSort: function(event) {
+    var tableDiv = "#" + $(event.target).closest("div").attr("id")
+    console.log("came from this table",tableDiv)
+    var sorted = $(event.target).attr("data-sorted")
+    if (sorted) {
+      if (sorted === "descending") sorted = "ascending"
+      else sorted = "descending"
+    }
+    else { sorted = "ascending" }
+    var sorter = Sheetsee.resolveDataTitle(event.target.innerHTML)
+    Sheetsee.sortThings(gData, sorter, sorted, tableDiv)    
+  },
+
+  makeTable: function(data, targetDiv) {
+    var templateID = targetDiv.replace("#", "")
+    var tableContents = ich[templateID]({
+      rows: data
+    })
+    $(targetDiv).html(tableContents)    
+  },
+
+  // // // // // // // // // // // // // // // // // // // // // // // //  // //
+  //
+  // // // Sorting, Ordering Data
+  //
+  // // // // // // // // // // // // // // // // // // // // // // // //  // //
+
+  getKeywordCount: function(data, keyword) {
+    var group = []
+    data.forEach(function (d) {
+      for(var key in d) {
+        var value = d[key].toString().toLowerCase()
+        if (value.match(keyword.toLowerCase())) group.push(d)
+      } 
+    })
+    return group.length
+    if (group = []) return "0"   
+  },
+
+  getKeyword: function(data, keyword) {
+    var group = []
+    data.forEach(function (d) {
+      for(var key in d) {
+        var value = d[key].toString().toLowerCase()
+        if (value.match(keyword.toLowerCase())) group.push(d)
+      } 
+    })
+    return group
+    if (group = []) return "no matches" 
+  },
+
+  getColumnTotal: function(data, column) {
+    var total = []
+    data.forEach(function (d) {
+      if (d[column] === "") return 
+      total.push(+d[column]) 
+    })
+    return total.reduce(function(a,b) {
+      return a + b
+    })  
+  },
+
+  getColumnAverage: function(data, column) {
+    var total = getColumnTotal(data, column)
+    var average = total / data.length
+    return average  
+  },
+
+  getMax: function(data, column) {
+    var result = []
+    data.forEach(function (element){
+      if (result.length === 0) return result.push(element)
+        else {
+          if (element[column].valueOf() > result[0][column].valueOf()) {
+            result.length = 0
+            return result.push(element)
+          }   
+          if (element[column].valueOf() === result[0][column].valueOf()) {
+            return result.push(element)
+          }
+        }
+    })
+    return result
+  },
+
+  getMin: function(data, column) {
+    var result = []
+    data.forEach(function (element){
+      if (result.length === 0) return result.push(element)
+        else {
+          if (element[column].valueOf() < result[0][column].valueOf()) {
+            result.length = 0
+            return result.push(element)
+          }   
+          if (element[column].valueOf() === result[0][column].valueOf()) {
+            return result.push(element)
+          }
+        }
+    })
+    return result    
+  },
+
+  // out of the data, filter something from a category
+  getMatches: function (data, filter, category) {
+    var matches = []
+    data.forEach(function (element) {
+      var projectType = element[category].toString().toLowerCase()
+      if (projectType === filter.toLowerCase()) matches.push(element)
+    })
+    return matches
+  },
+
+  mostFrequent: function(data, category) {
+      var count = {}
+      for (var i = 0; i < data.length; i++)  {
+        if (!count[data[i][category]]) {
+          count[data[i][category]] = 0
+        }
+      count[data[i][category]]++
+      }
+      var sortable = []
+      for (var category in count) {
+        sortable.push([category, count[category]])
+      }
+        sortable.sort(function(a, b) {return b[1] - a[1]})
+        return  sortable
+        // returns array of arrays, in order    
+  },
+
+  // thank you! http://james.padolsey.com/javascript/deep-copying-of-objects-and-arrays/
+  deepCopy: function(obj) {
+    if (Object.prototype.toString.call(obj) === '[object Array]') {
+        var out = [], i = 0, len = obj.length;
+        for ( ; i < len; i++ ) {
+            out[i] = arguments.callee(obj[i]);
+        }
+        return out;
+    }
+    if (typeof obj === 'object') {
+        var out = {}, i;
+        for ( i in obj ) {
+            out[i] = arguments.callee(obj[i]);
+        }
+        return out;
+    }
+    return obj;  
+  },
+
+  // no longer need this
+  // function addUnitsLabels(arrayObj, oldLabel, oldUnits) {
+  //   var newArray = deepCopy(arrayObj)
+  //   for (var i = 0; i < newArray.length; i++) {
+  //     newArray[i].label = newArray[i][oldLabel]
+  //     newArray[i].units = newArray[i][oldUnits]
+  //     delete newArray[i][oldLabel]
+  //     delete newArray[i][oldUnits]
+  //   }
+  // return newArray
+  // }
+
+  getOccurance: function(data, category) {
+    var occuranceCount = {}
+    for (var i = 0; i < data.length; i++)  {
+     if (!occuranceCount[data[i][category]]) {
+         occuranceCount[data[i][category]] = 0
+     }
+     occuranceCount[data[i][category]]++
+    }
+    return occuranceCount
+    // returns object, keys alphabetical  
+  },
+
+  makeColorArrayOfObject: function(data, colors, category) {
+    var category = category
+    var keys = Object.keys(data)
+    var counter = 1
+    var colorIndex
+    return keys.map(function(key){ 
+      if (keys.length > colors.length || keys.length <= colors.length ) {
+        colorIndex = counter % colors.length
+      }
+      var h = {units: data[key], hexcolor: colors[colorIndex]} 
+      h[category] = key
+      counter++  
+      colorIndex = counter 
+      return h
+    })
+  },
+
+  makeArrayOfObject: function(data) {
+    var keys = Object.keys(data)
+    return keys.map(function(key){ 
+      // var h = {label: key, units: data[key], hexcolor: "#FDBDBD"}  
+      var h = {label: key, units: data[key]}        
+      return h
+    })
+  }
+}
+
+$(document).on("click", ".tHeader", Sheetsee.sendToSort)
+
+Sheetsee.ich = ich
+module.exports = Sheetsee
+
+},{"icanhaz":2}],2:[function(require,module,exports){
+/*!
+ICanHaz.js version 0.10.2 -- by @HenrikJoreteg
+More info at: http://icanhazjs.com
+*/
+(function () {
+/*
+  mustache.js — Logic-less templates in JavaScript
+
+  See http://mustache.github.com/ for more info.
+*/
+
+var Mustache = function () {
+  var _toString = Object.prototype.toString;
+
+  Array.isArray = Array.isArray || function (obj) {
+    return _toString.call(obj) == "[object Array]";
+  }
+
+  var _trim = String.prototype.trim, trim;
+
+  if (_trim) {
+    trim = function (text) {
+      return text == null ? "" : _trim.call(text);
+    }
+  } else {
+    var trimLeft, trimRight;
+
+    // IE doesn't match non-breaking spaces with \s.
+    if ((/\S/).test("\xA0")) {
+      trimLeft = /^[\s\xA0]+/;
+      trimRight = /[\s\xA0]+$/;
+    } else {
+      trimLeft = /^\s+/;
+      trimRight = /\s+$/;
+    }
+
+    trim = function (text) {
+      return text == null ? "" :
+        text.toString().replace(trimLeft, "").replace(trimRight, "");
+    }
+  }
+
+  var escapeMap = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': '&quot;',
+    "'": '&#39;'
+  };
+
+  function escapeHTML(string) {
+    return String(string).replace(/&(?!\w+;)|[<>"']/g, function (s) {
+      return escapeMap[s] || s;
+    });
+  }
+
+  var regexCache = {};
+  var Renderer = function () {};
+
+  Renderer.prototype = {
+    otag: "{{",
+    ctag: "}}",
+    pragmas: {},
+    buffer: [],
+    pragmas_implemented: {
+      "IMPLICIT-ITERATOR": true
+    },
+    context: {},
+
+    render: function (template, context, partials, in_recursion) {
+      // reset buffer & set context
+      if (!in_recursion) {
+        this.context = context;
+        this.buffer = []; // TODO: make this non-lazy
+      }
+
+      // fail fast
+      if (!this.includes("", template)) {
+        if (in_recursion) {
+          return template;
+        } else {
+          this.send(template);
+          return;
+        }
+      }
+
+      // get the pragmas together
+      template = this.render_pragmas(template);
+
+      // render the template
+      var html = this.render_section(template, context, partials);
+
+      // render_section did not find any sections, we still need to render the tags
+      if (html === false) {
+        html = this.render_tags(template, context, partials, in_recursion);
+      }
+
+      if (in_recursion) {
+        return html;
+      } else {
+        this.sendLines(html);
+      }
+    },
+
+    /*
+      Sends parsed lines
+    */
+    send: function (line) {
+      if (line !== "") {
+        this.buffer.push(line);
+      }
+    },
+
+    sendLines: function (text) {
+      if (text) {
+        var lines = text.split("\n");
+        for (var i = 0; i < lines.length; i++) {
+          this.send(lines[i]);
+        }
+      }
+    },
+
+    /*
+      Looks for %PRAGMAS
+    */
+    render_pragmas: function (template) {
+      // no pragmas
+      if (!this.includes("%", template)) {
+        return template;
+      }
+
+      var that = this;
+      var regex = this.getCachedRegex("render_pragmas", function (otag, ctag) {
+        return new RegExp(otag + "%([\\w-]+) ?([\\w]+=[\\w]+)?" + ctag, "g");
+      });
+
+      return template.replace(regex, function (match, pragma, options) {
+        if (!that.pragmas_implemented[pragma]) {
+          throw({message:
+            "This implementation of mustache doesn't understand the '" +
+            pragma + "' pragma"});
+        }
+        that.pragmas[pragma] = {};
+        if (options) {
+          var opts = options.split("=");
+          that.pragmas[pragma][opts[0]] = opts[1];
+        }
+        return "";
+        // ignore unknown pragmas silently
+      });
+    },
+
+    /*
+      Tries to find a partial in the curent scope and render it
+    */
+    render_partial: function (name, context, partials) {
+      name = trim(name);
+      if (!partials || partials[name] === undefined) {
+        throw({message: "unknown_partial '" + name + "'"});
+      }
+      if (!context || typeof context[name] != "object") {
+        return this.render(partials[name], context, partials, true);
+      }
+      return this.render(partials[name], context[name], partials, true);
+    },
+
+    /*
+      Renders inverted (^) and normal (#) sections
+    */
+    render_section: function (template, context, partials) {
+      if (!this.includes("#", template) && !this.includes("^", template)) {
+        // did not render anything, there were no sections
+        return false;
+      }
+
+      var that = this;
+
+      var regex = this.getCachedRegex("render_section", function (otag, ctag) {
+        // This regex matches _the first_ section ({{#foo}}{{/foo}}), and captures the remainder
+        return new RegExp(
+          "^([\\s\\S]*?)" +         // all the crap at the beginning that is not {{*}} ($1)
+
+          otag +                    // {{
+          "(\\^|\\#)\\s*(.+)\\s*" + //  #foo (# == $2, foo == $3)
+          ctag +                    // }}
+
+          "\n*([\\s\\S]*?)" +       // between the tag ($2). leading newlines are dropped
+
+          otag +                    // {{
+          "\\/\\s*\\3\\s*" +        //  /foo (backreference to the opening tag).
+          ctag +                    // }}
+
+          "\\s*([\\s\\S]*)$",       // everything else in the string ($4). leading whitespace is dropped.
+
+        "g");
+      });
+
+
+      // for each {{#foo}}{{/foo}} section do...
+      return template.replace(regex, function (match, before, type, name, content, after) {
+        // before contains only tags, no sections
+        var renderedBefore = before ? that.render_tags(before, context, partials, true) : "",
+
+        // after may contain both sections and tags, so use full rendering function
+            renderedAfter = after ? that.render(after, context, partials, true) : "",
+
+        // will be computed below
+            renderedContent,
+
+            value = that.find(name, context);
+
+        if (type === "^") { // inverted section
+          if (!value || Array.isArray(value) && value.length === 0) {
+            // false or empty list, render it
+            renderedContent = that.render(content, context, partials, true);
+          } else {
+            renderedContent = "";
+          }
+        } else if (type === "#") { // normal section
+          if (Array.isArray(value)) { // Enumerable, Let's loop!
+            renderedContent = that.map(value, function (row) {
+              return that.render(content, that.create_context(row), partials, true);
+            }).join("");
+          } else if (that.is_object(value)) { // Object, Use it as subcontext!
+            renderedContent = that.render(content, that.create_context(value),
+              partials, true);
+          } else if (typeof value == "function") {
+            // higher order section
+            renderedContent = value.call(context, content, function (text) {
+              return that.render(text, context, partials, true);
+            });
+          } else if (value) { // boolean section
+            renderedContent = that.render(content, context, partials, true);
+          } else {
+            renderedContent = "";
+          }
+        }
+
+        return renderedBefore + renderedContent + renderedAfter;
+      });
+    },
+
+    /*
+      Replace {{foo}} and friends with values from our view
+    */
+    render_tags: function (template, context, partials, in_recursion) {
+      // tit for tat
+      var that = this;
+
+      var new_regex = function () {
+        return that.getCachedRegex("render_tags", function (otag, ctag) {
+          return new RegExp(otag + "(=|!|>|&|\\{|%)?([^#\\^]+?)\\1?" + ctag + "+", "g");
+        });
+      };
+
+      var regex = new_regex();
+      var tag_replace_callback = function (match, operator, name) {
+        switch(operator) {
+        case "!": // ignore comments
+          return "";
+        case "=": // set new delimiters, rebuild the replace regexp
+          that.set_delimiters(name);
+          regex = new_regex();
+          return "";
+        case ">": // render partial
+          return that.render_partial(name, context, partials);
+        case "{": // the triple mustache is unescaped
+        case "&": // & operator is an alternative unescape method
+          return that.find(name, context);
+        default: // escape the value
+          return escapeHTML(that.find(name, context));
+        }
+      };
+      var lines = template.split("\n");
+      for(var i = 0; i < lines.length; i++) {
+        lines[i] = lines[i].replace(regex, tag_replace_callback, this);
+        if (!in_recursion) {
+          this.send(lines[i]);
+        }
+      }
+
+      if (in_recursion) {
+        return lines.join("\n");
+      }
+    },
+
+    set_delimiters: function (delimiters) {
+      var dels = delimiters.split(" ");
+      this.otag = this.escape_regex(dels[0]);
+      this.ctag = this.escape_regex(dels[1]);
+    },
+
+    escape_regex: function (text) {
+      // thank you Simon Willison
+      if (!arguments.callee.sRE) {
+        var specials = [
+          '/', '.', '*', '+', '?', '|',
+          '(', ')', '[', ']', '{', '}', '\\'
+        ];
+        arguments.callee.sRE = new RegExp(
+          '(\\' + specials.join('|\\') + ')', 'g'
+        );
+      }
+      return text.replace(arguments.callee.sRE, '\\$1');
+    },
+
+    /*
+      find `name` in current `context`. That is find me a value
+      from the view object
+    */
+    find: function (name, context) {
+      name = trim(name);
+
+      // Checks whether a value is thruthy or false or 0
+      function is_kinda_truthy(bool) {
+        return bool === false || bool === 0 || bool;
+      }
+
+      var value;
+
+      // check for dot notation eg. foo.bar
+      if (name.match(/([a-z_]+)\./ig)) {
+        var childValue = this.walk_context(name, context);
+        if (is_kinda_truthy(childValue)) {
+          value = childValue;
+        }
+      } else {
+        if (is_kinda_truthy(context[name])) {
+          value = context[name];
+        } else if (is_kinda_truthy(this.context[name])) {
+          value = this.context[name];
+        }
+      }
+
+      if (typeof value == "function") {
+        return value.apply(context);
+      }
+      if (value !== undefined) {
+        return value;
+      }
+      // silently ignore unkown variables
+      return "";
+    },
+
+    walk_context: function (name, context) {
+      var path = name.split('.');
+      // if the var doesn't exist in current context, check the top level context
+      var value_context = (context[path[0]] != undefined) ? context : this.context;
+      var value = value_context[path.shift()];
+      while (value != undefined && path.length > 0) {
+        value_context = value;
+        value = value[path.shift()];
+      }
+      // if the value is a function, call it, binding the correct context
+      if (typeof value == "function") {
+        return value.apply(value_context);
+      }
+      return value;
+    },
+
+    // Utility methods
+
+    /* includes tag */
+    includes: function (needle, haystack) {
+      return haystack.indexOf(this.otag + needle) != -1;
+    },
+
+    // by @langalex, support for arrays of strings
+    create_context: function (_context) {
+      if (this.is_object(_context)) {
+        return _context;
+      } else {
+        var iterator = ".";
+        if (this.pragmas["IMPLICIT-ITERATOR"]) {
+          iterator = this.pragmas["IMPLICIT-ITERATOR"].iterator;
+        }
+        var ctx = {};
+        ctx[iterator] = _context;
+        return ctx;
+      }
+    },
+
+    is_object: function (a) {
+      return a && typeof a == "object";
+    },
+
+    /*
+      Why, why, why? Because IE. Cry, cry cry.
+    */
+    map: function (array, fn) {
+      if (typeof array.map == "function") {
+        return array.map(fn);
+      } else {
+        var r = [];
+        var l = array.length;
+        for(var i = 0; i < l; i++) {
+          r.push(fn(array[i]));
+        }
+        return r;
+      }
+    },
+
+    getCachedRegex: function (name, generator) {
+      var byOtag = regexCache[this.otag];
+      if (!byOtag) {
+        byOtag = regexCache[this.otag] = {};
+      }
+
+      var byCtag = byOtag[this.ctag];
+      if (!byCtag) {
+        byCtag = byOtag[this.ctag] = {};
+      }
+
+      var regex = byCtag[name];
+      if (!regex) {
+        regex = byCtag[name] = generator(this.otag, this.ctag);
+      }
+
+      return regex;
+    }
+  };
+
+  return({
+    name: "mustache.js",
+    version: "0.4.0",
+
+    /*
+      Turns a template and view into HTML
+    */
+    to_html: function (template, view, partials, send_fun) {
+      var renderer = new Renderer();
+      if (send_fun) {
+        renderer.send = send_fun;
+      }
+      renderer.render(template, view || {}, partials);
+      if (!send_fun) {
+        return renderer.buffer.join("\n");
+      }
+    }
+  });
+}();
+/*!
+  ICanHaz.js -- by @HenrikJoreteg
+*/
+/*global  */
+(function () {
+    function trim(stuff) {
+        if (''.trim) return stuff.trim();
+        else return stuff.replace(/^\s+/, '').replace(/\s+$/, '');
+    }
+
+    // Establish the root object, `window` in the browser, or `global` on the server.
+    var root = this;
+
+    var ich = {
+        VERSION: "0.10.2",
+        templates: {},
+
+        // grab jquery or zepto if it's there
+        $: (typeof window !== 'undefined') ? window.jQuery || window.Zepto || null : null,
+
+        // public function for adding templates
+        // can take a name and template string arguments
+        // or can take an object with name/template pairs
+        // We're enforcing uniqueness to avoid accidental template overwrites.
+        // If you want a different template, it should have a different name.
+        addTemplate: function (name, templateString) {
+            if (typeof name === 'object') {
+                for (var template in name) {
+                    this.addTemplate(template, name[template]);
+                }
+                return;
+            }
+            if (ich[name]) {
+                console.error("Invalid name: " + name + ".");
+            } else if (ich.templates[name]) {
+                console.error("Template \"" + name + "  \" exists");
+            } else {
+                ich.templates[name] = templateString;
+                ich[name] = function (data, raw) {
+                    data = data || {};
+                    var result = Mustache.to_html(ich.templates[name], data, ich.templates);
+                    return (ich.$ && !raw) ? ich.$(trim(result)) : result;
+                };
+            }
+        },
+
+        // clears all retrieval functions and empties cache
+        clearAll: function () {
+            for (var key in ich.templates) {
+                delete ich[key];
+            }
+            ich.templates = {};
+        },
+
+        // clears/grabs
+        refresh: function () {
+            ich.clearAll();
+            ich.grabTemplates();
+        },
+
+        // grabs templates from the DOM and caches them.
+        // Loop through and add templates.
+        // Whitespace at beginning and end of all templates inside <script> tags will
+        // be trimmed. If you want whitespace around a partial, add it in the parent,
+        // not the partial. Or do it explicitly using <br/> or &nbsp;
+        grabTemplates: function () {
+            var i,
+                l,
+                scripts = document.getElementsByTagName('script'),
+                script,
+                trash = [];
+            for (i = 0, l = scripts.length; i < l; i++) {
+                script = scripts[i];
+                if (script && script.innerHTML && script.id && (script.type === "text/html" || script.type === "text/x-icanhaz")) {
+                    ich.addTemplate(script.id, trim(script.innerHTML));
+                    trash.unshift(script);
+                }
+            }
+            for (i = 0, l = trash.length; i < l; i++) {
+                trash[i].parentNode.removeChild(trash[i]);
+            }
+        }
+    };
+
+    // Export the ICanHaz object for **Node.js**, with
+    // backwards-compatibility for the old `require()` API. If we're in
+    // the browser, add `ich` as a global object via a string identifier,
+    // for Closure Compiler "advanced" mode.
+    if (typeof exports !== 'undefined') {
+        if (typeof module !== 'undefined' && module.exports) {
+            exports = module.exports = ich;
+        }
+        exports.ich = ich;
+    } else {
+        root['ich'] = ich;
+    }
+
+    if (typeof document !== 'undefined') {
+        if (ich.$) {
+            ich.$(function () {
+                ich.grabTemplates();
+            });
+        } else {
+            document.addEventListener('DOMContentLoaded', function () {
+                ich.grabTemplates();
+            }, true);
+        }
+    }
+
+})();
+})();
+
+},{}]},{},[1])(1)
+});
+;
