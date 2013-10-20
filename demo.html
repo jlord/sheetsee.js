@@ -1,16 +1,16 @@
 <html>
   <head>
     <title>Yo, yo, yo!</title>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.1.0/tabletop.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.1.0/tabletop.min.js"></script>
     <script type="text/javascript" src='dist/sheetsee.full.js'></script>
     <link rel="shortcut icon" href="https://raw.github.com/jllord/sheetsee-cache/master/favico.png"/>
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.css' rel='stylesheet' />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600|Merriweather:400,700' rel='stylesheet' />
-    <link rel="stylesheet" media="screen" type="text/css" href="css/style.css"> 
-    <link rel="stylesheet" media="screen" type="text/css" href="css/site.css"> 
+    <link rel="stylesheet" media="screen" type="text/css" href="css/style.css">
+    <link rel="stylesheet" media="screen" type="text/css" href="css/site.css">
   </head>
 
 <body>
@@ -74,8 +74,8 @@
       document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
         var gData
         var URL = &quot;0AvFUWxii39gXdFhqZzdTeU5DTWtOdENkQ1Y5bHdqT0E&quot;
-        Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } ) 
-      }) 
+        Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } )
+      })
       function showInfo(data) {
         gData = data
         optionsJSON = ["something", "something"]
@@ -126,7 +126,7 @@
   <h4>Geocoding</h4>
     <p>If you intend to map your data and only have addresses you&#39;ll need to geocode the addresses into lat/long coordinates. Mapbox built a <a href="http://mapbox.com/tilemill/docs/guides/google-docs/#geocoding">plugin</a>
     that does this for you in Google Docs. You can also use websites like <a href="http://www.latlong.net/">latlong.net</a> to get the coordinates and paste them into rows with column headers <em>lat</em> and <em>long</em>.</p>
-    <img src="https://raw.github.com/jllord/sheetsee-cache/master/img/latlong.png" alt="sheetsee">  
+    <img src="https://raw.github.com/jllord/sheetsee-cache/master/img/latlong.png" alt="sheetsee">
   <h4>Publishing Your Spreadsheet</h4>
     <p><img src="https://raw.github.com/jllord/sheetsee-cache/master/img/publish.png" alt="sheetsee"></p>
     <p>You need to do this in order to generate a unique key for your spreadsheet, which Tabletop.js will use to get your spreadsheet data. In your Google Spreadsheet, click <em>File</em> &gt; <em>Publish to the Web</em>. Then in the next window click <em>Start Publishing</em>; it will then turn into a <em>Stop Publishing</em> button.</p>
@@ -143,11 +143,11 @@
     document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
         var gData
         var URL = &quot;0AvFUWxii39gXdFhqZzdTeU5DTWtOdENkQ1Y5bHdqT0E&quot;
-        Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } ) 
-    }) 
+        Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } )
+    })
     function showInfo(data) {
         gData = data
-        // 
+        //
         //everything you do with sheetsee goes here
         //
     }
@@ -157,22 +157,22 @@
     <p>The server-side version is in the repo <a href="http://www.github.com/jllord/sheetsee-cache">sheetsee-cache</a>. It uses <a href="http://www.nodejs.org">Node.js</a> to go to Google, get the spreadsheet data (with a Node.js version of <a href="http://npmjs.org/tabletop">Tabletop.js</a>, thanks Max Ogden!) and save it on the server. This means every user that visits the page doesn&#39;t have to wait on Google&#39;s response to load the charts from the data.</p>
     <p>When the server builds your page, it will build in your data as the variable gData. All you need to do is add your scripts to the bottom of the page. For the tables/templating you&#39;ll need to wrap them in an event listener so that it doesn&#39;t try and build them before the data has settled. </p>
 <pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
-    document.addEventListener(&#39;DOMContentLoaded&#39;, function() { 
+    document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
         // table/templating things the rest can be in their own script tags if you&#39;d like
-    }) 
+    })
 &lt;/script&gt;</code></pre>
     <h4>Running Locally</h4>
       <p>You can run this locally and it will check your internet connection - if you&#39;re not online it will use the last saved data allowing you to develop offline, yay! </p>
       <p>Once you <a href="http://github.com/jlord/sheetsee-cache">clone the repo</a>, navigate there in Terminal, install the node modules and launch the server.</p>
 <pre><code>cd sheetsee-cache
-npm install 
+npm install
 node server.js</code></pre>
       <p>This will launch a local server you can visit and develop locally with in your browser. </p>
   <h2 id="workdata">Working With Your Data</h2>
     <p>Tabletop.js will return all of your data and it will be passed into your site as an <em>array of objects</em> called <strong>gData</strong>. Sheetsee.js has functions built in to help you filter or use that data in other ways if you&#39;d like.</p>
       <h4>Play Along!</h4>
         <p>This page is using sheetsee. If you (are in Chrome and) right click on the page and select <em>Inspect Element</em> it will bring up the Web Inspector. Select the <em>Console</em> tab. Now you can interact with the data and functions from Sheetsee. Give the functions below a try - <strong>gData</strong> is the variable with the data (from <a href="https://docs.google.com/spreadsheet/ccc?key=0AvFUWxii39gXdFhqZzdTeU5DTWtOdENkQ1Y5bHdqT0E&usp=sharing") target="_blank">this spreadsheet</a>).
-        <img src="https://raw.github.com/jllord/sheetsee-cache/master/img/webconsole.png" alt="sheetsee"> 
+        <img src="https://raw.github.com/jllord/sheetsee-cache/master/img/webconsole.png" alt="sheetsee">
     <h3 class="functionH">Sheetsee.getKeyword(data, keyword)</h3>
       <p>This takes in your data, an <em>array of objects</em>, and searches for a <em>string</em>, <strong>keyword</strong>, in each piece of your <strong>data</strong> (formerly the cells of your spreadsheet). It returns an array of each row that contained a keyword match. Similarly, using `getKeywordCount(data, keyword)` will return just the number of times the keyword occured.</p>
 <pre><code data-language="javascript">getKeyword(gData, &quot;cat&quot;)
@@ -285,7 +285,7 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
     <span class="noMatches">no matches</span>
     <div id="basicTable" class="container"></div>
   </div>
-  
+
 
   <p>Sheetsee.js supports making multiple tables or templates with IcanHas.js. The tables can have multiple inputs for searches and table headers can be used to sort the data in that column. For each of these you&#39;ll need a <code data-language="javascript">&lt;div&gt;</code> in your html, a <code data-language="javascript">&lt;script&gt;</code> template and a <code data-language="javascript">&lt;script&gt;</code> that calls table functions.</p>
     <h4>Your HTML Placeholder <code data-language="javascript">&lt;div&gt;</code></h4>
@@ -446,15 +446,15 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
   document.addEventListener('DOMContentLoaded', function() {
     var gData
     var URL = "0AvFUWxii39gXdFhqZzdTeU5DTWtOdENkQ1Y5bHdqT0E"
-    Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } ) 
-  }) 
-    
+    Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } )
+  })
+
   function showInfo(data) {
-    // window.tabletopData = tabletop 
+    // window.tabletopData = tabletop
     gData = data
     console.log("here is gData", gData)
 
-    // make the map 
+    // make the map
     var optionsJSON = ["picurl", "name", "cuddlability"]
     var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
     var map = Sheetsee.loadMap("map")
