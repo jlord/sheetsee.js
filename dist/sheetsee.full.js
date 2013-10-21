@@ -327,7 +327,7 @@ module.exports = {
 	         })      
 	  }
 }
-},{"d3":6}],2:[function(require,module,exports){
+},{"d3":7}],2:[function(require,module,exports){
 var mapbox = require('mapbox.js')
 
 module.exports = {
@@ -399,29 +399,14 @@ module.exports = {
   //   })
   // }
 }
-},{"mapbox.js":34}],3:[function(require,module,exports){
-var Sheetsee = require('./sheetsee')
-var extend   = require('lodash.assign');
-
-// consider this a "build file!" you can add/remove dependencies here, and the file will be created at dist/sheetsee.full.js.
-// creating these components are easy, just export an object, and things inside it will be extended to the main Sheetsee here.
-// in the future, these could be separate node modules. (for example: sheetsee-d3, sheetsee-mapbox, etc)
-extend(Sheetsee, require('./components/d3'), require('./components/mapbox'))
-
-module.exports = Sheetsee;
-
-},{"./components/d3":1,"./components/mapbox":2,"./sheetsee":4,"lodash.assign":8}],4:[function(require,module,exports){
+},{"mapbox.js":35}],3:[function(require,module,exports){
 var ich = require('icanhaz')
 
-var Sheetsee = {
-  // // // // // // // // // // // // // // // // // // // // // // // //  // //
-  //
-  // // // Make Table, Sort and Filter Interactions
-  //
-  // // // // // // // // // // // // // // // // // // // // // // // //  // //
+module.exports = {
+  // Make Table, Sort and Filter Interactions
 
   initiateTableFilter: function(data, filterDiv, tableDiv) {
-    $('.clear').on("click", function() { 
+    $('.clear').on("click", function() {
       $(this.id + ".noMatches").css("visibility", "hidden")
       $(this.id + filterDiv).val("")
       Sheetsee.makeTable(data, tableDiv)
@@ -444,8 +429,8 @@ var Sheetsee = {
       Sheetsee.makeTable("no matches", tableDiv)
     }
     else $(".noMatches").css("visibility", "hidden")
-    Sheetsee.makeTable(filteredList, tableDiv) 
-    return filteredList  
+    Sheetsee.makeTable(filteredList, tableDiv)
+    return filteredList
   },
 
   sortThings: function(data, sorter, sorted, tableDiv) {
@@ -456,12 +441,12 @@ var Sheetsee = {
     })
     if (sorted === "descending") data.reverse()
     Sheetsee.makeTable(data, tableDiv)
-    var header 
+    var header
     $(tableDiv + " .tHeader").each(function(i, el){
       var contents = Sheetsee.resolveDataTitle($(el).text())
       if (contents === sorter) header = el
     })
-    $(header).attr("data-sorted", sorted)  
+    $(header).attr("data-sorted", sorted)
   },
 
   resolveDataTitle: function(string) {
@@ -479,7 +464,7 @@ var Sheetsee = {
     }
     else { sorted = "ascending" }
     var sorter = Sheetsee.resolveDataTitle(event.target.innerHTML)
-    Sheetsee.sortThings(gData, sorter, sorted, tableDiv)    
+    Sheetsee.sortThings(gData, sorter, sorted, tableDiv)
   },
 
   makeTable: function(data, targetDiv) {
@@ -487,14 +472,26 @@ var Sheetsee = {
     var tableContents = ich[templateID]({
       rows: data
     })
-    $(targetDiv).html(tableContents)    
-  },
+    $(targetDiv).html(tableContents)
+  }
+}
 
-  // // // // // // // // // // // // // // // // // // // // // // // //  // //
-  //
-  // // // Sorting, Ordering Data
-  //
-  // // // // // // // // // // // // // // // // // // // // // // // //  // //
+},{"icanhaz":8}],4:[function(require,module,exports){
+var Sheetsee = require('./sheetsee')
+var extend   = require('lodash.assign');
+
+// consider this a "build file!" you can add/remove dependencies here, and the file will be created at dist/sheetsee.full.js.
+// creating these components are easy, just export an object, and things inside it will be extended to the main Sheetsee here.
+// in the future, these could be separate node modules. (for example: sheetsee-d3, sheetsee-mapbox, etc)
+extend(Sheetsee, require('./components/sheetsee-charts'), require('./components/sheetsee-maps'), require('./components/sheetsee-tables'))
+
+module.exports = Sheetsee;
+
+},{"./components/sheetsee-charts":1,"./components/sheetsee-maps":2,"./components/sheetsee-tables":3,"./sheetsee":5,"lodash.assign":9}],5:[function(require,module,exports){
+var ich = require('icanhaz')
+
+var Sheetsee = {
+  // Sorting, Ordering Data
 
   getKeywordCount: function(data, keyword) {
     var group = []
@@ -502,10 +499,10 @@ var Sheetsee = {
       for(var key in d) {
         var value = d[key].toString().toLowerCase()
         if (value.match(keyword.toLowerCase())) group.push(d)
-      } 
+      }
     })
     return group.length
-    if (group = []) return "0"   
+    if (group = []) return "0"
   },
 
   getKeyword: function(data, keyword) {
@@ -514,27 +511,27 @@ var Sheetsee = {
       for(var key in d) {
         var value = d[key].toString().toLowerCase()
         if (value.match(keyword.toLowerCase())) group.push(d)
-      } 
+      }
     })
     return group
-    if (group = []) return "no matches" 
+    if (group = []) return "no matches"
   },
 
   getColumnTotal: function(data, column) {
     var total = []
     data.forEach(function (d) {
-      if (d[column] === "") return 
-      total.push(+d[column]) 
+      if (d[column] === "") return
+      total.push(+d[column])
     })
     return total.reduce(function(a,b) {
       return a + b
-    })  
+    })
   },
 
   getColumnAverage: function(data, column) {
     var total = getColumnTotal(data, column)
     var average = total / data.length
-    return average  
+    return average
   },
 
   getMax: function(data, column) {
@@ -545,7 +542,7 @@ var Sheetsee = {
           if (element[column].valueOf() > result[0][column].valueOf()) {
             result.length = 0
             return result.push(element)
-          }   
+          }
           if (element[column].valueOf() === result[0][column].valueOf()) {
             return result.push(element)
           }
@@ -562,13 +559,13 @@ var Sheetsee = {
           if (element[column].valueOf() < result[0][column].valueOf()) {
             result.length = 0
             return result.push(element)
-          }   
+          }
           if (element[column].valueOf() === result[0][column].valueOf()) {
             return result.push(element)
           }
         }
     })
-    return result    
+    return result
   },
 
   // out of the data, filter something from a category
@@ -595,7 +592,7 @@ var Sheetsee = {
       }
         sortable.sort(function(a, b) {return b[1] - a[1]})
         return  sortable
-        // returns array of arrays, in order    
+        // returns array of arrays, in order
   },
 
   // thank you! http://james.padolsey.com/javascript/deep-copying-of-objects-and-arrays/
@@ -614,20 +611,8 @@ var Sheetsee = {
         }
         return out;
     }
-    return obj;  
+    return obj;
   },
-
-  // no longer need this
-  // function addUnitsLabels(arrayObj, oldLabel, oldUnits) {
-  //   var newArray = deepCopy(arrayObj)
-  //   for (var i = 0; i < newArray.length; i++) {
-  //     newArray[i].label = newArray[i][oldLabel]
-  //     newArray[i].units = newArray[i][oldUnits]
-  //     delete newArray[i][oldLabel]
-  //     delete newArray[i][oldUnits]
-  //   }
-  // return newArray
-  // }
 
   getOccurance: function(data, category) {
     var occuranceCount = {}
@@ -638,7 +623,7 @@ var Sheetsee = {
      occuranceCount[data[i][category]]++
     }
     return occuranceCount
-    // returns object, keys alphabetical  
+    // returns object, keys alphabetical
   },
 
   makeColorArrayOfObject: function(data, colors, category) {
@@ -646,23 +631,23 @@ var Sheetsee = {
     var keys = Object.keys(data)
     var counter = 1
     var colorIndex
-    return keys.map(function(key){ 
+    return keys.map(function(key){
       if (keys.length > colors.length || keys.length <= colors.length ) {
         colorIndex = counter % colors.length
       }
-      var h = {units: data[key], hexcolor: colors[colorIndex]} 
+      var h = {units: data[key], hexcolor: colors[colorIndex]}
       h[category] = key
-      counter++  
-      colorIndex = counter 
+      counter++
+      colorIndex = counter
       return h
     })
   },
 
   makeArrayOfObject: function(data) {
     var keys = Object.keys(data)
-    return keys.map(function(key){ 
-      // var h = {label: key, units: data[key], hexcolor: "#FDBDBD"}  
-      var h = {label: key, units: data[key]}        
+    return keys.map(function(key){
+      // var h = {label: key, units: data[key], hexcolor: "#FDBDBD"}
+      var h = {label: key, units: data[key]}
       return h
     })
   }
@@ -673,7 +658,7 @@ $(document).on("click", ".tHeader", Sheetsee.sendToSort)
 Sheetsee.ich = ich
 module.exports = Sheetsee
 
-},{"icanhaz":7}],5:[function(require,module,exports){
+},{"icanhaz":8}],6:[function(require,module,exports){
 d3 = function() {
   var d3 = {
     version: "3.2.8"
@@ -9484,12 +9469,12 @@ d3 = function() {
   });
   return d3;
 }();
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 require("./d3");
 module.exports = d3;
 (function () { delete this.d3; })(); // unset global
 
-},{"./d3":5}],7:[function(require,module,exports){
+},{"./d3":6}],8:[function(require,module,exports){
 /*!
 ICanHaz.js version 0.10.2 -- by @HenrikJoreteg
 More info at: http://icanhazjs.com
@@ -10043,7 +10028,7 @@ var Mustache = function () {
 })();
 })();
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 /**
  * Lo-Dash 2.1.0 (Custom Build) <http://lodash.com/>
  * Build: `lodash modularize modern exports="npm" -o ./npm`
@@ -10115,7 +10100,7 @@ var assign = function(object, source, guard) {
 
 module.exports = assign;
 
-},{"lodash._basecreatecallback":9,"lodash._objecttypes":28,"lodash.keys":29}],9:[function(require,module,exports){
+},{"lodash._basecreatecallback":10,"lodash._objecttypes":29,"lodash.keys":30}],10:[function(require,module,exports){
 /**
  * Lo-Dash 2.1.0 (Custom Build) <http://lodash.com/>
  * Build: `lodash modularize modern exports="npm" -o ./npm`
@@ -10191,7 +10176,7 @@ function baseCreateCallback(func, thisArg, argCount) {
 
 module.exports = baseCreateCallback;
 
-},{"lodash._setbinddata":10,"lodash.bind":18,"lodash.identity":25,"lodash.support":26}],10:[function(require,module,exports){
+},{"lodash._setbinddata":11,"lodash.bind":19,"lodash.identity":26,"lodash.support":27}],11:[function(require,module,exports){
 /**
  * Lo-Dash 2.1.0 (Custom Build) <http://lodash.com/>
  * Build: `lodash modularize modern exports="npm" -o ./npm`
@@ -10233,7 +10218,7 @@ var setBindData = !defineProperty ? noop : function(func, value) {
 
 module.exports = setBindData;
 
-},{"lodash._getobject":11,"lodash._noop":13,"lodash._releaseobject":14,"lodash._renative":17}],11:[function(require,module,exports){
+},{"lodash._getobject":12,"lodash._noop":14,"lodash._releaseobject":15,"lodash._renative":18}],12:[function(require,module,exports){
 /**
  * Lo-Dash 2.1.0 (Custom Build) <http://lodash.com/>
  * Build: `lodash modularize modern exports="npm" -o ./npm`
@@ -10276,7 +10261,7 @@ function getObject() {
 
 module.exports = getObject;
 
-},{"lodash._objectpool":12}],12:[function(require,module,exports){
+},{"lodash._objectpool":13}],13:[function(require,module,exports){
 /**
  * Lo-Dash 2.1.0 (Custom Build) <http://lodash.com/>
  * Build: `lodash modularize modern exports="npm" -o ./npm`
@@ -10291,7 +10276,7 @@ var objectPool = [];
 
 module.exports = objectPool;
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 /**
  * Lo-Dash 2.1.0 (Custom Build) <http://lodash.com/>
  * Build: `lodash modularize modern exports="npm" -o ./npm`
@@ -10312,7 +10297,7 @@ function noop() {
 
 module.exports = noop;
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 /**
  * Lo-Dash 2.1.0 (Custom Build) <http://lodash.com/>
  * Build: `lodash modularize modern exports="npm" -o ./npm`
@@ -10343,7 +10328,7 @@ function releaseObject(object) {
 
 module.exports = releaseObject;
 
-},{"lodash._maxpoolsize":15,"lodash._objectpool":16}],15:[function(require,module,exports){
+},{"lodash._maxpoolsize":16,"lodash._objectpool":17}],16:[function(require,module,exports){
 /**
  * Lo-Dash 2.1.0 (Custom Build) <http://lodash.com/>
  * Build: `lodash modularize modern exports="npm" -o ./npm`
@@ -10358,7 +10343,7 @@ var maxPoolSize = 40;
 
 module.exports = maxPoolSize;
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 /**
  * Lo-Dash 2.1.0 (Custom Build) <http://lodash.com/>
  * Build: `lodash modularize modern exports="npm" -o ./npm`
@@ -10373,7 +10358,7 @@ var objectPool = [];
 
 module.exports = objectPool;
 
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 /**
  * Lo-Dash 2.1.0 (Custom Build) <http://lodash.com/>
  * Build: `lodash modularize modern exports="npm" -o ./npm`
@@ -10395,7 +10380,7 @@ var reNative = RegExp('^' +
 
 module.exports = reNative;
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 /**
  * Lo-Dash 2.1.0 (Custom Build) <http://lodash.com/>
  * Build: `lodash modularize modern exports="npm" -o ./npm`
@@ -10448,7 +10433,7 @@ function bind(func, thisArg) {
 
 module.exports = bind;
 
-},{"lodash._createbound":19,"lodash._renative":24}],19:[function(require,module,exports){
+},{"lodash._createbound":20,"lodash._renative":25}],20:[function(require,module,exports){
 /**
  * Lo-Dash 2.1.0 (Custom Build) <http://lodash.com/>
  * Build: `lodash modularize modern exports="npm" -o ./npm`
@@ -10599,7 +10584,7 @@ function createBound(func, bitmask, partialArgs, partialRightArgs, thisArg, arit
 
 module.exports = createBound;
 
-},{"lodash._createobject":20,"lodash._renative":24,"lodash._setbinddata":10,"lodash.isfunction":22,"lodash.isobject":23,"lodash.support":26}],20:[function(require,module,exports){
+},{"lodash._createobject":21,"lodash._renative":25,"lodash._setbinddata":11,"lodash.isfunction":23,"lodash.isobject":24,"lodash.support":27}],21:[function(require,module,exports){
 /**
  * Lo-Dash 2.1.0 (Custom Build) <http://lodash.com/>
  * Build: `lodash modularize modern exports="npm" -o ./npm`
@@ -10631,7 +10616,7 @@ function createObject(prototype) {
 
 module.exports = createObject;
 
-},{"lodash._noop":21,"lodash._renative":24,"lodash.isobject":23}],21:[function(require,module,exports){
+},{"lodash._noop":22,"lodash._renative":25,"lodash.isobject":24}],22:[function(require,module,exports){
 /**
  * Lo-Dash 2.1.0 (Custom Build) <http://lodash.com/>
  * Build: `lodash modularize modern exports="npm" -o ./npm`
@@ -10652,7 +10637,7 @@ function noop() {
 
 module.exports = noop;
 
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 /**
  * Lo-Dash 2.1.0 (Custom Build) <http://lodash.com/>
  * Build: `lodash modularize modern exports="npm" -o ./npm`
@@ -10681,7 +10666,7 @@ function isFunction(value) {
 
 module.exports = isFunction;
 
-},{}],23:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 /**
  * Lo-Dash 2.1.0 (Custom Build) <http://lodash.com/>
  * Build: `lodash modularize modern exports="npm" -o ./npm`
@@ -10722,7 +10707,7 @@ function isObject(value) {
 
 module.exports = isObject;
 
-},{"lodash._objecttypes":28}],24:[function(require,module,exports){
+},{"lodash._objecttypes":29}],25:[function(require,module,exports){
 /**
  * Lo-Dash 2.1.0 (Custom Build) <http://lodash.com/>
  * Build: `lodash modularize modern exports="npm" -o ./npm`
@@ -10744,7 +10729,7 @@ var reNative = RegExp('^' +
 
 module.exports = reNative;
 
-},{}],25:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 /**
  * Lo-Dash 2.1.0 (Custom Build) <http://lodash.com/>
  * Build: `lodash modularize modern exports="npm" -o ./npm`
@@ -10774,7 +10759,7 @@ function identity(value) {
 
 module.exports = identity;
 
-},{}],26:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 var global=self;/**
  * Lo-Dash 2.1.0 (Custom Build) <http://lodash.com/>
  * Build: `lodash modularize modern exports="npm" -o ./npm`
@@ -10837,7 +10822,7 @@ support.funcNames = typeof Function.name == 'string';
 
 module.exports = support;
 
-},{"lodash._renative":27}],27:[function(require,module,exports){
+},{"lodash._renative":28}],28:[function(require,module,exports){
 /**
  * Lo-Dash 2.1.0 (Custom Build) <http://lodash.com/>
  * Build: `lodash modularize modern exports="npm" -o ./npm`
@@ -10859,7 +10844,7 @@ var reNative = RegExp('^' +
 
 module.exports = reNative;
 
-},{}],28:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 /**
  * Lo-Dash 2.1.0 (Custom Build) <http://lodash.com/>
  * Build: `lodash modularize modern exports="npm" -o ./npm`
@@ -10881,7 +10866,7 @@ var objectTypes = {
 
 module.exports = objectTypes;
 
-},{}],29:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 /**
  * Lo-Dash 2.1.0 (Custom Build) <http://lodash.com/>
  * Build: `lodash modularize modern exports="npm" -o ./npm`
@@ -10922,7 +10907,7 @@ var keys = !nativeKeys ? shimKeys : function(object) {
 
 module.exports = keys;
 
-},{"lodash._renative":30,"lodash._shimkeys":31,"lodash.isobject":32}],30:[function(require,module,exports){
+},{"lodash._renative":31,"lodash._shimkeys":32,"lodash.isobject":33}],31:[function(require,module,exports){
 /**
  * Lo-Dash 2.1.0 (Custom Build) <http://lodash.com/>
  * Build: `lodash modularize modern exports="npm" -o ./npm`
@@ -10944,7 +10929,7 @@ var reNative = RegExp('^' +
 
 module.exports = reNative;
 
-},{}],31:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 /**
  * Lo-Dash 2.1.0 (Custom Build) <http://lodash.com/>
  * Build: `lodash modularize modern exports="npm" -o ./npm`
@@ -10984,7 +10969,7 @@ var shimKeys = function(object) {
 
 module.exports = shimKeys;
 
-},{"lodash._objecttypes":28}],32:[function(require,module,exports){
+},{"lodash._objecttypes":29}],33:[function(require,module,exports){
 /**
  * Lo-Dash 2.1.0 (Custom Build) <http://lodash.com/>
  * Build: `lodash modularize modern exports="npm" -o ./npm`
@@ -11025,7 +11010,7 @@ function isObject(value) {
 
 module.exports = isObject;
 
-},{"lodash._objecttypes":28}],33:[function(require,module,exports){
+},{"lodash._objecttypes":29}],34:[function(require,module,exports){
 // Copyright (C) 2010 Google Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -13472,14 +13457,14 @@ if (typeof module !== 'undefined') {
     module.exports = html_sanitize;
 }
 
-},{}],34:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 require('./leaflet');
 require('./mapbox');
 
-},{"./leaflet":35,"./mapbox":36}],35:[function(require,module,exports){
+},{"./leaflet":36,"./mapbox":37}],36:[function(require,module,exports){
 window.L = require('leaflet/dist/leaflet-src');
 
-},{"leaflet/dist/leaflet-src":39}],36:[function(require,module,exports){
+},{"leaflet/dist/leaflet-src":40}],37:[function(require,module,exports){
 // Hardcode image path, because Leaflet's autodetection
 // fails, because mapbox.js is not named leaflet.js
 window.L.Icon.Default.imagePath = '//api.tiles.mapbox.com/mapbox.js/' + 'v' +
@@ -13502,7 +13487,7 @@ L.mapbox = module.exports = {
     template: require('mustache').to_html
 };
 
-},{"./package.json":41,"./src/config":42,"./src/geocoder":43,"./src/geocoder_control":44,"./src/grid_control":46,"./src/grid_layer":47,"./src/legend_control":48,"./src/map":50,"./src/marker":51,"./src/marker_layer":52,"./src/sanitize":54,"./src/share_control":55,"./src/tile_layer":56,"mustache":40}],37:[function(require,module,exports){
+},{"./package.json":42,"./src/config":43,"./src/geocoder":44,"./src/geocoder_control":45,"./src/grid_control":47,"./src/grid_layer":48,"./src/legend_control":49,"./src/map":51,"./src/marker":52,"./src/marker_layer":53,"./src/sanitize":55,"./src/share_control":56,"./src/tile_layer":57,"mustache":41}],38:[function(require,module,exports){
 function xhr(url, callback, cors) {
 
     if (typeof window.XMLHttpRequest === 'undefined') {
@@ -13586,7 +13571,7 @@ function xhr(url, callback, cors) {
 
 if (typeof module !== 'undefined') module.exports = xhr;
 
-},{}],38:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 /*! JSON v3.2.5 | http://bestiejs.github.io/json3 | Copyright 2012-2013, Kit Cambridge | http://kit.mit-license.org */
 ;(function (window) {
   // Convenience aliases.
@@ -14438,7 +14423,7 @@ if (typeof module !== 'undefined') module.exports = xhr;
   }
 }(this));
 
-},{}],39:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 /*
  Leaflet, a JavaScript library for mobile-friendly interactive maps. http://leafletjs.com
  (c) 2010-2013, Vladimir Agafonkin
@@ -23303,7 +23288,7 @@ L.Map.include({
 
 
 }(window, document));
-},{}],40:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 /*!
  * mustache.js - Logic-less {{mustache}} templates with JavaScript
  * http://github.com/janl/mustache.js
@@ -23915,7 +23900,7 @@ L.Map.include({
 
 }())));
 
-},{}],41:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 module.exports={
   "author": {
     "name": "MapBox"
@@ -23959,14 +23944,10 @@ module.exports={
     "url": "https://github.com/mapbox/mapbox.js/issues"
   },
   "_id": "mapbox.js@1.3.1",
-  "dist": {
-    "shasum": "a6d144286157eecf7273b202782b31a695450f6a"
-  },
-  "_from": "mapbox.js@",
-  "_resolved": "https://registry.npmjs.org/mapbox.js/-/mapbox.js-1.3.1.tgz"
+  "_from": "mapbox.js@~1.3.1"
 }
 
-},{}],42:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -23986,7 +23967,7 @@ module.exports = {
         'https://d.tiles.mapbox.com/v3/']
 };
 
-},{}],43:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 'use strict';
 
 var util = require('./util'),
@@ -24078,7 +24059,7 @@ module.exports = function(_) {
     return geocoder;
 };
 
-},{"./request":53,"./url":57,"./util":58}],44:[function(require,module,exports){
+},{"./request":54,"./url":58,"./util":59}],45:[function(require,module,exports){
 'use strict';
 
 var geocoder = require('./geocoder');
@@ -24211,7 +24192,7 @@ module.exports = function(options) {
     return new GeocoderControl(options);
 };
 
-},{"./geocoder":43}],45:[function(require,module,exports){
+},{"./geocoder":44}],46:[function(require,module,exports){
 'use strict';
 
 function utfDecode(c) {
@@ -24229,7 +24210,7 @@ module.exports = function(data) {
     };
 };
 
-},{}],46:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 'use strict';
 
 var util = require('./util'),
@@ -24423,7 +24404,7 @@ module.exports = function(_, options) {
     return new GridControl(_, options);
 };
 
-},{"./sanitize":54,"./util":58,"mustache":40}],47:[function(require,module,exports){
+},{"./sanitize":55,"./util":59,"mustache":41}],48:[function(require,module,exports){
 'use strict';
 
 var util = require('./util'),
@@ -24651,7 +24632,7 @@ module.exports = function(_, options) {
     return new GridLayer(_, options);
 };
 
-},{"./grid":45,"./load_tilejson":49,"./request":53,"./url":57,"./util":58}],48:[function(require,module,exports){
+},{"./grid":46,"./load_tilejson":50,"./request":54,"./url":58,"./util":59}],49:[function(require,module,exports){
 'use strict';
 
 var LegendControl = L.Control.extend({
@@ -24719,7 +24700,7 @@ module.exports = function(options) {
     return new LegendControl(options);
 };
 
-},{"./sanitize":54}],49:[function(require,module,exports){
+},{"./sanitize":55}],50:[function(require,module,exports){
 'use strict';
 
 var request = require('./request'),
@@ -24748,7 +24729,7 @@ module.exports = {
     }
 };
 
-},{"./request":53,"./url":57,"./util":58}],50:[function(require,module,exports){
+},{"./request":54,"./url":58,"./util":59}],51:[function(require,module,exports){
 'use strict';
 
 var util = require('./util'),
@@ -24870,7 +24851,7 @@ module.exports = function(element, _, options) {
     return new Map(element, _, options);
 };
 
-},{"./grid_control":46,"./grid_layer":47,"./legend_control":48,"./load_tilejson":49,"./marker_layer":52,"./tile_layer":56,"./util":58}],51:[function(require,module,exports){
+},{"./grid_control":47,"./grid_layer":48,"./legend_control":49,"./load_tilejson":50,"./marker_layer":53,"./tile_layer":57,"./util":59}],52:[function(require,module,exports){
 'use strict';
 
 var url = require('./url'),
@@ -24933,7 +24914,7 @@ module.exports = {
     createPopup: createPopup
 };
 
-},{"./sanitize":54,"./url":57}],52:[function(require,module,exports){
+},{"./sanitize":55,"./url":58}],53:[function(require,module,exports){
 'use strict';
 
 var util = require('./util');
@@ -25038,7 +25019,7 @@ module.exports = function(_, options) {
     return new MarkerLayer(_, options);
 };
 
-},{"./marker":51,"./request":53,"./sanitize":54,"./url":57,"./util":58}],53:[function(require,module,exports){
+},{"./marker":52,"./request":54,"./sanitize":55,"./url":58,"./util":59}],54:[function(require,module,exports){
 'use strict';
 
 var corslite = require('corslite'),
@@ -25062,7 +25043,7 @@ module.exports = function(url, callback) {
     });
 };
 
-},{"./util":58,"corslite":37,"json3":38}],54:[function(require,module,exports){
+},{"./util":59,"corslite":38,"json3":39}],55:[function(require,module,exports){
 'use strict';
 
 var html_sanitize = require('../ext/sanitizer/html-sanitizer-bundle.js');
@@ -25084,7 +25065,7 @@ module.exports = function(_) {
     return html_sanitize(_, cleanUrl, cleanId);
 };
 
-},{"../ext/sanitizer/html-sanitizer-bundle.js":33}],55:[function(require,module,exports){
+},{"../ext/sanitizer/html-sanitizer-bundle.js":34}],56:[function(require,module,exports){
 'use strict';
 
 var ShareControl = L.Control.extend({
@@ -25183,7 +25164,7 @@ module.exports = function(_, options) {
     return new ShareControl(_, options);
 };
 
-},{"./load_tilejson":49}],56:[function(require,module,exports){
+},{"./load_tilejson":50}],57:[function(require,module,exports){
 'use strict';
 
 var util = require('./util'),
@@ -25277,7 +25258,7 @@ module.exports = function(_, options) {
     return new TileLayer(_, options);
 };
 
-},{"./load_tilejson":49,"./url":57,"./util":58}],57:[function(require,module,exports){
+},{"./load_tilejson":50,"./url":58,"./util":59}],58:[function(require,module,exports){
 'use strict';
 
 var config = require('./config');
@@ -25316,7 +25297,7 @@ module.exports = {
     }
 };
 
-},{"./config":42}],58:[function(require,module,exports){
+},{"./config":43}],59:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -25351,6 +25332,6 @@ module.exports = {
     }
 };
 
-},{}]},{},[3])(3)
+},{}]},{},[4])(4)
 });
 ;
