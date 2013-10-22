@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.js"></script>
+    <style>
+        #control {
+            background: #FFF;
+            position: absolute;
+            left: 10px;
+            top: 80px;
+            height: 200px;
+            width: 28px;
+            border: 1px solid #BBB;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            z-index: 999;
+        }
+
+        #handle {
+            background: #000;
+            position: absolute;
+            left: 0;
+            top: 20px;
+            width: 28px;
+            height: 10px;
+        }
+
+        #handle:hover {
+            cursor: pointer;
+            background: #444;
+            cursor: ns-resize;
+        }
+    </style>
+</head>
+<body>
+<div id='map'></div>
+<div id='control'>
+    <div id='handle'></div>
+</div>
+<script type='text/javascript'>
+    var map = L.mapbox.map('map', 'examples.map-vyofok3q')
+        .setView([43.6654, -79.4775], 15);
+
+    var overlay = L.mapbox.tileLayer('aibram.Aerial', {zIndex: 2})
+        .addTo(map);
+
+    var handle = document.getElementById('handle'),
+        start = false,
+        startTop;
+
+    document.onmousemove = function(e) {
+        if (!start) return;
+        // Adjust control
+        handle.style.top = Math.max(-5, Math.min(195, startTop + parseInt(e.clientY, 10) - start)) + 'px';
+        // Adjust opacity
+        overlay.setOpacity(1 - (handle.offsetTop / 200));
+    };
+
+    handle.onmousedown = function(e) {
+        // Record initial positions
+        start = parseInt(e.clientY, 10);
+        startTop = handle.offsetTop - 5;
+        return false;
+    };
+
+    document.onmouseup = function(e) {
+        start = null;
+    };
+</script>
+</body>
+</html>

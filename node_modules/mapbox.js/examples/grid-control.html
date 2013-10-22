@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.uncompressed.js"></script>
+</head>
+<body>
+<style type='text/css'>
+    .birds-tooltip strong {
+        display: block;
+        font-size: 16px;
+    }
+
+    .birds-tooltip small {
+        font-size: 10px;
+        display: block;
+        overflow: hidden;
+        max-height: 90px;
+        line-height: 15px;
+    }
+</style>
+<div id='map'></div>
+<div id='template' style='display: none'>
+    <div class='birds-tooltip'>
+        <strong>{{name}}</strong>
+        <strong>{{count}} species</strong>
+        <small>{{species}}</small>
+    </div>
+</div>
+<script type='text/javascript'>
+    var m = L.mapbox.map('map').setView([38, -77], 5);
+    m.addLayer(L.mapbox.tileLayer('examples.map-8ced9urs'));
+    var gridLayer = L.mapbox.gridLayer('examples.map-8ced9urs');
+    m.addLayer(gridLayer);
+    m.addControl(L.mapbox.gridControl(gridLayer, {
+        template: document.getElementById('template').innerHTML
+    }));
+</script>
+</body>
+</html>

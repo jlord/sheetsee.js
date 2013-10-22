@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ICanHaz Tests?</title>
+        <link rel="stylesheet" href="qunit/qunit.css" type="text/css" media="screen" />
+        <script src="zepto.min.js"></script>
+        <script src="qunit/qunit.js"></script>
+        <script src="../ICanHaz.js"></script>
+        <script src="./ich_test.js"></script>
+
+        <!-- Testing templates -->
+        <script id="test1" type="text/html">
+            <p>This is a test of the emergency broadcast system.</p>
+        </script>
+        <script id="test2" type="text/html">
+            <span>Be vewwy vewwy quiet, we're hunting {{prey}}.</span>
+        </script>
+        <script id="trim" type="text/html">
+					  {{^beef}}
+            <span>Where's the BEEF!</span>
+						{{/beef}}
+        </script>
+        <script id="welcome" type="text/html">
+            <p>Welcome, {{name}}! {{>winnings}}</p>
+        </script>
+        <script id="winnings" class="partial" type="text/html">
+            You just won ${{value}} (which is ${{taxed_value}} after tax)
+        </script>
+        <script id="version" type="text/html">
+            ICanHaz Tests? YES! You're testing v{{ version }}
+        </script>
+
+        <script>
+            // write build version to header
+            $(function () {
+                $('#qunit-header').text(ich.version({version: ich.VERSION}, true));
+            })
+        </script>
+    </head>
+    <body>
+        <h1 id="qunit-header">ICanHaz Tests?</h1>
+        <h2 id="qunit-banner"></h2>
+        <h2 id="qunit-userAgent"></h2>
+        <ol id="qunit-tests"></ol>
+        <div id="qunit-fixture">test markup, will be hidden</div>
+    </body>
+</html>

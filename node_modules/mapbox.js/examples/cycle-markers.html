@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.js"></script>
+</head>
+<body>
+<div id='map'></div>
+<script type='text/javascript'>
+    var map = L.mapbox.map('map', 'examples.map-zr0njcqy');
+
+    // Open popup when user mouses over a marker
+    map.markerLayer.on('ready', function(e) {
+        var markers = [];
+        this.eachLayer(function(marker) {
+            markers.push(marker);
+        });
+        cycle(markers);
+    });
+
+    function cycle(markers) {
+        var i = 0;
+        function loop() {
+            window.setTimeout(function() {
+                if (++i > markers.length - 1) i = 0;
+                map.setView(markers[i].getLatLng(), 12);
+                markers[i].openPopup();
+                loop();
+            }, 3000);
+        }
+        loop();
+    }
+
+</script>
+</body>
+</html>

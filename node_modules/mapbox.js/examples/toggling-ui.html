@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.js"></script>
+
+    <link rel="stylesheet" href="../node_modules/leaflet-fullscreen/dist/leaflet.fullscreen.css"/>
+</head>
+<body>
+<style>
+    #map-ui {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 100;
+    }
+
+    #map-ui ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    #map-ui a {
+        font-size: 13px;
+        background: #FFF;
+        color: #3C4E5A;
+        display: block;
+        margin: 0;
+        padding: 0;
+        border: 1px solid #BBB;
+        border-bottom-width: 0;
+        min-width: 138px;
+        padding: 10px;
+        text-decoration: none;
+    }
+
+    #map-ui a:hover {
+        background: #ECF5FA;
+    }
+
+    #map-ui li:last-child a {
+        border-bottom-width: 1px;
+        -webkit-border-radius: 0 0 3px 3px;
+        border-radius: 0 0 3px 3px;
+    }
+
+    #map-ui li:first-child a {
+        -webkit-border-radius: 3px 3px 0 0;
+        border-radius: 3px 3px 0 0;
+    }
+
+    #map-ui a.active {
+        background: #3887BE;
+        border-color: #3887BE;
+        border-top-color: #FFF;
+        color: #FFF;
+    }
+
+    #map-ui li:first-child a.active {
+        border-top-color: #3887BE;
+    }
+
+    #map .map-fullscreen {
+        background-color: #28353D;
+    }
+</style>
+<div id='map'>
+    <div id='map-ui'>
+        <ul>
+            <li><a href='#' id='zoomer' class='active'>Zoomer</a></li>
+            <li><a href='#' id='fullscreen'>Fullscreen</a></li>
+            <li><a href='#' id='attribution' class='active'>Attribution</a></li>
+            <li><a href='#' id='hash'>Hash</a></li>
+        </ul>
+    </div>
+</div>
+<!-- Include source for Leaflet Hash and Fullscreen plugins. -->
+<script src="leaflet-hash.js"></script>
+<script src="Leaflet.fullscreen.js"></script>
+<link rel="stylesheet" href="leaflet.fullscreen.css"/>
+<script>
+    var map = L.mapbox.map('map', 'examples.map-d40qac29', {legendControl: false});
+    var fullscreenControl = L.control.fullscreen();
+    var hash = L.hash();
+
+    // Connect check boxes to ui functions
+
+    function toggle(control, element) {
+        if (element.className === 'active') {
+            control.removeFrom(map);
+            element.className = '';
+        } else {
+            control.addTo(map);
+            element.className = 'active';
+        }
+    }
+
+    document.getElementById('zoomer').onclick = function() {
+        toggle(map.zoomControl, this);
+    };
+
+    document.getElementById('fullscreen').onclick = function() {
+        toggle(fullscreenControl, this);
+    };
+
+    document.getElementById('attribution').onclick = function() {
+        toggle(map.attributionControl, this);
+    };
+
+    document.getElementById('hash').onclick = function() {
+        if (this.className === 'active') {
+            hash.remove();
+            this.className = '';
+        } else {
+            hash.init(map);
+            this.className = 'active';
+        }
+    };
+</script>
+</body>
+</html>

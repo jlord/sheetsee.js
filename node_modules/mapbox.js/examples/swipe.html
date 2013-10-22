@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.js"></script>
+</head>
+
+<body>
+<style type='text/css'>
+    #swipe {
+        background: #fff;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        padding: 10px;
+        height: 30px;
+    }
+
+    #swipe #handle {
+        position: absolute;
+        height: 20px;
+        padding: 5px;
+        background: #aaa;
+        font-weight: bold;
+        border: 1px solid #333;
+        cursor: pointer;
+        -webkit-user-select: none;
+    }
+</style>
+<div id='swipe'>
+    <div id='handle'>drag</div>
+</div>
+<div id='map'></div>
+<script>
+    var map = L.mapbox.map('map', 'examples.map-a1dcgmtr');
+
+    var overlay = L.mapbox.tileLayer('examples.map-20v6611k')
+        .addTo(map);
+
+    map.setView([0, 0], 3);
+
+    var container = overlay.getContainer();
+    var handle = document.getElementById('handle'),
+        dragging = false;
+
+    handle.onmousedown = function() {
+        dragging = true;
+        return false;
+    };
+
+    document.onmouseup = function() {
+        dragging = false;
+    };
+
+    document.onmousemove = function(e) {
+        if (!dragging) return;
+        setDivide(map.mouseEventToLayerPoint(e).x);
+    };
+
+    function setDivide(x) {
+        x = Math.max(0, Math.min(x, map.getSize().x));
+        handle.style.left = (x - 20) + 'px';
+        container.style.clip = 'rect(0px ' + x + 'px 9999999px 0px)';
+    }
+
+    setDivide(300);
+</script>
+</body>
+</html>

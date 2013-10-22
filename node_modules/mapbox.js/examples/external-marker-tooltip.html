@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.js"></script>
+</head>
+<body>
+<style>
+    body { margin:0; padding:0; }
+    #map { position:absolute; top:0; bottom:0; right:300px; left:0; }
+    #alert {
+    position:absolute; top: 0; right: 0;
+    bottom: 0; width: 260px; background: white;
+    padding:20px; z-index: 1000;
+    }
+    h1 { margin-top:0; }
+</style>
+
+<div id='map'></div>
+<div id='alert'></div>
+
+<script>
+
+var map = L.mapbox.map('map', 'examples.map-zr0njcqy');
+
+var alert = document.getElementById('alert');
+
+map.markerLayer.on('click', function(e) {
+
+    // Pan to the clicked marker (optional)
+    map.panTo(e.layer.getLatLng());
+
+    // Prevent marker's tooltip from appearing on the map
+    e.layer.unbindPopup();
+
+    // Clear the alert box
+    alert.innerHTML = '';
+
+    // Add a header and paragraph, and fill them with content
+    var h1 = alert.appendChild(document.createElement('h1'));
+    var p = alert.appendChild(document.createElement('p'));
+
+    // Pull the title and description attributes of the feature.
+    // This can be customized this to pull other properties that you've set.
+    h1.innerHTML = e.layer.feature.properties.title;
+    p.innerHTML = e.layer.feature.properties.description;
+
+    // Prevent this event from bubbling down to the map and clearing
+    // the content
+    e.originalEvent.stopPropagation();
+    return false;
+});
+
+// Clear alert content when uesr clicks on a map area other than a marker
+map.on('click', function(e){
+    alert.innerHTML = '';
+});
+
+</script>
+</body>
+</html>

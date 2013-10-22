@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.js"></script>
+    <style>
+
+    /* Customize popup appearance for the 'dark' theme */
+
+    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+        background: #FFFF66;
+    }
+
+    </style>
+</head>
+<body>
+<div id='map' class='dark'></div>
+<script type='text/javascript'>
+    var map = L.mapbox.map('map', 'examples.map-y7l23tes')
+        .addControl(L.mapbox.geocoderControl('examples.map-y7l23tes'))
+        .setView([37.9, -77], 5);
+
+    var feature = {
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            coordinates: [-77, 37.9]
+        },
+        properties: {
+            title: 'Example Marker',
+            description: 'This is a single marker.'
+        }
+    };
+
+    map.markerLayer.setGeoJSON(feature);
+</script>
+</body>
+</html>

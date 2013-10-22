@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.js"></script>
+    <style>
+    #map {
+        height:300px;
+    }
+    </style>
+</head>
+<body>
+<div id='map'>
+</div>
+<script>
+    L.mapbox.map('map', 'tmcw.map-dggm3xph')
+        .addControl(L.mapbox.shareControl());
+</script>
+</body>
+</html>

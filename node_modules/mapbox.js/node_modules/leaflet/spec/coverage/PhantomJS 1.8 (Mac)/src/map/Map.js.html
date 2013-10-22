@@ -1,0 +1,2472 @@
+<!doctype html>
+<html>
+<head>
+    <title>Code coverage report for src/map/Map.js</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="content-language" content="en-gb">
+    
+        <link rel='stylesheet' href='../../prettify.css'>
+    
+    <style type='text/css'>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: "Helvetic Neue", Helvetica,Arial;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 10em;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: consolas, menlo, monaco, monospace;
+            margin: 0;
+            padding: 0;
+            line-height: 14px;
+            font-size: 14px;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+            xtext-decoration: line-through;
+        }
+        .missing-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { text-decoration: none; color: #000; }
+        div.coverage-summary a:visited { text-decoration: none; color: #333; }
+        div.coverage-summary a:hover { text-decoration: underline; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: url("http://yui.yahooapis.com/3.6.0/build/datatable-sort/assets/skins/sam/sort-arrow-sprite.png") no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+    </style>
+</head>
+<body>
+<div class='header medium'>
+    <h1>Code coverage report for <span class='entity'>src/map/Map.js</span></h1>
+    <h2>
+        
+        Statements: <span class='metric'>57.49% <small>(165 / 287)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class='metric'>45.9% <small>(84 / 183)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class='metric'>54.41% <small>(37 / 68)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class='metric'>59.35% <small>(165 / 278)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">src/map/</a> &#187; Map.js</div>
+</div>
+<div class='body'>
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">300</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">300</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">300</span>
+<span class="cline-any cline-yes">250</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">300</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">104</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">104</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">104</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">104</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29</span>
+<span class="cline-any cline-yes">29</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40</span>
+<span class="cline-any cline-yes">40</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">350</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">42</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">54</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">54</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">54</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">54</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">54</span>
+<span class="cline-any cline-yes">378</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">54</span>
+<span class="cline-any cline-yes">54</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">43</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*
+ * L.Map is the central class of the API - it is used to create a map.
+ */
+&nbsp;
+L.Map = L.Class.extend({
+&nbsp;
+	includes: L.Mixin.Events,
+&nbsp;
+	options: {
+		crs: L.CRS.EPSG3857,
+&nbsp;
+		/*
+		center: LatLng,
+		zoom: Number,
+		layers: Array,
+		*/
+&nbsp;
+		fadeAnimation: L.DomUtil.TRANSITION &amp;&amp; !L.Browser.android23,
+		trackResize: true,
+		markerZoomAnimation: L.DomUtil.TRANSITION &amp;&amp; L.Browser.any3d
+	},
+&nbsp;
+	initialize: function (id, options) { // (HTMLElement or String, Object)
+		options = L.setOptions(this, options);
+&nbsp;
+		this._initContainer(id);
+		this._initLayout();
+		this.callInitHooks();
+		this._initEvents();
+&nbsp;
+		<span class="missing-if-branch" title="if path not taken"" >I</span>if (options.maxBounds) {
+<span class="cstat-no" title="statement not covered" >			this.setMaxBounds(options.maxBounds);</span>
+		}
+&nbsp;
+		<span class="missing-if-branch" title="if path not taken"" >I</span>if (options.center &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >options.zoom !== undefined)</span> {
+<span class="cstat-no" title="statement not covered" >			this.setView(L.latLng(options.center), options.zoom, true);</span>
+		}
+&nbsp;
+		this._initLayers(options.layers);
+	},
+&nbsp;
+&nbsp;
+	// public methods that modify map state
+&nbsp;
+	// replaced by animation-powered implementation in Map.PanAnimation.js
+	setView: <span class="fstat-no" title="function not covered" >function (center, zoom) {</span>
+<span class="cstat-no" title="statement not covered" >		this._resetView(L.latLng(center), this._limitZoom(zoom));</span>
+<span class="cstat-no" title="statement not covered" >		return this;</span>
+	},
+&nbsp;
+	setZoom: <span class="fstat-no" title="function not covered" >function (zoom) {</span> // (Number)
+<span class="cstat-no" title="statement not covered" >		return this.setView(this.getCenter(), zoom);</span>
+	},
+&nbsp;
+	zoomIn: <span class="fstat-no" title="function not covered" >function (delta) {</span>
+<span class="cstat-no" title="statement not covered" >		return this.setZoom(this._zoom + (delta || 1));</span>
+	},
+&nbsp;
+	zoomOut: <span class="fstat-no" title="function not covered" >function (delta) {</span>
+<span class="cstat-no" title="statement not covered" >		return this.setZoom(this._zoom - (delta || 1));</span>
+	},
+&nbsp;
+	fitBounds: <span class="fstat-no" title="function not covered" >function (bounds) {</span> // (LatLngBounds)
+<span class="cstat-no" title="statement not covered" >		var zoom = this.getBoundsZoom(bounds);</span>
+<span class="cstat-no" title="statement not covered" >		return this.setView(L.latLngBounds(bounds).getCenter(), zoom);</span>
+	},
+&nbsp;
+	fitWorld: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >		var sw = new L.LatLng(-60, -170),</span>
+		    ne = new L.LatLng(85, 179);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		return this.fitBounds(new L.LatLngBounds(sw, ne));</span>
+	},
+&nbsp;
+	panTo: <span class="fstat-no" title="function not covered" >function (center) {</span> // (LatLng)
+<span class="cstat-no" title="statement not covered" >		return this.setView(center, this._zoom);</span>
+	},
+&nbsp;
+	panBy: <span class="fstat-no" title="function not covered" >function (offset) {</span> // (Point)
+		// replaced with animated panBy in Map.Animation.js
+<span class="cstat-no" title="statement not covered" >		this.fire('movestart');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		this._rawPanBy(L.point(offset));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		this.fire('move');</span>
+<span class="cstat-no" title="statement not covered" >		return this.fire('moveend');</span>
+	},
+&nbsp;
+	setMaxBounds: <span class="fstat-no" title="function not covered" >function (bounds) {</span>
+<span class="cstat-no" title="statement not covered" >		bounds = L.latLngBounds(bounds);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		this.options.maxBounds = bounds;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		if (!bounds) {</span>
+<span class="cstat-no" title="statement not covered" >			this._boundsMinZoom = null;</span>
+<span class="cstat-no" title="statement not covered" >			return this;</span>
+		}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		var minZoom = this.getBoundsZoom(bounds, true);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		this._boundsMinZoom = minZoom;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		if (this._loaded) {</span>
+<span class="cstat-no" title="statement not covered" >			if (this._zoom &lt; minZoom) {</span>
+<span class="cstat-no" title="statement not covered" >				this.setView(bounds.getCenter(), minZoom);</span>
+			} else {
+<span class="cstat-no" title="statement not covered" >				this.panInsideBounds(bounds);</span>
+			}
+		}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		return this;</span>
+	},
+&nbsp;
+	panInsideBounds: <span class="fstat-no" title="function not covered" >function (bounds) {</span>
+<span class="cstat-no" title="statement not covered" >		bounds = L.latLngBounds(bounds);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		var viewBounds = this.getBounds(),</span>
+		    viewSw = this.project(viewBounds.getSouthWest()),
+		    viewNe = this.project(viewBounds.getNorthEast()),
+		    sw = this.project(bounds.getSouthWest()),
+		    ne = this.project(bounds.getNorthEast()),
+		    dx = 0,
+		    dy = 0;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		if (viewNe.y &lt; ne.y) { // north</span>
+<span class="cstat-no" title="statement not covered" >			dy = ne.y - viewNe.y;</span>
+		}
+<span class="cstat-no" title="statement not covered" >		if (viewNe.x &gt; ne.x) { // east</span>
+<span class="cstat-no" title="statement not covered" >			dx = ne.x - viewNe.x;</span>
+		}
+<span class="cstat-no" title="statement not covered" >		if (viewSw.y &gt; sw.y) { // south</span>
+<span class="cstat-no" title="statement not covered" >			dy = sw.y - viewSw.y;</span>
+		}
+<span class="cstat-no" title="statement not covered" >		if (viewSw.x &lt; sw.x) { // west</span>
+<span class="cstat-no" title="statement not covered" >			dx = sw.x - viewSw.x;</span>
+		}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		return this.panBy(new L.Point(dx, dy, true));</span>
+	},
+&nbsp;
+	addLayer: function (layer) {
+		// TODO method is too big, refactor
+&nbsp;
+		var id = L.stamp(layer);
+&nbsp;
+		<span class="missing-if-branch" title="if path not taken"" >I</span>if (this._layers[id]) { <span class="cstat-no" title="statement not covered" >return this; </span>}
+&nbsp;
+		this._layers[id] = layer;
+&nbsp;
+		// TODO getMaxZoom, getMinZoom in ILayer (instead of options)
+		if (layer.options &amp;&amp; (!isNaN(layer.options.maxZoom) || !isNaN(layer.options.minZoom))) {
+			this._zoomBoundLayers[id] = layer;
+			this._updateZoomLevels();
+		}
+&nbsp;
+		// TODO looks ugly, refactor!!!
+		if (this.options.zoomAnimation &amp;&amp; L.TileLayer &amp;&amp; (layer instanceof L.TileLayer)) {
+			this._tileLayersNum++;
+            this._tileLayersToLoad++;
+            layer.on('load', this._onTileLayerLoad, this);
+		}
+&nbsp;
+		this.whenReady(function () {
+			layer.onAdd(this);
+			this.fire('layeradd', {layer: layer});
+		}, this);
+&nbsp;
+		return this;
+	},
+&nbsp;
+	removeLayer: function (layer) {
+		var id = L.stamp(layer);
+&nbsp;
+		<span class="missing-if-branch" title="if path not taken"" >I</span>if (!this._layers[id]) { <span class="cstat-no" title="statement not covered" >return; </span>}
+&nbsp;
+		layer.onRemove(this);
+&nbsp;
+		delete this._layers[id];
+		<span class="missing-if-branch" title="if path not taken"" >I</span>if (this._zoomBoundLayers[id]) {
+<span class="cstat-no" title="statement not covered" >			delete this._zoomBoundLayers[id];</span>
+<span class="cstat-no" title="statement not covered" >			this._updateZoomLevels();</span>
+		}
+&nbsp;
+		// TODO looks ugly, refactor
+		<span class="missing-if-branch" title="if path not taken"" >I</span>if (this.options.zoomAnimation &amp;&amp; L.TileLayer &amp;&amp; (layer instanceof L.TileLayer)) {
+<span class="cstat-no" title="statement not covered" >			this._tileLayersNum--;</span>
+<span class="cstat-no" title="statement not covered" >            this._tileLayersToLoad--;</span>
+<span class="cstat-no" title="statement not covered" >            layer.off('load', this._onTileLayerLoad, this);</span>
+		}
+&nbsp;
+		return this.fire('layerremove', {layer: layer});
+	},
+&nbsp;
+	hasLayer: function (layer) {
+		<span class="missing-if-branch" title="if path not taken"" >I</span>if (!layer) { <span class="cstat-no" title="statement not covered" >return false; </span>}
+&nbsp;
+		var id = L.stamp(layer);
+		return this._layers.hasOwnProperty(id);
+	},
+&nbsp;
+	eachLayer: function (method, context) {
+		for (var i in this._layers) {
+			<span class="missing-if-branch" title="else path not taken"" >E</span>if (this._layers.hasOwnProperty(i)) {
+				method.call(context, this._layers[i]);
+			}
+		}
+		return this;
+	},
+&nbsp;
+	invalidateSize: <span class="fstat-no" title="function not covered" >function (animate) {</span>
+<span class="cstat-no" title="statement not covered" >		var oldSize = this.getSize();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		this._sizeChanged = true;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		if (this.options.maxBounds) {</span>
+<span class="cstat-no" title="statement not covered" >			this.setMaxBounds(this.options.maxBounds);</span>
+		}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		if (!this._loaded) { <span class="cstat-no" title="statement not covered" >return this; </span>}</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		var offset = oldSize._subtract(this.getSize())._divideBy(2)._round();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		if ((offset.x !== 0) || (offset.y !== 0)) {</span>
+<span class="cstat-no" title="statement not covered" >			if (animate === true) {</span>
+<span class="cstat-no" title="statement not covered" >				this.panBy(offset);</span>
+			} else {
+<span class="cstat-no" title="statement not covered" >				this._rawPanBy(offset);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				this.fire('move');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				clearTimeout(this._sizeTimer);</span>
+<span class="cstat-no" title="statement not covered" >				this._sizeTimer = setTimeout(L.bind(this.fire, this, 'moveend'), 200);</span>
+			}
+		}
+<span class="cstat-no" title="statement not covered" >		return this;</span>
+	},
+&nbsp;
+	// TODO handler.addTo
+	addHandler: function (name, HandlerClass) {
+		<span class="missing-if-branch" title="if path not taken"" >I</span>if (!HandlerClass) { <span class="cstat-no" title="statement not covered" >return; </span>}
+&nbsp;
+		this[name] = new HandlerClass(this);
+&nbsp;
+		if (this.options[name]) {
+			this[name].enable();
+		}
+&nbsp;
+		return this;
+	},
+&nbsp;
+	remove: function () {
+		if (this._loaded) {
+			this.fire('unload');
+		}
+		this._initEvents('off');
+		delete this._container._leaflet;
+		return this;
+	},
+&nbsp;
+&nbsp;
+	// public methods for getting map state
+&nbsp;
+	getCenter: function () { // (Boolean) -&gt; LatLng
+		this._checkIfLoaded();
+&nbsp;
+		<span class="missing-if-branch" title="else path not taken"" >E</span>if (!this._moved()) {
+			return this._initialCenter;
+		}
+<span class="cstat-no" title="statement not covered" >		return this.layerPointToLatLng(this._getCenterLayerPoint());</span>
+	},
+&nbsp;
+	getZoom: function () {
+		return this._zoom;
+	},
+&nbsp;
+	getBounds: function () {
+		var bounds = this.getPixelBounds(),
+		    sw = this.unproject(bounds.getBottomLeft()),
+		    ne = this.unproject(bounds.getTopRight());
+&nbsp;
+		return new L.LatLngBounds(sw, ne);
+	},
+&nbsp;
+	getMinZoom: function () {
+		var z1 = this.options.minZoom || 0,
+		    z2 = this._layersMinZoom || 0,
+		    z3 = this._boundsMinZoom || 0;
+&nbsp;
+		return Math.max(z1, z2, z3);
+	},
+&nbsp;
+	getMaxZoom: function () {
+		var z1 = this.options.maxZoom === undefined ? Infinity : this.options.maxZoom,
+		    z2 = this._layersMaxZoom  === undefined ? Infinity : this._layersMaxZoom;
+&nbsp;
+		return Math.min(z1, z2);
+	},
+&nbsp;
+	getBoundsZoom: <span class="fstat-no" title="function not covered" >function (bounds, inside) {</span> // (LatLngBounds, Boolean) -&gt; Number
+<span class="cstat-no" title="statement not covered" >		bounds = L.latLngBounds(bounds);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		var size = this.getSize(),</span>
+		    zoom = this.options.minZoom || 0,
+		    maxZoom = this.getMaxZoom(),
+		    ne = bounds.getNorthEast(),
+		    sw = bounds.getSouthWest(),
+		    boundsSize,
+		    nePoint,
+		    swPoint,
+		    zoomNotFound = true;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		if (inside) {</span>
+<span class="cstat-no" title="statement not covered" >			zoom--;</span>
+		}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		do {</span>
+<span class="cstat-no" title="statement not covered" >			zoom++;</span>
+<span class="cstat-no" title="statement not covered" >			nePoint = this.project(ne, zoom);</span>
+<span class="cstat-no" title="statement not covered" >			swPoint = this.project(sw, zoom);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			boundsSize = new L.Point(</span>
+			        Math.abs(nePoint.x - swPoint.x),
+			        Math.abs(swPoint.y - nePoint.y));
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			if (!inside) {</span>
+<span class="cstat-no" title="statement not covered" >				zoomNotFound = boundsSize.x &lt;= size.x &amp;&amp; boundsSize.y &lt;= size.y;</span>
+			} else {
+<span class="cstat-no" title="statement not covered" >				zoomNotFound = boundsSize.x &lt; size.x || boundsSize.y &lt; size.y;</span>
+			}
+		} while (zoomNotFound &amp;&amp; zoom &lt;= maxZoom);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		if (zoomNotFound &amp;&amp; inside) {</span>
+<span class="cstat-no" title="statement not covered" >			return null;</span>
+		}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		return inside ? zoom : zoom - 1;</span>
+	},
+&nbsp;
+	getSize: function () {
+		if (!this._size || this._sizeChanged) {
+			this._size = new L.Point(
+				this._container.clientWidth,
+				this._container.clientHeight);
+&nbsp;
+			this._sizeChanged = false;
+		}
+		return this._size.clone();
+	},
+&nbsp;
+	getPixelBounds: function () {
+		var topLeftPoint = this._getTopLeftPoint();
+		return new L.Bounds(topLeftPoint, topLeftPoint.add(this.getSize()));
+	},
+&nbsp;
+	getPixelOrigin: function () {
+		this._checkIfLoaded();
+		return this._initialTopLeftPoint;
+	},
+&nbsp;
+	getPanes: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >		return this._panes;</span>
+	},
+&nbsp;
+	getContainer: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >		return this._container;</span>
+	},
+&nbsp;
+&nbsp;
+	// TODO replace with universal implementation after refactoring projections
+&nbsp;
+	getZoomScale: <span class="fstat-no" title="function not covered" >function (toZoom) {</span>
+<span class="cstat-no" title="statement not covered" >		var crs = this.options.crs;</span>
+<span class="cstat-no" title="statement not covered" >		return crs.scale(toZoom) / crs.scale(this._zoom);</span>
+	},
+&nbsp;
+	getScaleZoom: <span class="fstat-no" title="function not covered" >function (scale) {</span>
+<span class="cstat-no" title="statement not covered" >		return this._zoom + (Math.log(scale) / Math.LN2);</span>
+	},
+&nbsp;
+&nbsp;
+	// conversion methods
+&nbsp;
+	project: function (latlng, zoom) { // (LatLng[, Number]) -&gt; Point
+		zoom = zoom === undefined ? this._zoom : <span class="branch-1 cbranch-no" title="branch not covered" >zoom;</span>
+		return this.options.crs.latLngToPoint(L.latLng(latlng), zoom);
+	},
+&nbsp;
+	unproject: function (point, zoom) { // (Point[, Number]) -&gt; LatLng
+		zoom = zoom === undefined ? this._zoom : <span class="branch-1 cbranch-no" title="branch not covered" >zoom;</span>
+		return this.options.crs.pointToLatLng(L.point(point), zoom);
+	},
+&nbsp;
+	layerPointToLatLng: <span class="fstat-no" title="function not covered" >function (point) {</span> // (Point)
+<span class="cstat-no" title="statement not covered" >		var projectedPoint = L.point(point).add(this.getPixelOrigin());</span>
+<span class="cstat-no" title="statement not covered" >		return this.unproject(projectedPoint);</span>
+	},
+&nbsp;
+	latLngToLayerPoint: function (latlng) { // (LatLng)
+		var projectedPoint = this.project(L.latLng(latlng))._round();
+		return projectedPoint._subtract(this.getPixelOrigin());
+	},
+&nbsp;
+	containerPointToLayerPoint: <span class="fstat-no" title="function not covered" >function (point) {</span> // (Point)
+<span class="cstat-no" title="statement not covered" >		return L.point(point).subtract(this._getMapPanePos());</span>
+	},
+&nbsp;
+	layerPointToContainerPoint: <span class="fstat-no" title="function not covered" >function (point) {</span> // (Point)
+<span class="cstat-no" title="statement not covered" >		return L.point(point).add(this._getMapPanePos());</span>
+	},
+&nbsp;
+	containerPointToLatLng: <span class="fstat-no" title="function not covered" >function (point) {</span>
+<span class="cstat-no" title="statement not covered" >		var layerPoint = this.containerPointToLayerPoint(L.point(point));</span>
+<span class="cstat-no" title="statement not covered" >		return this.layerPointToLatLng(layerPoint);</span>
+	},
+&nbsp;
+	latLngToContainerPoint: <span class="fstat-no" title="function not covered" >function (latlng) {</span>
+<span class="cstat-no" title="statement not covered" >		return this.layerPointToContainerPoint(this.latLngToLayerPoint(L.latLng(latlng)));</span>
+	},
+&nbsp;
+	mouseEventToContainerPoint: <span class="fstat-no" title="function not covered" >function (e) {</span> // (MouseEvent)
+<span class="cstat-no" title="statement not covered" >		return L.DomEvent.getMousePosition(e, this._container);</span>
+	},
+&nbsp;
+	mouseEventToLayerPoint: <span class="fstat-no" title="function not covered" >function (e) {</span> // (MouseEvent)
+<span class="cstat-no" title="statement not covered" >		return this.containerPointToLayerPoint(this.mouseEventToContainerPoint(e));</span>
+	},
+&nbsp;
+	mouseEventToLatLng: <span class="fstat-no" title="function not covered" >function (e) {</span> // (MouseEvent)
+<span class="cstat-no" title="statement not covered" >		return this.layerPointToLatLng(this.mouseEventToLayerPoint(e));</span>
+	},
+&nbsp;
+&nbsp;
+	// map initialization methods
+&nbsp;
+	_initContainer: function (id) {
+		var container = this._container = L.DomUtil.get(id);
+&nbsp;
+		<span class="missing-if-branch" title="if path not taken"" >I</span>if (container._leaflet) {
+<span class="cstat-no" title="statement not covered" >			throw new Error("Map container is already initialized.");</span>
+		}
+&nbsp;
+		container._leaflet = true;
+	},
+&nbsp;
+	_initLayout: function () {
+		var container = this._container;
+&nbsp;
+		L.DomUtil.addClass(container, 'leaflet-container');
+&nbsp;
+		<span class="missing-if-branch" title="if path not taken"" >I</span>if (L.Browser.touch) {
+<span class="cstat-no" title="statement not covered" >			L.DomUtil.addClass(container, 'leaflet-touch');</span>
+		}
+&nbsp;
+		<span class="missing-if-branch" title="else path not taken"" >E</span>if (this.options.fadeAnimation) {
+			L.DomUtil.addClass(container, 'leaflet-fade-anim');
+		}
+&nbsp;
+		var position = L.DomUtil.getStyle(container, 'position');
+&nbsp;
+		<span class="missing-if-branch" title="else path not taken"" >E</span>if (position !== 'absolute' &amp;&amp; position !== 'relative' &amp;&amp; position !== 'fixed') {
+			container.style.position = 'relative';
+		}
+&nbsp;
+		this._initPanes();
+&nbsp;
+		<span class="missing-if-branch" title="else path not taken"" >E</span>if (this._initControlPos) {
+			this._initControlPos();
+		}
+	},
+&nbsp;
+	_initPanes: function () {
+		var panes = this._panes = {};
+&nbsp;
+		this._mapPane = panes.mapPane = this._createPane('leaflet-map-pane', this._container);
+&nbsp;
+		this._tilePane = panes.tilePane = this._createPane('leaflet-tile-pane', this._mapPane);
+		panes.objectsPane = this._createPane('leaflet-objects-pane', this._mapPane);
+		panes.shadowPane = this._createPane('leaflet-shadow-pane');
+		panes.overlayPane = this._createPane('leaflet-overlay-pane');
+		panes.markerPane = this._createPane('leaflet-marker-pane');
+		panes.popupPane = this._createPane('leaflet-popup-pane');
+&nbsp;
+		var zoomHide = ' leaflet-zoom-hide';
+&nbsp;
+		<span class="missing-if-branch" title="else path not taken"" >E</span>if (!this.options.markerZoomAnimation) {
+			L.DomUtil.addClass(panes.markerPane, zoomHide);
+			L.DomUtil.addClass(panes.shadowPane, zoomHide);
+			L.DomUtil.addClass(panes.popupPane, zoomHide);
+		}
+	},
+&nbsp;
+	_createPane: function (className, container) {
+		return L.DomUtil.create('div', className, container || this._panes.objectsPane);
+	},
+&nbsp;
+	_initLayers: function (layers) {
+		layers = layers ? <span class="branch-0 cbranch-no" title="branch not covered" >(L.Util.isArray(layers) ? layers : [layers]) </span>: [];
+&nbsp;
+		this._layers = {};
+		this._zoomBoundLayers = {};
+		this._tileLayersNum = 0;
+&nbsp;
+		var i, len;
+&nbsp;
+		for (i = 0, len = layers.length; i &lt; len; i++) {
+<span class="cstat-no" title="statement not covered" >			this.addLayer(layers[i]);</span>
+		}
+	},
+&nbsp;
+&nbsp;
+	// private methods that modify map state
+&nbsp;
+	_resetView: function (center, zoom, preserveMapOffset, afterZoomAnim) {
+&nbsp;
+		var zoomChanged = (this._zoom !== zoom);
+&nbsp;
+		<span class="missing-if-branch" title="else path not taken"" >E</span>if (!afterZoomAnim) {
+			this.fire('movestart');
+&nbsp;
+			<span class="missing-if-branch" title="else path not taken"" >E</span>if (zoomChanged) {
+				this.fire('zoomstart');
+			}
+		}
+&nbsp;
+		this._zoom = zoom;
+		this._initialCenter = center;
+&nbsp;
+		this._initialTopLeftPoint = this._getNewTopLeftPoint(center);
+&nbsp;
+		<span class="missing-if-branch" title="else path not taken"" >E</span>if (!preserveMapOffset) {
+			L.DomUtil.setPosition(this._mapPane, new L.Point(0, 0));
+		} else {
+<span class="cstat-no" title="statement not covered" >			this._initialTopLeftPoint._add(this._getMapPanePos());</span>
+		}
+&nbsp;
+		this._tileLayersToLoad = this._tileLayersNum;
+&nbsp;
+		var loading = !this._loaded;
+		this._loaded = true;
+&nbsp;
+		this.fire('viewreset', {hard: !preserveMapOffset});
+&nbsp;
+		this.fire('move');
+&nbsp;
+		<span class="missing-if-branch" title="else path not taken"" >E</span>if (zoomChanged || <span class="branch-1 cbranch-no" title="branch not covered" >afterZoomAnim)</span> {
+			this.fire('zoomend');
+		}
+&nbsp;
+		this.fire('moveend', {hard: !preserveMapOffset});
+&nbsp;
+		<span class="missing-if-branch" title="else path not taken"" >E</span>if (loading) {
+			this.fire('load');
+		}
+	},
+&nbsp;
+	_rawPanBy: <span class="fstat-no" title="function not covered" >function (offset) {</span>
+<span class="cstat-no" title="statement not covered" >		L.DomUtil.setPosition(this._mapPane, this._getMapPanePos().subtract(offset));</span>
+	},
+&nbsp;
+	_getZoomSpan: function () {
+		return this.getMaxZoom() - this.getMinZoom();
+	},
+&nbsp;
+	_updateZoomLevels: function () {
+		var i,
+			minZoom = Infinity,
+			maxZoom = -Infinity,
+			oldZoomSpan = this._getZoomSpan();
+&nbsp;
+		for (i in this._zoomBoundLayers) {
+			<span class="missing-if-branch" title="else path not taken"" >E</span>if (this._zoomBoundLayers.hasOwnProperty(i)) {
+				var layer = this._zoomBoundLayers[i];
+				<span class="missing-if-branch" title="else path not taken"" >E</span>if (!isNaN(layer.options.minZoom)) {
+					minZoom = Math.min(minZoom, layer.options.minZoom);
+				}
+				<span class="missing-if-branch" title="else path not taken"" >E</span>if (!isNaN(layer.options.maxZoom)) {
+					maxZoom = Math.max(maxZoom, layer.options.maxZoom);
+				}
+			}
+		}
+&nbsp;
+		<span class="missing-if-branch" title="if path not taken"" >I</span>if (i === undefined) { // we have no tilelayers
+<span class="cstat-no" title="statement not covered" >			this._layersMaxZoom = this._layersMinZoom = undefined;</span>
+		} else {
+			this._layersMaxZoom = maxZoom;
+			this._layersMinZoom = minZoom;
+		}
+&nbsp;
+		if (oldZoomSpan !== this._getZoomSpan()) {
+			this.fire("zoomlevelschange");
+		}
+	},
+&nbsp;
+	_checkIfLoaded: function () {
+		if (!this._loaded) {
+			throw new Error('Set map center and zoom first.');
+		}
+	},
+&nbsp;
+	// map events
+&nbsp;
+	_initEvents: function (onOff) {
+		<span class="missing-if-branch" title="if path not taken"" >I</span>if (!L.DomEvent) { <span class="cstat-no" title="statement not covered" >return; </span>}
+&nbsp;
+		onOff = onOff || 'on';
+&nbsp;
+		L.DomEvent[onOff](this._container, 'click', this._onMouseClick, this);
+&nbsp;
+		var events = ['dblclick', 'mousedown', 'mouseup', 'mouseenter',
+		              'mouseleave', 'mousemove', 'contextmenu'],
+		    i, len;
+&nbsp;
+		for (i = 0, len = events.length; i &lt; len; i++) {
+			L.DomEvent[onOff](this._container, events[i], this._fireMouseEvent, this);
+		}
+&nbsp;
+		<span class="missing-if-branch" title="else path not taken"" >E</span>if (this.options.trackResize) {
+			L.DomEvent[onOff](window, 'resize', this._onResize, this);
+		}
+	},
+&nbsp;
+	_onResize: function () {
+		L.Util.cancelAnimFrame(this._resizeRequest);
+		this._resizeRequest = L.Util.requestAnimFrame(
+		        this.invalidateSize, this, false, this._container);
+	},
+&nbsp;
+	_onMouseClick: <span class="fstat-no" title="function not covered" >function (e) {</span>
+<span class="cstat-no" title="statement not covered" >		if (!this._loaded || (this.dragging &amp;&amp; this.dragging.moved())) { <span class="cstat-no" title="statement not covered" >return; </span>}</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		this.fire('preclick');</span>
+<span class="cstat-no" title="statement not covered" >		this._fireMouseEvent(e);</span>
+	},
+&nbsp;
+	_fireMouseEvent: <span class="fstat-no" title="function not covered" >function (e) {</span>
+<span class="cstat-no" title="statement not covered" >		if (!this._loaded) { <span class="cstat-no" title="statement not covered" >return; </span>}</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		var type = e.type;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		type = (type === 'mouseenter' ? 'mouseover' : (type === 'mouseleave' ? 'mouseout' : type));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		if (!this.hasEventListeners(type)) { <span class="cstat-no" title="statement not covered" >return; </span>}</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		if (type === 'contextmenu') {</span>
+<span class="cstat-no" title="statement not covered" >			L.DomEvent.preventDefault(e);</span>
+		}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		var containerPoint = this.mouseEventToContainerPoint(e),</span>
+		    layerPoint = this.containerPointToLayerPoint(containerPoint),
+		    latlng = this.layerPointToLatLng(layerPoint);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		this.fire(type, {</span>
+			latlng: latlng,
+			layerPoint: layerPoint,
+			containerPoint: containerPoint,
+			originalEvent: e
+		});
+	},
+&nbsp;
+	_onTileLayerLoad: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >		this._tileLayersToLoad--;</span>
+<span class="cstat-no" title="statement not covered" >		if (this._tileLayersNum &amp;&amp; !this._tileLayersToLoad) {</span>
+<span class="cstat-no" title="statement not covered" >			this.fire('tilelayersload');</span>
+		}
+	},
+&nbsp;
+	whenReady: function (callback, context) {
+		if (this._loaded) {
+			callback.call(context || this, this);
+		} else {
+			this.on('load', callback, context);
+		}
+		return this;
+	},
+&nbsp;
+&nbsp;
+	// private methods for getting map state
+&nbsp;
+	_getMapPanePos: function () {
+		return L.DomUtil.getPosition(this._mapPane);
+	},
+&nbsp;
+	_moved: function () {
+		var pos = this._getMapPanePos();
+		return pos &amp;&amp; !pos.equals(new L.Point(0, 0));
+	},
+&nbsp;
+	_getTopLeftPoint: function () {
+		return this.getPixelOrigin().subtract(this._getMapPanePos());
+	},
+&nbsp;
+	_getNewTopLeftPoint: function (center, zoom) {
+		var viewHalf = this.getSize()._divideBy(2);
+		// TODO round on display, not calculation to increase precision?
+		return this.project(center, zoom)._subtract(viewHalf)._round();
+	},
+&nbsp;
+	_latLngToNewLayerPoint: <span class="fstat-no" title="function not covered" >function (latlng, newZoom, newCenter) {</span>
+<span class="cstat-no" title="statement not covered" >		var topLeft = this._getNewTopLeftPoint(newCenter, newZoom).add(this._getMapPanePos());</span>
+<span class="cstat-no" title="statement not covered" >		return this.project(latlng, newZoom)._subtract(topLeft);</span>
+	},
+&nbsp;
+	// layer point of the current center
+	_getCenterLayerPoint: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >		return this.containerPointToLayerPoint(this.getSize()._divideBy(2));</span>
+	},
+&nbsp;
+	// offset of the specified place to the current center in pixels
+	_getCenterOffset: <span class="fstat-no" title="function not covered" >function (latlng) {</span>
+<span class="cstat-no" title="statement not covered" >		return this.latLngToLayerPoint(latlng).subtract(this._getCenterLayerPoint());</span>
+	},
+&nbsp;
+	_limitZoom: function (zoom) {
+		var min = this.getMinZoom(),
+		    max = this.getMaxZoom();
+&nbsp;
+		return Math.max(min, Math.min(max, zoom));
+	}
+});
+&nbsp;
+L.map = function (id, options) {
+	return new L.Map(id, options);
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class='footer'>
+    <div class='meta'>Generated by <a href='http://istanbul-js.org' target='_blank'>istanbul</a> at Thu Apr 04 2013 12:16:35 GMT+0300 (EEST)</div>
+</div>
+</body>
+
+<script src="../../prettify.js"></script>
+
+<script src="http://yui.yahooapis.com/3.6.0/build/yui/yui-min.js"></script>
+<script>
+
+    YUI().use('datatable', function (Y) {
+
+        var formatters = {
+          pct: function (o) {
+              o.className += o.record.get('classes')[o.column.key];
+              try {
+                  return o.value.toFixed(2) + '%';
+              } catch (ex) { return o.value + '%'; }
+          },
+          html: function (o) {
+              o.className += o.record.get('classes')[o.column.key];
+              return o.record.get(o.column.key + '_html');
+          }
+        },
+          defaultFormatter = function (o) {
+              o.className += o.record.get('classes')[o.column.key];
+              return o.value;
+          };
+
+        function getColumns(theadNode) {
+            var colNodes = theadNode.all('tr th'),
+                cols = [],
+                col;
+            colNodes.each(function (colNode) {
+                col = {
+                    key: colNode.getAttribute('data-col'),
+                    label: colNode.get('innerHTML') || ' ',
+                    sortable: !colNode.getAttribute('data-nosort'),
+                    className: colNode.getAttribute('class'),
+                    type: colNode.getAttribute('data-type'),
+                    allowHTML: colNode.getAttribute('data-html') === 'true' || colNode.getAttribute('data-fmt') === 'html'
+                };
+                col.formatter = formatters[colNode.getAttribute('data-fmt')] || defaultFormatter;
+                cols.push(col);
+            });
+            return cols;
+        }
+
+        function getRowData(trNode, cols) {
+            var tdNodes = trNode.all('td'),
+                    i,
+                    row = { classes: {} },
+                    node,
+                    name;
+            for (i = 0; i < cols.length; i += 1) {
+                name = cols[i].key;
+                node = tdNodes.item(i);
+                row[name] = node.getAttribute('data-value') || node.get('innerHTML');
+                row[name + '_html'] = node.get('innerHTML');
+                row.classes[name] = node.getAttribute('class');
+                //Y.log('Name: ' + name + '; Value: ' + row[name]);
+                if (cols[i].type === 'number') { row[name] = row[name] * 1; }
+            }
+            //Y.log(row);
+            return row;
+        }
+
+        function getData(tbodyNode, cols) {
+            var data = [];
+            tbodyNode.all('tr').each(function (trNode) {
+                data.push(getRowData(trNode, cols));
+            });
+            return data;
+        }
+
+        function replaceTable(node) {
+            if (!node) { return; }
+            var cols = getColumns(node.one('thead')),
+                data = getData(node.one('tbody'), cols),
+                table,
+                parent = node.get('parentNode');
+
+            table = new Y.DataTable({
+                columns: cols,
+                data: data,
+                sortBy: 'file'
+            });
+            parent.set('innerHTML', '');
+            table.render(parent);
+        }
+
+        Y.on('domready', function () {
+            replaceTable(Y.one('div.coverage-summary table'));
+            if (typeof prettyPrint === 'function') {
+                prettyPrint();
+            }
+        });
+    });
+</script>
+</html>

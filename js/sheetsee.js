@@ -70,13 +70,85 @@ function sendToSort(event) {
 
 $(document).on("click", ".tHeader", sendToSort)
 
-function makeTable(data, targetDiv) {
+function makeTable(data, targetDiv, showRows) {
+  if (!showRows) table(data, targetDiv)
+  var allRows = data.length
+  var totalPages = allRows / showRows
+  var pageno = 0
+  var pageRanges = rowRanges(allRows, showRows)
+  console.log("pageRanges", pageRanges)
+  var currentPage = pageno + 1
+  var currentStart = pageRanges[pageno][currentPage].start
+  var currentEnd = pageRanges[pageno][currentPage].end
+  console.log("current Page", currentPage, "start", currentStart, "end", currentEnd)
+  $(targetDiv).append("<span pageno='" + currentPage + '"' + "class='table-pagination'>Showing page " 
+    + currentPage + " of " + totalPages + "<a class='pagination-pre'> Previous</a> <a class='pagination-next'>Next</a> </p>" )  
+}
+
+function rowRanges(allRows, showRows) {
+  var pages = allRows / showRows
+  var rowRanges = []
+  for (var i = 1; i <=   pages; i++) { 
+    var start = (i * showRows) - 1
+    if (i === 1) var start = 0
+    var end = i * showRows
+    var range = {}
+    range[i] = {"start": start, "end": end}
+    rowRanges.push(range)
+  }
+  console.log("ranges!", rowRanges)
+  return rowRanges
+}
+
+function table(data, targetDiv) {
   var templateID = targetDiv.replace("#", "")
   var tableContents = ich[templateID]({
     rows: data
   })
   $(targetDiv).html(tableContents)
 }
+
+$(".pagination-next").on("click", function() { 
+  console.log("clicked next!")
+  var currentPage = $(".table-pagination").attr("pageno")
+  var nextPage = currentPage + 1
+  pageno = nextPage
+  var lastRange = currentPage * pagination
+  var displayRange = pageno
+})
+
+// function makeTable(data, targetDiv, pagination) {
+//   if (!pagination) var showRows = data.length
+//   var showRows = pagination
+//   var allRows = data.length
+//   var pages = allRows / showRows
+//   var pageno = 1
+//   console.log("show rows", showRows, "allRows", allRows, "pages", pages)
+//   var templateID = targetDiv.replace("#", "")
+//   var tableContents = ich[templateID]({
+//     rows: data.slice(0, showRows)
+//   })
+//   $(targetDiv).html(tableContents)
+//   if (pagination) {
+//     $(targetDiv).append("<span pageno='1' class='table-pagination'>Showing " 
+//       + showRows + "of " + allRows + "<a class='pagination-pre'> Previous</a> <a class='pagination-next'>Next</a> </p>" )
+//   }
+//   if (pageno === 1) $(".pagination-pre").css("display", "none")
+//   $(".pagination-pre").on("click", function() { 
+//     console.log("clicked!")
+//     var currentPage = $(".table-pagination").attr("pageno")
+//     var previousPage = currentPage - 1
+//     pageno = previousPage
+//   })
+//   $(".pagination-next").on("click", function() { 
+//     console.log("clicked next!")
+//     var currentPage = $(".table-pagination").attr("pageno")
+//     var nextPage = currentPage + 1
+//     pageno = nextPage
+//     var lastRange = currentPage * pagination
+//     var displayRange = pageno
+//   })
+// }
 
 // // // // // // // // // // // // // // // // // // // // // // // //  // //
 //

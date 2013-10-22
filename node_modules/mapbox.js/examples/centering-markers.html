@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.js"></script>
+</head>
+<body>
+<div id='map'></div>
+<script type='text/javascript'>
+    var map = L.mapbox.map('map', 'examples.map-zr0njcqy');
+
+    map.markerLayer.on('click', function(e) {
+        map.panTo(e.layer.getLatLng());
+    });
+</script>
+</body>
+</html>

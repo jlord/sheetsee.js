@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.js"></script>
+</head>
+<body>
+<div id='map'></div>
+<script type='text/javascript'>
+    var map = L.mapbox.map('map', 'examples.map-zr0njcqy');
+
+    // Open popup when user mouses over a marker
+    map.markerLayer.on('mouseover', function(e) {
+        if (e.layer._closeTimeout) {
+            window.clearTimeout(e.layer._closeTimeout);
+            e.layer._closeTimeout = null;
+        }
+        e.layer.openPopup();
+    });
+
+    // Hide popup when user's cursor leaves marker.
+    // We add a timeout to make it a little more visually graceful
+    // in case of rapid cursor movement.
+    map.markerLayer.on('mouseout', function(e) {
+        e.layer._closeTimeout = window.setTimeout(function() {
+            e.layer.closePopup();
+        }, 300);
+    });
+</script>
+</body>
+</html>

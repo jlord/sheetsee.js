@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.js"></script>
+</head>
+<body>
+<style>
+    #filters {
+        position: absolute;
+        top: 75px;
+        left: 10px;
+        z-index: 100;
+        padding: 5px;
+        background: #fff;
+    }
+
+    #filters ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+</style>
+<div id='map-ui'>
+    <form id='filters'>
+        <ul id='options'>
+            <li><input type='checkbox' checked=checked class='filter'
+                       name='filter' id='fast-food' value='fast-food'/><label for='fast-food'>fast-food</label></li>
+            <li><input type='checkbox' checked=checked class='filter'
+                       name='filter' id='bicycle' value='bicycle'/><label for='bicycle'>bicycle</label></li>
+            <li><input type='checkbox' checked=checked class='filter'
+                       name='filter' id='bar' value='bar'/><label for='bar'>bar</label></li>
+        </ul>
+    </form>
+</div>
+<div id='map'></div>
+<script>
+    var map = L.mapbox.map('map', 'examples.map-zr0njcqy');
+
+    var filters = document.getElementById('filters');
+    var checkboxes = document.getElementsByClassName('filter');
+
+    function change() {
+        // Find all checkboxes that are checked and build a list of their values
+        var on = [];
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) on.push(checkboxes[i].value);
+        }
+        // The filter function takes a GeoJSON feature object
+        // and returns true to show it or false to hide it.
+        map.markerLayer.setFilter(function (f) {
+            // check each marker's symbol to see if its value is in the list
+            // of symbols that should be on, stored in the 'on' array
+            return on.indexOf(f.properties['marker-symbol']) !== -1;
+        });
+        return false;
+    }
+
+    // When the form is touched, re-filter markers
+    filters.onchange = change;
+
+    // Initially filter the markers
+    change();
+</script>
+</body>
+</html>

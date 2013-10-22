@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.js"></script>
+</head>
+<body>
+<style>
+    #map-ui {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 100;
+    }
+</style>
+<div id='map'></div>
+<script type='text/javascript'>
+    L.mapbox.config.FORCE_HTTPS = true;
+    var map = L.mapbox.map('map', 'examples.map-zr0njcqy');
+</script>
+</body>
+</html>

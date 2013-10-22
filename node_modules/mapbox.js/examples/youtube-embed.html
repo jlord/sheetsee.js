@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.uncompressed.js"></script>
+</head>
+<body>
+<style>
+.map-tooltip {
+    width:440px !important;
+    max-width:440px !important;
+}
+</style>
+<div id='map'></div>
+<script type='text/javascript'>
+    var map = L.mapbox.map('map', 'examples.youtube-embed');
+
+    // This line redefines part of the underlying code which
+    // sanitizes HTML from MapBox Hosting. The original code is there
+    // for the protection of sites, so that malicious map-creators
+    // can't add cross-site scripting attacks to sites that use their
+    // maps.
+    // Turning it off allows any content to be available in tooltips.
+    // It's recommended to only with trusted maps.
+    map.gridControl.options.sanitizer = function(x) { return x; };
+</script>
+</body>
+</html>

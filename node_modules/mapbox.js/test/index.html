@@ -1,0 +1,53 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Mocha Tests</title>
+  <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
+</head>
+<body>
+  <div id="mocha"></div>
+  <script src="../node_modules/expect.js/expect.js"></script>
+  <script src="../node_modules/mocha/mocha.js"></script>
+  <script src="../node_modules/happen/src/happen.js"></script>
+
+  <script src="../node_modules/sinon/pkg/sinon-server-1.7.3.js"></script>
+
+  <!--[if IE]>
+  <script src="../node_modules/sinon/pkg/sinon-ie-1.7.3.js"></script>
+  <![endif]-->
+
+  <script src="../ext/sanitizer/html-sanitizer-bundle.js"></script>
+  <script src="../ext/sanitizer/html-sanitizer-loosen.js"></script>
+  <script src="../node_modules/Leaflet/dist/leaflet-src.js"></script>
+  <script src="../node_modules/leaflet-hash/leaflet-hash.js"></script>
+
+  <script src="../dist/mapbox.uncompressed.js"></script>
+  <script src="../dist/mapbox.private.js"></script>
+
+  <script>
+    mocha.setup('bdd');
+  </script>
+  <script src="util.js"></script>
+
+  <script src="spec/marker.js"></script>
+  <script src="spec/map.js"></script>
+  <script src="spec/tile_layer.js"></script>
+  <script src="spec/marker_layer.js"></script>
+  <script src="spec/legend_control.js"></script>
+  <script src="spec/geocoder.js"></script>
+  <script src="spec/geocoder_control.js"></script>
+  <script src="spec/grid_layer.js"></script>
+  <script src="spec/grid_control.js"></script>
+  <script src="spec/sanitize.js"></script>
+  <script src="spec/template.js"></script>
+  <script src="spec/url.js"></script>
+  <script src="spec/util.js"></script>
+  <script src="spec/grid.js"></script>
+  <script src="spec/request.js"></script>
+  <script src="spec/share_control.js"></script>
+
+  <script>
+    (window.mochaPhantomJS || window.mocha).run();
+  </script>
+</body>
+</html>

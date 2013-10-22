@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.js"></script>
+</head>
+<body>
+<div id='z'>
+    <div id='zoom-bar' class='dragdealer'>
+        <div id='handle' class="handle">0</div>
+    </div>
+</div>
+<div id='map'>
+</div>
+<!-- if you plan to use this example, download drag dealer from
+https://code.google.com/p/dragdealer/ instead of hotlinking it like this -->
+<script src='http://dragdealer.googlecode.com/svn/tags/0.9.5/dragdealer.js'></script>
+<style>
+    #z {
+        top: 10px;
+        left: 80px;
+        position: absolute;
+        z-index: 999;
+    }
+
+    #zoom-bar {
+        width: 200px;
+        position: relative;
+        height: 30px;
+        background: #FFF;
+        border: 1px solid #BBB;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+    }
+
+    .dragdealer .handle {
+        position: absolute;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        background: #222;
+        color: #fff;
+        font-weight: bold;
+        line-height: 30px;
+        text-align: center;
+    }
+</style>
+<script>
+    var map = L.mapbox.map('map', 'examples.map-vyofok3q');
+
+    var zooms = 17;
+    var handle = document.getElementById('handle');
+
+    // Configure Dragdealer to update the map zoom
+    var zoom_bar = new Dragdealer('zoom-bar', {
+        steps: zooms,
+        snap: true,
+        callback: function (x, y) {
+            var z = x * (zooms - 1);
+            map.setZoom(z);
+            handle.innerHTML = z;
+        }
+    });
+
+    // Round zoom so that numbers in the bar look presentable.
+    map.on('zoomend', function () {
+        var z = Math.round(map.getZoom());
+        zoom_bar.setValue(z / 16);
+        handle.innerHTML = z;
+    });
+</script>
+</body>
+</html>

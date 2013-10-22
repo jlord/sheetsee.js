@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.js"></script>
+</head>
+<body>
+<div id='map'></div>
+<script>
+    var map = L.mapbox.map('map', 'examples.map-vyofok3q');
+
+    // example.geojson is a well-formed GeoJSON document. For this
+    // example, the file must be on the same domain name as the map,
+    // or loading will not work due to cross-domain request restrictions
+    map.markerLayer.loadURL('example.geojson');
+</script>
+</body>
+</html>

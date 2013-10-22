@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.js"></script>
+</head>
+<body>
+<div id='map'></div>
+<script type='text/javascript'>
+    var map = L.mapbox.map('map', 'examples.map-20v6611k');
+
+    var marker = L.marker([0, 0], {
+        icon: L.mapbox.marker.icon({
+            type: 'Feature',
+            geometry: {
+                type: 'Point',
+                coordinates: [-77, 37.9]
+            },
+            properties: { }
+        })
+    });
+
+
+    var t = 0;
+    window.setInterval(function() {
+        // making a lissajous curve here just for fun. this isn't necessary
+        // Reassign the features
+        marker.setLatLng(L.latLng(
+            Math.cos(t * 0.5) * 50,
+            Math.sin(t) * 50));
+        t += 0.1;
+    }, 50);
+
+    marker.addTo(map);
+</script>
+</body>
+</html>

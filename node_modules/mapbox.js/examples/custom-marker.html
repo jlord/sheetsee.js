@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.js"></script>
+</head>
+<body>
+<div id='map'></div>
+<script type='text/javascript'>
+    var map = L.mapbox.map('map', 'examples.map-4l7djmvo')
+        .setView([40, -74.50], 9);
+
+    // Define two unique marker icons
+    // http://leafletjs.com/reference.html#icon
+
+    L.marker([40, -75.00], {
+        icon: L.icon({
+            iconUrl: 'http://placekitten.com/50/50',
+            iconSize:     [50, 50], // size of the icon
+            iconAnchor:   [25, 25], // point of the icon which will correspond to marker's location
+            popupAnchor:  [0, -25]  // point from which the popup should open relative to the iconAnchor
+        })
+     }).addTo(map);
+
+    L.marker([40, -74.00], {
+        icon: L.icon({
+            iconUrl: 'http://placekitten.com/100/100',
+            iconSize:     [100, 100],
+            iconAnchor:   [50, 50],
+            popupAnchor:  [0, -55]
+        })
+     }).addTo(map);
+</script>
+</body>
+</html>

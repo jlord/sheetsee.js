@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.js"></script>
+</head>
+<body>
+<div id='map'></div>
+<script type='text/javascript'>
+
+    var map = L.mapbox.map('map', 'tmcw.map-5hafkxww');
+
+    var geoJson = {
+        type: 'FeatureCollection',
+        features: [{
+            type: 'Feature',
+            properties: {
+                title: 'foo',
+                'marker-color': '#f00',
+                'marker-size': 'large'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-77.0203, 38.8995]
+            }
+        }]
+    };
+
+    map.markerLayer.setGeoJSON(geoJson);
+
+</script>
+</body>
+</html>

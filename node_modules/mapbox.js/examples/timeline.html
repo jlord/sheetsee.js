@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.js"></script>
+</head>
+<body>
+<style>
+    #sidebar {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        background: #fff;
+        z-index: 999;
+        overflow: auto;
+        opacity: 0.6;
+    }
+
+    #sidebar:hover {
+        opacity: 1;
+    }
+
+    #timeline {
+        padding: 10px;
+    }
+
+    #timeline a {
+        font-size: 10px;
+        text-decoration: none;
+    }
+
+    #timeline #controls {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+
+    #timeline #controls a {
+        font-size: 20px;
+        color: #DC1438;
+        margin-left: 10px;
+        cursor: pointer;
+    }
+    #timeline #controls a:hover {
+        text-decoration: underline;
+    }
+
+    a.year-active {
+        color: #DC1438;
+    }
+</style>
+
+<div id='sidebar'>
+    <div id='timeline'>
+        <div id='controls'></div>
+        <h2>US Earthquakes <small>from the U.S. Geological Survey</small></h2>
+    </div>
+</div>
+<div id='map'></div>
+
+<!-- We're using jQuery to load the GeoJSON, but you can use anything you want -->
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+<script type='text/javascript'>
+    var map = L.mapbox.map('map', 'examples.map-0l53fhk2')
+        .setView([40, -130], 3);
+
+    // We are using jQuery to get earthquakes.geojson, but you could use alternatives
+    $.getJSON('earthquakes.geojson', function(geojson) {
+
+        var markerLayer = L.mapbox.markerLayer(geojson);
+        markerLayer.setFilter(function() { return false; })
+            .addTo(map);
+
+        // A closure for clicking years. You give it a year, and it returns a function
+        // that, when run, clicks that year. It's this way in order to be used as both an
+        // event handler and run manually.
+        function click_year(y) {
+            return function() {
+                var active = document.getElementsByClassName('year-active');
+                if (active.length) active[0].className = '';
+                document.getElementById('y' + y).className = 'year-active';
+                markerLayer.setFilter(function(f) {
+                    return f.properties.year == y;
+                });
+                return false;
+            };
+        }
+
+        var years = {},
+            features = geojson.features,
+            yearlist = [],
+            year_links = [];
+
+        for (var i = 0; i < features.length; i++) {
+            years[features[i].properties.year] = true;
+        }
+
+        for (var y in years) yearlist.push(y);
+        yearlist.sort();
+
+        for (var i = 0; i < yearlist.length; i++) {
+            var a = timeline.appendChild(document.createElement('a'));
+            a.innerHTML = yearlist[i] + ' ';
+            a.id = 'y' + yearlist[i];
+            a.href = '#';
+            a.onclick = click_year(yearlist[i]);
+        }
+
+        var stop = controls.appendChild(document.createElement('a')),
+            play = controls.appendChild(document.createElement('a')),
+            playStep;
+
+        stop.innerHTML = 'STOP ■';
+        play.innerHTML = 'PLAY ▶';
+
+        play.onclick = function() {
+            var step = 0;
+            // Every quarter-second (250 ms) increment the year
+            // we're looking at and show a new year. When
+            // the end is reached, call clearInterval to stop
+            // the animation.
+            playStep = window.setInterval(function() {
+                if (step < yearlist.length) {
+                    click_year(yearlist[step])();
+                    step++;
+                } else {
+                    window.clearInterval(playStep);
+                }
+            }, 250);
+        };
+
+        stop.onclick = function() {
+            window.clearInterval(playStep);
+        };
+
+        click_year(2001)();
+
+    });
+</script>
+</body>
+</html>

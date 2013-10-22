@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src='http://api.tiles.mapbox.com/mapbox.js/v1.0.0/mapbox.js'></script>
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.0/mapbox.css' rel='stylesheet' />
+    <!--[if lte IE 8]>
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.0/mapbox.ie.css' rel='stylesheet' >
+    <![endif]-->
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+<div id='map'></div>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type='text/javascript'>
+
+    var map = L.mapbox.map('map');
+    var tiles = L.mapbox.tileLayer('examples.map-4l7djmvo');
+
+    $.getJSON('example2.geojson', function(geojson) {
+        var layer = L.geoJson(geojson, {
+            style: getStyle,
+            onEachFeature: bindPopup
+        });
+        map.fitBounds(layer.getBounds()).addLayer(layer).addLayer(tiles);
+    });
+
+    function getStyle() {
+        return {
+            color: '#666',
+            opacity: 0.9,
+            fillColor: '#ddd',
+            fillOpacity: 0.4,
+            weight: 4
+        };
+    }
+
+    function bindPopup(f, l) {
+        // Here we use a mapbox marker, but a custom icon can be created
+        // with http://leafletjs.com/reference.html#icon
+        if (l instanceof L.Marker) l.setIcon(L.mapbox.marker.icon(f));
+
+        l.bindPopup('<pre>' + L.mapbox.sanitize(JSON.stringify(f.properties, null, 4)) + '</pre>');
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.js"></script>
+</head>
+<body>
+<style>
+    #map {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: all;
+        cursor: none
+    }
+
+    #zoommap {
+        width: 200px;
+        height: 200px;
+        background: beige;
+        transform: rotate(-60deg);
+        -webkit-transform: rotate(-60deg);
+        -moz-transform: rotate(-60deg);
+        -ms-transform: rotate(-60deg);
+        -o-transform: rotate(-60deg);
+    }
+
+    #zoomlens {
+        overflow: visible;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    #border {
+        margin: -5px;
+        border: #888 solid 5px;
+        border-radius: 50%;
+        box-shadow: 0px 0px 10px #888;
+    }
+
+    .overlay {
+        position: absolute;
+        pointer-events: none;
+        overflow: hidden;
+        width: 200px;
+        height: 200px;
+    }
+
+    .rotater {
+        transform: rotate(30deg);
+        -webkit-transform: rotate(30deg);
+        -moz-transform: rotate(30deg);
+        -ms-transform: rotate(30deg);
+        -o-transform: rotate(30deg);
+    }
+</style>
+<body>
+<div id='map'></div>
+<div id='zoomlens' class='overlay'>
+    <div class='overlay rotater'>
+        <div class='overlay rotater'>
+            <div id='zoommap' class='overlay'></div>
+        </div>
+    </div>
+    <div id='border' class='overlay'></div>
+</div>
+<script>
+    var map = L.mapbox.map('map', 'examples.map-20v6611k');
+    var zoommap = L.mapbox.map('zoommap', 'examples.map-4l7djmvo', {
+        fadeAnimation: false,
+        zoomControl: false,
+        attributionControl: false
+    });
+
+    var zl = document.getElementById('zoomlens');
+
+    map.on('mousemove', update);
+    map.on('zoomend', zoom);
+
+    function zoom(e) {
+        if (zoommap._loaded) zoommap.setZoom(e.target.getZoom() + 1);
+    }
+
+    function update(e) {
+        zl.style.top = ~~e.containerPoint.y - 100 + 'px';
+        zl.style.left = ~~e.containerPoint.x - 100 + 'px';
+        zoommap.setView(e.latlng, map.getZoom() + 1, true);
+    }
+</script>
+</body>
+</html>

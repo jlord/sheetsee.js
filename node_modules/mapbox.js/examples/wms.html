@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.js"></script>
+</head>
+<body>
+<style>
+    #map-ui {
+        position: absolute;
+        top: 50px;
+        left: 10px;
+        z-index: 100;
+    }
+
+    #map-ui ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    #map-ui a {
+        font-size: 13px;
+        background: #FFF;
+        color: #3C4E5A;
+        display: block;
+        margin: 0;
+        padding: 0;
+        border: 1px solid #BBB;
+        border-bottom-width: 0;
+        min-width: 138px;
+        padding: 10px;
+        text-decoration: none;
+    }
+
+    #map-ui a:hover {
+        background: #ECF5FA;
+    }
+
+    #map-ui li:last-child a {
+        border-bottom-width: 1px;
+        -webkit-border-radius: 0 0 3px 3px;
+        border-radius: 0 0 3px 3px;
+    }
+
+    #map-ui li:first-child a {
+        -webkit-border-radius: 3px 3px 0 0;
+        border-radius: 3px 3px 0 0;
+    }
+
+    #map-ui a.active {
+        background: #3887BE;
+        border-color: #3887BE;
+        color: #FFF;
+    }
+
+    #map-ui li:last-child a.active {
+        border-top-color: #FFF;
+    }
+
+</style>
+<div id='map'>
+    <div id='map-ui'>
+        <ul>
+            <li><a href='#' class='active' id='temperature'>Temperature</a></li>
+            <li><a href='#' class='active' id='precipitation'>Precipitation</a></li>
+        </ul>
+    </div>
+</div>
+<script>
+    var map = L.mapbox.map('map', 'examples.map-y7l23tes').setView([37, -99], 5);
+
+    var temperature = L.tileLayer.wms("http://gis.srh.noaa.gov/arcgis/services/NDFDTemps/MapServer/WMSServer", {
+        format: 'img/png',
+        transparent: true,
+        layers: 16
+    }).addTo(map);
+
+    var precipitation = L.tileLayer.wms("http://nowcoast.noaa.gov/wms/com.esri.wms.Esrimap/obs", {
+        format: 'image/png',
+        transparent: true,
+        layers: 'RAS_RIDGE_NEXRAD'
+    }).addTo(map);
+
+    // Layer switcher
+    document.getElementById('temperature').onclick = function () {
+        var enable = this.className !== 'active';
+        temperature.setOpacity(enable ? 1 : 0);
+        this.className = enable ? 'active' : '';
+        return false;
+    };
+
+    document.getElementById('precipitation').onclick = function () {
+        var enable = this.className !== 'active';
+        precipitation.setOpacity(enable ? 1 : 0);
+        this.className = enable ? 'active' : '';
+        return false;
+    }
+</script>
+</body>
+</html>

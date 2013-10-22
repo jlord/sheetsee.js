@@ -1,0 +1,15 @@
+                            
+    __________            __  __                _     
+   /  _/ ____/___ _____  / / / /___ _____      (_)____
+   / // /   / __ `/ __ \/ /_/ / __ `/_  /     / / ___/
+ _/ // /___/ /_/ / / / / __  / /_/ / / /__   / (__  ) 
+/___/\____/\__,_/_/ /_/_/ /_/\__,_/ /___(_)_/ /____/  
+                                         /___/        
+
+A simple/powerful approach for doing client-side templating with Mustache.js.
+
+MIT Licensed
+
+ICanHaz.js includes janl's mustache.js (https://github.com/janl/mustache.js/). Much props to Chris Wanstrath for Mustache and Jan Lehnardt for porting it to JS.
+
+To get started, read the documentation: http://icanhazjs.com

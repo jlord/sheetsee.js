@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ICanHaz.js Demo</title>
+        <script src="test/jquery-1.4.4.min.js" type="text/javascript"></script>
+        <script src="ICanHaz.min.js" type="text/javascript"></script>
+        
+        <script id="user" type="text/html">
+            <li>
+                <p>Howdy I&apos;m <a href="http://twitter.com/{{ twitter }}">@{{ twitter }}</a></p>
+                <p>I work for {{ employer }} as a {{ job_title }}.</p>
+            </li>
+        </script>
+        
+        <script type="text/javascript">
+            // when the dom's ready
+            $(document).ready(function () {
+                // add a simple click handler for the "add user" button.
+                $('#add_user').click(function () {
+                    var user_data, user;
+                    
+                    // build a simple user object, in a real app this would probably come from a server
+                    // somewhere. Otherwise hardcoding here is just silly.
+                    user_data = {
+                        name: "Henrik Joreteg",
+                        twitter: "HenrikJoreteg",
+                        employer: "&yet",
+                        job_title: "JS nerd"
+                    };
+
+                    // Here's all the magic.
+                    user = ich.user(user_data);
+                    
+                    // append it to the list, tada! Now go do something more useful with this.
+                    $('#user_list').append(user);
+                });
+            });
+        </script>
+        
+        <style>
+            body {
+                font-family: Helvetica;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>ICanHaz.js Demo</h1>
+        <h3>User List</h3>
+        <button id="add_user">Add User</button>
+        <ul id="user_list"></ul>
+    </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.js"></script>
+</head>
+<body>
+<div id='map'></div>
+<script type='text/javascript'>
+    var map = L.mapbox.map('map', 'examples.map-zmy97flj');
+
+    map.gridLayer.on('click', function(e) {
+        if (e.data && e.data.admin) {
+            window.open("http://en.wikipedia.org/wiki/" + e.data.admin.replace(' ', '_'));
+        }
+    });
+</script>
+</body>
+</html>

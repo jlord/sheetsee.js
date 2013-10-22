@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.js"></script>
+</head>
+<body>
+<style>
+    #map-ui {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 100;
+    }
+
+    #map-ui ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    #map-ui a {
+        font-size: 13px;
+        background: #FFF;
+        color: #3C4E5A;
+        display: block;
+        margin: 0;
+        padding: 0;
+        border: 1px solid #BBB;
+        border-bottom-width: 0;
+        min-width: 138px;
+        padding: 10px;
+        text-decoration: none;
+    }
+
+    #map-ui a:hover {
+        background: #ECF5FA;
+    }
+
+    #map-ui li:last-child a {
+        border-bottom-width: 1px;
+        -webkit-border-radius: 0 0 3px 3px;
+        border-radius: 0 0 3px 3px;
+    }
+
+    #map-ui li:first-child a {
+        -webkit-border-radius: 3px 3px 0 0;
+        border-radius: 3px 3px 0 0;
+    }
+
+    #map-ui a.active {
+        background: #3887BE;
+        border-color: #3887BE;
+        color: #FFF;
+    }
+</style>
+<div id='map-ui'>
+    <ul>
+        <li><a href='#' id='filter-food'>show only food events</a></li>
+        <li><a href='#' class='active' id='filter-all'>show all events</a></li>
+    </ul>
+</div>
+<div id='map'></div>
+<script type='text/javascript'>
+    var map = L.mapbox.map('map', 'examples.map-zr0njcqy');
+
+    var food = document.getElementById('filter-food');
+    var all = document.getElementById('filter-all');
+
+    food.onclick = function(e) {
+        all.className = '';
+        this.className = 'active';
+        // The setFilter function takes a GeoJSON feature object
+        // and returns true to show it or false to hide it.
+        map.markerLayer.setFilter(function(f) {
+            return f.properties['marker-symbol'] === 'fast-food';
+        });
+        return false;
+    };
+
+    all.onclick = function() {
+        food.className = '';
+        this.className = 'active';
+        map.markerLayer.setFilter(function(f) {
+            // Returning true for all markers shows everything.
+            return true;
+        });
+        return false;
+    };
+</script>
+</body>
+</html>

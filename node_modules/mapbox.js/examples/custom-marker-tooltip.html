@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.js"></script>
+    <style>
+    /* Define custom html styles for inside the popup */
+    .popup {
+        text-align: center;
+    }
+    .popup img {
+        width: 100%;
+    }
+    </style>
+</head>
+<body>
+<div id='map'></div>
+<script type='text/javascript'>
+
+    var map = L.mapbox.map('map', 'examples.map-4l7djmvo');
+
+    var geoJson = [{
+        type: 'Feature',
+        "geometry": { "type": "Point", "coordinates": [-77.03, 38.90]},
+        "properties": {
+            "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/DCmontage4.jpg/250px-DCmontage4.jpg",
+            "url": "http://en.wikipedia.org/wiki/Washington,_D.C.",
+            "marker-symbol": "star",
+            "city": "Washington, D.C."
+        }
+    }, {
+        type: 'Feature',
+        "geometry": { "type": "Point", "coordinates": [-87.63, 41.88]},
+        "properties": {
+            "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Chicago_montage.jpg/300px-Chicago_montage.jpg",
+            "url": "http://en.wikipedia.org/wiki/Chicago",
+            "city": "Chicago"
+        }
+    }, {
+        type: 'Feature',
+        "geometry": { "type": "Point", "coordinates": [-74.00, 40.71]},
+        "properties": {
+            "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/NYC_Montage_2011.jpg/275px-NYC_Montage_2011.jpg",
+            "url": "http://en.wikipedia.org/wiki/New_York_City",
+            "city": "New York City"
+        }
+    }];
+
+    // Add features to the map
+    map.markerLayer.setGeoJSON(geoJson);
+
+    // Cycle through markers once geoJson is ready.
+    // Add custom popups to each using our custom feature properties
+    map.markerLayer.eachLayer(function(marker) {
+
+        var feature = marker.feature;
+
+        // Create custom popup content
+        var popupContent =  '<a target="_blank" class="popup" href="' + feature.properties.url + '">' +
+                                '<img src="' + feature.properties.image + '">' +
+                            '   <h2>' + feature.properties.city + '</h2>' +
+                            '</a>';
+
+        // http://leafletjs.com/reference.html#popup
+        marker.bindPopup(popupContent,{
+            closeButton: false,
+            minWidth: 300
+        });
+    });
+
+    map.setView([45.908, -78.525], 5);
+
+</script>
+</body>
+</html>

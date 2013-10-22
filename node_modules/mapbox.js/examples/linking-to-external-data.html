@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.js"></script>
+    <style>
+        #currency {
+            z-index: 9999;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            font-size: 36px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div id='currency'></div>
+<div id='map'></div>
+<script type='text/javascript'>
+    var map = L.mapbox.map('map', 'examples.map-zmy97flj');
+
+    // This is example 'external data'. It's obviously very much an example,
+    // and in practice you'll want to use jQuery's .ajax to pull in data or
+    // you already have it in some other form. The important part is that
+    // this data has a key, like 'Canada', which exactly matches part of the
+    // data in the tileset - here it's that the key is the same as o.data.admin
+    var currencies = {
+        'United States of America': 'USD',
+        'Canada': 'CAD',
+        'Mexico': 'MXN'
+    };
+
+    var currency = document.getElementById('currency');
+
+    // This tileset, Geography Class, has interactivity defined in TileMill
+    // and displayed in its tooltips. If you're creating a new tileset to use
+    // with this technique, see the documentation on defining tooltips:
+    // > http://mapbox.com/tilemill/docs/crashcourse/tooltips/
+    // and you'll need to use fields for them to be available here -
+    // to hide them in tooltips but use them here, you can use something like
+    //
+    //   <span style='display:none'>}</span>
+    //
+    // in the tooltip content to get TileMill to detect that the field }
+    // should be available in interaction.
+    map.gridLayer
+        .on('mousemove',function(o) {
+            document.getElementById('currency').innerHTML = currencies[o.data.admin] || '';
+        }).on('mouseout', function(o) {
+            document.getElementById('currency').innerHTML = '';
+        });
+</script>
+</body>
+</html>

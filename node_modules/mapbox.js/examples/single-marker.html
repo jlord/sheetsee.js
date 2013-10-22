@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.js"></script>
+</head>
+<body>
+<div id='map'></div>
+<script type='text/javascript'>
+    var map = L.mapbox.map('map', 'examples.map-20v6611k');
+
+    var feature = {
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            // The order of coordinates here is lon, lat. This is because
+            // we use the GeoJSON specification for all marker features.
+            // (lon, lat is also the internal order of KML and other geographic formats)
+            coordinates: [-77, 37.9]
+        },
+        properties: {
+            // these properties customize the look of the marker
+            // see the simplestyle-spec for a full reference:
+            // https://github.com/mapbox/simplestyle-spec
+            'marker-color': '#000',
+            'marker-symbol': 'star-stroked',
+            title: 'Example Marker',
+            description: 'This is a single marker.'
+        }
+    };
+
+    L.geoJson({ type: 'FeatureSet', features: [feature] }, {
+        pointToLayer: L.mapbox.marker.style
+    }).addTo(map);
+</script>
+</body>
+</html>

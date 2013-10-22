@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="../dist/mapbox.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../dist/mapbox/mapbox.ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="embed.css"/>
+    <script src="../dist/mapbox.js"></script>
+</head>
+<body>
+<style>
+  #map-ui a {
+    position:absolute;
+    z-index:1000;
+    top:70px;left:10px;
+    font:13px/18px;
+    background:#FFF;
+    color:#3C4E5A;
+    display:block;
+    margin:0;padding:0;
+    border:1px solid #BBB;
+    min-width:138px;
+    padding:10px;
+    -webkit-border-radius:3px;
+            border-radius:3px;
+    }
+  #map-ui a:hover { background:#ECF5FA; }
+</style>
+<div id='map'></div>
+<div id='map-ui'>
+  <a id='zoom' href='#'>ease to zoom 12</a>
+</div>
+<script type='text/javascript'>
+    var map = L.mapbox.map('map', 'tmcw.map-j5a868tu');
+
+    document.getElementById('zoom').onclick = function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        map.setZoom(12);
+    };
+</script>
+</body>
+</html>
