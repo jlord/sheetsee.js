@@ -287,7 +287,21 @@ function createGeoJSON(data, optionsJSON) {
       "opts": optionObj,
     }
     geoJSON.push(feature)
+    if (lineItem.poly) {
+      console.log(lineItem.poly)
+      var polyfeature = {
+        type: 'Feature',
+        "geometry": {
+          "type": "Polygon", 
+          "coordinates": [[
+            lineItem.poly
+            ]]
+        }
+      }
+      geoJSON.push(polyfeature)
+    }
   })
+  console.log("geo", geoJSON)
   return geoJSON
 }
 
