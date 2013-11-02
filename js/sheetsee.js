@@ -275,34 +275,71 @@ function createGeoJSON(data, optionsJSON) {
   var geoJSON = []
   data.forEach(function(lineItem){
     // skip if there are no coords
-    if (!lineItem.long || !lineItem.lat) return
+    var hasGeo = false
+    if (lineItem.lat || lineItem.long || lineItem.polygon) hasGeo = true
+    if (lineItem.linestring || lineItem.multipolygon) hasGeo = true
+    if (!hasGeo) return
+
+    // type of coors
+    var type = determineType(lineItem)
+    
     if (optionsJSON) var optionObj = buildOptionObject(optionsJSON, lineItem)
-    var feature = {
-      type: 'Feature',
-      "geometry": {"type": "Point", "coordinates": [lineItem.long, lineItem.lat]},
-      "properties": {
-        "marker-size": "small",
-        "marker-color": lineItem.hexcolor
-      },
-      "opts": optionObj,
-    }
-    geoJSON.push(feature)
-    if (lineItem.poly) {
-      console.log(lineItem.poly)
-      var polyfeature = {
-        type: 'Feature',
-        "geometry": {
-          "type": "Polygon", 
-          "coordinates": [[
-            lineItem.poly
-            ]]
-        }
+    if (lineItem.polygon || lineItem.multipolygon || lineItem.linestring) {
+      var shapeFeature = shapeJSON(lineItem, type, optionObj)
+      geoJSON.push(shapeFeature)
+    } else {
+      var poitnFeature = pointJSON(lineItem, type, optionObj)
+      geoJSON.push(poitnFeature)
       }
-      geoJSON.push(polyfeature)
-    }
   })
-  console.log("geo", geoJSON)
   return geoJSON
+}
+
+function pointJSON(lineItem, type, optionObj) {
+  var lowercaseType = type.toLowerCase()
+  var pointFeature = {
+        type: "Feature",
+        "geometry": {
+          "type": type, 
+          "coordinates": [+lineItem.long, +lineItem.lat]
+        },
+        "properties": {
+          "marker-size": "small",
+          "marker-color": lineItem.hexcolor
+        },
+        "opts": optionObj,
+      }
+  return pointFeature
+}
+
+function shapeJSON(lineItem, type, optionObj) {
+  var lowercaseType = type.toLowerCase()
+  var coords = JSON.parse("[[" + lineItem[lowercaseType] + "]]")
+  console.log(lineItem[lowercaseType])
+  if (type !== "Polygon") coords = JSON.parse( "[" + lineItem[lowercaseType] + "]" )
+
+  console.log(coords)
+  var shapeFeature = {
+        type: "Feature",
+        "geometry": {
+          "type": type, 
+          "coordinates": coords
+        },
+        "properties": {
+          "hexcolor": lineItem.hexcolor
+        },
+        "opts": optionObj
+      }
+  return shapeFeature
+}
+
+function determineType(lineItem) {
+  var type = ""
+  if (lineItem.lat && lineItem.long) type = "Point"
+  if (lineItem.polygon) type = "Polygon"
+  if (lineItem.multipolygon) type = "MultiPolygon"
+  if (lineItem.linestring) type = "LineString"
+  return type
 }
 
 // load basic map with tiles
@@ -322,13 +359,30 @@ function addTileLayer(map, tileLayer) {
 }
 
 function addMarkerLayer(geoJSON, map, zoomLevel) { 
-  var viewCoords = [geoJSON[0].geometry.coordinates[1], geoJSON[0].geometry.coordinates[0]]
-  var markerLayer = L.mapbox.markerLayer(geoJSON)
-  markerLayer.setGeoJSON(geoJSON)
-  map.setView(viewCoords, zoomLevel)
+  
+  // var firstPoint
+  // geoJSON.map(function(gj) { if (gj.geometry) firstPoint = gj.geometry.coordinates })
+  // if (firstPoint) {
+  //   // if firstPoint is an array (e.g. if its a poly)
+  //   if (firstPoint[0].length) firstPoint = firstPoint[0]
+  //   map.setView([firstPoint[1], firstPoint[0]], zoomLevel)
+  // }
+  var features = {
+    "type": "FeatureCollection",
+    "features": geoJSON
+  }
+  console.log("I got GJ", JSON.stringify(features, null, 4))
+  var layer = L.geoJson(features).addTo(map)
+  // layer.setGeoJSON(geoJSON)
   // map.fitBounds(geoJSON)
-  markerLayer.addTo(map)
-  return markerLayer
+  // markerLayer.addTo(map)
+  return layer
+}
+
+function addShapeColors() {
+  console.log("shape colors ran")
+  var styles = {"style": {"fillColor": "#333", "weight": "2", "color": "#333"}}
+  return styles
 }
 
 // moved to be used on the .html page for now

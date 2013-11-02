@@ -2,8 +2,8 @@
   <head>
     <title>Yo, yo, yo!</title>
     <script type="text/javascript" src="js/ICanHaz.js"></script> 
-    <script type="text/javascript" src='http://api.tiles.mapbox.com/mapbox.js/v1.0.0/mapbox.js'></script>
     <script type="text/javascript" src='js/jquery.js '></script>
+    <script type="text/javascript" src='js/mapbox.js '></script>
     <script type="text/javascript" src='js/d3.js'></script>
     <script type="text/javascript" src='js/tabletop.js'></script>
     <script type="text/javascript" src='js/sheetsee.js'></script>
@@ -447,7 +447,7 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
 <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', function() {
     var gData
-    var URL = "0AvFUWxii39gXdFhqZzdTeU5DTWtOdENkQ1Y5bHdqT0E"
+    var URL = "0AuOjlXjUrSbAdG1USXVKMFdCaHpGR0M2XzNYYmVKSlE"
     Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } ) 
   }) 
     
@@ -461,9 +461,10 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
     var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
     var map = Sheetsee.loadMap("map")
     Sheetsee.addTileLayer(map, 'examples.map-20v6611k')
+    console.log('gj', geoJSON)
     var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, 11)
     // customize the popup content
-    addPopups(map, markerLayer)
+    // addPopups(map, markerLayer)
     function addPopups(map, markerLayer) {
       markerLayer.on('click', function(e) {
         var feature = e.layer.feature
