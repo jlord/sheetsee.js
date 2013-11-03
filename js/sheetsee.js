@@ -312,6 +312,9 @@ function pointJSON(lineItem, type, optionObj) {
   return pointFeature
 }
 
+// make have a points geojson rendered by mapbox and
+// a polygon geojson renered by leaflet
+
 function shapeJSON(lineItem, type, optionObj) {
   var lowercaseType = type.toLowerCase()
   var coords
