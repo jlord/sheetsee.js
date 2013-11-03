@@ -314,11 +314,10 @@ function pointJSON(lineItem, type, optionObj) {
 
 function shapeJSON(lineItem, type, optionObj) {
   var lowercaseType = type.toLowerCase()
-  var coords = JSON.parse("[[" + lineItem[lowercaseType] + "]]")
-  console.log(lineItem[lowercaseType])
-  if (type !== "Polygon") coords = JSON.parse( "[" + lineItem[lowercaseType] + "]" )
-
-  console.log(coords)
+  var coords
+  if (type !== "LineString") {
+    coords = JSON.parse( "[[" + lineItem[lowercaseType] + "]]" )
+  } else { coords = JSON.parse("[" + lineItem[lowercaseType] + "]") }
   var shapeFeature = {
         type: "Feature",
         "geometry": {
@@ -359,9 +358,8 @@ function addTileLayer(map, tileLayer) {
 }
 
 function addMarkerLayer(geoJSON, map, zoomLevel) { 
-  
-  // var firstPoint
-  // geoJSON.map(function(gj) { if (gj.geometry) firstPoint = gj.geometry.coordinates })
+  var firstPoint
+  geoJSON.map(function(gj) { if (gj.geometry) firstPoint = gj.geometry.coordinates })
   // if (firstPoint) {
   //   // if firstPoint is an array (e.g. if its a poly)
   //   if (firstPoint[0].length) firstPoint = firstPoint[0]
@@ -372,9 +370,11 @@ function addMarkerLayer(geoJSON, map, zoomLevel) {
     "features": geoJSON
   }
   console.log("I got GJ", JSON.stringify(features, null, 4))
-  var layer = L.geoJson(features).addTo(map)
+  var layer = L.geoJson(features)
+  var bounds = layer.getBounds()
+  layer.addTo(map)
   // layer.setGeoJSON(geoJSON)
-  // map.fitBounds(geoJSON)
+  map.fitBounds(bounds)
   // markerLayer.addTo(map)
   return layer
 }

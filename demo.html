@@ -459,20 +459,20 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
     // make the map 
     var optionsJSON = ["picurl", "name", "cuddlability"]
     var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
-    var map = Sheetsee.loadMap("map")
-    Sheetsee.addTileLayer(map, 'examples.map-20v6611k')
-    console.log('gj', geoJSON)
-    var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, 11)
+    var cuddleMap = Sheetsee.loadMap("map")
+    window.cuddleMap = cuddleMap
+    Sheetsee.addTileLayer(cuddleMap, 'examples.map-20v6611k')
+    var markerLayer = Sheetsee.addMarkerLayer(geoJSON, cuddleMap, 11)
     // customize the popup content
     // addPopups(map, markerLayer)
-    function addPopups(map, markerLayer) {
-      markerLayer.on('click', function(e) {
-        var feature = e.layer.feature
-        var popupContent = '<img class="petThumbs" src="' + feature.opts.picurl + '">' +
-                            '<h3 style="text-align: center;">' + feature.opts.name + '</h3>'
-        e.layer.bindPopup(popupContent,{closeButton: false,})
-      })
-    }
+    // function addPopups(map, markerLayer) {
+    //   markerLayer.on('click', function(e) {
+    //     var feature = e.layer.feature
+    //     var popupContent = '<img class="petThumbs" src="' + feature.opts.picurl + '">' +
+    //                         '<h3 style="text-align: center;">' + feature.opts.name + '</h3>'
+    //     e.layer.bindPopup(popupContent,{closeButton: false,})
+    //   })
+    // }
 
     // make a table
     Sheetsee.makeTable(gData, "#basicTable")
