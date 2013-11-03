@@ -8230,7 +8230,6 @@ L.GeoJSON = L.FeatureGroup.extend({
       }
       return this;
     }
-
     var options = this.options;
 
     if (options.filter && !options.filter(geojson)) { return; }
@@ -13387,6 +13386,7 @@ var MarkerLayer = L.FeatureGroup.extend({
     },
 
     initialize: function(_, options) {
+        this.pizza = options
         L.setOptions(this, options);
 
         this._layers = {};
@@ -13451,8 +13451,7 @@ var MarkerLayer = L.FeatureGroup.extend({
                 }
             }
         } else if (this.options.filter(json)) {
-
-            var layer = L.GeoJSON.geometryToLayer(json, marker.style),
+            var layer = L.GeoJSON.geometryToLayer(json, marker.style, null, {onEachFeature: this.pizza}),
                 popupHtml = marker.createPopup(json, this.options.sanitizer);
 
             layer.feature = json;

@@ -358,8 +358,8 @@ function addTileLayer(map, tileLayer) {
 }
 
 function addMarkerLayer(geoJSON, map, zoomLevel) { 
-  var firstPoint
-  geoJSON.map(function(gj) { if (gj.geometry) firstPoint = gj.geometry.coordinates })
+  // var firstPoint
+  // geoJSON.map(function(gj) { if (gj.geometry) firstPoint = gj.geometry.coordinates })
   // if (firstPoint) {
   //   // if firstPoint is an array (e.g. if its a poly)
   //   if (firstPoint[0].length) firstPoint = firstPoint[0]
@@ -370,7 +370,8 @@ function addMarkerLayer(geoJSON, map, zoomLevel) {
     "features": geoJSON
   }
   console.log("I got GJ", JSON.stringify(features, null, 4))
-  var layer = L.geoJson(features)
+  var layer = L.geoJson(features, {"style": {"fillColor": "#ff00ff", "weight": "2", "color": "#333", "marker-color": "#f0f0f0"}})
+  // var markerLayer = L.mapbox.markerLayer(features, addShapeColors)
   var bounds = layer.getBounds()
   layer.addTo(map)
   // layer.setGeoJSON(geoJSON)
@@ -381,8 +382,7 @@ function addMarkerLayer(geoJSON, map, zoomLevel) {
 
 function addShapeColors() {
   console.log("shape colors ran")
-  var styles = {"style": {"fillColor": "#333", "weight": "2", "color": "#333"}}
-  return styles
+  return {"style": {"fillColor": "#ff00ff", "weight": "2", "color": "#333", "marker-color": "#f0f0f0"}}
 }
 
 // moved to be used on the .html page for now
