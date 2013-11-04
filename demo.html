@@ -3,7 +3,7 @@
     <title>Yo, yo, yo!</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.1.0/tabletop.min.js"></script>
-    <script type="text/javascript" src='dist/sheetsee.full.js'></script>
+    <script type="text/javascript" src='dist/sheetsee.js'></script>
     <link rel="shortcut icon" href="https://raw.github.com/jllord/sheetsee-cache/master/favico.png"/>
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -472,11 +472,15 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
     }
 
     // make a table
+
+    $(document).on("click", ".tHeader", Sheetsee.sendToSort)
+
     Sheetsee.makeTable(gData, "#basicTable")
     Sheetsee.initiateTableFilter(gData, "#basicFilter", "#basicTable")
 
     // more icanhas for most cuddlable
     var mostCuddleIs = Sheetsee.getMax(gData, "cuddlability")
+    console.log(mostCuddleIs)
     var mostCuddle = Sheetsee.ich.mostCuddle({
        rows: mostCuddleIs
     })

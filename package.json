@@ -21,7 +21,11 @@
     "icanhaz": "~0.10.3",
     "d3": "~3.2.8",
     "mapbox.js": "~1.3.1",
-    "lodash.assign": "~2.1.0"
+    "lodash.assign": "~2.1.0",
+    "sheetsee-core": "~0.0.0",
+    "sheetsee-tables": "~0.0.0",
+    "sheetsee-charts": "~0.0.0",
+    "sheetsee-maps": "~0.0.0"
   },
   "devDependencies": {
     "browserify": "~2.27.1",
