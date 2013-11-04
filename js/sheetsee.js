@@ -328,7 +328,8 @@ function shapeJSON(lineItem, type, optionObj) {
           "coordinates": coords
         },
         "properties": {
-          "hexcolor": lineItem.hexcolor
+          "fillColor": lineItem.hexcolor,
+          "color": lineItem.hexcolor
         },
         "opts": optionObj
       }
@@ -373,13 +374,19 @@ function addMarkerLayer(geoJSON, map, zoomLevel) {
     "features": geoJSON
   }
   console.log("I got GJ", JSON.stringify(features, null, 4))
-  var layer = L.geoJson(features, {"style": {"fillColor": "#ff00ff", "weight": "2", "color": "#333", "marker-color": "#f0f0f0"}})
+
+  var layer = L.geoJson(features, {
+    pointToLayer: L.mapbox.marker.style,
+    style: function(feature) { return feature.properties }
+  })
+  // var layer = L.geoJson(features, {"style": {"fillColor": "#ff00ff", "weight": "2", "color": "#333", "marker-color": "#f0f0f0"}})
   // var markerLayer = L.mapbox.markerLayer(features, addShapeColors)
   var bounds = layer.getBounds()
   layer.addTo(map)
   // layer.setGeoJSON(geoJSON)
   map.fitBounds(bounds)
   // markerLayer.addTo(map)
+  console.log("features", features)
   return layer
 }
 
