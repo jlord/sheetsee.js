@@ -444,6 +444,11 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
   {{/rows}}
 </script>
 
+<script id="popUps" type="text/html">
+    <img class="petThumbs" src="{{ picurl }}">
+    <h3 style="text-align: center;"> {{ name }} </h3>
+  </script>
+
 <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', function() {
     var gData
@@ -462,9 +467,20 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
     var cuddleMap = Sheetsee.loadMap("map")
     window.cuddleMap = cuddleMap
     Sheetsee.addTileLayer(cuddleMap, 'examples.map-20v6611k')
-    var markerLayer = Sheetsee.addMarkerLayer(geoJSON, cuddleMap, 11)
+    var markerLayer = Sheetsee.addMarkerLayer(geoJSON, cuddleMap)
     // customize the popup content
     // addPopups(map, markerLayer)
+
+    // var popUps = "Hiiii {{name}}"
+
+    //   function addPopups(map, markerLayer) {
+    //     markerLayer.eachLayer(function(marker) {
+    //       console.log(marker)
+    //     var popupContent = ich.popUps(marker.feature.opts)
+    //     marker.bindPopup(popupContent, {closeButton: false,})
+    //   })
+    // }
+  
     // function addPopups(map, markerLayer) {
     //   markerLayer.on('click', function(e) {
     //     var feature = e.layer.feature

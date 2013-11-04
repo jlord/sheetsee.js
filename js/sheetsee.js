@@ -269,9 +269,18 @@ function buildOptionObject(optionsJSON, lineItem) {
   return newObj
 }
 
+function makeupOptionObject(lineItem) {
+  var options = []
+  for (var i in lineItem) {
+    options.push(i);
+  }
+  return options
+}
+
 // for geocoding: http://mapbox.com/tilemill/docs/guides/google-docs/#geocoding
 // create geoJSON from your spreadsheet's coordinates
 function createGeoJSON(data, optionsJSON) {
+  console.log(optionsJSON)
   var geoJSON = []
   data.forEach(function(lineItem){
     // skip if there are no coords
@@ -282,8 +291,15 @@ function createGeoJSON(data, optionsJSON) {
 
     // type of coors
     var type = determineType(lineItem)
-    
-    if (optionsJSON) var optionObj = buildOptionObject(optionsJSON, lineItem)
+    // if (!optionsJSON) 
+    var optionsJSON = makeupOptionObject(lineItem)
+    var optionObj = buildOptionObject(optionsJSON, lineItem)
+    // if (!optionsJSON) {
+    //   var optionsJSON = lineItem
+    //   var optionsObj = buildOptionObject(optionsJSON, lineItem)
+    // }
+    // if (optionsJSON) var optionObj = buildOptionObject(optionsJSON, lineItem)
+    // else var optionsJSON = lineItem
     if (lineItem.polygon || lineItem.multipolygon || lineItem.linestring) {
       var shapeFeature = shapeJSON(lineItem, type, optionObj)
       geoJSON.push(shapeFeature)
@@ -307,7 +323,7 @@ function pointJSON(lineItem, type, optionObj) {
           "marker-size": "small",
           "marker-color": lineItem.hexcolor
         },
-        "opts": optionObj,
+        "opts": optionObj
       }
   return pointFeature
 }
@@ -348,8 +364,6 @@ function determineType(lineItem) {
 // load basic map with tiles
 function loadMap(mapDiv) {
   var map = L.mapbox.map(mapDiv)
-  // map.setView(, 4)
-  // map.addLayer(L.tileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png'))
   map.touchZoom.disable()
   map.doubleClickZoom.disable()
   map.scrollWheelZoom.disable()
@@ -361,51 +375,41 @@ function addTileLayer(map, tileLayer) {
   layer.addTo(map)
 }
 
-function addMarkerLayer(geoJSON, map, zoomLevel) { 
-  // var firstPoint
-  // geoJSON.map(function(gj) { if (gj.geometry) firstPoint = gj.geometry.coordinates })
-  // if (firstPoint) {
-  //   // if firstPoint is an array (e.g. if its a poly)
-  //   if (firstPoint[0].length) firstPoint = firstPoint[0]
-  //   map.setView([firstPoint[1], firstPoint[0]], zoomLevel)
-  // }
+function makePopupTemplate() {
+  var template = {}
+  template.name ="popup"
+  template.template = "<p>HII {{name}} </p>"
+  return template
+}
+
+function addMarkerLayer(geoJSON, map, template) { 
+  
+  if (!template) {
+    template = makePopupTemplate()
+    ich.addTemplate(template.name, template.template)
+  }
+  console.log("whatis template", template)
   var features = {
     "type": "FeatureCollection",
     "features": geoJSON
   }
-  console.log("I got GJ", JSON.stringify(features, null, 4))
-
+  // console.log(JSON.stringify(features, null, 4))
   var layer = L.geoJson(features, {
     pointToLayer: L.mapbox.marker.style,
     style: function(feature) { return feature.properties }
   })
-  // var layer = L.geoJson(features, {"style": {"fillColor": "#ff00ff", "weight": "2", "color": "#333", "marker-color": "#f0f0f0"}})
-  // var markerLayer = L.mapbox.markerLayer(features, addShapeColors)
   var bounds = layer.getBounds()
   layer.addTo(map)
-  // layer.setGeoJSON(geoJSON)
   map.fitBounds(bounds)
-  // markerLayer.addTo(map)
-  console.log("features", features)
+
+  layer.eachLayer(function(marker) {
+    var popupContent = ich["popup"](marker.feature.opts)
+    marker.bindPopup(popupContent, {closeButton: false,})
+  })
+
   return layer
 }
 
-function addShapeColors() {
-  console.log("shape colors ran")
-  return {"style": {"fillColor": "#ff00ff", "weight": "2", "color": "#333", "marker-color": "#f0f0f0"}}
-}
-
-// moved to be used on the .html page for now
-// until I find a better way for users to pass in their
-// customized popup html styles
-// function addPopups(map, markerLayer, popupContent) {
-//   markerLayer.on('click', function(e) {
-//     var feature = e.layer.feature
-//     var popupContent = '<h2>' + feature.opts.city + '</h2>' +
-//                         '<h3>' + feature.opts.placename + '</h3>'
-//     e.layer.bindPopup(popupContent,{closeButton: false,})
-//   })
-// }
 
 // // // // // // // // // // // // // // // // // // // // // // //  // //
 // 
