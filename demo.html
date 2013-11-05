@@ -14,6 +14,11 @@
     <link rel="stylesheet" media="screen" type="text/css" href="css/style.css"> 
     <link rel="stylesheet" media="screen" type="text/css" href="css/site.css"> 
   </head>
+  <style>
+  .leaflet-popup-content ul {list-style: none; word-break: break-all; margin: 0; padding: 0;}
+  .leaflet-popup-content li {padding: 2px 4px; text-indent: 0;}
+  .leaflet-popup-content li:nth-child(odd) {background-color: #eee;}
+  </style>
 
 <body>
   <div id="menu"><ul>
@@ -463,7 +468,7 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
 
     // make the map 
     var optionsJSON = ["picurl", "name", "cuddlability"]
-    var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
+    var geoJSON = Sheetsee.createGeoJSON(gData)
     var cuddleMap = Sheetsee.loadMap("map")
     window.cuddleMap = cuddleMap
     Sheetsee.addTileLayer(cuddleMap, 'examples.map-20v6611k')

@@ -280,7 +280,7 @@ function makeupOptionObject(lineItem) {
 // for geocoding: http://mapbox.com/tilemill/docs/guides/google-docs/#geocoding
 // create geoJSON from your spreadsheet's coordinates
 function createGeoJSON(data, optionsJSON) {
-  console.log(optionsJSON)
+  // console.log(optionsJSON)
   var geoJSON = []
   data.forEach(function(lineItem){
     // skip if there are no coords
@@ -289,17 +289,15 @@ function createGeoJSON(data, optionsJSON) {
     if (lineItem.linestring || lineItem.multipolygon) hasGeo = true
     if (!hasGeo) return
 
-    // type of coors
     var type = determineType(lineItem)
-    // if (!optionsJSON) 
-    var optionsJSON = makeupOptionObject(lineItem)
-    var optionObj = buildOptionObject(optionsJSON, lineItem)
-    // if (!optionsJSON) {
-    //   var optionsJSON = lineItem
-    //   var optionsObj = buildOptionObject(optionsJSON, lineItem)
-    // }
-    // if (optionsJSON) var optionObj = buildOptionObject(optionsJSON, lineItem)
-    // else var optionsJSON = lineItem
+
+    if (!optionsJSON) {
+      var optionsJSON = makeupOptionObject(lineItem)
+      var optionObj = buildOptionObject(optionsJSON, lineItem)
+    }
+ 
+    if (optionsJSON) var optionObj = buildOptionObject(optionsJSON, lineItem)
+
     if (lineItem.polygon || lineItem.multipolygon || lineItem.linestring) {
       var shapeFeature = shapeJSON(lineItem, type, optionObj)
       geoJSON.push(shapeFeature)
@@ -375,20 +373,51 @@ function addTileLayer(map, tileLayer) {
   layer.addTo(map)
 }
 
-function makePopupTemplate() {
+function makePopupTemplate(geoJSON) {
+  var allOptions = geoJSON[0].opts
+  var keys = [] // pure keys
+  for (var i in allOptions) keys.push(i)
+  console.log(geoJSON[0].opts, keys)
+  var mustacheKeys = mustachify(keys) // keys in mustache
+  console.log("mushtach", mustacheKeys)
   var template = {}
   template.name ="popup"
-  template.template = "<p>HII {{name}} </p>"
+  template.template = templateTemplate(mustacheKeys)
+  console.log("TEMPLATE", template)
   return template
+}
+
+function templateTemplate(mustacheKeys) {
+  var template = "<ul>"
+  var counter = 0
+  mustacheKeys.forEach(function(key) {
+    counter++
+    console.log(counter, key)
+    if (counter === mustacheKeys.length) template = template.concat(key, "</ul>")
+    else template = template.concat(key)
+  })
+  return template
+}
+
+function getAllOptions(geoJSON) {
+}
+
+function mustachify(array) {
+  var newArray = []
+  array.forEach(function(item) {
+    item = "<li><b>" + item + ":</b> {{" + item + "}}</li>"
+    newArray.push(item)
+  })
+  return newArray
 }
 
 function addMarkerLayer(geoJSON, map, template) { 
   
   if (!template) {
-    template = makePopupTemplate()
+    template = makePopupTemplate(geoJSON)
     ich.addTemplate(template.name, template.template)
   }
-  console.log("whatis template", template)
+  // console.log("whatis template", template)
   var features = {
     "type": "FeatureCollection",
     "features": geoJSON
