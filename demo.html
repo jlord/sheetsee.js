@@ -468,7 +468,7 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)</code></pre>
 
     // make the map 
     var optionsJSON = ["picurl", "name", "cuddlability"]
-    var geoJSON = Sheetsee.createGeoJSON(gData)
+    var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
     var cuddleMap = Sheetsee.loadMap("map")
     window.cuddleMap = cuddleMap
     Sheetsee.addTileLayer(cuddleMap, 'examples.map-20v6611k')
