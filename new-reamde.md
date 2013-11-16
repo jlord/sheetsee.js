@@ -13,6 +13,10 @@ Sheetsee.js is broken into modules for each of its specialties for you to pick a
 - **sheetsee-maps** For making maps with your point, line or poloygon spreadsheet data. Built on Mapbox.js. [Documentation]().
 - **sheetsee-charts** Includes 3 basic d3 charts: bar, line and graph, for visualizing your data. You can also [use your own](). [Documentation]().
 
+# Making Things
+
+What can you make with Sheetsee? A lot of things - but some examples: 
+
 ## The Documentation
 
 ### About Sheetsee.js
