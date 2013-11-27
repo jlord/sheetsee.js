@@ -17,29 +17,18 @@ Sheetsee.js is broken into modules for each of its specialties for you to pick a
 
 What can you make with Sheetsee? A lot of things - but some examples: 
 
-## The Documentation
+![img]()
+![img]()
 
-### About Sheetsee.js
-More about Sheetsee's development and the libraries it's built on.
-
-### Fork-n-Go
-An easy way to have your own sheetsee-backed site, live and connected to your data in just a few clicks.
-
-### Tips!
-Ways to use templates, CSS and other things to make cool things.
-
-### Building Sheetsee
-How to build the sheetsee.js version you want with just the sections you plan on using.
-
-### Sheetsee-core
-
-### Sheetsee-tables
-
-### Sheetsee-maps
-
-### Sheetsee-charts
-
-### Plugging in Custom d3 Chart
-If you have a d3 chart you'd like to use with your spreadsheet data, it's easy to plug it in to Sheetsee and use.
+## Documentation
+- [About Sheetsee.js](docs/about.md)
+- [Fork-n-Go](docs/fork-n-go.md)
+- [Tips!](docs/tips.md)
+- [Building Sheetsee](docs/building.md)
+- [Sheetsee](docs/sheetsee.md)
+- [Sheetsee-tables](docs/sheetsee-tables.md)
+- [Sheetsee-maps](docs/sheetsee-maps.md)
+- [Sheetsee-charts](docs/sheetsee-charts.md)
+- [Custom d3](docs/custom-charts.md)
 
 
