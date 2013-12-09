@@ -1,6 +1,6 @@
 You can customize your sheetsee build with just the parts you want to use. If you want to just use the full version, you can grab it here in [js/sheetsee.js]().
 
-**To build your sheetsee you'll need [Node.js]() on your computer and a commandline**
+**To build your sheetsee you'll need [Node.js]() on your computer and a command line**
 
 ## Install sheetsee from NPM
 The sheetsee module contains the basic sorting, organizing data functions and the script for building on the other modules. Create a folder for you new project and `cd` into it. Then install `sheetsee`.
