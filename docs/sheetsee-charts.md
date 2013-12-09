@@ -1,10 +1,6 @@
 # sheetsee-charts
 
-![sheetsee](https://raw.github.com/jllord/sheetsee-cache/master/img/sheetsee-03.png)
-
-Module for working with charts with sheetsee.js. It provides three d3 chart options to use with your spreadsheet data. Below is a portion of the sheetsee.js documentation regarding charts, for the full sheetsee.js documentation, go [here](http://jlord.github.io/sheetsee.js)!
-
----
+Sheetsee provides three d3 chart options to use with your spreadsheet data: a bar chart, line chart and pie graph. You can also plug in your own custom d3 chart to sheetsee, read about that [here](custom-charts.md).
 
 ## Make a Chart
 
@@ -18,15 +14,21 @@ You can also make your own d3 chart in a separate .js file, link to that and pas
 
 To create a bar chart you'll need to add a placeholder `<div>` in your HTML with an id.
 
-    <div id="barChart"></div>
+```HTML
+<div id="barChart"></div>
+```
 
 In your CSS, give it dimensions.
 
-    #barChart {height: 400px; max-width: 600px; background: #F8CDCD;}
+```CSS
+#barChart {height: 400px; max-width: 600px; background: #F8CDCD;}
+```
 
 In a `<script>` tag set up your options.
 
-    var barOptions = {m: [60, 60, 30, 150], w: 600, h: 400, div: "#barChart", xaxis: "no. of pennies", hiColor: "#FF317D"}
+```javascript
+var barOptions = {m: [60, 60, 30, 150], w: 600, h: 400, div: "#barChart", xaxis: "no. of pennies", hiColor: "#FF317D"}
+```
 
 * **m** is margins: top, right, bottom, left
 * **w** and **h** are width and height, this should match your CSS specs
@@ -36,21 +38,29 @@ In a `<script>` tag set up your options.
 
 Then call the `d3BarChart()` function with your **data** and **options**.
 
-    Sheetsee.d3BarChart(data, barOptions)
+```javascript
+Sheetsee.d3BarChart(data, barOptions)
+```
 
 ### Line Chart
 
 To create a line chart you'll need to add a placeholder `<div>` in your html with an id.
 
-    <div id="lineChart"></div>
+```HTML
+<div id="lineChart"></div>
+```
 
 In your CSS, give it dimensions.
 
-    #lineChart {height: 400px; max-width: 600px; background: #F8CDCD;}
+```CSS
+#lineChart {height: 400px; max-width: 600px; background: #F8CDCD;}
+```
 
 In a `<script>` tag set up your options.
 
-    var lineOptions = {m: [80, 100, 120, 100], w: 600, h: 400, div: "#lineChart", yaxis: "no. of pennies", hiColor: "#14ECC8"}
+```
+var lineOptions = {m: [80, 100, 120, 100], w: 600, h: 400, div: "#lineChart", yaxis: "no. of pennies", hiColor: "#14ECC8"}
+```
 
 * **m** is your margins: top, right, bottom, left
 * **w** and **h** are width and height, this should match your CSS specs
@@ -60,21 +70,28 @@ In a `<script>` tag set up your options.
 
 Then call the `d3LineChart()` function with your **data** and **options**.
 
-    Sheetsee.d3LineChart(data, lineOptions)
+```
+Sheetsee.d3LineChart(data, lineOptions)
+```
 
 ### Pie Chart
 
 To create a bar chart you'll need to add a placeholder `<div>` in your html with an id.
 
-    <div id="pieChart"></div>
-
+```HTML
+<div id="pieChart"></div>
+```
 In your CSS, give it dimensions.
 
-    #pieChart {height: 400px; max-width: 600px; background: #F8CDCD;}
+```CSS
+#pieChart {height: 400px; max-width: 600px; background: #F8CDCD;}
+```
 
 In a `<script>` tag set up your options.
 
-    var pieOptions = {m: [80, 80, 80, 80], w: 600, h: 400, div: "#pieChart", hiColor: "#14ECC8"}
+```javascript
+var pieOptions = {m: [80, 80, 80, 80], w: 600, h: 400, div: "#pieChart", hiColor: "#14ECC8"}
+```
 
 * **m** is your margins: top, right, bottom, left
 * **w** and **h** are width and height, this should match your CSS specs
@@ -83,4 +100,6 @@ In a `<script>` tag set up your options.
 
 Then call the `d3PieChart()` function with your **data** and **options**.
 
-    Sheetsee.d3PieChart(data, pieOptions)
+```javascript
+Sheetsee.d3PieChart(data, pieOptions)
+```
