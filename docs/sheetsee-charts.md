@@ -27,9 +27,11 @@ In your CSS, give it dimensions.
 In a `<script>` tag set up your options.
 
 ```javascript
-var barOptions = {m: [60, 60, 30, 150], w: 600, h: 400, div: "#barChart", xaxis: "no. of pennies", hiColor: "#FF317D"}
+var barOptions = {labels: "name", units: "cuddleability", m: [60, 60, 30, 150], w: 600, h: 400, div: "#barChart", xaxis: "no. of pennies", hiColor: "#FF317D"}
 ```
 
+* **labels** is a string, usually a column header, it's what you call what you're charting
+* **units** is a string, usually a column header, it's the value you're charting
 * **m** is margins: top, right, bottom, left
 * **w** and **h** are width and height, this should match your CSS specs
 * **div** is the id for the `<div>` in your HTML
@@ -59,9 +61,11 @@ In your CSS, give it dimensions.
 In a `<script>` tag set up your options.
 
 ```
-var lineOptions = {m: [80, 100, 120, 100], w: 600, h: 400, div: "#lineChart", yaxis: "no. of pennies", hiColor: "#14ECC8"}
+var lineOptions = {labels: "name", units: "cuddleability", m: [80, 100, 120, 100], w: 600, h: 400, div: "#lineChart", yaxis: "no. of pennies", hiColor: "#14ECC8"}
 ```
 
+* **labels** is a string, usually a column header, it's what you call what you're charting
+* **units** is a string, usually a column header, it's the value you're charting
 * **m** is your margins: top, right, bottom, left
 * **w** and **h** are width and height, this should match your CSS specs
 * **div** is the id for the `<div>` in your HTML
@@ -90,9 +94,11 @@ In your CSS, give it dimensions.
 In a `<script>` tag set up your options.
 
 ```javascript
-var pieOptions = {m: [80, 80, 80, 80], w: 600, h: 400, div: "#pieChart", hiColor: "#14ECC8"}
+var pieOptions = {labels: "name", units: "units", m: [80, 80, 80, 80], w: 600, h: 400, div: "#pieChart", hiColor: "#14ECC8"}
 ```
 
+* **labels** is a string, usually a column header, it's what you call what you're charting
+* **units** is a string, usually a column header, it's the value you're charting
 * **m** is your margins: top, right, bottom, left
 * **w** and **h** are width and height, this should match your CSS specs
 * **div** is the id for the `<div>` in your HTML
