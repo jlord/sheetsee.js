@@ -1,5 +1,4 @@
-!function(e){"object"==typeof exports?module.exports=e():"function"==typeof define&&define.amd?define(e):"undefined"!=typeof window?window.Sheetsee=e():"undefined"!=typeof global?global.Sheetsee=e():"undefined"!=typeof self&&(self.Sheetsee=e())}(function(){var define,module,exports;
-return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+;(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var d3 = require('d3')
 
 module.exports.d3 = d3
@@ -2040,7 +2039,7 @@ d3 = function() {
   d3.xhr = d3_xhrType(d3_identity);
   function d3_xhrType(response) {
     return function(url, mimeType, callback) {
-      if (arguments.length === 2 && typeof mimeType === "function") callback = mimeType, 
+      if (arguments.length === 2 && typeof mimeType === "function") callback = mimeType,
       mimeType = null;
       return d3_xhr(url, mimeType, response, callback);
     };
@@ -2551,7 +2550,7 @@ d3 = function() {
     var λ00, φ00, λ0, cosφ0, sinφ0;
     d3_geo_area.point = function(λ, φ) {
       d3_geo_area.point = nextPoint;
-      λ0 = (λ00 = λ) * d3_radians, cosφ0 = Math.cos(φ = (φ00 = φ) * d3_radians / 2 + π / 4), 
+      λ0 = (λ00 = λ) * d3_radians, cosφ0 = Math.cos(φ = (φ00 = φ) * d3_radians / 2 + π / 4),
       sinφ0 = Math.sin(φ);
     };
     function nextPoint(λ, φ) {
@@ -4417,7 +4416,7 @@ d3 = function() {
     return points.length < 4 ? d3_svg_lineLinear(points) : points[1] + d3_svg_lineHermite(points.slice(1, points.length - 1), d3_svg_lineCardinalTangents(points, tension));
   }
   function d3_svg_lineCardinalClosed(points, tension) {
-    return points.length < 3 ? d3_svg_lineLinear(points) : points[0] + d3_svg_lineHermite((points.push(points[0]), 
+    return points.length < 3 ? d3_svg_lineLinear(points) : points[0] + d3_svg_lineHermite((points.push(points[0]),
     points), d3_svg_lineCardinalTangents([ points[points.length - 2] ].concat(points, [ points[1] ]), tension));
   }
   function d3_svg_lineCardinal(points, tension) {
@@ -4579,7 +4578,7 @@ d3 = function() {
     function hull(data) {
       if (data.length < 3) return [];
       var fx = d3_functor(x), fy = d3_functor(y), n = data.length, vertices, plen = n - 1, points = [], stack = [], d, i, j, h = 0, x1, y1, x2, y2, u, v, a, sp;
-      if (fx === d3_svg_lineX && y === d3_svg_lineY) vertices = data; else for (i = 0, 
+      if (fx === d3_svg_lineX && y === d3_svg_lineY) vertices = data; else for (i = 0,
       vertices = []; i < n; ++i) {
         vertices.push([ +fx.call(this, d = data[i], i), +fy.call(this, d, i) ]);
       }
@@ -4749,7 +4748,7 @@ d3 = function() {
       var points, polygons = data.map(function() {
         return [];
       }), fx = d3_functor(x), fy = d3_functor(y), d, i, n = data.length, Z = 1e6;
-      if (fx === d3_svg_lineX && fy === d3_svg_lineY) points = data; else for (points = new Array(n), 
+      if (fx === d3_svg_lineX && fy === d3_svg_lineY) points = data; else for (points = new Array(n),
       i = 0; i < n; ++i) {
         points[i] = [ +fx.call(this, d = data[i], i), +fy.call(this, d, i) ];
       }
@@ -4836,7 +4835,7 @@ d3 = function() {
       var points, graph = data.map(function() {
         return [];
       }), links = [], fx = d3_functor(x), fy = d3_functor(y), d, i, n = data.length;
-      if (fx === d3_svg_lineX && fy === d3_svg_lineY) points = data; else for (points = new Array(n), 
+      if (fx === d3_svg_lineX && fy === d3_svg_lineY) points = data; else for (points = new Array(n),
       i = 0; i < n; ++i) {
         points[i] = [ +fx.call(this, d = data[i], i), +fy.call(this, d, i) ];
       }
@@ -5232,7 +5231,7 @@ d3 = function() {
     };
     quadtree.extent = function(_) {
       if (!arguments.length) return x1 == null ? null : [ [ x1, y1 ], [ x2, y2 ] ];
-      if (_ == null) x1 = y1 = x2 = y2 = null; else x1 = +_[0][0], y1 = +_[0][1], x2 = +_[1][0], 
+      if (_ == null) x1 = y1 = x2 = y2 = null; else x1 = +_[0][0], y1 = +_[0][1], x2 = +_[1][0],
       y2 = +_[1][1];
       return quadtree;
     };
@@ -6936,7 +6935,7 @@ d3 = function() {
         return d3_layout_treemapPad(node, x);
       }
       var type;
-      pad = (padding = x) == null ? d3_layout_treemapPadNull : (type = typeof x) === "function" ? padFunction : type === "number" ? (x = [ x, x, x, x ], 
+      pad = (padding = x) == null ? d3_layout_treemapPadNull : (type = typeof x) === "function" ? padFunction : type === "number" ? (x = [ x, x, x, x ],
       padConstant) : padConstant;
       return treemap;
     };
@@ -7204,7 +7203,7 @@ d3 = function() {
     scale.tickFormat = function(n, format) {
       if (!arguments.length) return d3_scale_logFormat;
       if (arguments.length < 2) format = d3_scale_logFormat; else if (typeof format !== "function") format = d3.format(format);
-      var k = Math.max(.1, n / scale.ticks().length), f = positive ? (e = 1e-12, Math.ceil) : (e = -1e-12, 
+      var k = Math.max(.1, n / scale.ticks().length), f = positive ? (e = 1e-12, Math.ceil) : (e = -1e-12,
       Math.floor), e;
       return function(d) {
         return d / pow(f(log(d) + e)) <= k ? format(d) : "";
@@ -7491,7 +7490,7 @@ d3 = function() {
   d3.svg.arc = function() {
     var innerRadius = d3_svg_arcInnerRadius, outerRadius = d3_svg_arcOuterRadius, startAngle = d3_svg_arcStartAngle, endAngle = d3_svg_arcEndAngle;
     function arc() {
-      var r0 = innerRadius.apply(this, arguments), r1 = outerRadius.apply(this, arguments), a0 = startAngle.apply(this, arguments) + d3_svg_arcOffset, a1 = endAngle.apply(this, arguments) + d3_svg_arcOffset, da = (a1 < a0 && (da = a0, 
+      var r0 = innerRadius.apply(this, arguments), r1 = outerRadius.apply(this, arguments), a0 = startAngle.apply(this, arguments) + d3_svg_arcOffset, a1 = endAngle.apply(this, arguments) + d3_svg_arcOffset, da = (a1 < a0 && (da = a0,
       a0 = a1, a1 = da), a1 - a0), df = da < π ? "0" : "1", c0 = Math.cos(a0), s0 = Math.sin(a0), c1 = Math.cos(a1), s1 = Math.sin(a1);
       return da >= d3_svg_arcMax ? r0 ? "M0," + r1 + "A" + r1 + "," + r1 + " 0 1,1 0," + -r1 + "A" + r1 + "," + r1 + " 0 1,1 0," + r1 + "M0," + r0 + "A" + r0 + "," + r0 + " 0 1,0 0," + -r0 + "A" + r0 + "," + r0 + " 0 1,0 0," + r0 + "Z" : "M0," + r1 + "A" + r1 + "," + r1 + " 0 1,1 0," + -r1 + "A" + r1 + "," + r1 + " 0 1,1 0," + r1 + "Z" : r0 ? "M" + r1 * c0 + "," + r1 * s0 + "A" + r1 + "," + r1 + " 0 " + df + ",1 " + r1 * c1 + "," + r1 * s1 + "L" + r0 * c1 + "," + r0 * s1 + "A" + r0 + "," + r0 + " 0 " + df + ",0 " + r0 * c0 + "," + r0 * s0 + "Z" : "M" + r1 * c0 + "," + r1 * s0 + "A" + r1 + "," + r1 + " 0 " + df + ",1 " + r1 * c1 + "," + r1 * s1 + "L0,0" + "Z";
     }
@@ -8081,7 +8080,7 @@ d3 = function() {
         var ticks = tickValues == null ? scale.ticks ? scale.ticks.apply(scale, tickArguments_) : scale.domain() : tickValues, tickFormat = tickFormat_ == null ? scale.tickFormat ? scale.tickFormat.apply(scale, tickArguments_) : String : tickFormat_;
         var subticks = d3_svg_axisSubdivide(scale, ticks, tickSubdivide), subtick = g.selectAll(".tick.minor").data(subticks, String), subtickEnter = subtick.enter().insert("line", ".tick").attr("class", "tick minor").style("opacity", 1e-6), subtickExit = d3.transition(subtick.exit()).style("opacity", 1e-6).remove(), subtickUpdate = d3.transition(subtick).style("opacity", 1);
         var tick = g.selectAll(".tick.major").data(ticks, String), tickEnter = tick.enter().insert("g", ".domain").attr("class", "tick major").style("opacity", 1e-6), tickExit = d3.transition(tick.exit()).style("opacity", 1e-6).remove(), tickUpdate = d3.transition(tick).style("opacity", 1), tickTransform;
-        var range = d3_scaleRange(scale), path = g.selectAll(".domain").data([ 0 ]), pathUpdate = (path.enter().append("path").attr("class", "domain"), 
+        var range = d3_scaleRange(scale), path = g.selectAll(".domain").data([ 0 ]), pathUpdate = (path.enter().append("path").attr("class", "domain"),
         d3.transition(path));
         var scale1 = scale.copy(), scale0 = this.__chart__ || scale1;
         this.__chart__ = scale1;
@@ -9303,11 +9302,6 @@ module.exports.makeArrayOfObject = function(data) {
     return h
   })
 }
-
-module.exports.setup = function() {
-  $(document).on("click", ".tHeader", Sheetsee.sendToSort)
-}
-
 },{"icanhaz":5}],5:[function(require,module,exports){
 /*!
 ICanHaz.js version 0.10.2 -- by @HenrikJoreteg
@@ -9873,33 +9867,93 @@ module.exports.buildOptionObject = function(optionsJSON, lineItem) {
   return newObj
 }
 
+module.exports.makeupOptionObject = function(lineItem) {
+  var options = []
+  for (var i in lineItem) {
+    options.push(i);
+  }
+  return options
+}
+
 // for geocoding: http://mapbox.com/tilemill/docs/guides/google-docs/#geocoding
 // create geoJSON from your spreadsheet's coordinates
 module.exports.createGeoJSON = function(data, optionsJSON) {
   var geoJSON = []
   data.forEach(function(lineItem){
-    // skip if there are no coords
-    if (!lineItem.long || !lineItem.lat) return
-    if (optionsJSON) var optionObj = Sheetsee.buildOptionObject(optionsJSON, lineItem)
-    var feature = {
-      type: 'Feature',
-      "geometry": {"type": "Point", "coordinates": [lineItem.long, lineItem.lat]},
-      "properties": {
-        "marker-size": "small",
-        "marker-color": lineItem.hexcolor
-      },
-      "opts": optionObj,
+    var hasGeo = false
+    if (lineItem.lat && lineItem.long || lineItem.polygon) hasGeo = true
+    if (lineItem.linestring || lineItem.multipolygon) hasGeo = true
+    if (!hasGeo) return
+
+    if (!optionsJSON) {
+      optionsJSON = makeupOptionObject(lineItem)
+      var optionObj = buildOptionObject(optionsJSON, lineItem)
+    } else {
+      optionObj = buildOptionObject(optionsJSON, lineItem)
     }
-    geoJSON.push(feature)
+
+    var type = determineType(lineItem)
+
+    if (lineItem.polygon || lineItem.multipolygon || lineItem.linestring) {
+      var shapeFeature = shapeJSON(lineItem, type, optionObj)
+      geoJSON.push(shapeFeature)
+    } else {
+      var poitnFeature = pointJSON(lineItem, type, optionObj)
+      geoJSON.push(poitnFeature)
+      }
   })
   return geoJSON
 }
 
-// load basic map with tiles
+module.exports.pointJSON = function(lineItem, type, optionObj) {
+  var lowercaseType = type.toLowerCase()
+  var pointFeature = {
+        type: "Feature",
+        "geometry": {
+          "type": type,
+          "coordinates": [+lineItem.long, +lineItem.lat]
+        },
+        "properties": {
+          "marker-size": "small",
+          "marker-color": lineItem.hexcolor
+        },
+        "opts": optionObj
+      }
+  return pointFeature
+}
+
+module.exports.shapeJSON = function(lineItem, type, optionObj) {
+  var lowercaseType = type.toLowerCase()
+  var coords
+  if (type !== "LineString") {
+    coords = JSON.parse( "[[" + lineItem[lowercaseType] + "]]" )
+  } else { coords = JSON.parse("[" + lineItem[lowercaseType] + "]") }
+  var shapeFeature = {
+        type: "Feature",
+        "geometry": {
+          "type": type,
+          "coordinates": coords
+        },
+        "properties": {
+          "fillColor": lineItem.hexcolor,
+          "color": lineItem.hexcolor
+        },
+        "opts": optionObj
+      }
+  return shapeFeature
+}
+
+module.exports.determineType = function(lineItem) {
+  var type = ""
+  if (lineItem.lat && lineItem.long) type = "Point"
+  if (lineItem.polygon) type = "Polygon"
+  if (lineItem.multipolygon) type = "MultiPolygon"
+  if (lineItem.linestring) type = "LineString"
+  return type
+}
+
 module.exports.loadMap = function(mapDiv) {
   var map = L.mapbox.map(mapDiv)
-  // map.setView(, 4)
-  // map.addLayer(L.tileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png'))
   map.touchZoom.disable()
   map.doubleClickZoom.disable()
   map.scrollWheelZoom.disable()
@@ -9907,18 +9961,66 @@ module.exports.loadMap = function(mapDiv) {
 }
 
 module.exports.addTileLayer = function(map, tileLayer) {
- var layer = L.mapbox.tileLayer(tileLayer)
- layer.addTo(map)
+  var layer = L.mapbox.tileLayer(tileLayer)
+  layer.addTo(map)
 }
 
-module.exports.addMarkerLayer = function(geoJSON, map, zoomLevel) {
-  var viewCoords = [geoJSON[0].geometry.coordinates[1], geoJSON[0].geometry.coordinates[0]]
-  var markerLayer = L.mapbox.markerLayer(geoJSON)
-  markerLayer.setGeoJSON(geoJSON)
-  map.setView(viewCoords, zoomLevel)
-  // map.fitBounds(geoJSON)
-  markerLayer.addTo(map)
-  return markerLayer
+module.exports.makePopupTemplate = function(geoJSON) {
+  var allOptions = geoJSON[0].opts
+  var keys = []
+  for (var i in allOptions) keys.push(i)
+
+  var mustacheKeys = mustachify(keys)
+
+  var template = {}
+  template.name ="popup"
+  template.template = templateString(mustacheKeys)
+  return template
+}
+
+module.exports.templateString = function(mustacheKeys) {
+  var template = "<ul>"
+  var counter = mustacheKeys.length
+  mustacheKeys.forEach(function(key) {
+    counter--
+    if (counter === 0) template = template.concat(key, "</ul>")
+    else template = template.concat(key)
+  })
+  return template
+}
+
+module.exports.mustachify = function(array) {
+  var newArray = []
+  array.forEach(function(item) {
+    item = "<li><b>" + item + ":</b> {{" + item + "}}</li>"
+    newArray.push(item)
+  })
+  return newArray
+}
+
+module.exports.addMarkerLayer = function(geoJSON, map, template) {
+  if (!template) {
+    template = makePopupTemplate(geoJSON)
+    ich.addTemplate(template.name, template.template)
+  }
+  var features = {
+    "type": "FeatureCollection",
+    "features": geoJSON
+  }
+
+  var layer = L.geoJson(features, {
+    pointToLayer: L.mapbox.marker.style,
+    style: function(feature) { return feature.properties }
+  })
+  var bounds = layer.getBounds()
+  layer.addTo(map)
+  map.fitBounds(bounds)
+
+  layer.eachLayer(function(marker) {
+    var popupContent = ich["popup"](marker.feature.opts)
+    marker.bindPopup(popupContent, {closeButton: false,})
+  })
+  return layer
 }
 },{"mapbox.js":8}],7:[function(require,module,exports){
 // Copyright (C) 2010 Google Inc.
@@ -10332,7 +10434,7 @@ URI.prototype.setPath = function (newPath) {
 URI.prototype.setRawPath = function (newPath) {
   if (newPath) {
     newPath = String(newPath);
-    this.path_ = 
+    this.path_ =
       // Paths must start with '/' unless this is a path-relative URL.
       (!this.domain_ || /^\//.test(newPath)) ? newPath : '/' + newPath;
   } else {
@@ -24245,46 +24347,47 @@ module.exports = {
 },{}],33:[function(require,module,exports){
 var ich = require('icanhaz')
 
-// Make Table, Sort and Filter Interactions
-module.exports.initiateTableFilter = function(data, filterDiv, tableDiv) {
+module.exports.initiateTableFilter = function(opts) {
   $('.clear').on("click", function() {
     $(this.id + ".noMatches").css("visibility", "hidden")
-    $(this.id + filterDiv).val("")
-    Sheetsee.makeTable(data, tableDiv)
+    $(this.id + opts.filterDiv).val("")
+    makeTable(opts)
   })
-  $(filterDiv).keyup(function(e) {
+  $(opts.filterDiv).keyup(function(e) {
     var text = $(e.target).val()
-    Sheetsee.searchTable(data, text, tableDiv)
+    console.log(opts.data.length, text)
+    searchTable(opts, text)
   })
 }
 
-module.exports.searchTable = function(data, searchTerm, tableDiv) {
+module.exports.searchTable = function(opts, searchTerm) {
   var filteredList = []
-  data.forEach(function(object) {
+  opts.data.forEach(function(object) {
     var stringObject = JSON.stringify(object).toLowerCase()
     if (stringObject.match(searchTerm.toLowerCase())) filteredList.push(object)
   })
   if (filteredList.length === 0) {
-    console.log("no matchie")
     $(".noMatches").css("visibility", "inherit")
-    Sheetsee.makeTable("no matches", tableDiv)
+    makeTable(opts, filteredList)
   }
-  else $(".noMatches").css("visibility", "hidden")
-  Sheetsee.makeTable(filteredList, tableDiv)
-  return filteredList
+  else {
+    $(".noMatches").css("visibility", "hidden")
+    makeTable(opts, filteredList)
+  }
 }
 
-module.exports.sortThings = function(data, sorter, sorted, tableDiv) {
-  data.sort(function(a,b){
+module.exports.sortThings = function(opts, sorter, sorted) {
+  console.log("here is data", opts.data)
+  opts.data.sort(function(a,b){
     if (a[sorter]<b[sorter]) return -1
     if (a[sorter]>b[sorter]) return 1
     return 0
   })
-  if (sorted === "descending") data.reverse()
-  Sheetsee.makeTable(data, tableDiv)
+  if (sorted === "descending") opts.data.reverse()
+  makeTable(opts)
   var header
-  $(tableDiv + " .tHeader").each(function(i, el){
-    var contents = Sheetsee.resolveDataTitle($(el).text())
+  $(opts.tableDiv + " .tHeader").each(function(i, el){
+    var contents = resolveDataTitle($(el).text())
     if (contents === sorter) header = el
   })
   $(header).attr("data-sorted", sorted)
@@ -24295,20 +24398,74 @@ module.exports.resolveDataTitle = function(string) {
   return adjusted
 }
 
-module.exports.sendToSort = function(event) {
-  var tableDiv = "#" + $(event.target).closest("div").attr("id")
-  console.log("came from this table",tableDiv)
-  var sorted = $(event.target).attr("data-sorted")
-  if (sorted) {
-    if (sorted === "descending") sorted = "ascending"
-    else sorted = "descending"
+module.exports.initiateTableSorter = function(options) {
+  var sortInfo = $(document).on("click", ".tHeader", sendToSort)
+
+  function sendToSort(event) {
+    var tableDiv = "#" + $(event.target).closest("div").attr("id")
+    console.log("came from this table",tableDiv)
+    var sorted = $(event.target).attr("data-sorted")
+    if (sorted) {
+      if (sorted === "descending") sorted = "ascending"
+      else sorted = "descending"
+    }
+    else { sorted = "ascending" }
+    var sorter = resolveDataTitle(event.target.innerHTML)
+    var sortInfo = {"sorter": sorter, "sorted": sorted, "tableDiv": tableDiv}
+    console.log(sortInfo)
+    sortThings(options, sorter, sorted, tableDiv)
   }
-  else { sorted = "ascending" }
-  var sorter = Sheetsee.resolveDataTitle(event.target.innerHTML)
-  Sheetsee.sortThings(gData, sorter, sorted, tableDiv)
 }
 
-module.exports.makeTable = function(data, targetDiv) {
+module.exports.makeTable = function(opts, filteredList) {
+  if (filteredList) var data = filteredList
+    else var data = opts.data
+		console.log(opts)
+
+  if (!opts.pagination) table(data, opts.targetDiv)
+  var allRows = data.length
+  var totalPages = Math.floor(allRows / opts.pagination)
+  var currentPage = 1
+  var currentStart = (currentPage * opts.pagination) - opts.pagination
+  var currentEnd = currentPage * opts.pagination
+  var currentRows = data.slice(currentStart, currentEnd)
+  table(currentRows, opts.tableDiv)
+  if (opts.data.length > opts.pagination) setPreNext(opts.tableDiv, currentPage, currentPage, totalPages)
+
+  $(document).on("click", (".pagination-next"), function() {
+    currentPage = currentPage + 1
+    var nextPage = currentPage + 1
+    currentStart = (currentPage * opts.pagination) - opts.pagination
+    currentEnd = currentPage * opts.pagination
+    currentRows = data.slice(currentStart, currentEnd)
+    table(currentRows, opts.tableDiv)
+    setPreNext(opts.tableDiv, currentPage, currentPage, totalPages)
+  })
+
+  $(document).on("click", (".pagination-pre"), function() {
+    currentPage = currentPage - 1
+    var nextPage = currentPage + 1
+    currentStart = (currentPage * opts.pagination) - opts.pagination
+    currentEnd = currentPage * opts.pagination
+    currentRows = data.slice(currentStart, currentEnd)
+    table(currentRows, opts.tableDiv)
+    setPreNext(opts.tableDiv, currentPage, currentPage, totalPages)
+  })
+}
+
+module.exports.setPreNext = function(targetDiv, currentPage, currentPage, totalPages) {
+  $(targetDiv).append("<div id='Pagination' pageno='" + currentPage + "'" + "class='table-pagination'>Showing page "
+    + currentPage + " of " + totalPages + " <a class='pagination-pre'>Previous</a>" +
+    " <a class='pagination-next'>Next</a></p></div>" )
+}
+
+module.exports.clearPreNExt = function() {
+  $(".table-pagination").attr("display", "none")
+}
+
+module.exports.table = table
+function table(data, targetDiv) {
+	console.log(targetDiv)
   var templateID = targetDiv.replace("#", "")
   var tableContents = ich[templateID]({
     rows: data
@@ -24318,16 +24475,7 @@ module.exports.makeTable = function(data, targetDiv) {
 },{"icanhaz":34}],34:[function(require,module,exports){
 module.exports=require(5)
 },{}],35:[function(require,module,exports){
-var Sheetsee = {}
-var extend   = require('lodash.assign')
-
-// consider this a "build file!" you can add/remove dependencies here, and the file will be created at dist/sheetsee.full.js.
-// creating these components are easy, just export an object, and things inside it will be extended to the main Sheetsee here.
-// in the future, these could be separate node modules. (for example: sheetsee-d3, sheetsee-mapbox, etc)
-extend(Sheetsee, require('sheetsee-core'), require('sheetsee-tables'), require('sheetsee-maps'), require('sheetsee-charts'))
-
-module.exports = Sheetsee
-
+if (typeof window.Sheetsee === 'undefined') window.Sheetsee = {}; window.Sheetsee = require('sheetsee-core'); var extend = require('lodash.assign'); extend(window.Sheetsee, require('sheetsee-maps'), require('sheetsee-charts'), require('sheetsee-tables')); module.exports = Sheetsee;
 },{"lodash.assign":36,"sheetsee-charts":1,"sheetsee-core":4,"sheetsee-maps":6,"sheetsee-tables":33}],36:[function(require,module,exports){
 /**
  * Lo-Dash 2.1.0 (Custom Build) <http://lodash.com/>
@@ -25180,6 +25328,4 @@ module.exports = shimKeys;
 },{"lodash._objecttypes":56}],60:[function(require,module,exports){
 module.exports=require(51)
 },{"lodash._objecttypes":56}]},{},[35])
-(35)
-});
 ;

@@ -1,3 +1,6 @@
+## Why Use Spreadsheets?
+## Why Not Use Spreadsheets?
+
 ### CSS
 
 Sheetsee.js comes with a bare minimum stylesheet. This way you can customize your site to look the way you want to it or to match an existing site's design.
@@ -38,7 +41,7 @@ Ignoring some HTML things to conserve space, you get the point. This gives you a
         </script>
         </body>
     </html>
-    
+
 ## Getting Started
 
 This bit is the same for both client-side and server-side versions.
