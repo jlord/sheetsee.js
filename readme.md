@@ -1,3 +1,5 @@
+_**Attention!** Hi! Sheetsee will be updated *soon*. Fun! I'm currently working on adding in some features (pagination on tables and polygons in maps) and breaking the tables, maps and charts components of Sheetsee into individual modules allowing for custom builds with just the components you plan on using (or all if you don't care). Changes currently in progress on the [`modules` branch](https://github.com/jlord/sheetsee.js/tree/modules). Sheetsee modules (still being debugged) are in my [repositories](https://github.com/search?q=%40jlord+sheetsee+module&type=Repositories&ref=searchresults)._
+
 ![sheetsee](https://raw.github.com/jllord/sheetsee-cache/master/img/sheetsee-03.png)
 # Sheetsee.js
 Sheetsee.js is a JavaScript library, or box of goodies, if you will, that makes it easy to use a Google Spreadsheet as the database feeding the tables, charts and maps on a website. Once set up, any changes to the spreadsheet will auto-saved by Google and be live on your site when a visitor refreshes the page.

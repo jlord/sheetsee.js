@@ -24360,7 +24360,8 @@ module.exports.initiateTableFilter = function(opts) {
   })
 }
 
-module.exports.searchTable = function(opts, searchTerm) {
+module.exports.searchTable = searchTable
+function searchTable(opts, searchTerm) {
   var filteredList = []
   opts.data.forEach(function(object) {
     var stringObject = JSON.stringify(object).toLowerCase()
@@ -24417,7 +24418,8 @@ module.exports.initiateTableSorter = function(options) {
   }
 }
 
-module.exports.makeTable = function(opts, filteredList) {
+module.exports.makeTable = makeTable
+function makeTable(opts, filteredList) {
   if (filteredList) var data = filteredList
     else var data = opts.data
 		console.log(opts)
@@ -24453,13 +24455,15 @@ module.exports.makeTable = function(opts, filteredList) {
   })
 }
 
-module.exports.setPreNext = function(targetDiv, currentPage, currentPage, totalPages) {
+module.exports.setPreNext = setPreNext
+function setPreNext(targetDiv, currentPage, currentPage, totalPages) {
   $(targetDiv).append("<div id='Pagination' pageno='" + currentPage + "'" + "class='table-pagination'>Showing page "
     + currentPage + " of " + totalPages + " <a class='pagination-pre'>Previous</a>" +
     " <a class='pagination-next'>Next</a></p></div>" )
 }
 
-module.exports.clearPreNExt = function() {
+module.exports.clearPreNext = clearPreNext
+function clearPreNext() {
   $(".table-pagination").attr("display", "none")
 }
 

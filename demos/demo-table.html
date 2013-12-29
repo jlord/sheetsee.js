@@ -12,7 +12,19 @@
   <input id="fullTableFilter" type="text" placeholder="filter by.."></input>
   <div id="fullTable"></div>
 
+  <input id="calFilter" type="text" placeholder="filter by.."></input>
+  <div id="calTable"></div>
+
 <script id="fullTable" type="text/html">
+  <table>
+    <tr><th class="tHeader">City</th><th class="tHeader">Place Name</th><th class="tHeader">Year</th><th class="tHeader">Image</th></tr>
+      {{#rows}}
+        <tr><td>{{city}}</td><td>{{placename}}</td><td>{{year}}</td><td>{{image}}</td></tr>
+      {{/rows}}
+  </table>
+</script>
+
+<script id="calTable" type="text/html">
   <table>
     <tr><th class="tHeader">City</th><th class="tHeader">Place Name</th><th class="tHeader">Year</th><th class="tHeader">Image</th></tr>
       {{#rows}}
@@ -30,8 +42,16 @@
 
   function showInfo(data) {
     gData = data
-    Sheetsee.makeTable(gData, "#fullTable", 10)
-    Sheetsee.initiateTableFilter(gData, "#fullTableFilter", "#fullTable")
+    var tableOptions = {"data": gData, "pagination": 10, "tableDiv": "#fullTable", "filterDiv": "#fullTableFilter"}
+    Sheetsee.makeTable(tableOptions)
+    Sheetsee.initiateTableFilter(tableOptions)
+
+    var california = Sheetsee.getKeyword(gData, "california")
+    console.log(california)
+    var calOptions = {"data": california, "pagination": 5, "tableDiv": "#calTable", "filterDiv": "#calFilter"}
+    Sheetsee.makeTable(calOptions)
+    Sheetsee.initiateTableFilter(calOptions)
+
   }
 
 
