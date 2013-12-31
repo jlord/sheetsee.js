@@ -24437,52 +24437,61 @@ function makeTable(opts, filteredList) {
 
 module.exports.setPagClicks = setPagClicks
 function setPagClicks(data, tableId, currentPage, pagination, totalPages) {
-  // if (currentPage = 1) {
-  //     $(".pagination-pre-" + tableId).css("display", "none")
-  //   } 
+  console.log(currentPage)
+  $(".pagination-pre-" + tableId).addClass("no-pag")
     
   $(document).on("click", (".pagination-next-" + tableId), function() {
+    if ($(this).hasClass("no-pag")) return
+
     currentPage = currentPage + 1
     var nextPage = currentPage + 1
     currentStart = (currentPage * pagination) - pagination
     currentEnd = currentPage * pagination
-    console.log(currentPage, totalPages)
 
-    currentRows = data.slice(currentStart, currentEnd)
-    table(currentRows, "#" + tableId)
-    setPreNext("#" + tableId, currentPage, currentPage, totalPages)
-
-    // if (currentPage = totalPages) {
-    //   $(".pagination-next-" + tableId).addClass("no-pag")
-    //   return
-    // }
-    // else {
-    //   currentRows = data.slice(currentStart, currentEnd)
-    //   table(currentRows, "#" + tableId)
-    //   setPreNext("#" + tableId, currentPage, currentPage, totalPages)
-    // }
-  })
+    if (currentPage >= totalPages) {
+      currentRows = data.slice(currentStart, currentEnd)
+      table(currentRows, "#" + tableId)
+      setPreNext("#" + tableId, currentPage, currentPage, totalPages)
+      $(".pagination-next-" + tableId).addClass("no-pag")
+      $(".pagination-next-" + tableId)
+    }
+    else {
+      currentRows = data.slice(currentStart, currentEnd)
+      table(currentRows, "#" + tableId)
+      setPreNext("#" + tableId, currentPage, currentPage, totalPages)
+    }
+})
 
   $(document).on("click", (".pagination-pre-" + tableId), function() {
+    console.log(this)
+    if (currentPage > 1) $(this).removeClass("no-pag")
+    if ($(this).hasClass("no-pag")) return
+
+    // if ((currentPage) === 2) {
+    //   $(".pagination-pre-" + tableId).addClass("no-pag"); console.log("on page one!", currentPage)
+    // }
+
     currentPage = currentPage - 1
     // console.log("current", currentPage)
     var nextPage = currentPage + 1
     currentStart = (currentPage * pagination) - pagination
     currentEnd = currentPage * pagination
 
-    currentRows = data.slice(currentStart, currentEnd)
-    table(currentRows, "#" + tableId)
-    setPreNext("#" + tableId, currentPage, currentPage, totalPages)
+    // currentRows = data.slice(currentStart, currentEnd)
+    // table(currentRows, "#" + tableId)
+    // setPreNext("#" + tableId, currentPage, currentPage, totalPages)
 
-    // if (currentPage = 0) {
-    //   $(".pagination-pre-" + tableId).addClass("no-pag")
-    //   return
-    // }
-    // else {
-    //   currentRows = data.slice(currentStart, currentEnd)
-    //   table(currentRows, "#" + tableId)
-    //   setPreNext("#" + tableId, currentPage, currentPage, totalPages)
-    // }
+    if (currentPage === 1) {
+      currentRows = data.slice(currentStart, currentEnd)
+      table(currentRows, "#" + tableId)
+      setPreNext("#" + tableId, currentPage, currentPage, totalPages)
+      $(".pagination-pre-" + tableId).addClass("no-pag")
+    }
+    else {
+      currentRows = data.slice(currentStart, currentEnd)
+      table(currentRows, "#" + tableId)
+      setPreNext("#" + tableId, currentPage, currentPage, totalPages)
+    }
     
   })
 }
