@@ -10864,6 +10864,11 @@ module.exports.addMarkerLayer = function(geoJSON, map, template) {
     template = makePopupTemplate(geoJSON)
     ich.addTemplate(template.name, template.template)
   }
+  else {
+   var template = {"template": template}
+   template.name = "popup"
+   ich.addTemplate(template.name, template.template)
+  }
   var features = {
     "type": "FeatureCollection",
     "features": geoJSON

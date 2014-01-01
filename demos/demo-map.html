@@ -27,12 +27,12 @@
 
       function showInfo(data) {
         gData = data
-        var optionsJSON = ["placename"]
+        var optionsJSON = ["placename", "image"]
         var template = "<ul><li><b>placename:</b> {{placename}}</li></ul>"
         var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
         var map = Sheetsee.loadMap("map")
         Sheetsee.addTileLayer(map, 'examples.map-20v6611k')
-        var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map)
+        var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, template)
       }
 
 
