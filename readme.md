@@ -52,7 +52,7 @@ Ignoring some HTML things to conserve space, you get the point. This gives you a
       document.addEventListener('DOMContentLoaded', function() {
         var gData
         var URL = "0AvFUWxii39gXdFhqZzdTeU5DTWtOdENkQ1Y5bHdqT0E"
-        Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } ) 
+        Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } )
       })
       function showInfo(data) {
         gData = data
@@ -60,7 +60,7 @@ Ignoring some HTML things to conserve space, you get the point. This gives you a
         var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
         var map = Sheetsee.loadMap("map")
         Sheetsee.addTileLayer(map, 'examples.map-20v6611k')
-        var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map)
+        var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, 11)
         // customize the popup content
         addPopups(map, markerLayer)
         function addPopups(map, markerLayer) {
@@ -312,14 +312,14 @@ Next you'll need to create geoJSON out of your data so that it can be mapped.
 
 ### Sheetsee.createGeoJSON(data, optionsJSON)
 
-This takes in your **data** and the parts of your data, **optionsJSON**,  that you plan in your map's popups. If you're not going to have popups on your markers, don't worry about it then and just pass in your data. 
+This takes in your **data** and the parts of your data, **optionsJSON**,  that you plan in your map's popups. If you're not going to have popups on your markers, don't worry about it then and just pass in your data.
 
 ``` js
 var optionsJSON = ["name", "breed", "cuddlability"]
 var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
 ```
 
-It will return an _array_ in the special geoJSON format that map making things love. 
+It will return an _array_ in the special geoJSON format that map making things love.
 
 ``` js
 [{
@@ -351,12 +351,12 @@ Sheetsee.addTileLayer(map, 'examples.map-20v6611k')
 
 You can add tiles from awesome mapmakers like [Stamen](examples.map-20v6611k) or create your own in Mapbox's [Tilemill](http://www.mapbox.com/tilemill) or [online](https://tiles.mapbox.com/newmap#3.00/0.00/0.00).
 
-### Sheetsee.addMarkerLayer(geoJSON, map)
+### Sheetsee.addMarkerLayer(geoJSON, map, zoomLevel)
 
-To add makers to your map, use this function and pass in your **geoJSON** so that it can get the coordinates and your **map** so that it places the markers there.
+To add makers to your map, use this function and pass in your **geoJSON** so that it can get the coordinates, your **map** so that it places the markers there and a **zoom level**.
 
 ``` js
-var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map)
+var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, 11)
 ```
 
 ### Sheetsee.addPopups(map, markerLayer)
