@@ -12,6 +12,14 @@ cpr('./demos', './site/demos', function(err, files) {
   if (err) return console.log(err)
 })
 
+fs.readFile('./newReadme.md', function(err, file) {
+  if (err) return console.log(err)
+  var name = "index"
+  var content = file.toString()
+  var html = marked(content)
+  applyTemplate(html, name)
+})
+
 glob("docs/*.md", function (err, files) {
   if (err) return console.log(err)
   var filenames = files.map(function(name) {
@@ -36,6 +44,9 @@ function applyTemplate(html, name) {
 }
 
 function writeFile(page, name) {
+  if (name === "index") {
+    fs.writeFileSync('./site/' + name + '.html' , page)  
+  }
   mkdirp('./site/docs', function (err) {
     if (err) return console.error(err)
     fs.writeFileSync('./site/docs/' + name + '.html' , page)  
