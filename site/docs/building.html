@@ -1,0 +1,18 @@
+I love template.
+<h1 id="just-right">Just Right</h1>
+<p>You can customize your sheetsee build with just the parts you want to use. If you want to just use the full version, you can grab it here at <a href="">github.com/jlord/sheetsee.js</a>.</p>
+<p><strong>To build your sheetsee you&#39;ll need <a href="http://www.nodejs.org">Node.js</a> and <a href="http://www.npmjs.org">NPM</a> on your computer and a command line</strong></p>
+<h2 id="install-sheetsee-from-npm">Install sheetsee from NPM</h2>
+<p>The sheetsee module contains the basic sorting, organizing data functions and the script for building on the other modules. Create a folder for you new project and <code>cd</code> into it. Then install <code>sheetsee</code>.</p>
+<pre><code class="lang-bash">cd myNewProject
+npm install sheetsee
+</code></pre>
+<p>Here are the options for the different modules. If you want save the generated file as <em>sheetsee.js</em> then add the <code>save</code> option.</p>
+<ul>
+<li><code>-m</code> or <code>-maps</code> for maps</li>
+<li><code>-t</code> or <code>-tables</code> for tables</li>
+<li><code>-c</code> or <code>-charts</code> for charts</li>
+<li><code>--save</code> to write out the file*</li>
+</ul>
+<p><em>* defaults to standardout on your console which you can</em> <code>| pbcopy</code></p>
+<p>So for instance, <code>sheetsee -m -t --save</code> will build you a sheetsee with the basic <strong>data</strong> functions, the <strong>map</strong> and <strong>tables</strong> sections built in and save it as a file named <strong>sheetsee.js</strong>.</p>

@@ -1,0 +1,10 @@
+I love template.
+<h1 id="custom-charts">Custom Charts</h1>
+<p>It&#39;s easy to take a d3 chart of your own and use it with Sheetsee. If you make it into a module, anyone can use your chart, too!</p>
+<p>Sheetsee charts currently work by taking in some options, like so:</p>
+<pre><code class="lang-javascript">var pieOptions = {labels: &quot;name&quot;, units: &quot;units&quot;, m: [80, 80, 80, 80], w: 600, h: 400, div: &quot;#pieChart&quot;, hiColor: &quot;#14ECC8&quot;}
+</code></pre>
+<p>The <em>labels</em> represent the, the actual thing you&#39;re charting and <em>units</em> are how many of those things. Margin, width and height are <em>m, w, h</em> and the div to build your chart in is <em>div</em>. Finally, you can supply a highlight color if you want.</p>
+<p>So, your chart could take the same options, but map them into your d3 code with the correct variables. For instance if what sheetsee calls <em>labels</em> you call <em>itemID</em> you just add at the top of your code:</p>
+<pre><code class="lang-javascript">labels = itemID
+</code></pre>

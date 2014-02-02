@@ -1,0 +1,61 @@
+I love template.
+<h2 id="why-use-spreadsheets-">Why Use Spreadsheets?</h2>
+<h2 id="why-not-use-spreadsheets-">Why Not Use Spreadsheets?</h2>
+<h3 id="css">CSS</h3>
+<p>Sheetsee.js comes with a bare minimum stylesheet. This way you can customize your site to look the way you want to it or to match an existing site&#39;s design.</p>
+<h3 id="client-side-or-server-side">Client-side or Server-side</h3>
+<p>Sheetsee.js comes in two flavors, <a href="">client-side</a> and <a href="">server-side</a>. The client-side is the most approachable and straightforward, you just include sheetsee.js and the dependencies on your page and use sheetsee.js as normal.</p>
+<p>The server-side version is built with <a href="http://www.nodejs.org">Node.js</a> and you&#39;ll need to understand Node and be publishing to a server that runs Node.js apps. This version saves the data on the server so that the browser doesn&#39;t have to fetch from Google at every request, which can sometimes be slow. You can set when the cache expires. It also allows for offline development, huzzah!</p>
+<h2 id="the-short-sweet">The Short &amp; Sweet</h2>
+<ol>
+<li>Link to Sheetsee.js and dependencies in your HTML header.</li>
+<li>Create a place holder <code>&lt;div&gt;</code> in your HTML for any chart, map or table you want to have.</li>
+<li>Create templates for tables in <code>&lt;script&gt;</code> tags.</li>
+<li>Create a script tag that waits for the document to load and then executes any of the map, chart or tables you&#39;ve specified in it.</li>
+<li>Set it and forget. Now all you need to do is edit the spreadsheet and visitors will get the latest information everytime they load the page.</li>
+</ol>
+<h2 id="bare-minimum-setup">Bare Minimum Setup</h2>
+<p>Ignoring some HTML things to conserve space, you get the point. This gives you a page with a map of your spreadsheets points.</p>
+<pre><code>&lt;html&gt;
+    &lt;head&gt;
+        &lt;script src=&quot;//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js&quot;&gt;&lt;/script&gt;
+        &lt;script src=&quot;//cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.1.0/tabletop.min.js&quot;&gt;&lt;/script&gt;
+        &lt;script type=&quot;text/javascript&quot; src=&#39;dist/sheetsee.full.js&#39;&gt;&lt;/script&gt;
+        &lt;link href=&#39;http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.css&#39; rel=&#39;stylesheet&#39; /&gt;
+    &lt;/head&gt;
+    &lt;style&gt; #map {height: 600px; width: 600px;} &lt;/style&gt;
+    &lt;body&gt;
+    &lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
+    &lt;script&gt;
+        var geoJSON = Sheetsee.createGeoJSON(gData, featureElements)
+        var map = Sheetsee.loadMap(&quot;map&quot;)
+        Sheetsee.addTileLayer(map, &#39;examples.map-20v6611k&#39;)
+        var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map)
+    &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h2 id="getting-started">Getting Started</h2>
+<p>This bit is the same for both client-side and server-side versions.</p>
+<h3 id="your-data">Your Data</h3>
+<p><img src="https://raw.github.com/jllord/sheetsee-cache/master/img/spreadsheettodata.png" alt="sheetsee"></p>
+<p>Your Google Spreadsheet should be set up with row one as your column headers. Row two and beyond should be your data.  Each header and row becomes an oject in the final array that Tabletop.js delivers of your data.</p>
+<p><img src="https://raw.github.com/jllord/sheetsee-cache/master/img/nonos.png" alt="sheetsee"></p>
+<p>There shouldn&#39;t be any breaks or horizontal organization in the spreadsheet. But, feel free to format the style of your spreadsheet as you wish; borders, fonts and colors and such do not transfer or affect your data exporting.</p>
+<pre><code>[{&quot;name&quot;:&quot;Coco&quot;,&quot;breed&quot;:&quot;Teacup Maltese&quot;,&quot;kind&quot;:&quot;Dog&quot;,&quot;cuddlability&quot;:&quot;5&quot;,&quot;lat&quot;:&quot;37.74832&quot;,&quot;long&quot;:&quot;-122.402158&quot;,&quot;picurl&quot;:&quot;http://distilleryimage8.s3.amazonaws.com/98580826813011e2bbe622000a9f1270_7.jpg&quot;,&quot;hexcolor&quot;:&quot;#ECECEC&quot;,&quot;rowNumber&quot;:1}...]
+</code></pre><h4 id="hexcolor">Hexcolor</h4>
+<p><img src="https://raw.github.com/jllord/sheetsee-cache/master/img/hexcolors.png" alt="sheetsee"></p>
+<p>You must add a column to your spreadsheet with the heading <em>hexcolor</em> (case insensitive). The maps, charts and such use colors and this is the easiest way to standardize that. The color scheme is up to you, all you need to do is fill the column with hexidecimal color values. This <a href="http://color.hailpixel.com/">color picker</a> by <a href="https://twitter.com/hailpixel">Devin Hunt</a> is really nice. #Funtip: Coloring the background of the cell it&#39;s hexcolor brings delight! </p>
+<h4 id="geocoding">Geocoding</h4>
+<p>If you intend to map your data and only have addresses you&#39;ll need to geocode the addresses into lat/long coordinates. Mapbox built a <a href="http://mapbox.com/tilemill/docs/guides/google-docs/#geocoding">plugin</a>
+ that does this for you in Google Docs. You can also use websites like <a href="http://www.latlong.net/">latlong.net</a> to get the coordinates and paste them into rows with column headers <em>lat</em> and <em>long</em>.</p>
+<blockquote>
+<p>image of lat and long column headers</p>
+</blockquote>
+<h4 id="publishing-your-spreadsheet">Publishing Your Spreadsheet</h4>
+<p><img src="https://raw.github.com/jllord/sheetsee-cache/master/img/publish.png" alt="sheetsee"></p>
+<p>You need to do this in order to generate a unique key for your spreadsheet, which Tabletop.js will use to get your spreadsheet data. In your Google Spreadsheet, click <em>File</em> &gt; <em>Publish to the Web</em>. Then in the next window click <em>Start Publishing</em>; it will then turn into a <em>Stop Publishing</em> button.</p>
+<p><img src="https://raw.github.com/jllord/sheetsee-cache/master/img/key.png" alt="sheetsee"></p>
+<p>You should have an address in a box at the bottom, your key is the portion between the = and the &amp;. You&#39;ll retrieve this later when you hook up your site to the spreadsheet.</p>
+<h3 id="your-website">Your Website</h3>
+<p>Before you get started with Sheetsee.js you should plan out your website. Design it, create the basic markup and stylesheet.</p>
+<p>For now, create empty <code>div</code> placeholders for the map, chart and tables you plan on including.</p>

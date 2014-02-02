@@ -1,0 +1,19 @@
+I love template.
+<p><strong>coming soon!</strong></p>
+<h2 id="fork-n-go">Fork-n-Go</h2>
+<p>Projects (repositories)</p>
+<h2 id="query-strings">Query Strings</h2>
+<p>If your spreadsheet contains address information, using templates (Sheetsee.js uses a form of Mustache), you can embed those elements into a query string (aka a search URL) like Google Maps URL or Yelp. If you search for a location in Google Maps, you&#39;ll notice it creates a URL for that search.</p>
+<p>So, if you have information in your spreadsheet that would go inside a query string, make a template for inserting them into a link on your page.</p>
+<p>The basic elements are: a spreadsheet with address info + HTML template to create the query string.</p>
+<p>The Sheetsee <a href="jlord.github.io/hack-spots">Hack-Spots</a> is an does such a thing. Here is the spreadsheet, with address information</p>
+<p><img src="http://jlord.s3.amazonaws.com/wp-content/uploads/Screen-Shot-2013-09-15-at-6.49.19-PM.png" alt="img"></p>
+<p>In the HTML template for the table on the <a href="jlord.github.io/hack-spots">Hack-Spots</a> page, the button’s links look like this:</p>
+<pre><code class="lang-HTML">&lt;a class=&quot;button&quot; href=&quot;https://maps.google.com/maps?q={{address}},{{city}},{{state}}&quot; target=&quot;_blank&quot;&gt;View in Google Maps&lt;/a&gt;
+&lt;a class=&quot;button&quot; href=&quot;http://www.yelp.com/search?find_desc={{name}}&amp;find_loc={{city}},{{state}}&quot; target=&quot;_blank&quot;&gt;Find on Yelp&lt;/a&gt;
+</code></pre>
+<p>Here is the exact line of code on GitHub.</p>
+<p>We’re inserting the address, city, and state details from the spreadsheet into the structure of a query string for Google maps and Yelp. You can figure out the query string of a service by just using it (type in an address in Google Maps) and looking at the resulting URL.</p>
+<p>With a some CSS and such, the resulting website has a table with the hack spots and a button for viewing in Google Maps or Yelp:</p>
+<p><img src="http://jlord.s3.amazonaws.com/wp-content/uploads/Screen-Shot-2013-09-15-at-6.43.54-PM.png" alt="img"></p>
+<p>When the page builds, it creates the correct link for each row. When someone clicks on the buttons it takes them directly to the Google Map search result for that address. BAM!</p>

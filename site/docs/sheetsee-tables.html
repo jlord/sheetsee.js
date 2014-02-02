@@ -1,0 +1,60 @@
+I love template.
+<h1 id="sheetsee-tables">sheetsee-tables</h1>
+<p>With this module you can create tables of your data that are sortable, searchable and paginate-able.</p>
+<p>You&#39;ll need a <code>&lt;div&gt;</code> in your html, a <code>&lt;script&gt;</code> mustache template and a <code>&lt;script&gt;</code> that intitiates the table.</p>
+<h4 id="your-html-placeholder-div-">Your HTML Placeholder <code>&lt;div&gt;</code></h4>
+<p>This is as simple as an empty <code>&lt;div&gt;</code> with an id. This id should match the script template id in the next section.</p>
+<pre><code class="lang-HTML">&lt;div id=&quot;siteTable&quot;&gt;&lt;/div&gt;
+</code></pre>
+<h4 id="your-script-template">Your <code>&lt;script&gt;</code> Template</h4>
+<p>Your template is the mockup of what you&#39;d like your table to look like and what content it should show. The style is up to you!</p>
+<h5 id="sorting">Sorting</h5>
+<p>If you want users to be able to click on headers and sort that column, your template must include table headers with the class <em>tHeader</em>.</p>
+<p><em>Example</em></p>
+<p><em>The variables inside the {{}} must match the column headers in your spreadsheet. Lowercase and remember spaces are omitted, so &quot;Place Name&quot; will become &quot;placename&quot;.</em></p>
+<pre><code class="lang-HTML">&lt;script id=&quot;siteTable&quot; type=&quot;text/html&quot;&gt;
+    &lt;table&gt;
+    &lt;tr&gt;&lt;th class=&quot;tHeader&quot;&gt;City&lt;/th&gt;&lt;th class=&quot;tHeader&quot;&gt;Place Name&lt;/th&gt;&lt;th class=&quot;tHeader&quot;&gt;Year&lt;/th&gt;&lt;th class=&quot;tHeader&quot;&gt;Image&lt;/th&gt;&lt;/tr&gt;
+      {{#rows}}
+        &lt;tr&gt;&lt;td&gt;{{city}}&lt;/td&gt;&lt;td&gt;{{placename}}&lt;/td&gt;&lt;td&gt;{{year}}&lt;/td&gt;&lt;td&gt;{{image}}&lt;/td&gt;&lt;/tr&gt;
+      {{/rows}}
+  &lt;/table&gt;
+&lt;/script&gt;
+</code></pre>
+<h4 id="your-script-execution">Your <code>&lt;script&gt;</code> Execution</h4>
+<pre><code class="lang-javascript">&lt;script type=&quot;text/javascript&quot;&gt;
+    document.addEventListener(&#39;DOMContentLoaded&#39;, function() { // IE6 doesn&#39;t do DOMContentLoaded
+        Sheetsee.makeTable(gData, &quot;#siteTable&quot;, 10)
+        Sheetsee.initiateTableFilter(gData, &quot;#tableFilter&quot;, &quot;#siteTable&quot;)
+    })
+&lt;/script&gt;
+</code></pre>
+<p>To create another table, simply repeat the steps except for <code>initiateTableFilter()</code></p>
+<pre><code class="lang-HTML">&lt;div id=&quot;secondTable&quot;&gt;&lt;/div&gt;
+&lt;script id=&quot;secondTable&quot;&gt; // your table template here &lt;/script&gt;
+&lt;script&gt;Sheetsee.makeTable(otherData, &quot;#secondTable&quot;, 10)&lt;/script&gt;
+</code></pre>
+<p>Learn more about the things you can do with <a href="http://mustache.github.io/">mustache.js</a>.</p>
+<h3 id="sheetsee-maketable-data-targetdiv-pagination-">Sheetsee.makeTable(data, targetDiv, pagination)</h3>
+<p>You&#39;ll call this to make a table out of a <strong>data</strong> and tell it what <strong>targetDiv</strong> in the html to render it in (this should also be the same id as your script template id) and how many <strong>rows</strong> you want it to show per &quot;page&quot; of the table. If you don&#39;t include the pagination number, it will default to showing all rows on one page.</p>
+<pre><code class="lang-javascript">Sheetsee.makeTable(gData, &quot;#siteTable&quot;, 10)
+</code></pre>
+<h4 id="pagination">Pagination</h4>
+<p>If you do not put in a number for pagination, by default it will show all of the data at once. With pagination, at the bottom of your table it will add this for naviagtion, which you can style in your CSS:</p>
+<pre><code class="lang-HTML">&lt;div id=&#39;Pagination&#39; currentPage class=&#39;table-pagination&#39;&gt;
+  Showing page currentPage of totalPages
+  &lt;a class=&#39;pagination-pre&#39;&gt;Previous&lt;/a&gt;&lt;a class=&#39;pagination-next&#39;&gt;Next&lt;/a&gt;
+&lt;/div&gt;
+</code></pre>
+<h2 id="table-filter-search">Table Filter/Search</h2>
+<p>If you want to have an input to allow users to search/filter the data in the table, you&#39;ll add an input to your HTML. Give it an ide and if you want, placeholder text:</p>
+<pre><code class="lang-javascript">&lt;input id=&quot;tableFilter&quot; type=&quot;text&quot; placeholder=&quot;filter by..&quot;&gt;&lt;/input&gt;
+</code></pre>
+<h3 id="sheetsee-initiatetablefilter-data-filterdiv-tablediv-">Sheetsee.initiateTableFilter(data, filterDiv, tableDiv)</h3>
+<p>You will then call this function to make that input live:</p>
+<pre><code class="lang-javascript">Sheetsee.initiateTableFilter(gData, &quot;#TableFilter&quot;, &quot;#siteTable&quot;)
+</code></pre>
+<p>It will connect that input to your data as well as inject this HTML for a button, which you can style yourself in your CSS:</p>
+<pre><code class="lang-HTML">&lt;span class=&quot;clear button&quot;&gt;Clear&lt;/span&gt;
+&lt;span class=&quot;noMatches&quot;&gt;no matches&lt;/span&gt;
+</code></pre>

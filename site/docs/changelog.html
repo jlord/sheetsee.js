@@ -1,0 +1,19 @@
+I love template.
+<h3 id="sheetsee-v3">Sheetsee v3</h3>
+<h2 id="august-13-2013">August 13, 2013</h2>
+<h3 id="charting-intake">Charting Intake</h3>
+<p>D3 charts need an array of objects, and something to chart: the thing itself (aka labels) and the corresponding value (aka units). Your data usually contains more than D3 needs to make the chart, so you have to tell it what to chart from your data to chart.</p>
+<p>Previously Sheetsee required you pass your data through a function, <code>addUnitsAndLabels()</code> which took in your data and the things you wanted to chart, reformatted your data for you so that you could pass it into one of the d3 charts. This is one more step than actually needs to happen.</p>
+<p>Now Sheetsee just asks for what you want your <em>labels</em> and <em>units</em> to be in the options you give it when calling the chart function. It then sorts the data correctly on the inside of the chart function. Yay, easier!</p>
+<pre><code class="lang-javascript">var options = {
+  labels: &quot;name&quot;,
+  units: &quot;cuddleability&quot;,
+  m: [60, 60, 30, 150],
+  w: 600, h: 400,
+  div: &quot;#barChart&quot;,
+  xaxis: &quot;no. of pennies&quot;,
+  hiColor: &quot;#FF317D&quot;
+}
+</code></pre>
+<p>Thanks @maxogden for the help with this.</p>
+<h3 id="started-doing-this-changelong-pretty-late-in-the-game-">Started doing this changelong pretty late in the game.</h3>
