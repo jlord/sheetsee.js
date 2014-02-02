@@ -6,6 +6,11 @@ var marked = require('marked')
 var hbs = require('handlebars')
 var mkdirp = require('mkdirp')
 var path = require('path')
+var cpr = require('cpr')
+
+cpr('./demos', './site/demos', function(err, files) {
+  if (err) return console.log(err)
+})
 
 glob("docs/*.md", function (err, files) {
   if (err) return console.log(err)
@@ -36,3 +41,4 @@ function writeFile(page, name) {
     fs.writeFileSync('./site/docs/' + name + '.html' , page)  
   })
 }
+

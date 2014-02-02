@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <title>Sheetsee Chart Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.1.0/tabletop.min.js"></script>
+    <script type="text/javascript" src='../../js/sheetsee.js'></script>
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.0/mapbox.css' rel='stylesheet' />
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+  <style>
+    body {font-family: Helvetica;}
+    #pennies.axis {shape-rendering: crispEdges;}
+    #pennies.x.axis .minor, #pennies.y.axis .minor {stroke-opacity: .5;}
+    #pennies.x.axis {stroke-opacity: 1;}
+    #pennies.y.axis line, #pennies.y.axis path, #pennies.x.axis path {fill: none; stroke: #acacac; stroke-width: 1;}
+    #pennies .x.axis line {stroke: #acacac; stroke-opacity: .75;}
+    .bigg {-webkit-transition: all .2s ease-in-out; -webkit-transform: scale(2);}
+    path.chartLine {stroke: #14ECC8; stroke-width: 3; fill: none;}
+    div.tooltip {position: absolute; text-align: left; padding: 4px 8px; width: auto; font-size: 10px; height: auto; background: #fff; border: 0px; pointer-events: none;}
+    circle {fill: #fff; cursor: pointer;}
+    path.domain {fill: #CCF4FF;}
+  </style>
+<body>
+  <div id="pennies"></div>
+
+
+<script id="" type="text/html">
+  // template if you so desire!
+</script>
+
+<script type="text/javascript">
+ document.addEventListener('DOMContentLoaded', function() {
+ 	var gData
+ 	var URL = "0Ao5u1U6KYND7dGN5QngweVJUWE16bTRob0d2a3dCbnc"
+		Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } )
+	})
+
+  function showInfo(data) {
+    gData = data
+    var cali = Sheetsee.getOccurance(gData, "state")
+    console.log("cali", cali)
+    var colors = ['#ff00ff', '#acacac']
+    var caliData = Sheetsee.makeColorArrayOfObject(cali, colors)
+    console.log(caliData)
+    var lineOptions = {units: "units", labels: "undefined", m: [80, 100, 120, 100], w: 800, h: 400, div: "#pennies", yaxis: "pennies", hiColor: "#E4EB29"}
+    Sheetsee.d3LineChart(caliData, lineOptions)
+  }
+
+
+</script>
+
+</body>
+</html>
