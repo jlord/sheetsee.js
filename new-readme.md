@@ -3,7 +3,7 @@
 
 # Sheetsee.js
 
-**Sheetsee.js** is a library for connecting Google Spreadsheets to a website and visualizing the information in tables, maps and charts.
+**Sheetsee.js** is a client-side library for connecting Google Spreadsheets to a website and visualizing the information in tables, maps and charts.
 
 Google Spreadsheets can be used as simple and collaborative databases, they make getting a data driven site going much easier than traditional databases. Read more about using spreadsheets for databases [here](/docs/basics.md).
 
@@ -46,6 +46,7 @@ More resources on using Sheetsee.js:
 
 - [About Sheetsee.js](docs/about.md)
 - [Building Sheetsee](docs/building.md)
+- [Basics](docs/basics.md)
 
 #### Ideas
 

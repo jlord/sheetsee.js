@@ -1,8 +1,9 @@
 _**Attention!** Hi! Sheetsee will be updated *soon*. Fun! I'm currently working on adding in some features (pagination on tables and polygons in maps) and breaking the tables, maps and charts components of Sheetsee into individual modules allowing for custom builds with just the components you plan on using (or all if you don't care). Changes currently in progress on the [`modules` branch](https://github.com/jlord/sheetsee.js/tree/modules). Sheetsee modules (still being debugged) are in my [repositories](https://github.com/search?q=%40jlord+sheetsee+module&type=Repositories&ref=searchresults)._
 
 ![sheetsee](https://raw.github.com/jllord/sheetsee-cache/master/img/sheetsee-03.png)
+
 # Sheetsee.js
-Sheetsee.js is a JavaScript library, or box of goodies, if you will, that makes it easy to use a Google Spreadsheet as the database feeding the tables, charts and maps on a website. Once set up, any changes to the spreadsheet will auto-saved by Google and be live on your site when a visitor refreshes the page.
+Sheetsee.js is a client-side JavaScript library, or box of goodies, if you will, that makes it easy to use a Google Spreadsheet as the database feeding the tables, charts and maps on a website. Once set up, any changes to the spreadsheet will auto-saved by Google and be live on your site when a visitor refreshes the page.
 
 Using Google Spreadsheets as the backend database is awesome because it is easy to use, share and collaborate with.
 
@@ -273,7 +274,7 @@ If you pass in an array of just one color it will repeat that color for all item
 
 ## Make a Map
 
-Sheetsee.js uses [Mapbox.js](http://mapbox.com/mapbox.js), a [Leaflet.js](http://leafletjs.com/) plugin, to make maps.
+Sheetsee.js uses [Mapbox.js](http://mapbox.com/mapbox.js), a [[Leaflet.js](http://leafletjs.com/)](http://leafletjs.com/) plugin, to make maps.
 
 Create an empty `<div>` in your HTML, with an id.
 
@@ -496,6 +497,6 @@ Thanks to [Dan Sinker](http://www.twitter.com/dansinker) at [Open News](http://w
 
 Thanks to [Max Ogden](http://www.twitter.com/maxogden) for emotional support, teaching me JavaScript and working on the harder parts of Sheetsee.js - especially for making [Tabletop.js for Node.js](https://npmjs.org/tabletop).
 
-Thanks to all the authors and contributors to Tabletop.js, Mapbox.js, Leaflet.js, jQuery, ICanHas.js and d3.js. Thanks to Google and the Internet for existing and to all those who've written tutorials or asked or answered a question on StackOverflow.
+Thanks to all the authors and contributors to Tabletop.js, Mapbox.js, [Leaflet.js](http://leafletjs.com/), jQuery, ICanHas.js and d3.js. Thanks to Google and the Internet for existing and to all those who've written tutorials or asked or answered a question on StackOverflow.
 
 Thanks to Mom and Dad for getting a computer in 1996 and the mIRC scripts I started writing that I suppose would eventually lead me here.

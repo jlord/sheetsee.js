@@ -12,50 +12,51 @@
   </head>
   <body>
     <div class="container">
-      <p>More about Sheetsee&#39;s development and the libraries it&#39;s built on.</p>
-<h2 id="in-the-beginning">In the Beginning</h2>
-<p>Sheetsee.js began as a part of my <a href="">Code for America</a> 2012 Fellowship project, <a href="">See Penny Work</a>. The idea and original code was to enable cities to easily publish and maintain themselves their budget data. The original sheetsee.js was built into Wordpress templates so that with the See Penny Work template, you could create pages that you only had to name and they would be populated with maps, charts and tables based on the page name corelating with a project in the spreadsheet.</p>
+      <h1 id="about">About</h1>
+<p>Sheetsee.js began as a part of my <a href="http://www.codeforamerica.org">Code for America</a> 2012 Fellowship project, <a href="http://www.seepennywork.in">See Penny Work</a>. The idea and original code was to enable cities to easily publish and maintain themselves their budget data. The original sheetsee.js was built into Wordpress templates so that with the See Penny Work template, you could create pages that you only had to name and they would be populated with maps, charts and tables based on the page name corelating with a project in the spreadsheet.</p>
 <p>In early 2013, after the CfA Fellowship, I recieved a grant from Mozilla Open News to pull out the sheetsee.js bits and make it a standalone open source library. That brought us to version 2.</p>
-<p>The present version makes the project modular, customizable and with more maping and table features. View the <a href="">changelog</a> for a timeline of features and states.</p>
+<p>The present version makes the project modular, customizable and with more maping and table features. </p>
 <h2 id="built-ontop-of-tabletop-js">Built ontop of Tabletop.js</h2>
-<p>Sheetsee would not exist were it not for <a href="">tabletop.js</a> a library built in <strong><em> by </em></strong> that handles the messy interactions with the Google Spreadsheets API for you and returns a lovely JSON of your data. Every instance of Sheetsee begins with running tabletop.js.</p>
-<h3 id="sheetsee-js-mapbox-js-leaflet-js-d3-js">Sheetsee.js + Mapbox.js + Leaflet.js + d3.js</h3>
-<p>Once you&#39;ve got the data, the meat of Sheetsee comes into play. You can now decide if you want to map, chart or display your data in a table. Sheetsee&#39;s table module, sheetsee-tables, comes with sorting, filtering and pagination. Sheetsee-maps is built ontop of Leaflet.js and Mapbox.js and allows you to customize colors and popups of points, lines, polygons or multipolygons. Finally, Sheetee-charts comes with three basic <a href="">d3.js</a> charts: bar, circle and line. It is difficult to make a chart that can suit many types of data, but it is easy to choose your own d3 chart and plug it in to sheetsee. Documentation for creating a d3 module is <a href="">here</a>.</p>
+<p>Sheetsee would not exist were it not for <a href="https://github.com/jsoma/tabletop">tabletop.js</a> a library that handles the messy interactions with the Google Spreadsheets API for you and returns a lovely JSON of your data. Every instance of Sheetsee begins with running tabletop.js.</p>
+<h3 id="sheetsee-js-mapbox-js-d3-js">Sheetsee.js + Mapbox.js + d3.js</h3>
+<p>Once you&#39;ve got the data, the meat of Sheetsee comes into play. You can now decide if you want to map, chart or display your data in a table. Sheetsee&#39;s table module, sheetsee-tables, comes with sorting, filtering and pagination. Sheetsee-maps is built ontop of <a href="http://leafletjs.com/">Leaflet.js</a> and <a href="https://www.mapbox.com/mapbox.js/">Mapbox.js</a> and allows you to customize colors and popups of points, lines, polygons or multipolygons. Finally, Sheetee-charts comes with three basic <a href="http://d3js.org">d3.js</a> charts: bar, circle and line. It is difficult to make a chart that can suit many types of data, but it is easy to choose your own d3 chart and plug it in to sheetsee. Documentation for creating a d3 module is <a href="docs/custom-chart.html">here</a>.</p>
 <h2 id="hacked-on-openly">Hacked on Openly</h2>
 <ul>
 <li>Sheetsee.js is open source software with a <a href="docs/license.html">BSD license</a>.</li>
-<li>Sheetsee.js is built and maintained by <a href="http://www.github.com/jlord">jlord</a> (<a href="http://www.twitter.com/jllord">twitter</a>) with support from <a href="">contributors</a> and a lot of support and knowledge passed on by <a href="">Max Ogden</a>.</li>
+<li>Sheetsee.js is built and maintained by <a href="http://www.github.com/jlord">jlord</a> (<a href="http://www.twitter.com/jllord">twitter</a>) with support from <a href="https://github.com/jlord/sheetsee.js/graphs/contributors">contributors</a>.</li>
 </ul>
 <h2 id="contact">Contact</h2>
 <ul>
-<li>File a <a href="">new issue</a> for ideas and bug reports.</li>
+<li>File a <a href="https://github.com/jlord/sheetsee.js/issues/new">new issue</a> for ideas and bug reports.</li>
 <li>If your issue falls specifically with one of the modules, you can file it on its particular repo:<ul>
-<li><a href="http://www.github.com/jlord/sheetsee">sheetsee</a></li>
-<li><a href="http://www.github.com/jlord/sheetsee-tables">sheetsee-tables</a></li>
-<li><a href="http://www.github.com/jlord/sheetsee-maps">sheetsee-maps</a></li>
-<li><a href="http://www.github.com/jlord/sheetsee-charts">sheetsee-charts</a></li>
+<li><a href="http://www.github.com/jlord/sheetsee/issues/new">sheetsee</a></li>
+<li><a href="http://www.github.com/jlord/sheetsee-core/issues/new">sheetsee-core</a></li>
+<li><a href="http://www.github.com/jlord/sheetsee-tables/issues/new">sheetsee-tables</a></li>
+<li><a href="http://www.github.com/jlord/sheetsee-maps/issues/new">sheetsee-maps</a></li>
+<li><a href="http://www.github.com/jlord/sheetsee-charts/issues/new">sheetsee-charts</a></li>
 </ul>
 </li>
-<li><a href="http://www.twitter.com/jllord">jllord</a> on Twitter.</li>
+<li><a href="http://www.twitter.com/jllord">@jllord</a> on Twitter.</li>
 </ul>
 <h2 id="big-time-thanks">Big Time Thanks</h2>
 <p>Thanks to <a href="http://www.codeforamerica.org">Code for America</a> for providing the platform me to build the first version of sheetsee.js for Macon, Georgia.</p>
 <p>Thanks to <a href="http://www.twitter.com/dansinker">Dan Sinker</a> at <a href="http://www.mozillaopennews.org/">Open News</a> for having faith and getting things together to make this Code Sprint happen and thanks to <a href="https://twitter.com/whatsnewmedia">Matt Green</a> at WBEZ for being a willing partner.</p>
-<p>Thanks to <a href="http://www.twitter.com/maxogden">Max Ogden</a> for emotional support, teaching me JavaScript and working on the harder parts of Sheetsee.js - especially for making <a href="https://npmjs.org/tabletop">Tabletop.js for Node.js</a>.</p>
-<p>Thanks to all the authors and contributors to Tabletop.js, Mapbox.js, Leaflet.js, jQuery, ICanHas.js and d3.js. Thanks to Google and the Internet for existing and to all those who&#39;ve written tutorials or asked or answered a question on StackOverflow.</p>
+<p>Thanks to <a href="http://www.twitter.com/maxogden">Max Ogden</a> for emotional support, teaching me JavaScript and answering lots of questions.</p>
+<p>Thanks to all the authors and contributors to Tabletop.js, <a href="https://www.mapbox.com/mapbox.js/">Mapbox.js</a>, <a href="http://leafletjs.com/">Leaflet.js</a>, jQuery, <a href="http://icanhazjs.com/">ICanHas.js</a> and <a href="http://d3js.org">d3.js</a>. Thanks to Google and the Internet for existing and to all those who&#39;ve written tutorials or asked or answered a question on StackOverflow.</p>
 <p>Thanks to Mom and Dad for getting a computer in 1996 and the mIRC scripts I started writing that I suppose would eventually lead me here.</p>
 
    
       <footer>
         <h4 id="getting-started">Getting Started</h4>
         <ul>
-        <li><a href="docs/about.html">About Sheetsee.js</a></li>
-        <li><a href="docs/building.html">Building Sheetsee</a></li>
+        <li><a href="./about.html">About Sheetsee.js</a></li>
+        <li><a href="./building.html">Building Sheetsee</a></li>
+        <li><a href="./basics.html">Basics</a></li>
         </ul>
         <h4 id="ideas">Ideas</h4>
         <ul>
-        <li><a href="docs/fork-n-go.html">Fork-n-Go</a></li>
-        <li><a href="docs/tips.html">Tips!</a></li>
+        <li><a href="./fork-n-go.html">Fork-n-Go</a></li>
+        <li><a href="./tips.html">Tips!</a></li>
         <li><a href="./custom-charts.html">Custom charts</a></li>
         </ul>
         <h4>Demos</h4>
