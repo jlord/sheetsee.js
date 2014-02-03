@@ -18,7 +18,7 @@ Your template is the mockup of what you'd like your table to look like and what 
 
 ### Sorting
 
-If you want users to be able to click on headers and sort that column, your template must include table headers with the class `theader`.
+If you want users to be able to click on headers and sort that column, your template must include table headers with the class `tHeader`.
 
 *Example*
 

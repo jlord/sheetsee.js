@@ -7,9 +7,12 @@
     <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.0/mapbox.css' rel='stylesheet' />
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="../assets/sss.css">
+    <link rel="stylesheet" type="text/css" href="../assets/style.css">
   </head>
   <style>
     body {font-family: Helvetica;}
+    p {font-family: Libre Baskerville;}
     #pennies.axis {shape-rendering: crispEdges;}
     #pennies.x.axis .minor, #pennies.y.axis .minor {stroke-opacity: .5;}
     #pennies.x.axis {stroke-opacity: 1;}
@@ -22,8 +25,45 @@
     path.domain {fill: #CCF4FF;}
   </style>
 <body>
-  <div id="pennies"></div>
-
+  <div class="container">
+    <h1>Pennies by State</h1>
+    <p><em><a href="https://docs.google.com/a/github.com/spreadsheet/ccc?key=0Ao5u1U6KYND7dGN5QngweVJUWE16bTRob0d2a3dCbnc&usp=drive_web#gid=0" target="_blank">spreadsheet</a></em><p>
+    <div id="pennies"></div>
+    <p><em><a onClick='window.location="view-source:" + window.location.href'>View Source</a></em></p>
+  
+    <footer>
+      <h4 id="getting-started">Getting Started</h4>
+      <ul>
+      <li><a href="docs/about.html">About Sheetsee.js</a></li>
+      <li><a href="docs/building.html">Building Sheetsee</a></li>
+      </ul>
+      <h4 id="ideas">Ideas</h4>
+      <ul>
+      <li><a href="docs/fork-n-go.html">Fork-n-Go</a></li>
+      <li><a href="docs/tips.html">Tips!</a></li>
+      <li><a href="{{rootdoc}}/custom-charts.html">Custom charts</a></li>
+      </ul>
+      <h4>Demos</h4>
+      <ul>
+      <li><a href="/demos/demo-table.html">Table Demo</a></li>
+      <li><a href="/demos/demo-map.html">Map Demo</a></li>
+      <li><a href="/demos/demo-chart.html">Chart Demo</a></li>
+      <li><a href="/demos/template.html">Basic Template</a></li>
+      </ul>
+      <h4 id="use">Use</h4>
+      <ul>
+      <li><a href="{{rootdoc}}/sheetsee-core.html">Sheetsee-core</a></li>
+      <li><a href="{{rootdoc}}/sheetsee-tables.html">Sheetsee-tables</a></li>
+      <li><a href="{{rootdoc}}/sheetsee-maps.html">Sheetsee-maps</a></li>
+      <li><a href="{{rootdoc}}/sheetsee-charts.html">Sheetsee-charts</a></li>
+      </ul>
+      <h4 id="use">Contact</h4>
+      <ul>
+      <li><a href="http://www.twitter.com/jllord">@jllord</a></li>
+      <li><a href="https://github.com/jlord/sheetsee.js/issues/new">File an issue</a></li>
+      </ul>
+    </footer>
+  <div class="container">
 
 <script id="" type="text/html">
   // template if you so desire!

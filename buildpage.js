@@ -10,6 +10,9 @@ var cpr = require('cpr')
 
 cpr('./demos', './site/demos', function(err, files) {
   if (err) return console.log(err)
+  cpr('./js', './site/js', function(err, files) {
+    if (err) return console.log(err)
+  })
 })
 
 fs.readFile('new-readme.md', function(err, file) {
@@ -37,7 +40,7 @@ glob("docs/*.md", function (err, files) {
 function applyTemplate(html, name) {
   var content = {content: html}
   if (name === "index") {
-    content.rootstyle = ""
+    content.rootstyle = "."
     content.rootdoc = "docs"
   } else {
      content.rootstyle = ".."

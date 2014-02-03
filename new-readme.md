@@ -9,7 +9,7 @@ Google Spreadsheets can be used as simple and collaborative databases, they make
 
 ## Modules
 
-Each of **sheetsee.js**'s features are divided into modules. Use just the parts you need (see docs on [building](/docs/building.md)). If you don't want to build your own, you can just use the full library which includes all modules, it's [here on GitHub](http://www.github.com/jlord/sheetsee.js).
+Each of **sheetsee.js**'s features are divided into modules. Use just the parts you need; see docs on [building](/docs/building.md). If you don't want to build your own, you can just use the full library which includes all modules, it's [here on GitHub](http://www.github.com/jlord/sheetsee.js).
 
 
 | Module              | Contains                                                                                            | Docs                         |
@@ -17,7 +17,7 @@ Each of **sheetsee.js**'s features are divided into modules. Use just the parts 
 | **sheetsee-core**   | **Included in any build**. Gets you started and has the working-with-your-data functions.           | [Doc](/docs/sheetsee-core.md)   |
 | **sheetsee-tables** | Contains everything you'll need to create a table including sortable columns, pagination and search.| [Doc](/docs/sheetsee-tables.md) |
 | **sheetsee-maps**   | For making maps with your point, line or polygon spreadsheet data. Built on Mapbox.js.              | [Doc](/docs/sheetsee-maps.md)   |
-| **sheetsee-charts** | Includes 3 basic d3 charts: bar, line and pie. You can also [use your own](docs/custom-charts.md).      | [Doc](/docs/sheetsee-charts.md) |
+| **sheetsee-charts** | Includes 3 basic d3 charts: bar, line and pie. You can also [use your own](docs/custom-charts.md).  | [Doc](/docs/sheetsee-charts.md) |
 
 
 ## Making Things
@@ -26,6 +26,8 @@ What can you make with **Sheetsee.js**? Lost of things, here are some examples:
 
 - [Hack-Spots](http://jlord.github.io/hack-spots)
 - [Combine with IFTTT](http://jlord.us/instagram/)
+
+**List your sheetsee project here: file an [issue or pull request](http://www.github.com/jlord/sheetsee.js).**
 
 ## Demos & Templates
 
@@ -49,6 +51,7 @@ More resources on using Sheetsee.js:
 
 - [Fork-n-Go](docs/fork-n-go.md)
 - [Tips!](docs/tips.md)
+- [Custom charts](docs/custom-charts.md)
 
 #### Use
 
@@ -56,4 +59,3 @@ More resources on using Sheetsee.js:
 - [Sheetsee-tables](docs/sheetsee-tables.md)
 - [Sheetsee-maps](docs/sheetsee-maps.md)
 - [Sheetsee-charts](docs/sheetsee-charts.md)
-- [Custom charts](docs/custom-charts.md)

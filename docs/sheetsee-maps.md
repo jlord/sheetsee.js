@@ -2,14 +2,19 @@
 
 Sheetsee.js uses [Mapbox.js](http://mapbox.com/mapbox.js), a [Leaflet.js](http://leafletjs.com/) plugin, to make maps of your points, polygons, lines or multipolygons (all coordinate based). See a map [demo](/demos/demo-map.html).
 
-You'll create a placeholder `<div>` in your HTML and fire up a map from within `<script>` tags.
+You'll create a placeholder `<div>` in your HTML, CSS giving it a size and fire up a map from within `<script>` tags.
 
 ## Your HTML Placeholder `<div>`
 
-Create an empty `<div>` in your HTML, with an id (name).
+Create an empty `<div>` in your HTML, with an id (name). Add CSS to give it dimensions
 
 ```HTML
 <div id="map"></div>
+```
+_CSS_
+
+```CSS
+#map {width: 500px; height: 500px;}
 ```
 
 ## Your `<script>` Functions
@@ -38,9 +43,23 @@ It will return an _array_ in the special geoJSON format that map making things l
 }}
 ```
 
+### Sheetsee.addMarkerLayer(geoJSON, map)
+
+To add makers, lines or shapes to your map, use this function and pass in your **geoJSON** so that it can get the coordinates and your **map** so that it places the markers there. You can customize what the content in your marker's popup looks like with a **popupTemplate**, which is HTML and can reference the column headers you included in your optionsJSON. 
+
+```javascript
+var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, popupTemplate)
+```
+
+Example template:
+
+```javascript
+var popupTemplate = "<h4>Hello {{name}}</h4>"
+```
+
 ### Sheetsee.loadMap(mapDiv)
 
-To create a simple map, with no data, you simply call `.loadMap() and pass in a _string_ of the **mapDiv** (with no #) from your HTML.
+To create a simple map, with no data, you simply call `.loadMap()` and pass in a _string_ of the **mapDiv** (with no '#') from your HTML.
 
 ```javascript
 var map = Sheetsee.loadMap("map")
@@ -55,17 +74,3 @@ Sheetsee.addTileLayer(map, 'examples.map-20v6611k')
 ```
 
 You can add tiles from awesome mapmakers like [Stamen](examples.map-20v6611k) or create your own in Mapbox's [Tilemill](http://www.mapbox.com/tilemill) or [online](https://tiles.mapbox.com/newmap#3.00/0.00/0.00).
-
-### Sheetsee.addMarkerLayer(geoJSON, map)
-
-To add makers, lines or shapes to your map, use this function and pass in your **geoJSON** so that it can get the coordinates and your **map** so that it places the markers there. You can customize what the content in your marker's popup looks like with a **popupTemplate**, which is HTML and can reference the column headers you included in your optionsJSON. 
-
-```javascript
-var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, popupTemplate)
-```
-
-Example template:
-
-```javascript
-var template = "<h4>Hello {{world}}</h4>"
-```

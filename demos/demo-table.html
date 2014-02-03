@@ -6,21 +6,61 @@
     <script type="text/javascript" src='../js/sheetsee.js'></script>
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<!--     <link rel="stylesheet" type="text/css" href="css/style.css"> -->
+    <link rel="stylesheet" type="text/css" href="../assets/sss.css">
+    <link rel="stylesheet" type="text/css" href="../assets/style.css">
   </head>
   <style>
-  body {font-family: Helvetica Neue; 
-  }
-  #Pagination {background: #eee;}
-  .pagination-next, .pagination-pre {cursor: hand;}
-  .no-pag {color: #acacac;}
+    #Pagination {border-top: 1px solid #efefef; margin: 10px 0px; padding-top: 10px; display: inline-block;}
+    .pagination-next, .pagination-pre {cursor: hand;}
+    .no-pag {color: #acacac; border: none;}
+    .no-pag:hover {color: #acacac;}
+    input {border: none; border-bottom: 1px solid #333;margin: 10px 0px; width: 200px; font-size: 16px; padding-bottom: 6px;}
+    .tHeader {padding: 8px; font-family: Helvetica Neue, Arial, sans-serif; cursor: hand;}
   </style>
 <body>
-  <input id="fullTableFilter" type="text" placeholder="filter by.."></input>
-  <div id="fullTable"></div>
-
-  <input id="calFilter" type="text" placeholder="filter by.."></input>
-  <div id="calTable"></div>
+  <div class="container">
+    <h1>All Pennies</h1>
+    <p><em><a href="https://docs.google.com/a/github.com/spreadsheet/ccc?key=0Ao5u1U6KYND7dGN5QngweVJUWE16bTRob0d2a3dCbnc&usp=drive_web#gid=0" target="_blank">spreadsheet</a></em><p>
+    <input id="fullTableFilter" type="text" placeholder="filter by.."></input>
+    <div id="fullTable"></div>
+    <h1>California Pennies</h1>
+    <input id="calFilter" type="text" placeholder="filter by.."></input>
+    <div id="calTable"></div>
+    <p><em><a onClick='window.location="view-source:" + window.location.href'>View Source</a></em></p>
+  
+    <footer>
+      <h4 id="getting-started">Getting Started</h4>
+      <ul>
+      <li><a href="docs/about.html">About Sheetsee.js</a></li>
+      <li><a href="docs/building.html">Building Sheetsee</a></li>
+      </ul>
+      <h4 id="ideas">Ideas</h4>
+      <ul>
+      <li><a href="docs/fork-n-go.html">Fork-n-Go</a></li>
+      <li><a href="docs/tips.html">Tips!</a></li>
+      <li><a href="{{rootdoc}}/custom-charts.html">Custom charts</a></li>
+      </ul>
+      <h4>Demos</h4>
+      <ul>
+      <li><a href="/demos/demo-table.html">Table Demo</a></li>
+      <li><a href="/demos/demo-map.html">Map Demo</a></li>
+      <li><a href="/demos/demo-chart.html">Chart Demo</a></li>
+      <li><a href="/demos/template.html">Basic Template</a></li>
+      </ul>
+      <h4 id="use">Use</h4>
+      <ul>
+      <li><a href="{{rootdoc}}/sheetsee-core.html">Sheetsee-core</a></li>
+      <li><a href="{{rootdoc}}/sheetsee-tables.html">Sheetsee-tables</a></li>
+      <li><a href="{{rootdoc}}/sheetsee-maps.html">Sheetsee-maps</a></li>
+      <li><a href="{{rootdoc}}/sheetsee-charts.html">Sheetsee-charts</a></li>
+      </ul>
+      <h4 id="use">Contact</h4>
+      <ul>
+      <li><a href="http://www.twitter.com/jllord">@jllord</a></li>
+      <li><a href="https://github.com/jlord/sheetsee.js/issues/new">File an issue</a></li>
+      </ul>
+    </footer>
+</div>
 
 <script id="fullTable" type="text/html">
   <table>

@@ -1,10 +1,7 @@
 body {background: #ff00ff;}
 .container {max-width: 800px; margin: 0 auto; overflow: auto;}
 img {width: 100%;}
-footer {font-size: 10px; padding-top: 20px; margin-top: 60px; border-top: 1px solid #CCF4FF;  -webkit-column-count: 6; -webkit-column-gap: 20px; height: 125px;}
-footer ul {list-style: none; padding-left: 0px;}
-footer h4 {-webkit-column-break-before: always; }
-footer h4 {margin-top: 0px;}
+
 /*footer h4:first-child {margin-top: 0px;}*/
 h3 {padding-top: 18px;}
 h1 {font-size: 36px;}
@@ -16,6 +13,12 @@ tr {height: 50px;}
 ul {text-indent: 0; margin: 0; padding-left: 18px;}
 ul li {padding-bottom: 6px;}
 
+footer {font-size: 10px; padding-top: 20px; margin-top: 60px; border-top: 1px solid #CCF4FF;  -webkit-column-count: 6; -webkit-column-gap: 20px; height: 125px;}
+footer ul {list-style: none; padding-left: 0px;}
+footer h4 {-webkit-column-break-before: always; }
+footer h4 {margin-top: 0px;}
+footer a {border: none;}
+
 .half {max-width: 50%; display: inline-block; vertical-align: top;}
 .half:nth-child(odd) {padding-left: 20px;}
 
@@ -23,9 +26,9 @@ ul li {padding-bottom: 6px;}
 
   /* Page Specific CSS */
 
-  body {font-family: Libre Baskerville; background: #fff; color: #333; font-size: 14px; border: 10px #47CCFC solid; margin: 0px; padding: 20px 20px 200px 20px; }
+  body {font-family: Libre Baskerville; background: #fff; color: #333; font-size: 14px; border: 10px #47CCFC solid; margin: 0px; padding: 20px 20px 100px 20px; }
   h1, h2, h3, h4, h5, h6 {font-family: Helvetica, Arial, sans-serif;}
-  h2 {margin-top: 82px;}
+  h2 {margin-top: 40px;}
 
   h3.functionH {margin-left: -14px; margin-top: 52px; border-top: 3px solid #47CCFC; border-left: 3px solid #47CCFC; border-right: 3px solid #47CCFC; padding-left: 14px; padding-top: 9px; }
   img {width: 100%;} 
@@ -38,7 +41,7 @@ ul li {padding-bottom: 6px;}
   p, ol {line-height: 24px;}
 
   pre {word-wrap: break-word; padding: 14px; background: #F0F0F0;}
-  code {font-family: "Consolas", "Ubuntu Mono", monospace; line-height: 22px; font-size: 13px; color: #636363; font-weight: normal;}
+  code {font-family: "Consolas", "Ubuntu Mono", monospace; line-height: 22px; /*font-size: 13px; */color: #636363; font-weight: normal;}
 
   /* funsies */
   ::selection {background: #44FFB4;}
@@ -64,17 +67,10 @@ ul li {padding-bottom: 6px;}
 
   /* Table */
   .ssExample table {min-width: 600px;}
-  .tHeader::after {content: " \2193 \2191 "; font-size: 10px; padding-left: 3px;}
+  .tHeader::after {content: " \2193 \2191 "; font-size: 10px; padding-left: 3px; cursor: hand;}
 
   /* Map Popup Style */
   .leaflet-popup-content h2 {margin-bottom: 4px; margin-top: auto;}
-
-  /* Most Cuddleable Template */
-  #mostCuddle img.most {max-width: 400px; border-radius: 9999px; margin-top: 34px;}
-  #mostCuddle {text-align: center;}
-  #mostCuddle table {width: auto;}
-  #mostCuddle li {padding: 10px 0px; font-size: 18px; display: inline-block;}
-  .boxText {background-color: #47CCFC; padding: 4px 8px; font-family: Helvetica, Arial, sans-serif;}
 
   /* Bar Chart */
   #dogBar.labels text {text-align: right;}
@@ -102,11 +98,4 @@ ul li {padding-bottom: 6px;}
 
   /* Responsive Town */
 
-  @media only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 320px) and (max-width: 1024px) {
-    body {padding-bottom: 50px;}
-    #wrapper {max-width: 100%; padding-top: 20px;}
-    #menu {color: #fff; padding: 0px; float: none; position: relative; left: auto; top: auto; max-width: 100%; font-family: Helvetica, Arial, sans-serif;}
-    #menu li {display: inline-block;}
-    h3.functionH {margin: 0px; border-top: 5px solid #47CCFC; border-left: 0px; border-right: 0px; padding-top: 9px; word-wrap: break-word; padding-left: 0px;}
-    ul {padding-left: 20px;}
-  }
+  @media only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 320px) and (max-width: 1024px) {}

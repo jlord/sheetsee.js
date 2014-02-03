@@ -13,11 +13,11 @@
   th {padding: 10px 0px;}
   td, text {padding: 3px 20px 3px 0px; font-size: 14px;}
   #tableFilter, #basicFilter, #dogFilter {margin: 12px 0px; border: none; border-bottom: 1px solid #333; background-color: transparent; padding: 0px; font-family: Merriweather; color: #FCB688; font-size: 13px; height: 22px;}
-  .tHeader {/* table column header style */}
+  /*.tHeader { table column header style } */
   .noMatches {margin-left: 20px; font-size: 11px; font-style: italic; visibility: hidden;}
-  #Pagination {background: #eee;}
-  .pagination-next, .pagination-pre {cursor: hand;}
-  .no-pag {color: #acacac;}
+/*  #Pagination {}
+  .pagination-next, .pagination-pre {}
+  .no-pag {}*/
 
   /* Containers */
   .container {margin: 14px 0px;}
