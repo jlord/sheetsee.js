@@ -13,14 +13,16 @@
   <body>
     <div class="container">
       <h1 id="custom-charts">Custom Charts</h1>
-<p>It&#39;s easy to take a d3 chart of your own and use it with Sheetsee. If you make it into a module, anyone can use your chart, too!</p>
+<p>It&#39;s easy to take a d3.js chart of your own and use it with Sheetsee.js. If you make it into a module, anyone can use your chart, too!</p>
 <p>Sheetsee charts currently work by taking in some options, like so:</p>
 <pre><code class="lang-javascript">var pieOptions = {labels: &quot;name&quot;, units: &quot;units&quot;, m: [80, 80, 80, 80], w: 600, h: 400, div: &quot;#pieChart&quot;, hiColor: &quot;#14ECC8&quot;}
 </code></pre>
-<p>The <em>labels</em> represent the, the actual thing you&#39;re charting and <em>units</em> are how many of those things. Margin, width and height are <em>m, w, h</em> and the div to build your chart in is <em>div</em>. Finally, you can supply a highlight color if you want.</p>
-<p>So, your chart could take the same options, but map them into your d3 code with the correct variables. For instance if what sheetsee calls <em>labels</em> you call <em>itemID</em> you just add at the top of your code:</p>
+<p>The <em>labels</em> represent the actual thing you&#39;re charting and <em>units</em> are how many of those things. Margin, width and height are <em>m, w, h</em> and the div to build your chart in is <em>div</em>. Finally, you can supply a highlight color if you want.</p>
+<p>So, your chart could take the same options, but map them into your d3 code with the correct variables. For instance if what sheetsee calls <em>labels</em> you call <em>itemID</em> you just add at the top of your d3 code:</p>
 <pre><code class="lang-javascript">labels = itemID
 </code></pre>
+<p>Include your d3.js code with the HTML and call it.</p>
+<p>WIP</p>
 
    
       <footer>
@@ -33,7 +35,7 @@
         <ul>
         <li><a href="docs/fork-n-go.html">Fork-n-Go</a></li>
         <li><a href="docs/tips.html">Tips!</a></li>
-        <li><a href="/custom-charts.html">Custom charts</a></li>
+        <li><a href="./custom-charts.html">Custom charts</a></li>
         </ul>
         <h4>Demos</h4>
         <ul>
@@ -44,16 +46,17 @@
         </ul>
         <h4 id="use">Use</h4>
         <ul>
-        <li><a href="/sheetsee-core.html">Sheetsee-core</a></li>
-        <li><a href="/sheetsee-tables.html">Sheetsee-tables</a></li>
-        <li><a href="/sheetsee-maps.html">Sheetsee-maps</a></li>
-        <li><a href="/sheetsee-charts.html">Sheetsee-charts</a></li>
+        <li><a href="./sheetsee-core.html">Sheetsee-core</a></li>
+        <li><a href="./sheetsee-tables.html">Sheetsee-tables</a></li>
+        <li><a href="./sheetsee-maps.html">Sheetsee-maps</a></li>
+        <li><a href="./sheetsee-charts.html">Sheetsee-charts</a></li>
         </ul>
         <h4 id="use">Contact</h4>
         <ul>
         <li><a href="http://www.twitter.com/jllord">@jllord</a></li>
         <li><a href="https://github.com/jlord/sheetsee.js/issues/new">File an issue</a></li>
         </ul>
+        <h4><a href="/">Home Page</a></h4>
       </footer>
     </div>
   </body>

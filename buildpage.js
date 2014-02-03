@@ -44,7 +44,7 @@ function applyTemplate(html, name) {
     content.rootdoc = "docs"
   } else {
      content.rootstyle = ".."
-     content.rootdoc = ""
+     content.rootdoc = "."
   }
   var file = "template.hbs"
   var rawTemplate =  fs.readFileSync(file).toString()

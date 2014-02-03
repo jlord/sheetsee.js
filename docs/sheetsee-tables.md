@@ -1,6 +1,8 @@
 # Sheetsee-tables
 
-With this module you can create tables of your data that are sortable, searchable and paginate-able. See the [demo](/demo/sheetsee-tables.md).
+_[View Demo](/demos/demo-table.html)_
+
+With this module you can create tables of your data that are sortable, searchable and paginate-able.
 
 You'll need a placeholder `<div>` in your html, a `<script>` mustache template and a `<script>` that initiates the table.
 
@@ -81,7 +83,7 @@ CSS:
 
 ```CSS
 <style>
-  body {font-family: Helvetica Neue; }
+  body {font-family: Helvetica Neue; Helvetica, Arial, sans-serif; }
   #Pagination {background: #eee;}
   .pagination-next, .pagination-pre {cursor: hand;}
   .no-pag {color: #acacac;}

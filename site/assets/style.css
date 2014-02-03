@@ -26,7 +26,7 @@ footer a {border: none;}
 
   /* Page Specific CSS */
 
-  body {font-family: Libre Baskerville; background: #fff; color: #333; font-size: 14px; border: 10px #47CCFC solid; margin: 0px; padding: 20px 20px 100px 20px; }
+  body {font-family: Libre Baskerville, Baskerville, Georgia, serif; background: #fff; color: #333; font-size: 14px; border: 10px #47CCFC solid; margin: 0px; padding: 20px 20px 100px 20px; }
   h1, h2, h3, h4, h5, h6 {font-family: Helvetica, Arial, sans-serif;}
   h2 {margin-top: 40px;}
 

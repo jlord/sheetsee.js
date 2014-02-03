@@ -1,6 +1,8 @@
 # Sheetsee-maps
 
-Sheetsee.js uses [Mapbox.js](http://mapbox.com/mapbox.js), a [Leaflet.js](http://leafletjs.com/) plugin, to make maps of your points, polygons, lines or multipolygons (all coordinate based). See a map [demo](/demos/demo-map.html).
+_[View Demo](/demos/demo-map.html)_
+
+Sheetsee.js uses [Mapbox.js](http://mapbox.com/mapbox.js), a [Leaflet.js](http://leafletjs.com/) plugin, to make maps of your points, polygons, lines or multipolygons (all coordinate based).
 
 You'll create a placeholder `<div>` in your HTML, CSS giving it a size and fire up a map from within `<script>` tags.
 

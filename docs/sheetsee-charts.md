@@ -1,6 +1,8 @@
 # Sheetsee-charts
 
-Sheetsee provides three d3 chart options to use with your spreadsheet data: a bar chart, line chart and pie graph. See a [demo](demos/demo-chart.html). You can also plug in your own custom d3 chart to sheetsee, read about that [here](custom-charts.md).
+_[View Demo](/demos/demo-chart.html)_
+
+Sheetsee.js provides three [d3.js](http://d3js.org/) chart options to use with your spreadsheet data: a bar chart, line chart and pie graph. You can also plug in your own custom d3.js chart to sheetsee, read about that [here](custom-charts.md).
 
 ## Make a Chart
 
