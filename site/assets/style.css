@@ -1,7 +1,13 @@
 body {background: #ff00ff;}
 .container {max-width: 800px; margin: 0 auto; overflow: auto;}
 img {width: 100%;}
-
+footer {font-size: 10px; padding-top: 20px; margin-top: 60px; border-top: 1px solid #CCF4FF;  -webkit-column-count: 6; -webkit-column-gap: 20px; height: 125px;}
+footer ul {list-style: none; padding-left: 0px;}
+footer h4 {-webkit-column-break-before: always; }
+footer h4 {margin-top: 0px;}
+/*footer h4:first-child {margin-top: 0px;}*/
+h3 {padding-top: 18px;}
+h1 {font-size: 36px;}
  
 table {border-spacing: 0;}
 tbody tr:nth-child(odd) {background-color: #f3f3f3;}
@@ -17,7 +23,7 @@ ul li {padding-bottom: 6px;}
 
   /* Page Specific CSS */
 
-  body {font-family: Merriweather; background: #fff; color: #333; font-size: 100%; border: 10px #47CCFC solid; margin: 0px; padding: 20px 20px 200px 20px; font-size: 16px; }
+  body {font-family: Libre Baskerville; background: #fff; color: #333; font-size: 14px; border: 10px #47CCFC solid; margin: 0px; padding: 20px 20px 200px 20px; }
   h1, h2, h3, h4, h5, h6 {font-family: Helvetica, Arial, sans-serif;}
   h2 {margin-top: 82px;}
 

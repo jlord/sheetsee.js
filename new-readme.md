@@ -5,19 +5,19 @@
 
 **Sheetsee.js** is a library for connecting Google Spreadsheets to a website and visualizing the information in tables, maps and charts.
 
-Google Spreadsheets can be used as simple and collaborative databases, they make getting a data driven site going much easier than traditional databases. Read more about using spreadsheets for databases [here](/docs/basics).
+Google Spreadsheets can be used as simple and collaborative databases, they make getting a data driven site going much easier than traditional databases. Read more about using spreadsheets for databases [here](/docs/basics.md).
 
 ## Modules
 
-Each of **sheetsee.js**'s features are divided into modules. Use just the parts you need (see docs on [building](/docs/building)). If you don't want to build your own, you can just use the full library which includes all modules, it's [here on GitHub](http://www.github.com/sheetsee.js).
+Each of **sheetsee.js**'s features are divided into modules. Use just the parts you need (see docs on [building](/docs/building.md)). If you don't want to build your own, you can just use the full library which includes all modules, it's [here on GitHub](http://www.github.com/jlord/sheetsee.js).
 
 
 | Module              | Contains                                                                                            | Docs                         |
 | ------------------- | --------------------------------------------------------------------------------------------------- | ---------------------------- |
-| **sheetsee-core**   | **Included in any build**. Gets you started and has the working-with-your-data functions.           | [Doc](/docs/sheetsee-core)   |
-| **sheetsee-tables** | Contains everything you'll need to create a table including sortable columns, pagination and search.| [Doc](/docs/sheetsee-tables) |
-| **sheetsee-maps**   | For making maps with your point, line or polygon spreadsheet data. Built on Mapbox.js.              | [Doc](/docs/sheetsee-maps)   |
-| **sheetsee-charts** | Includes 3 basic d3 charts: bar, line and pie. You can also [use your own](docs/custom-charts).      | [Doc](/docs/sheetsee-charts) |
+| **sheetsee-core**   | **Included in any build**. Gets you started and has the working-with-your-data functions.           | [Doc](/docs/sheetsee-core.md)   |
+| **sheetsee-tables** | Contains everything you'll need to create a table including sortable columns, pagination and search.| [Doc](/docs/sheetsee-tables.md) |
+| **sheetsee-maps**   | For making maps with your point, line or polygon spreadsheet data. Built on Mapbox.js.              | [Doc](/docs/sheetsee-maps.md)   |
+| **sheetsee-charts** | Includes 3 basic d3 charts: bar, line and pie. You can also [use your own](docs/custom-charts.md).      | [Doc](/docs/sheetsee-charts.md) |
 
 
 ## Making Things
@@ -52,8 +52,8 @@ More resources on using Sheetsee.js:
 
 #### Use
 
-- [Sheetsee](docs/sheetsee.md)
+- [Sheetsee-core](docs/sheetsee-core.md)
 - [Sheetsee-tables](docs/sheetsee-tables.md)
 - [Sheetsee-maps](docs/sheetsee-maps.md)
 - [Sheetsee-charts](docs/sheetsee-charts.md)
-- [Custom d3](docs/custom-charts.md)
+- [Custom charts](docs/custom-charts.md)

@@ -12,11 +12,11 @@ cpr('./demos', './site/demos', function(err, files) {
   if (err) return console.log(err)
 })
 
-fs.readFile('./newReadme.md', function(err, file) {
+fs.readFile('new-readme.md', function(err, file) {
   if (err) return console.log(err)
   var name = "index"
   var content = file.toString()
-  var html = marked(content)
+  var html = changeExtensions(marked(content))
   applyTemplate(html, name)
 })
 
@@ -29,13 +29,20 @@ glob("docs/*.md", function (err, files) {
     var name = file.split('.md')[0]
     var filePath = "./docs/"
     var content = fs.readFileSync(filePath + file).toString()
-    var html = marked(content)
+    var html = changeExtensions(marked(content))
     applyTemplate(html, name)
   })
 })
 
 function applyTemplate(html, name) {
   var content = {content: html}
+  if (name === "index") {
+    content.rootstyle = ""
+    content.rootdoc = "docs"
+  } else {
+     content.rootstyle = ".."
+     content.rootdoc = ""
+  }
   var file = "template.hbs"
   var rawTemplate =  fs.readFileSync(file).toString()
   var template = hbs.compile(rawTemplate)
@@ -45,11 +52,20 @@ function applyTemplate(html, name) {
 
 function writeFile(page, name) {
   if (name === "index") {
-    fs.writeFileSync('./site/' + name + '.html' , page)  
+    return fs.writeFileSync('./site/' + name + '.html' , page)  
   }
   mkdirp('./site/docs', function (err) {
     if (err) return console.error(err)
     fs.writeFileSync('./site/docs/' + name + '.html' , page)  
   })
+}
+
+function changeExtensions(html, name) {
+  if (name === "index") {
+    html = html.replace('/\./\.\/', '')
+  }
+  var re = /.md$/
+  var newHtml = html.replace(/\.md/g, '.html')
+  return newHtml
 }
 

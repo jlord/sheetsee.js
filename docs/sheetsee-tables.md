@@ -1,10 +1,10 @@
-# sheetsee-tables
+# Sheetsee-tables
 
-With this module you can create tables of your data that are sortable, searchable and paginate-able.
+With this module you can create tables of your data that are sortable, searchable and paginate-able. See the [demo](/demo/sheetsee-tables.md).
 
-You'll need a `<div>` in your html, a `<script>` mustache template and a `<script>` that intitiates the table.
+You'll need a placeholder `<div>` in your html, a `<script>` mustache template and a `<script>` that initiates the table.
 
-#### Your HTML Placeholder `<div>`
+## Your HTML Placeholder `<div>`
 
 This is as simple as an empty `<div>` with an id. This id should match the script template id in the next section.
 
@@ -12,17 +12,17 @@ This is as simple as an empty `<div>` with an id. This id should match the scrip
 <div id="siteTable"></div>
 ```
 
-#### Your `<script>` Template
+## Your `<script>` Template
 
 Your template is the mockup of what you'd like your table to look like and what content it should show. The style is up to you!
 
-##### Sorting
+### Sorting
 
-If you want users to be able to click on headers and sort that column, your template must include table headers with the class _tHeader_.
+If you want users to be able to click on headers and sort that column, your template must include table headers with the class `theader`.
 
 *Example*
 
-_The variables inside the {{}} must match the column headers in your spreadsheet. Lowercase and remember spaces are omitted, so "Place Name" will become "placename"._
+_The variables inside the {{}} must match the column headers in your spreadsheet. They should be lowercase and remember spaces are omitted, so "Place Name" will become "placename"._
 
 ```HTML
 <script id="siteTable" type="text/html">
@@ -68,11 +68,24 @@ Sheetsee.makeTable(gData, "#siteTable", 10)
 
 If you do not put in a number for pagination, by default it will show all of the data at once. With pagination, at the bottom of your table it will add this for naviagtion, which you can style in your CSS:
 
+HTML:
+
 ```HTML
 <div id='Pagination' currentPage class='table-pagination'>
   Showing page currentPage of totalPages
   <a class='pagination-pre'>Previous</a><a class='pagination-next'>Next</a>
 </div>
+```
+
+CSS:
+
+```CSS
+<style>
+  body {font-family: Helvetica Neue; }
+  #Pagination {background: #eee;}
+  .pagination-next, .pagination-pre {cursor: hand;}
+  .no-pag {color: #acacac;}
+</style>
 ```
 
 ## Table Filter/Search

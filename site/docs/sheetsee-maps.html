@@ -6,19 +6,20 @@
     <meta name="description" content="sheetsee.js, google, spreadsheet, visualize, data, javascript">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>such site, very sheetsee.js</title>
+    <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
     <link rel="shortcut icon" href=""/>
     <link href='../assets/style.css' rel='stylesheet'>
   </head>
   <body>
     <div class="container">
-    <h1 id="sheetsee-maps">sheetsee-maps</h1>
-<p>Sheetsee.js uses <a href="http://mapbox.com/mapbox.js">Mapbox.js</a>, a <a href="http://leafletjs.com/">Leaflet.js</a> plugin, to make maps of your points, polygons, lines or multipolygons (all coordinate based).</p>
+      <h1 id="sheetsee-maps">Sheetsee-maps</h1>
+<p>Sheetsee.js uses <a href="http://mapbox.com/mapbox.js">Mapbox.js</a>, a <a href="http://leafletjs.com/">Leaflet.js</a> plugin, to make maps of your points, polygons, lines or multipolygons (all coordinate based). See a map <a href="/demos/demo-map.html">demo</a>.</p>
 <p>You&#39;ll create a placeholder <code>&lt;div&gt;</code> in your HTML and fire up a map from within <code>&lt;script&gt;</code> tags.</p>
-<h4 id="your-html-placeholder-div-">Your HTML Placeholder <code>&lt;div&gt;</code></h4>
+<h2 id="your-html-placeholder-div-">Your HTML Placeholder <code>&lt;div&gt;</code></h2>
 <p>Create an empty <code>&lt;div&gt;</code> in your HTML, with an id (name).</p>
 <pre><code class="lang-HTML">&lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
 </code></pre>
-<h4 id="your-script-functions">Your <code>&lt;script&gt;</code> Functions</h4>
+<h2 id="your-script-functions">Your <code>&lt;script&gt;</code> Functions</h2>
 <p>Next you&#39;ll need to create geoJSON out of your data so that it can be mapped.</p>
 <h3 id="sheetsee-creategeojson-data-optionsjson-">Sheetsee.createGeoJSON(data, optionsJSON)</h3>
 <p>This takes in your <strong>data</strong> and the parts of your data, <strong>optionsJSON</strong>,  that you plan on including in your map&#39;s popups. If you&#39;re not going to have popups on your markers, don&#39;t worry about it then and just pass in your data (by default it will use all the row&#39;s information). </p>
@@ -52,6 +53,38 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
 <pre><code class="lang-javascript">var template = &quot;&lt;h4&gt;Hello {{world}}&lt;/h4&gt;&quot;
 </code></pre>
 
+   
+      <footer>
+        <h4 id="getting-started">Getting Started</h4>
+        <ul>
+        <li><a href="docs/about.html">About Sheetsee.js</a></li>
+        <li><a href="docs/building.html">Building Sheetsee</a></li>
+        </ul>
+        <h4 id="ideas">Ideas</h4>
+        <ul>
+        <li><a href="docs/fork-n-go.html">Fork-n-Go</a></li>
+        <li><a href="docs/tips.html">Tips!</a></li>
+        </ul>
+        <h4>Demos</h4>
+        <ul>
+        <li><a href="/demos/demo-table.html">Table Demo</a></li>
+        <li><a href="/demos/demo-map.html">Map Demo</a></li>
+        <li><a href="/demos/demo-chart.html">Chart Demo</a></li>
+        <li><a href="/demos/template.html">Basic Template</a></li>
+        </ul>
+        <h4 id="use">Use</h4>
+        <ul>
+        <li><a href="/sheetsee-core.html">Sheetsee-core</a></li>
+        <li><a href="/sheetsee-tables.html">Sheetsee-tables</a></li>
+        <li><a href="/sheetsee-maps.html">Sheetsee-maps</a></li>
+        <li><a href="/sheetsee-charts.html">Sheetsee-charts</a></li>
+        <li><a href="/custom-charts.html">Custom charts</a></li>
+        </ul>
+        <h4 id="use">Contact</h4>
+        <ul>
+        <li><a href="http://www.twitter.com/jllord">@jllord</a></li>
+        </ul>
+      </footer>
     </div>
   </body>
 </html>

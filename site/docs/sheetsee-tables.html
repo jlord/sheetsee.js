@@ -6,24 +6,25 @@
     <meta name="description" content="sheetsee.js, google, spreadsheet, visualize, data, javascript">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>such site, very sheetsee.js</title>
+    <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
     <link rel="shortcut icon" href=""/>
     <link href='../assets/style.css' rel='stylesheet'>
   </head>
   <body>
     <div class="container">
-    <h1 id="sheetsee-tables">sheetsee-tables</h1>
-<p>With this module you can create tables of your data that are sortable, searchable and paginate-able.</p>
-<p>You&#39;ll need a <code>&lt;div&gt;</code> in your html, a <code>&lt;script&gt;</code> mustache template and a <code>&lt;script&gt;</code> that intitiates the table.</p>
-<h4 id="your-html-placeholder-div-">Your HTML Placeholder <code>&lt;div&gt;</code></h4>
+      <h1 id="sheetsee-tables">Sheetsee-tables</h1>
+<p>With this module you can create tables of your data that are sortable, searchable and paginate-able. See the <a href="/demo/sheetsee-tables.html">demo</a>.</p>
+<p>You&#39;ll need a placeholder <code>&lt;div&gt;</code> in your html, a <code>&lt;script&gt;</code> mustache template and a <code>&lt;script&gt;</code> that initiates the table.</p>
+<h2 id="your-html-placeholder-div-">Your HTML Placeholder <code>&lt;div&gt;</code></h2>
 <p>This is as simple as an empty <code>&lt;div&gt;</code> with an id. This id should match the script template id in the next section.</p>
 <pre><code class="lang-HTML">&lt;div id=&quot;siteTable&quot;&gt;&lt;/div&gt;
 </code></pre>
-<h4 id="your-script-template">Your <code>&lt;script&gt;</code> Template</h4>
+<h2 id="your-script-template">Your <code>&lt;script&gt;</code> Template</h2>
 <p>Your template is the mockup of what you&#39;d like your table to look like and what content it should show. The style is up to you!</p>
-<h5 id="sorting">Sorting</h5>
-<p>If you want users to be able to click on headers and sort that column, your template must include table headers with the class <em>tHeader</em>.</p>
+<h3 id="sorting">Sorting</h3>
+<p>If you want users to be able to click on headers and sort that column, your template must include table headers with the class <code>theader</code>.</p>
 <p><em>Example</em></p>
-<p><em>The variables inside the {{}} must match the column headers in your spreadsheet. Lowercase and remember spaces are omitted, so &quot;Place Name&quot; will become &quot;placename&quot;.</em></p>
+<p><em>The variables inside the {{}} must match the column headers in your spreadsheet. They should be lowercase and remember spaces are omitted, so &quot;Place Name&quot; will become &quot;placename&quot;.</em></p>
 <pre><code class="lang-HTML">&lt;script id=&quot;siteTable&quot; type=&quot;text/html&quot;&gt;
     &lt;table&gt;
     &lt;tr&gt;&lt;th class=&quot;tHeader&quot;&gt;City&lt;/th&gt;&lt;th class=&quot;tHeader&quot;&gt;Place Name&lt;/th&gt;&lt;th class=&quot;tHeader&quot;&gt;Year&lt;/th&gt;&lt;th class=&quot;tHeader&quot;&gt;Image&lt;/th&gt;&lt;/tr&gt;
@@ -53,10 +54,19 @@
 </code></pre>
 <h4 id="pagination">Pagination</h4>
 <p>If you do not put in a number for pagination, by default it will show all of the data at once. With pagination, at the bottom of your table it will add this for naviagtion, which you can style in your CSS:</p>
+<p>HTML:</p>
 <pre><code class="lang-HTML">&lt;div id=&#39;Pagination&#39; currentPage class=&#39;table-pagination&#39;&gt;
   Showing page currentPage of totalPages
   &lt;a class=&#39;pagination-pre&#39;&gt;Previous&lt;/a&gt;&lt;a class=&#39;pagination-next&#39;&gt;Next&lt;/a&gt;
 &lt;/div&gt;
+</code></pre>
+<p>CSS:</p>
+<pre><code class="lang-CSS">&lt;style&gt;
+  body {font-family: Helvetica Neue; }
+  #Pagination {background: #eee;}
+  .pagination-next, .pagination-pre {cursor: hand;}
+  .no-pag {color: #acacac;}
+&lt;/style&gt;
 </code></pre>
 <h2 id="table-filter-search">Table Filter/Search</h2>
 <p>If you want to have an input to allow users to search/filter the data in the table, you&#39;ll add an input to your HTML. Give it an ide and if you want, placeholder text:</p>
@@ -71,6 +81,38 @@
 &lt;span class=&quot;noMatches&quot;&gt;no matches&lt;/span&gt;
 </code></pre>
 
+   
+      <footer>
+        <h4 id="getting-started">Getting Started</h4>
+        <ul>
+        <li><a href="docs/about.html">About Sheetsee.js</a></li>
+        <li><a href="docs/building.html">Building Sheetsee</a></li>
+        </ul>
+        <h4 id="ideas">Ideas</h4>
+        <ul>
+        <li><a href="docs/fork-n-go.html">Fork-n-Go</a></li>
+        <li><a href="docs/tips.html">Tips!</a></li>
+        </ul>
+        <h4>Demos</h4>
+        <ul>
+        <li><a href="/demos/demo-table.html">Table Demo</a></li>
+        <li><a href="/demos/demo-map.html">Map Demo</a></li>
+        <li><a href="/demos/demo-chart.html">Chart Demo</a></li>
+        <li><a href="/demos/template.html">Basic Template</a></li>
+        </ul>
+        <h4 id="use">Use</h4>
+        <ul>
+        <li><a href="/sheetsee-core.html">Sheetsee-core</a></li>
+        <li><a href="/sheetsee-tables.html">Sheetsee-tables</a></li>
+        <li><a href="/sheetsee-maps.html">Sheetsee-maps</a></li>
+        <li><a href="/sheetsee-charts.html">Sheetsee-charts</a></li>
+        <li><a href="/custom-charts.html">Custom charts</a></li>
+        </ul>
+        <h4 id="use">Contact</h4>
+        <ul>
+        <li><a href="http://www.twitter.com/jllord">@jllord</a></li>
+        </ul>
+      </footer>
     </div>
   </body>
 </html>

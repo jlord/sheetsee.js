@@ -6,23 +6,24 @@
     <meta name="description" content="sheetsee.js, google, spreadsheet, visualize, data, javascript">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>such site, very sheetsee.js</title>
+    <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
     <link rel="shortcut icon" href=""/>
     <link href='../assets/style.css' rel='stylesheet'>
   </head>
   <body>
     <div class="container">
-    <h1 id="sheetsee-charts">sheetsee-charts</h1>
-<p>Sheetsee provides three d3 chart options to use with your spreadsheet data: a bar chart, line chart and pie graph. You can also plug in your own custom d3 chart to sheetsee, read about that <a href="custom-charts.md">here</a>.</p>
+      <h1 id="sheetsee-charts">Sheetsee-charts</h1>
+<p>Sheetsee provides three d3 chart options to use with your spreadsheet data: a bar chart, line chart and pie graph. See a <a href="demos/demo-chart.html">demo</a>. You can also plug in your own custom d3 chart to sheetsee, read about that <a href="custom-charts.html">here</a>.</p>
 <h2 id="make-a-chart">Make a Chart</h2>
-<p>Sheetsee.js comes with a d3.js bar, pie and line chart. Each requires your data be an <em>array of objects</em>, formatted to contain &quot;label&quot; and &quot;units&quot; keys. See the section above on Your Data to learn about formatting.</p>
-<p>You&#39;ll have to experiement with the charts to find the correct size your <code>&lt;div&gt;</code> will need to be to hold the chart with your data in it nicely.</p>
-<p>You can also make your own d3 chart in a separate .js file, link to that and pass your data on to it. I&#39;d love to see people building some other charts that will work with Sheetsee.</p>
+<p>Sheetsee.js comes with a d3.js bar, pie and line chart. Each requires your data be an <em>array of objects</em>, with objects containing &quot;label&quot; and &quot;units&quot; key/value pairs. See the section above on Your Data to learn about formatting.</p>
+<p>Experiment with the charts to find the correct size your <code>&lt;div&gt;</code> will need to be to hold the chart with your data in it nicely.</p>
+<p>You can also make your own d3 chart in a separate .js file, link to that and pass your data on to it. Information <a href="docs/custom-charts.html">here</a> on using your own chart.</p>
 <h3 id="bar-chart">Bar Chart</h3>
 <p>To create a bar chart you&#39;ll need to add a placeholder <code>&lt;div&gt;</code> in your HTML with an id.</p>
 <pre><code class="lang-HTML">&lt;div id=&quot;barChart&quot;&gt;&lt;/div&gt;
 </code></pre>
 <p>In your CSS, give it dimensions.</p>
-<pre><code class="lang-CSS">#barChart {height: 400px; max-width: 600px; background: #F8CDCD;}
+<pre><code class="lang-CSS">barChart {height: 400px; max-width: 600px; background: #F8CDCD;}
 </code></pre>
 <p>In a <code>&lt;script&gt;</code> tag set up your options.</p>
 <pre><code class="lang-javascript">var barOptions = {labels: &quot;name&quot;, units: &quot;cuddleability&quot;, m: [60, 60, 30, 150], w: 600, h: 400, div: &quot;#barChart&quot;, xaxis: &quot;no. of pennies&quot;, hiColor: &quot;#FF317D&quot;}
@@ -81,6 +82,38 @@
 <pre><code class="lang-javascript">Sheetsee.d3PieChart(data, pieOptions)
 </code></pre>
 
+   
+      <footer>
+        <h4 id="getting-started">Getting Started</h4>
+        <ul>
+        <li><a href="docs/about.html">About Sheetsee.js</a></li>
+        <li><a href="docs/building.html">Building Sheetsee</a></li>
+        </ul>
+        <h4 id="ideas">Ideas</h4>
+        <ul>
+        <li><a href="docs/fork-n-go.html">Fork-n-Go</a></li>
+        <li><a href="docs/tips.html">Tips!</a></li>
+        </ul>
+        <h4>Demos</h4>
+        <ul>
+        <li><a href="/demos/demo-table.html">Table Demo</a></li>
+        <li><a href="/demos/demo-map.html">Map Demo</a></li>
+        <li><a href="/demos/demo-chart.html">Chart Demo</a></li>
+        <li><a href="/demos/template.html">Basic Template</a></li>
+        </ul>
+        <h4 id="use">Use</h4>
+        <ul>
+        <li><a href="/sheetsee-core.html">Sheetsee-core</a></li>
+        <li><a href="/sheetsee-tables.html">Sheetsee-tables</a></li>
+        <li><a href="/sheetsee-maps.html">Sheetsee-maps</a></li>
+        <li><a href="/sheetsee-charts.html">Sheetsee-charts</a></li>
+        <li><a href="/custom-charts.html">Custom charts</a></li>
+        </ul>
+        <h4 id="use">Contact</h4>
+        <ul>
+        <li><a href="http://www.twitter.com/jllord">@jllord</a></li>
+        </ul>
+      </footer>
     </div>
   </body>
 </html>

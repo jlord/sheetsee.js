@@ -6,339 +6,116 @@
     <meta name="description" content="sheetsee.js, google, spreadsheet, visualize, data, javascript">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>such site, very sheetsee.js</title>
+    <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
     <link rel="shortcut icon" href=""/>
-    <link href='../assets/style.css' rel='stylesheet'>
+    <link href='/assets/style.css' rel='stylesheet'>
   </head>
   <body>
     <div class="container">
-    <p><em><strong>Attention!</strong> Hi! Sheetsee will be updated <em>soon</em>. Fun! I&#39;m currently working on adding in some features (pagination on tables and polygons in maps) and breaking the tables, maps and charts components of Sheetsee into individual modules allowing for custom builds with just the components you plan on using (or all if you don&#39;t care). Changes currently in progress on the <a href="https://github.com/jlord/sheetsee.js/tree/modules"><code>modules</code> branch</a>. Sheetsee modules (still being debugged) are in my <a href="https://github.com/search?q=%40jlord+sheetsee+module&amp;type=Repositories&amp;ref=searchresults">repositories</a>.</em></p>
-<p><img src="https://raw.github.com/jllord/sheetsee-cache/master/img/sheetsee-03.png" alt="sheetsee"></p>
+      <p><img src="https://raw.github.com/jlord/sheetsee-cache/master/img/sheetsee-03.png" alt="sheetseeimg"></p>
 <h1 id="sheetsee-js">Sheetsee.js</h1>
-<p>Sheetsee.js is a JavaScript library, or box of goodies, if you will, that makes it easy to use a Google Spreadsheet as the database feeding the tables, charts and maps on a website. Once set up, any changes to the spreadsheet will auto-saved by Google and be live on your site when a visitor refreshes the page.</p>
-<p>Using Google Spreadsheets as the backend database is awesome because it is easy to use, share and collaborate with.</p>
-<p>To use sheetsee.js you&#39;ll definitely need to know HTML, CSS and know JavaScript or be not afraid of it and just type what these docs tell you to type. Also, see <a href="http://www.jsforcats.com">JavaScript for Cats</a>, <a href="http://eloquentjavascript.net/">Eloquent JavaScript</a> or <a href="https://developer.mozilla.org/en-US/docs/JavaScript">Mozilla&#39;s Developer Network</a>.</p>
-<h3 id="dependencies">Dependencies</h3>
-<p>Sheetsee.js depends on a few other awesome JavaScript libraries to make all this happen. First, <a href="http://builtbybalance.com/Tabletop/">Tabletop.js</a> gets the data from the Google Spreadsheet and makes it nice. Once you have your data Sheetsee.js makes it easy to set up tables or templates with <a href="http://icanhazjs.com/">IChanHas.js</a>(built on <a href="http://mustache.github.io/">mustache.js</a>), maps with <a href="http://mapbox.com/mapbox.js/example/v1.0.0/">Mapbox.js</a>, and charts with <a href="http://d3js.org/">d3.js</a>. And <a href="http://jquery.com/">jQuery</a> of course powers most of the interactions. It also has many sorting and filtering functions built in so that you can display different parts of your data if you want. Each of these are explained in more detail below.</p>
-<h3 id="building">Building</h3>
-<pre><code class="lang-bash">[sudo] npm install -g browserify uglify-js
-npm install
-make
-</code></pre>
-<h3 id="css">CSS</h3>
-<p>Sheetsee.js comes with a bare minimum stylesheet. This way you can customize your site to look the way you want to it or to match an existing site&#39;s design.</p>
-<h3 id="client-side-or-server-side">Client-side or Server-side</h3>
-<p>Sheetsee.js comes in two flavors, client-side (this repo) and server-side (<a href="http://www.github.com/jlord/sheetsee-cache">sheetsee-cache</a>. The client-side is the most approachable and straightforward, you just include sheetsee.js and the dependencies on your page and use sheetsee.js as normal.</p>
-<p>The server-side version is built with <a href="http://www.nodejs.org">Node.js</a> and you&#39;ll need to understand Node and be publishing to a server that runs Node.js apps. This version saves the data on the server so that the browser doesn&#39;t have to fetch from Google at every request, which can sometimes be slow. You can set when the cache expires. It also allows for offline development, huzzah!</p>
-<h2 id="the-short-sweet">The Short &amp; Sweet</h2>
-<ol>
-<li>Link to Sheetsee.js and dependencies in your HTML header.</li>
-<li>Create a place holder <code>&lt;div&gt;</code> in your HTML for any chart, map or table you want to have.</li>
-<li>Create templates for tables in <code>&lt;script&gt;</code> tags.</li>
-<li>Create a script tag that waits for the document to load and then executes any of the map, chart or tables you&#39;ve specified in it.</li>
-<li>Set it and forget. Now all you need to do is edit the spreadsheet and visitors will get the latest information everytime they load the page.</li>
-</ol>
-<h2 id="bare-minimum-setup">Bare Minimum Setup</h2>
-<p>Ignoring some HTML things to conserve space, you get the point. This gives you a page with a map of your spreadsheets points.</p>
-<pre><code>&lt;html&gt;
-    &lt;head&gt;
-        &lt;script src=&quot;//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js&quot;&gt;&lt;/script&gt;
-        &lt;script src=&quot;//cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.1.0/tabletop.min.js&quot;&gt;&lt;/script&gt;
-        &lt;script type=&quot;text/javascript&quot; src=&#39;js/sheetsee.bundled.js&#39;&gt;&lt;/script&gt;
-        &lt;link href=&#39;http://api.tiles.mapbox.com/mapbox.js/v1.0.0/mapbox.css&#39; rel=&#39;stylesheet&#39; /&gt;
-    &lt;/head&gt;
-    &lt;style&gt; #map {height: 600px; width: 600px;} &lt;/style&gt;
-    &lt;body&gt;
-    &lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
-    &lt;script type=&quot;text/javascript&quot;&gt;
-      document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
-        var gData
-        var URL = &quot;0AvFUWxii39gXdFhqZzdTeU5DTWtOdENkQ1Y5bHdqT0E&quot;
-        Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } ) 
-      }) 
-      function showInfo(data) {
-        gData = data
-        optionsJSON = [&quot;something&quot;, &quot;something&quot;]
-        var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
-        var map = Sheetsee.loadMap(&quot;map&quot;)
-        Sheetsee.addTileLayer(map, &#39;examples.map-20v6611k&#39;)
-        var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map)
-        // customize the popup content
-        addPopups(map, markerLayer)
-        function addPopups(map, markerLayer) {
-          markerLayer.on(&#39;click&#39;, function(e) {
-            var feature = e.layer.feature
-            var popupContent = &#39;&lt;h3&gt;&#39; + feature.opts.something + &#39;&lt;/h3&gt;&#39;
-            e.layer.bindPopup(popupContent,{closeButton: false})
-          })
-        }
-      }
-    &lt;/script&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
-</code></pre><h2 id="awesome-possibilities">Awesome Possibilities</h2>
-<ol>
-<li>Small newsrooms with data for stories but small dev teams.</li>
-<li>Friends or groups collaborating on data for a website/project.</li>
-<li>Using <a href="http://www.ifttt.com">iftt.com</a> to auto populate spreadsheets which are hooked to a website with Sheetsee.js.</li>
-</ol>
-<h2 id="examples">Examples</h2>
-<ol>
-<li><a href="http://jlord.github.io/hack-spots">Hack Spots</a></li>
-<li><a href="https://twitter.com/jugglingnutcase">James Sconfitto</a> make a <a href="https://github.com/jugglingnutcase/katiejamie">map of his relationship</a> with his wife &lt;3</li>
-</ol>
-<h2 id="getting-started">Getting Started</h2>
-<p>This bit is the same for both client-side and server-side versions.</p>
-<h3 id="your-data">Your Data</h3>
-<p><img src="https://raw.github.com/jllord/sheetsee-cache/master/img/spreadsheettodata.png" alt="sheetsee"></p>
-<p>Your Google Spreadsheet should be set up with row one as your column headers. Row two and beyond should be your data.  Each header and row becomes an oject in the final array that Tabletop.js delivers of your data.</p>
-<p><img src="https://raw.github.com/jllord/sheetsee-cache/master/img/nonos.png" alt="sheetsee"></p>
-<p>There shouldn&#39;t be any breaks or horizontal organization in the spreadsheet. But, feel free to format the style of your spreadsheet as you wish; borders, fonts and colors and such do not transfer or affect your data exporting.</p>
-<pre><code>[{&quot;name&quot;:&quot;Coco&quot;,&quot;breed&quot;:&quot;Teacup Maltese&quot;,&quot;kind&quot;:&quot;Dog&quot;,&quot;cuddlability&quot;:&quot;5&quot;,&quot;lat&quot;:&quot;37.74832&quot;,&quot;long&quot;:&quot;-122.402158&quot;,&quot;picurl&quot;:&quot;http://distilleryimage8.s3.amazonaws.com/98580826813011e2bbe622000a9f1270_7.jpg&quot;,&quot;hexcolor&quot;:&quot;#ECECEC&quot;,&quot;rowNumber&quot;:1}...]
-</code></pre><h4 id="hexcolor">Hexcolor</h4>
-<p><img src="https://raw.github.com/jllord/sheetsee-cache/master/img/hexcolors.png" alt="sheetsee"></p>
-<p>You must add a column to your spreadsheet with the heading <em>hexcolor</em> (case insensitive). The maps, charts and such use colors and this is the easiest way to standardize that. The color scheme is up to you, all you need to do is fill the column with hexidecimal color values. This <a href="http://color.hailpixel.com/">color picker</a> by <a href="https://twitter.com/hailpixel">Devin Hunt</a> is really nice. #Funtip: Coloring the background of the cell it&#39;s hexcolor brings delight! </p>
-<h4 id="geocoding">Geocoding</h4>
-<p>If you intend to map your data and only have addresses you&#39;ll need to geocode the addresses into lat/long coordinates. Mapbox built a <a href="http://mapbox.com/tilemill/docs/guides/google-docs/#geocoding">plugin</a>
- that does this for you in Google Docs. You can also use websites like <a href="http://www.latlong.net/">latlong.net</a> to get the coordinates and paste them into rows with column headers <em>lat</em> and <em>long</em>.</p>
-<blockquote>
-<p>image of lat and long column headers</p>
-</blockquote>
-<h4 id="publishing-your-spreadsheet">Publishing Your Spreadsheet</h4>
-<p><img src="https://raw.github.com/jllord/sheetsee-cache/master/img/publish.png" alt="sheetsee"></p>
-<p>You need to do this in order to generate a unique key for your spreadsheet, which Tabletop.js will use to get your spreadsheet data. In your Google Spreadsheet, click <em>File</em> &gt; <em>Publish to the Web</em>. Then in the next window click <em>Start Publishing</em>; it will then turn into a <em>Stop Publishing</em> button.</p>
-<p><img src="https://raw.github.com/jllord/sheetsee-cache/master/img/key.png" alt="sheetsee"></p>
-<p>You should have an address in a box at the bottom, your key is the portion between the = and the &amp;. You&#39;ll retrieve this later when you hook up your site to the spreadsheet.</p>
-<h3 id="your-website">Your Website</h3>
-<p>Before you get started with Sheetsee.js you should plan out your website. Design it, create the basic markup and stylesheet.</p>
-<p>For now, create empty <code>div</code> placeholders for the map, chart and tables you plan on including.</p>
-<h2 id="hooking-up-your-data">Hooking Up Your Data</h2>
-<p>Here the paths diverge:</p>
-<h3 id="client-side-hookup">Client-side Hookup</h3>
-<p>For client-siders, all you need to do is include the dependencies and sheetsee in your HTML <code>&lt;head&gt;</code> and then in a script tag at the bottom of your page, right before the <code>&lt;/body&gt;</code> tag, you&#39;ll include this:</p>
-<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
-    document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
-        var gData
-        var URL = &quot;0AvFUWxii39gXdFhqZzdTeU5DTWtOdENkQ1Y5bHdqT0E&quot;
-        Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } ) 
-    }) 
-    function showInfo(data) {
-        gData = data
-        // 
-        //everything you do with sheetsee goes here
-        //
-    }
-&lt;/script&gt;
-</code></pre><p>The <strong>URL</strong> variable is the key from your spreadsheet&#39;s longer URL, explained above. <code>Tabletop.init()</code> takes that URL and execute&#39;s Tabletop, when it&#39;s done generating the table it executes the callback <code>showInfo</code> function. It&#39;s inside of this function that you&#39;ll then use your spreadsheet data, <strong>gData</strong>, to do all the Sheetsee.js goodness with. </p>
-<h3 id="server-side-hookup">Server-side Hookup</h3>
-<p>The server-side version is in the repo <a href="http://www.github.com/jllord/sheetsee-cache">sheetsee-cache</a>. It uses <a href="http://www.nodejs.org">Node.js</a> to go to Google, get the spreadsheet data (with a Node.js version of <a href="http://npmjs.org/tabletop">Tabletop.js</a>, thanks Max Ogden!) and save it on the server. This means every user that visits the page doesn&#39;t have to wait on Google&#39;s response to load the charts from the data.</p>
-<p>When the server builds your page, it will build in your data as the variable gData. All you need to do is add your scripts to the bottom of the page. For the tables/templating you&#39;ll need to wrap them in an event listener so that it doesn&#39;t try and build them before the data has settled. </p>
-<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
-    document.addEventListener(&#39;DOMContentLoaded&#39;, function() { 
-        // table/templating things the rest can be in their own script tags if you&#39;d like
-    }) 
-&lt;/script&gt;
-</code></pre><h4 id="running-locally">Running Locally</h4>
-<p>You can run this locally and it will check your internet connection - if you&#39;re not online it will use the last saved data allowing you to develop offline, yay! </p>
-<p>Once you <a href="http://www.github.com/jllord/sheetsee-cache">clone the repo</a>, navigate there in Terminal, install the node modules and launch the server.</p>
-<pre><code>cd sheetsee-cache
-npm install 
-node server.js
-</code></pre><p>This will launch a local server you can visit and develop locally with in your browser. </p>
-<h2 id="working-with-your-data">Working With Your Data</h2>
-<p>Tabletop.js will return all of your data and it will be passed into your site as an <em>array of objects</em> called <strong>gData</strong>. Sheetsee.js has functions built in to help you filter or use that data in other ways if you&#39;d like.</p>
-<h3 id="sheetsee-getkeyword-data-keyword-">Sheetsee.getKeyword(data, keyword)</h3>
-<p>This takes in your data, an <em>array of objects</em>, and searches for a <em>string</em>, <strong>keyword</strong>, in each piece of your <strong>data</strong> (formerly the cells of your spreadsheet). It returns an array of each element containing a <strong>keyword</strong> match. Similarly, using <code>getKeywordCount(data, &quot;keyword)</code> will return the just the number of times the <strong>keyword</strong> occured.</p>
-<pre><code>getKeyword(gData, &quot;cat&quot;)
-// returns [{breed: &quot;Fat&quot;, kind: &quot;cat&quot;, hexcolor: &quot;#CDCF83&quot;...}, {breed: &quot;Grey&quot;, kind: &quot;cat&quot;, hexcolor: &quot;#9C9B9A&quot;...}, {breed: &quot;Creepy&quot;, kind: &quot;cat&quot;, hexcolor: &quot;#918376&quot;...}]
-</code></pre><h3 id="sheetsee-getcolumntotal-data-column-">Sheetsee.getColumnTotal(data, column)</h3>
-<p>Given your <strong>data</strong>, an <em>array of objects</em> and a <em>string</em> <strong>column</strong> header, this functions sums each cell in that column, so they best be numbers.</p>
-<pre><code>getColumnTotal(gData, &quot;cuddlability&quot;)
-// returns 11
-</code></pre><h3 id="sheetsee-getaveragefromcolumn-data-column-">Sheetsee.getAveragefromColumn(data, column)</h3>
-<p>A really simple function that builds on <code>getColumnTotal()</code> by returning the average number in a <strong>column</strong> of numbers.</p>
-<pre><code>getColumnAverage(gData, &quot;cuddlability&quot;)
-// returns 1.8333333333333333
-</code></pre><h3 id="sheetsee-getmin-data-column-">Sheetsee.getMin(data, column)</h3>
-<p>This will return an <em>array</em> of <em>object</em> or <em>objects</em> (if there is a tie) of the element with the lowest number value in the <strong>column</strong> you specify from your <strong>data</strong>.</p>
-<pre><code>getMin(gData, &quot;cuddlability&quot;)
-// returns [{breed: &quot;Fat&quot;, cuddlability: &quot;0&quot;, hexcolor: &quot;#CDCF83&quot;...}, {breed: &quot;Grey&quot;, cuddlability: &quot;0&quot;, hexcolor: &quot;#9C9B9A&quot;...}, {breed: &quot;Creepy&quot;, cuddlability: &quot;0&quot;, hexcolor: &quot;#918376&quot;...}]
-</code></pre><h3 id="sheetsee-getmax-data-column-">Sheetsee.getMax(data, column)</h3>
-<p>This will return an <em>array</em> of <em>object</em> or <em>objects</em> (if there is a tie) of the element with the highest number value in the <strong>column</strong> you specify from your <strong>data</strong>.</p>
-<pre><code>getMax(gData, &quot;cuddlability&quot;)
-// returns {breed: &quot;Teacup Maltese&quot;, cuddlability: &quot;5&quot;, hexcolor: &quot;#ECECEC&quot;, kind: &quot;Dog&quot;, lat: &quot;37.74832&quot;, long: &quot;-122.402158&quot;, name: &quot;Coco&quot;...}
-</code></pre><h3 id="don-t-forget-javascript-math">Don&#39;t Forget JavaScript Math</h3>
-<p>Create variables that are the sums, differences, multiples and so forth of others. Lots of info on that <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Math">here on MDN</a>.</p>
-<pre><code>var profit09 = Sheetsee.getColumnTotal(gData, &quot;2009&quot;)
-var profit10 = Sheetsee.getColumnTotal(gData, &quot;2010&quot;)
-var difference = profit09 - profit10
-</code></pre><h4 id="what-these-little-bits-are-good-for">What These Little Bits are Good For</h4>
-<p>You don&#39;t have to just create tables of your data. You can have other portions of your page that show things like, &quot;The difference taco consumption between last week and this week is...&quot; These are easy to create with javascirpt math functions and knowing a little bit more about <a href="http://icanhazjs.com/">icanhas.js</a>. View source on this page to see how I created &quot;Most Cuddlable&quot;.</p>
-<h3 id="sheetsee-getmatches-data-filter-category-">Sheetsee.getMatches(data, filter, category)</h3>
-<p>Takes <strong>data</strong> as an <em>array of objects</em>, a <em>string</em> you&#39;d like to <strong>filter</strong> and a <em>string</em> of the <strong>category</strong> you want it to look in (a column header from your spreadsheet).</p>
-<pre><code>getMatches(gData, &quot;dog&quot;, &quot;kind&quot;)
-</code></pre><p>Returns an <em>array of objects</em> matching the category&#39;s filter.</p>
-<pre><code>[{&quot;name&quot;: &quot;coco&quot;, &quot;kind&quot;: &quot;dog&quot;...}, {&quot;name&quot;: &quot;wolfgang&quot;, &quot;kind&quot;: &quot;dog&quot;...},{&quot;name&quot;: &quot;cooc&quot;, &quot;kind&quot;: &quot;dog&quot;...} ]
-</code></pre><h3 id="sheetsee-getoccurance-data-category-">Sheetsee.getOccurance(data, category)</h3>
-<p>Takes <strong>data</strong> as an <em>array of objects</em> and a <em>string</em> for <strong>category</strong> (a column header from your spreadsheet) you want tally how often an element occured.</p>
-<pre><code>getOccurance(gData, &quot;kind&quot;)
-</code></pre><p>Returns an object with keys and values for each variation of the category and its occurance.</p>
-<pre><code>{&quot;dog&quot;: 3, &quot;cat&quot;: 3}
-</code></pre><h3 id="sheetsee-makecolorarrayofobject-data-colors-">Sheetsee.makeColorArrayOfObject(data, colors)</h3>
-<p>If you use <code>getOccurance()</code> and want to then chart that data with d3.js, you&#39;ll need to make it into an <em>array</em> (instead of an object) and add colors back in (since the hexcolor column applies to the datapoints in your original dataset and not this new dataset).</p>
-<p>This function takes in your data, as an <em>object</em>, and an <em>array</em> of hexidecimal color strings which you define.</p>
-<pre><code>var kinds = getOccurance(gData, &quot;kind&quot;)
-var kindColors = [&quot;#ff00ff&quot;, &quot;#DCF13C&quot;]
+<p><strong>Sheetsee.js</strong> is a library for connecting Google Spreadsheets to a website and visualizing the information in tables, maps and charts.</p>
+<p>Google Spreadsheets can be used as simple and collaborative databases, they make getting a data driven site going much easier than traditional databases. Read more about using spreadsheets for databases <a href="/docs/basics.html">here</a>.</p>
+<h2 id="modules">Modules</h2>
+<p>Each of <strong>sheetsee.js</strong>&#39;s features are divided into modules. Use just the parts you need (see docs on <a href="/docs/building.html">building</a>). If you don&#39;t want to build your own, you can just use the full library which includes all modules, it&#39;s <a href="http://www.github.com/jlord/sheetsee.js">here on GitHub</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Contains</th>
+<th>Docs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>sheetsee-core</strong></td>
+<td><strong>Included in any build</strong>. Gets you started and has the working-with-your-data functions.</td>
+<td><a href="/docs/sheetsee-core.html">Doc</a></td>
+</tr>
+<tr>
+<td><strong>sheetsee-tables</strong></td>
+<td>Contains everything you&#39;ll need to create a table including sortable columns, pagination and search.</td>
+<td><a href="/docs/sheetsee-tables.html">Doc</a></td>
+</tr>
+<tr>
+<td><strong>sheetsee-maps</strong></td>
+<td>For making maps with your point, line or polygon spreadsheet data. Built on Mapbox.js.</td>
+<td><a href="/docs/sheetsee-maps.html">Doc</a></td>
+</tr>
+<tr>
+<td><strong>sheetsee-charts</strong></td>
+<td>Includes 3 basic d3 charts: bar, line and pie. You can also <a href="docs/custom-charts.html">use your own</a>.</td>
+<td><a href="/docs/sheetsee-charts.html">Doc</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="making-things">Making Things</h2>
+<p>What can you make with <strong>Sheetsee.js</strong>? Lost of things, here are some examples: </p>
+<ul>
+<li><a href="http://jlord.github.io/hack-spots">Hack-Spots</a></li>
+<li><a href="http://jlord.us/instagram/">Combine with IFTTT</a></li>
+</ul>
+<h2 id="demos-templates">Demos &amp; Templates</h2>
+<p>Demos pages for the documentation.</p>
+<ul>
+<li><a href="/demos/demo-table.html">Table Demo</a></li>
+<li><a href="/demos/demo-map.html">Map Demo</a></li>
+<li><a href="/demos/demo-chart.html">Chart Demo</a></li>
+<li><a href="/demos/template.html">Basic Template</a></li>
+</ul>
+<h2 id="documentation">Documentation</h2>
+<p>More resources on using Sheetsee.js:</p>
+<h4 id="getting-started">Getting Started</h4>
+<ul>
+<li><a href="docs/about.html">About Sheetsee.js</a></li>
+<li><a href="docs/building.html">Building Sheetsee</a></li>
+</ul>
+<h4 id="ideas">Ideas</h4>
+<ul>
+<li><a href="docs/fork-n-go.html">Fork-n-Go</a></li>
+<li><a href="docs/tips.html">Tips!</a></li>
+</ul>
+<h4 id="use">Use</h4>
+<ul>
+<li><a href="docs/sheetsee-core.html">Sheetsee-core</a></li>
+<li><a href="docs/sheetsee-tables.html">Sheetsee-tables</a></li>
+<li><a href="docs/sheetsee-maps.html">Sheetsee-maps</a></li>
+<li><a href="docs/sheetsee-charts.html">Sheetsee-charts</a></li>
+<li><a href="docs/custom-charts.html">Custom charts</a></li>
+</ul>
 
-var kindData = makeColorArrayOfObjects(mostPopBreeds, kindColors)
-</code></pre><p>It will return an array of objects formatted to go directly into a d3 chart with the appropriate <em>units</em> and <em>label keys</em>, like so:</p>
-<pre><code>[{&quot;label&quot;: &quot;dog&quot;, &quot;units&quot;: 2, &quot;hexcolor&quot;: &quot;#ff00ff&quot;}, {&quot;label&quot;: &quot;cat&quot;, &quot;units&quot;: 3, &quot;hexcolor&quot;: &quot;#DCF13C&quot;}]
-</code></pre><p>If you pass in an array of just one color it will repeat that color for all items. If you pass fewer colors than data elements it will repeat the sequences of colors for the remainder elements.</p>
-<h2 id="make-a-map">Make a Map</h2>
-<p>Sheetsee.js uses <a href="http://mapbox.com/mapbox.js">Mapbox.js</a>, a <a href="http://leafletjs.com/">Leaflet.js</a> plugin, to make maps.</p>
-<p>Create an empty <code>&lt;div&gt;</code> in your HTML, with an id.</p>
-<pre><code>&lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
-</code></pre><p>Next you&#39;ll need to create geoJSON out of your data so that it can be mapped.</p>
-<h3 id="sheetsee-creategeojson-data-optionsjson-">Sheetsee.createGeoJSON(data, optionsJSON)</h3>
-<p>This takes in your <strong>data</strong> and the parts of your data, <strong>optionsJSON</strong>,  that you plan in your map&#39;s popups. If you&#39;re not going to have popups on your markers, don&#39;t worry about it then and just pass in your data. </p>
-<pre><code>var optionsJSON = [&quot;name&quot;, &quot;breed&quot;, &quot;cuddlability&quot;]
-var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
-</code></pre><p>It will return an <em>array</em> in the special geoJSON format that map making things love. </p>
-<pre><code>[{
-  &quot;geometry&quot;: {&quot;type&quot;: &quot;Point&quot;, &quot;coordinates&quot;: [long, lat]},
-  &quot;properties&quot;: {
-    &quot;marker-size&quot;: &quot;small&quot;,
-    &quot;marker-color&quot;: lineItem.hexcolor
-  },
-  &quot;opts&quot;: {the options you pass in},
-}}
-</code></pre><h3 id="sheetsee-loadmap-mapdiv-">Sheetsee.loadMap(mapDiv)</h3>
-<p>To create a simple map, with no data, you simply call `.loadMap() and pass in a <em>string</em> of the <strong>mapDiv</strong> (with no #) from your HTML.</p>
-<pre><code>var map = Sheetsee.loadMap(&quot;map&quot;)
-</code></pre><h3 id="sheetsee-addtilelayer-map-tilelayer-">Sheetsee.addTileLayer(map, tileLayer)</h3>
-<p>To add a tile layer, aka a custom map scheme/design/background, you&#39;ll use this function which takes in your <strong>map</strong> and the source of the <strong>tileLayer</strong>. This source can be a Mapbox id, a URL to a TileJSON or your own generated TileJSON. See <a href="http://mapbox.com/mapbox.js/api/v1.0.2/#L.mapbox.tileLayer">Mapbox&#39;s Documentation</a> for more information.</p>
-<pre><code>Sheetsee.addTileLayer(map, &#39;examples.map-20v6611k&#39;)
-</code></pre><p>You can add tiles from awesome mapmakers like <a href="examples.map-20v6611k">Stamen</a> or create your own in Mapbox&#39;s <a href="http://www.mapbox.com/tilemill">Tilemill</a> or <a href="https://tiles.mapbox.com/newmap#3.00/0.00/0.00">online</a>.</p>
-<h3 id="sheetsee-addmarkerlayer-geojson-map-">Sheetsee.addMarkerLayer(geoJSON, map)</h3>
-<p>To add makers to your map, use this function and pass in your <strong>geoJSON</strong> so that it can get the coordinates and your <strong>map</strong> so that it places the markers there.</p>
-<pre><code>var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map)
-</code></pre><h3 id="sheetsee-addpopups-map-markerlayer-">Sheetsee.addPopups(map, markerLayer)</h3>
-<p>To customize the marker popup content in your map you&#39;ll need to use this entire function on your website.</p>
-<pre><code>function addPopups(map, markerLayer) {
-  markerLayer.on(&#39;click&#39;, function(e) {
-    var feature = e.layer.feature
-    var popupContent = &#39;&lt;h2&gt;&#39; + feature.opts.name + &#39;&lt;/h2&gt;&#39; +
-                        &#39;&lt;h3&gt;&#39; + feature.opts.breed + &#39;&lt;/h3&gt;&#39;
-    e.layer.bindPopup(popupContent,{closeButton: false,})
-  })
-}
-</code></pre><p>You will edit the <strong>popupContent</strong> variable however you&#39;d like your popups to look. To reference the data you sent to you geoJSON you&#39;ll use <code>feature.opts</code> and then one of the column headers you passed into <code>createGeoJSON().</code></p>
-<h2 id="make-a-table">Make a Table</h2>
-<p>Sheetsee.js supports making multiple tables or templates with IcanHas.js. The tables can have multiple inputs for filtering and table headers can be used to sort the data in that column. For each of these you&#39;ll need a <code>&lt;div&gt;</code> in your html, a <code>&lt;script&gt;</code> template and a <code>&lt;script&gt;</code> that calls table functions.</p>
-<h4 id="your-html-placeholder-div-">Your HTML Placeholder <code>&lt;div&gt;</code></h4>
-<p>This is as simple as an empty <code>&lt;div&gt;</code> with an id. This id should match the script tempate id in the next section.</p>
-<pre><code> &lt;div id=&quot;siteTable&quot;&gt;&lt;/div&gt;
-</code></pre><h4 id="your-script-template">Your <code>&lt;script&gt;</code> Template</h4>
-<p>Your template is the mockup of what you&#39;d like your table to look like and what content it should show. Most of this is up to you but if you want users to be able to click on headers and sort that column you must make a table row with table headers with the class <em>tHeader</em>.</p>
-<p>The variables inside the {{}} must match the column headers in your spreadsheet. Lowercase (?) and remember spaces are ommited, so &quot;Place Name&quot; will become &quot;placename&quot;.</p>
-<pre><code>&lt;script id=&quot;siteTable&quot; type=&quot;text/html&quot;&gt;
-    &lt;table&gt;
-    &lt;tr&gt;&lt;th class=&quot;tHeader&quot;&gt;City&lt;/th&gt;&lt;th class=&quot;tHeader&quot;&gt;Place Name&lt;/th&gt;&lt;th class=&quot;tHeader&quot;&gt;Year&lt;/th&gt;&lt;th class=&quot;tHeader&quot;&gt;Image&lt;/th&gt;&lt;/tr&gt;
-      {{#rows}}
-        &lt;tr&gt;&lt;td&gt;{{city}}&lt;/td&gt;&lt;td&gt;{{placename}}&lt;/td&gt;&lt;td&gt;{{year}}&lt;/td&gt;&lt;td&gt;{{image}}&lt;/td&gt;&lt;/tr&gt;
-      {{/rows}}
-  &lt;/table&gt;
-&lt;/script&gt;
-</code></pre><h4 id="your-script-execution">Your <code>&lt;script&gt;</code> Execution</h4>
-<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
-    document.addEventListener(&#39;DOMContentLoaded&#39;, function() { // IE6 doesn&#39;t do DOMContentLoaded
-        Sheetsee.makeTable(gData, &quot;#siteTable&quot;)
-        Sheetsee.initiateTableFilter(gData, &quot;#tableFilter&quot;, &quot;#siteTable&quot;)
-    })
-&lt;/script&gt;
-</code></pre><p>To create another table, simply repeat the steps.</p>
-<pre><code>&lt;div id=&quot;secondTable&quot;&gt;&lt;/div&gt;
-&lt;script id=&quot;secondTable&quot;&gt; // your table template here &lt;/script&gt;
-&lt;script&gt;
-  Sheetsee.makeTable(otherData, &quot;#secondTable&quot;)
-  Sheetsee.initiateTableFilter(otherData, &quot;#secondFilter&quot;, &quot;#secondTable&quot;)
-&lt;/script&gt;
-</code></pre><p> Learn more about the things you can do with <a href="http://mustache.github.io/">mustache.js</a>.</p>
-<h3 id="sheetsee-maketable-data-targetdiv-">Sheetsee.makeTable(data, targetDiv)</h3>
-<p>You&#39;ll call this to make a table out of a <strong>data</strong> and tell it what <strong>targetDiv</strong> in the html to render it in (this should also be the same id as your script template id).</p>
-<pre><code>Sheetsee.makeTable(gData, &quot;#siteTable&quot;)
-</code></pre><h2 id="table-filter-search">Table Filter/Search</h2>
-<p>If you want to have an input to allow users to search/filter the data in the table, you&#39;ll add this to your html:</p>
-<pre><code>&lt;input id=&quot;tableFilter&quot; type=&quot;text&quot; placeholder=&quot;filter by..&quot;&gt;&lt;/input&gt;
-&lt;span class=&quot;clear button&quot;&gt;Clear&lt;/span&gt;
-&lt;span class=&quot;noMatches&quot;&gt;no matches&lt;/span&gt;
-</code></pre><h3 id="sheetsee-initiatetablefilter-data-filterdiv-tablediv-">Sheetsee.initiateTableFilter(data, filterDiv, tableDiv)</h3>
-<p>You will then call this function to make that input live:</p>
-<pre><code>Sheetsee.initiateTableFilter(gData, &quot;#TableFilter&quot;, &quot;#siteTable&quot;)
-</code></pre><h2 id="make-a-chart">Make a Chart</h2>
-<p>Sheetsee.js comes with a d3.js bar, pie and line chart. Each requires your data be an <em>array of objects</em>, formatted to contain &quot;label&quot; and &quot;units&quot; keys. See the section above on Your Data to learn about formatting.</p>
-<p>You&#39;ll have to experiement with the charts to find the correct size your <code>&lt;div&gt;</code> will need to be to hold the chart with your data in it nicely.</p>
-<p>You can also make your own d3 chart in a separate .js file, link to that and pass your data on to it. I&#39;d love to see people building some other charts that will work with Sheetsee.</p>
-<h3 id="bar-chart">Bar Chart</h3>
-<p>To create a bar chart you&#39;ll need to add a placeholder <code>&lt;div&gt;</code> in your HTML with an id.</p>
-<pre><code>&lt;div id=&quot;barChart&quot;&gt;&lt;/div&gt;
-</code></pre><p>In your CSS, give it dimensions.</p>
-<pre><code>#barChart {height: 400px; max-width: 600px; background: #F8CDCD;}
-</code></pre><p>In a <code>&lt;script&gt;</code> tag set up your options.</p>
-<pre><code>var barOptions = {labels: &quot;name&quot;, units: &quot;cuddleability&quot;, m: [60, 60, 30, 150], w: 600, h: 400, div: &quot;#barChart&quot;, xaxis: &quot;no. of pennies&quot;, hiColor: &quot;#FF317D&quot;}
-</code></pre><ul>
-<li><strong>labels</strong> is a string, usually a column header, it&#39;s what you call what you&#39;re charting</li>
-<li><strong>units</strong> is a string, usually a column header, it&#39;s the value you&#39;re charting</li>
-<li><strong>m</strong> is margins: top, right, bottom, left</li>
-<li><strong>w</strong> and <strong>h</strong> are width and height, this should match your CSS specs</li>
-<li><strong>div</strong> is the id for the <code>&lt;div&gt;</code> in your HTML</li>
-<li><strong>xaxis</strong> is optional text label for your x axis</li>
-<li><strong>hiColor</strong> is the highlight color of your choosing!</li>
-</ul>
-<p>Then call the <code>d3BarChart()</code> function with your <strong>data</strong> and <strong>options</strong>.</p>
-<pre><code>Sheetsee.d3BarChart(data, barOptions)
-</code></pre><h3 id="line-chart">Line Chart</h3>
-<p>To create a line chart you&#39;ll need to add a placeholder <code>&lt;div&gt;</code> in your html with an id.</p>
-<pre><code>&lt;div id=&quot;lineChart&quot;&gt;&lt;/div&gt;
-</code></pre><p>In your CSS, give it dimensions.</p>
-<pre><code>#lineChart {height: 400px; max-width: 600px; background: #F8CDCD;}
-</code></pre><p>In a <code>&lt;script&gt;</code> tag set up your options.</p>
-<pre><code>var lineOptions = {labels: &quot;name&quot;, units: &quot;cuddleability&quot;, m: [80, 100, 120, 100], w: 600, h: 400, div: &quot;#lineChart&quot;, yaxis: &quot;no. of pennies&quot;, hiColor: &quot;#14ECC8&quot;}
-</code></pre><ul>
-<li><strong>labels</strong> is a string, usually a column header, it&#39;s what you call what you&#39;re charting</li>
-<li><strong>units</strong> is a string, usually a column header, it&#39;s the value you&#39;re charting</li>
-<li><strong>m</strong> is your margins: top, right, bottom, left</li>
-<li><strong>w</strong> and <strong>h</strong> are width and height, this should match your CSS specs</li>
-<li><strong>div</strong> is the id for the <code>&lt;div&gt;</code> in your HTML</li>
-<li><strong>yaxis</strong> is optional text label for your y axis</li>
-<li><strong>hiColor</strong> is the highlight color of your choosing!</li>
-</ul>
-<p>Then call the <code>d3LineChart()</code> function with your <strong>data</strong> and <strong>options</strong>.</p>
-<pre><code>Sheetsee.d3LineChart(data, lineOptions)
-</code></pre><h3 id="pie-chart">Pie Chart</h3>
-<p>To create a bar chart you&#39;ll need to add a placeholder <code>&lt;div&gt;</code> in your html with an id.</p>
-<pre><code>&lt;div id=&quot;pieChart&quot;&gt;&lt;/div&gt;
-</code></pre><p>In your CSS, give it dimensions.</p>
-<pre><code>#pieChart {height: 400px; max-width: 600px; background: #F8CDCD;}
-</code></pre><p>In a <code>&lt;script&gt;</code> tag set up your options. You <strong>must</strong> include <strong>labels</strong> and <em>units</em>, this tells it what you&#39;re charting. Because for the pie chart we&#39;re using data we got from <code>getOccurance()</code> and <code>makeColorArrayOfObject</code>, our units are already called <em>units</em>. If we were using original data, we might have units as &quot;cuddleability&quot; like in the other chart examples.</p>
-<pre><code>var pieOptions = {labels: &quot;name&quot;, units: &quot;units&quot;, m: [80, 80, 80, 80], w: 600, h: 400, div: &quot;#pieChart&quot;, hiColor: &quot;#14ECC8&quot;}
-</code></pre><ul>
-<li><strong>labels</strong> is a string, usually a column header, it&#39;s what you call what you&#39;re charting</li>
-<li><strong>units</strong> is a string, usually a column header, it&#39;s the value you&#39;re charting</li>
-<li><strong>m</strong> is your margins: top, right, bottom, left</li>
-<li><strong>w</strong> and <strong>h</strong> are width and height, this should match your CSS specs</li>
-<li><strong>div</strong> is the id for the <code>&lt;div&gt;</code> in your HTML</li>
-<li><strong>hiColor</strong> is the highlight color of your choosing!</li>
-</ul>
-<p>Then call the <code>d3PieChart()</code> function with your <strong>data</strong> and <strong>options</strong>.</p>
-<pre><code>Sheetsee.d3PieChart(data, pieOptions)
-</code></pre><p><strong>Don&#39;t forget, right click this page, select View Source and scroll to the bottom and see exactly how these charts were set up!</strong></p>
-<h2 id="big-time-thanks">Big Time Thanks</h2>
-<p>Thanks to <a href="http://www.codeforamerica.org">Code for America</a> for providing the platform me to build the first version of sheetsee.js for Macon, Georgia.</p>
-<p>Thanks to <a href="http://www.twitter.com/dansinker">Dan Sinker</a> at <a href="http://www.mozillaopennews.org/">Open News</a> for having faith and getting things together to make this Code Sprint happen and thanks to <a href="https://twitter.com/whatsnewmedia">Matt Green</a> at WBEZ for being a willing partner.</p>
-<p>Thanks to <a href="http://www.twitter.com/maxogden">Max Ogden</a> for emotional support, teaching me JavaScript and working on the harder parts of Sheetsee.js - especially for making <a href="https://npmjs.org/tabletop">Tabletop.js for Node.js</a>.</p>
-<p>Thanks to all the authors and contributors to Tabletop.js, Mapbox.js, Leaflet.js, jQuery, ICanHas.js and d3.js. Thanks to Google and the Internet for existing and to all those who&#39;ve written tutorials or asked or answered a question on StackOverflow.</p>
-<p>Thanks to Mom and Dad for getting a computer in 1996 and the mIRC scripts I started writing that I suppose would eventually lead me here.</p>
-
+   
+      <footer>
+        <h4 id="getting-started">Getting Started</h4>
+        <ul>
+        <li><a href="docs/about.html">About Sheetsee.js</a></li>
+        <li><a href="docs/building.html">Building Sheetsee</a></li>
+        </ul>
+        <h4 id="ideas">Ideas</h4>
+        <ul>
+        <li><a href="docs/fork-n-go.html">Fork-n-Go</a></li>
+        <li><a href="docs/tips.html">Tips!</a></li>
+        </ul>
+        <h4>Demos</h4>
+        <ul>
+        <li><a href="/demos/demo-table.html">Table Demo</a></li>
+        <li><a href="/demos/demo-map.html">Map Demo</a></li>
+        <li><a href="/demos/demo-chart.html">Chart Demo</a></li>
+        <li><a href="/demos/template.html">Basic Template</a></li>
+        </ul>
+        <h4 id="use">Use</h4>
+        <ul>
+        <li><a href="docs/sheetsee-core.html">Sheetsee-core</a></li>
+        <li><a href="docs/sheetsee-tables.html">Sheetsee-tables</a></li>
+        <li><a href="docs/sheetsee-maps.html">Sheetsee-maps</a></li>
+        <li><a href="docs/sheetsee-charts.html">Sheetsee-charts</a></li>
+        <li><a href="docs/custom-charts.html">Custom charts</a></li>
+        </ul>
+        <h4 id="use">Contact</h4>
+        <ul>
+        <li><a href="http://www.twitter.com/jllord">@jllord</a></li>
+        </ul>
+      </footer>
     </div>
   </body>
 </html>

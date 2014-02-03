@@ -1,10 +1,10 @@
-# sheetsee-maps
+# Sheetsee-maps
 
-Sheetsee.js uses [Mapbox.js](http://mapbox.com/mapbox.js), a [Leaflet.js](http://leafletjs.com/) plugin, to make maps of your points, polygons, lines or multipolygons (all coordinate based).
+Sheetsee.js uses [Mapbox.js](http://mapbox.com/mapbox.js), a [Leaflet.js](http://leafletjs.com/) plugin, to make maps of your points, polygons, lines or multipolygons (all coordinate based). See a map [demo](/demos/demo-map.html).
 
 You'll create a placeholder `<div>` in your HTML and fire up a map from within `<script>` tags.
 
-#### Your HTML Placeholder `<div>`
+## Your HTML Placeholder `<div>`
 
 Create an empty `<div>` in your HTML, with an id (name).
 
@@ -12,7 +12,7 @@ Create an empty `<div>` in your HTML, with an id (name).
 <div id="map"></div>
 ```
 
-#### Your `<script>` Functions
+## Your `<script>` Functions
 
 Next you'll need to create geoJSON out of your data so that it can be mapped.
 

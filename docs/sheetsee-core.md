@@ -1,6 +1,6 @@
-# sheetsee
+# Sheetsee-core
 
-This is the core module to create a sheetsee.js library. It contains the functions for building your custom file as well as the basic data manipulation functions.
+This is the core module for creating a sheetsee.js bundle. It contains the functions for building your custom file as well as the basic data manipulation functions, it's automatically built into bundles. 
 
 ## Working With Your Data
 
