@@ -1,8 +1,4 @@
-**coming soon!**
-
-## Fork-n-Go
-
-Projects (repositories)
+# Tips
 
 ## Query Strings
 

@@ -13,6 +13,9 @@
   <style>
     #map {max-width: 800px; height: 500px;}
     .leaflet-popup-content li {list-style:none;}
+    .leaflet-popup-content {width: 102px;}
+    .leaflet-popup-content img {width: 100px;}
+    a {border: none;}
   </style>
   <body>
     <div class="container">
@@ -32,7 +35,7 @@
         <ul>
         <li><a href="docs/fork-n-go.html">Fork-n-Go</a></li>
         <li><a href="docs/tips.html">Tips!</a></li>
-        <li><a href="{{rootdoc}}/custom-charts.html">Custom charts</a></li>
+        <li><a href="docs/custom-charts.html">Custom charts</a></li>
         </ul>
         <h4>Demos</h4>
         <ul>
@@ -43,10 +46,10 @@
         </ul>
         <h4 id="use">Use</h4>
         <ul>
-        <li><a href="{{rootdoc}}/sheetsee-core.html">Sheetsee-core</a></li>
-        <li><a href="{{rootdoc}}/sheetsee-tables.html">Sheetsee-tables</a></li>
-        <li><a href="{{rootdoc}}/sheetsee-maps.html">Sheetsee-maps</a></li>
-        <li><a href="{{rootdoc}}/sheetsee-charts.html">Sheetsee-charts</a></li>
+        <li><a href="docs/sheetsee-core.html">Sheetsee-core</a></li>
+        <li><a href="docs/sheetsee-tables.html">Sheetsee-tables</a></li>
+        <li><a href="docs/sheetsee-maps.html">Sheetsee-maps</a></li>
+        <li><a href="docs/sheetsee-charts.html">Sheetsee-charts</a></li>
         </ul>
         <h4 id="use">Contact</h4>
         <ul>
@@ -66,8 +69,10 @@
 
       function showInfo(data) {
         gData = data
-        var optionsJSON = ["placename", "image"]
-        var template = "<ul><li><em>placename:</em> {{placename}}</li></ul>"
+        var optionsJSON = ["placename", "photo-url"]
+        var template = "<ul><li><a href='{{photo-url}}' target='_blank'>"
+                     + "<img src='{{photo-url}}'></a></li>"
+                     + "<li><h4>{{placename}}</h4></li></ul>"
         var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
         var map = Sheetsee.loadMap("map")
         Sheetsee.addTileLayer(map, 'examples.map-20v6611k')

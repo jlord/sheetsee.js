@@ -16,6 +16,8 @@
     .no-pag:hover {color: #acacac;}
     input {border: none; border-bottom: 1px solid #333;margin: 10px 0px; width: 200px; font-size: 16px; padding-bottom: 6px;}
     .tHeader {padding: 8px; font-family: Helvetica Neue; Helvetica, Arial, sans-serif; cursor: hand;}
+    .photo {display: inline-block; float: left; width: 100px;}
+    #photogrid {overflow: auto;}
   </style>
 <body>
   <div class="container">
@@ -26,20 +28,22 @@
     <h1>California Pennies</h1>
     <input id="calFilter" type="text" placeholder="filter by.."></input>
     <div id="calTable"></div>
+    <h1>Pretty Pennies</h1>
+    <div id="photogrid"></div>
     <p><em><a onClick='window.location="view-source:" + window.location.href'>View Source</a></em></p>
   
     <footer>
       <h4 id="getting-started">Getting Started</h4>
       <ul>
       <li><a href="docs/about.html">About Sheetsee.js</a></li>
-      <li><a href="docs/building.html">Building Sheetsee</a></li>
+      <li><a href="docs/building.html">Building Sheetsee</a></li>        
       <li><a href="docs/basics.html">Basics</a></li>
       </ul>
       <h4 id="ideas">Ideas</h4>
       <ul>
       <li><a href="docs/fork-n-go.html">Fork-n-Go</a></li>
       <li><a href="docs/tips.html">Tips!</a></li>
-      <li><a href="{{rootdoc}}/custom-charts.html">Custom charts</a></li>
+      <li><a href="docs/custom-charts.html">Custom charts</a></li>
       </ul>
       <h4>Demos</h4>
       <ul>
@@ -50,18 +54,18 @@
       </ul>
       <h4 id="use">Use</h4>
       <ul>
-      <li><a href="{{rootdoc}}/sheetsee-core.html">Sheetsee-core</a></li>
-      <li><a href="{{rootdoc}}/sheetsee-tables.html">Sheetsee-tables</a></li>
-      <li><a href="{{rootdoc}}/sheetsee-maps.html">Sheetsee-maps</a></li>
-      <li><a href="{{rootdoc}}/sheetsee-charts.html">Sheetsee-charts</a></li>
+      <li><a href="docs/sheetsee-core.html">Sheetsee-core</a></li>
+      <li><a href="docs/sheetsee-tables.html">Sheetsee-tables</a></li>
+      <li><a href="docs/sheetsee-maps.html">Sheetsee-maps</a></li>
+      <li><a href="docs/sheetsee-charts.html">Sheetsee-charts</a></li>
       </ul>
       <h4 id="use">Contact</h4>
       <ul>
       <li><a href="http://www.twitter.com/jllord">@jllord</a></li>
       <li><a href="https://github.com/jlord/sheetsee.js/issues/new">File an issue</a></li>
       </ul>
+      <h4><a href="/">Home Page</a></h4>
     </footer>
-    <h4><a href="/">Home Page</a></h4>
 </div>
 
 <script id="fullTable" type="text/html">
@@ -82,6 +86,12 @@
   </table>
 </script>
 
+<script id="photogrid" type="text/html">
+  {{#rows}}
+    <div class=""><a href="{{photo-url}}" target="_blank"><img class="photo" src="{{photo-url}}"  alt="name"></a></div>
+  {{/rows}}
+</script>
+
 <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', function() {
   	var gData
@@ -100,6 +110,9 @@
     var calOptions = {"data": california, "pagination": 5, "tableDiv": "#calTable", "filterDiv": "#calFilter"}
     Sheetsee.makeTable(calOptions)
     Sheetsee.initiateTableFilter(calOptions)
+    
+    var html = Sheetsee.ich.photogrid({'rows': data})
+    $('#photogrid').html(html)
 
   }
 

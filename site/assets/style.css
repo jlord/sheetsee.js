@@ -31,7 +31,8 @@ img {width: 100%;}
 p a, a {color: #333; text-decoration: none; padding-bottom: 0px; border-bottom: 2px #CCF4FF solid;}
 p a:visted {color: #ff00ff;}
 a:hover {color: #47CCFC;}
-a:visited {color: #333;}
+a:active {color: #47CCFC;}
+/*a:visited {color: #333;}*/
 small {padding: 10px 0px;}
 p, ol {line-height: 24px;}
 
