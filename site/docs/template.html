@@ -12,24 +12,39 @@
   </head>
   <body>
     <div class="container">
-      <h3 id="sheetsee-v3">Sheetsee v3</h3>
-<h2 id="august-13-2013">August 13, 2013</h2>
-<h3 id="charting-intake">Charting Intake</h3>
-<p>D3 charts need an array of objects, and something to chart: the thing itself (aka labels) and the corresponding value (aka units). Your data usually contains more than D3 needs to make the chart, so you have to tell it what to chart from your data to chart.</p>
-<p>Previously Sheetsee required you pass your data through a function, <code>addUnitsAndLabels()</code> which took in your data and the things you wanted to chart, reformatted your data for you so that you could pass it into one of the d3 charts. This is one more step than actually needs to happen.</p>
-<p>Now Sheetsee just asks for what you want your <em>labels</em> and <em>units</em> to be in the options you give it when calling the chart function. It then sorts the data correctly on the inside of the chart function. Yay, easier!</p>
-<pre><code class="lang-javascript">var options = {
-  labels: &quot;name&quot;,
-  units: &quot;cuddleability&quot;,
-  m: [60, 60, 30, 150],
-  w: 600, h: 400,
-  div: &quot;#barChart&quot;,
-  xaxis: &quot;no. of pennies&quot;,
-  hiColor: &quot;#FF317D&quot;
-}
+      <h1 id="basic-template">Basic Template</h1>
+<pre><code class="lang-HTML">&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Yo, yo, yo!&lt;/title&gt;
+    &lt;script src=&quot;//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.1.0/tabletop.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&#39;../js/sheetsee.js&#39;&gt;&lt;/script&gt;
+      &lt;meta charset=&#39;utf-8&#39;&gt;    
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;/&gt;
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;css/sss.css&quot;&gt; 
+    &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;!-- Your HTML Here --&gt;
+
+  &lt;script id=&quot;&quot; type=&quot;text/html&quot;&gt;
+    // template if you so desire!
+  &lt;/script&gt;
+
+  &lt;script type=&quot;text/javascript&quot;&gt;
+  //  document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
+  //      var gData
+  //      var URL = &quot;YOURSPREADSHEETSKEYHERE&quot;
+  //        Tabletop.init( { key: URL, callback: myData, simpleSheet: true } ) 
+  //    }) 
+  // function myData(data) {
+     // All the sheetsee things you want to do!
+  // }
+  &lt;/script&gt;
+
+  &lt;/body&gt;
+&lt;/html&gt;
 </code></pre>
-<p>Thanks @maxogden for the help with this.</p>
-<h3 id="started-doing-this-changelong-pretty-late-in-the-game-">Started doing this changelong pretty late in the game.</h3>
 
    
       <footer>
@@ -50,6 +65,7 @@
         <li><a href="/demos/demo-table.html">Table Demo</a></li>
         <li><a href="/demos/demo-map.html">Map Demo</a></li>
         <li><a href="/demos/demo-chart.html">Chart Demo</a></li>
+        <li><a href="/demos/template.html">Basic Template</a></li>
         </ul>
         <h4 id="use">Use</h4>
         <ul>

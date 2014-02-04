@@ -1,6 +1,6 @@
 # Spreadsheets as Databases
 
-Hi, hello.
+Spreadsheets are a great _lightweight_ database. Google Spreadsheets in particular are easy to work with and share, making this unlike most traditional database set ups. That being said, traditional databases are great for bigger, more secure jobs. If you're storing lots and lots and lots of information, or storing sensitive or complex information -- the spreadsheet is not for you. But if you're working on small to medium sized personal or community projects, try a spreadsheet! 
 
 ## The Short & Sweet
 
@@ -15,24 +15,34 @@ Hi, hello.
 
 Ignoring some HTML things to conserve space, you get the point. This gives you a page with a map of your spreadsheets points.
 
-    <html>
-      <head>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.1.0/tabletop.min.js"></script>
-        <script type="text/javascript" src='dist/sheetsee.full.js'></script>
-      </head>
-      <style> #map {height: 600px; width: 600px;} </style>
-      <body>
-      <div id="map"></div>
-      <script>
-          var geoJSON = Sheetsee.createGeoJSON(gData, featureElements)
-          var map = Sheetsee.loadMap("map")
-          Sheetsee.addTileLayer(map, 'examples.map-20v6611k')
-          var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, 11)
-      </script>
-      </body>
-    </html>
-
+```HTML
+<html>
+  <head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.1.0/tabletop.min.js"></script>
+    <script type="text/javascript" src='dist/sheetsee.full.js'></script>
+    <link rel="stylesheet" type="text/css" href="css/sss.css"> 
+  </head>
+  <body>
+  <div id="placeholder"></div>
+  
+  <script id="placeholder" type="text/html">
+    // template if you so desire!
+  </script>
+  
+  <script type="text/javascript">
+    //  document.addEventListener('DOMContentLoaded', function() {
+    //  	var gData
+    //  	var URL = "YOURSPREADSHEETSKEYHERE"
+    //		Tabletop.init( { key: URL, callback: myData, simpleSheet: true } ) 
+    //	}) 
+    // function myData(data) {
+       // All the sheetsee things you want to do!
+    // }
+  </script>
+  </body>
+</html>
+```
 
 ## Your Data
 

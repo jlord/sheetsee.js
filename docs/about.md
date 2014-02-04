@@ -6,7 +6,7 @@ In early 2013, after the CfA Fellowship, I recieved a grant from Mozilla Open Ne
 
 The present version makes the project modular, customizable and with more maping and table features. 
 
-## Built ontop of Tabletop.js
+## Built on top of Tabletop.js
 Sheetsee would not exist were it not for [tabletop.js](https://github.com/jsoma/tabletop) a library that handles the messy interactions with the Google Spreadsheets API for you and returns a lovely JSON of your data. Every instance of Sheetsee begins with running tabletop.js.
 
 ### Sheetsee.js + Mapbox.js + d3.js

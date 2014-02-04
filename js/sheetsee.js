@@ -25195,8 +25195,8 @@ function searchTable(opts, searchTerm) {
     makeTable(opts, filteredList)
   }
 }
-
-module.exports.sortThings = function(opts, sorter, sorted) {
+module.exports.sortThings = sortThings
+function sortThings(opts, sorter, sorted) {
   console.log("here is data", opts.data)
   opts.data.sort(function(a,b){
     if (a[sorter]<b[sorter]) return -1
@@ -25213,13 +25213,14 @@ module.exports.sortThings = function(opts, sorter, sorted) {
   $(header).attr("data-sorted", sorted)
 }
 
-module.exports.resolveDataTitle = function(string) {
+module.exports.resolveDataTitle = resolveDataTitle
+function resolveDataTitle(string) {
   var adjusted = string.toLowerCase().replace(/\s/g, '').replace(/\W/g, '')
   return adjusted
 }
-
-module.exports.initiateTableSorter = function(options) {
-  var sortInfo = $(document).on("click", ".tHeader", sendToSort)
+module.exports.initiateTableSorter = initiateTableSorter
+function initiateTableSorter(options) {
+  $(document).on("click", ".tHeader", sendToSort)
 
   function sendToSort(event) {
     var tableDiv = "#" + $(event.target).closest("div").attr("id")
@@ -25239,6 +25240,9 @@ module.exports.initiateTableSorter = function(options) {
 
 module.exports.makeTable = makeTable
 function makeTable(opts, filteredList) {
+  // see if .tHeader exists
+  initiateTableSorter(opts)
+  
   if (filteredList) var data = filteredList
     else var data = opts.data
   var tableId = opts.tableDiv.slice(1)

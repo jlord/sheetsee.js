@@ -13,7 +13,7 @@
   <body>
     <div class="container">
       <h1 id="spreadsheets-as-databases">Spreadsheets as Databases</h1>
-<p>Hi, hello.</p>
+<p>Spreadsheets are a great <em>lightweight</em> database. Google Spreadsheets in particular are easy to work with and share, making this unlike most traditional database set ups. That being said, traditional databases are great for bigger, more secure jobs. If you&#39;re storing lots and lots and lots of information, or storing sensitive or complex information -- the spreadsheet is not for you. But if you&#39;re working on small to medium sized personal or community projects, try a spreadsheet! </p>
 <h2 id="the-short-sweet">The Short &amp; Sweet</h2>
 <ol>
 <li>Link to Sheetsee.js, <a href="https://github.com/jsoma/tabletop/">tabletop.js</a> and <a href="http://www.jquery.org">jquery</a> in your HTML head.</li>
@@ -25,24 +25,34 @@
 </ol>
 <h2 id="bare-minimum-setup">Bare Minimum Setup</h2>
 <p>Ignoring some HTML things to conserve space, you get the point. This gives you a page with a map of your spreadsheets points.</p>
-<pre><code>&lt;html&gt;
+<pre><code class="lang-HTML">&lt;html&gt;
   &lt;head&gt;
     &lt;script src=&quot;//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js&quot;&gt;&lt;/script&gt;
     &lt;script src=&quot;//cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.1.0/tabletop.min.js&quot;&gt;&lt;/script&gt;
     &lt;script type=&quot;text/javascript&quot; src=&#39;dist/sheetsee.full.js&#39;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;css/sss.css&quot;&gt; 
   &lt;/head&gt;
-  &lt;style&gt; #map {height: 600px; width: 600px;} &lt;/style&gt;
   &lt;body&gt;
-  &lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
-  &lt;script&gt;
-      var geoJSON = Sheetsee.createGeoJSON(gData, featureElements)
-      var map = Sheetsee.loadMap(&quot;map&quot;)
-      Sheetsee.addTileLayer(map, &#39;examples.map-20v6611k&#39;)
-      var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, 11)
+  &lt;div id=&quot;placeholder&quot;&gt;&lt;/div&gt;
+
+  &lt;script id=&quot;placeholder&quot; type=&quot;text/html&quot;&gt;
+    // template if you so desire!
+  &lt;/script&gt;
+
+  &lt;script type=&quot;text/javascript&quot;&gt;
+    //  document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
+    //      var gData
+    //      var URL = &quot;YOURSPREADSHEETSKEYHERE&quot;
+    //        Tabletop.init( { key: URL, callback: myData, simpleSheet: true } ) 
+    //    }) 
+    // function myData(data) {
+       // All the sheetsee things you want to do!
+    // }
   &lt;/script&gt;
   &lt;/body&gt;
 &lt;/html&gt;
-</code></pre><h2 id="your-data">Your Data</h2>
+</code></pre>
+<h2 id="your-data">Your Data</h2>
 <p><img src="https://raw.github.com/jllord/sheetsee-cache/master/img/spreadsheettodata.png" alt="sheetsee"></p>
 <p>Your Google Spreadsheet should be set up with row one as your column headers. Row two and beyond should be your data.  Each header and row becomes an oject in the final array that Tabletop.js delivers of your data.</p>
 <p><img src="https://raw.github.com/jllord/sheetsee-cache/master/img/nonos.png" alt="sheetsee"></p>
@@ -84,7 +94,6 @@
         <li><a href="/demos/demo-table.html">Table Demo</a></li>
         <li><a href="/demos/demo-map.html">Map Demo</a></li>
         <li><a href="/demos/demo-chart.html">Chart Demo</a></li>
-        <li><a href="/demos/template.html">Basic Template</a></li>
         </ul>
         <h4 id="use">Use</h4>
         <ul>
