@@ -6,10 +6,15 @@
     <meta name="description" content="sheetsee.js, google, spreadsheet, visualize, data, javascript">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>such site, very sheetsee.js</title>
+    <script src="/js/highlight.pack.js"></script>
+
+    <link rel="stylesheet" href="/assets/styles/atelier-forest.light.css">
+    
     <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
     <link rel="shortcut icon" href=""/>
     <link href='../assets/style.css' rel='stylesheet'>
   </head>
+  <style>.hljs { background: #f0f0f0; color: #494949;</style>
   <body>
     <div class="container">
       <h1 id="custom-charts">Custom Charts</h1>
@@ -18,11 +23,53 @@
 <pre><code class="lang-javascript">var pieOptions = {labels: &quot;name&quot;, units: &quot;units&quot;, m: [80, 80, 80, 80], w: 600, h: 400, div: &quot;#pieChart&quot;, hiColor: &quot;#14ECC8&quot;}
 </code></pre>
 <p>The <em>labels</em> represent the actual thing you&#39;re charting and <em>units</em> are how many of those things. Margin, width and height are <em>m, w, h</em> and the div to build your chart in is <em>div</em>. Finally, you can supply a highlight color if you want.</p>
-<p>So, your chart could take the same options, but map them into your d3 code with the correct variables. For instance if what sheetsee calls <em>labels</em> you call <em>itemID</em> you just add at the top of your d3 code:</p>
-<pre><code class="lang-javascript">labels = itemID
+<p>So, your chart could take the same options, but map them into your d3 code with the correct variables. An example from <a href="https://github.com/maxogden/sheetsee-d3bubble">maxogden/sheetsee-d3bubble</a>:</p>
+<p><em>Append the d3.js code with a map of your sheetsee options</em></p>
+<pre><code class="lang-JavaScript">Sheetsee.d3BubbleChart = function(data, options) {
+    var tree = {name: &quot;data&quot;, children: []}
+    var groups = {}
+
+    // data needs to look like this:
+    // var data = { name: &quot;wahtever&quot;, children: [
+    //   { name: &quot;group1&quot;, children: [
+    //     { name: &#39;bob&#39;, size: 3},
+    //     { name: &#39;judy&#39;, size: 5}
+    //   ]},
+    //   { name: &quot;group2&quot;, children: [
+    //     { name: &#39;jim&#39;, size: 10},
+    //     { name: &#39;bill&#39;, size: 5}
+    //   ]}
+    // ]}
+
+    data.map(function(r) {
+        var groupName = r[options.group]
+        groups[groupName] = true
+    })
+
+    Object.keys(groups).map(function(groupName) {
+        var groupMembers = []
+        data.map(function(r) {
+            if (r[options.group] !== groupName) return
+            groupMembers.push({name: r[options.name], size: r[options.size]})
+        })
+        tree.children.push({name: groupName, children: groupMembers})
+    })
+
+  // the rest of the code
 </code></pre>
-<p>Include your d3.js code with the HTML and call it.</p>
-<p>WIP</p>
+<p><em>In your HTML call it like so</em></p>
+<pre><code class="lang-JavaScript">&lt;script type=&quot;text/javascript&quot;&gt;
+  document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
+    var URL = &quot;0AvFUWxii39gXdFhqZzdTeU5DTWtOdENkQ1Y5bHdqT0E&quot;
+    Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } ) 
+  })
+
+  function showInfo(data) {
+    Sheetsee.d3BubbleChart(data, { name: &#39;name&#39;, size: &#39;cuddlability&#39;, group: &#39;kind&#39;, div: &#39;#stuff&#39;})
+  }
+&lt;/script&gt;
+</code></pre>
+<p><em>View the <a href="https://github.com/maxogden/sheetsee-d3bubble">entire source</a></em></p>
 
    
       <footer>
@@ -59,5 +106,6 @@
         <h4><a href="/">Home Page</a></h4>
       </footer>
     </div>
+    <script>hljs.initHighlightingOnLoad();</script>
   </body>
 </html>

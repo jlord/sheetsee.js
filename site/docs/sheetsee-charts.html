@@ -6,25 +6,30 @@
     <meta name="description" content="sheetsee.js, google, spreadsheet, visualize, data, javascript">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>such site, very sheetsee.js</title>
+    <script src="/js/highlight.pack.js"></script>
+
+    <link rel="stylesheet" href="/assets/styles/atelier-forest.light.css">
+    
     <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
     <link rel="shortcut icon" href=""/>
     <link href='../assets/style.css' rel='stylesheet'>
   </head>
+  <style>.hljs { background: #f0f0f0; color: #494949;</style>
   <body>
     <div class="container">
       <h1 id="sheetsee-charts">Sheetsee-charts</h1>
 <p><em><a href="/demos/demo-chart.html">View Demo</a></em></p>
-<p>Sheetsee.js provides three <a href="http://d3js.org/">d3.js</a> chart options to use with your spreadsheet data: a bar chart, line chart and pie graph. You can also plug in your own custom d3.js chart to sheetsee, read about that <a href="custom-charts.html">here</a>.</p>
+<p>Sheetsee.js provides three <a href="http://d3js.org/">d3.js</a> chart options to use with your spreadsheet data: a bar chart, line graph and pie chart. You can also plug in your own custom d3.js chart to sheetsee, read about that <a href="custom-charts.html">here</a>.</p>
 <h2 id="make-a-chart">Make a Chart</h2>
-<p>Sheetsee.js comes with a d3.js bar, pie and line chart. Each requires your data be an <em>array of objects</em>, with objects containing &quot;label&quot; and &quot;units&quot; key/value pairs. See the section above on Your Data to learn about formatting.</p>
+<p>Sheetsee.js comes with a d3.js bar, pie and line chart. Each requires your data be an <em>array of objects</em>, with objects containing <code>label</code> and <code>units</code> key/value pairs. See the section above on Your Data to learn about formatting.</p>
 <p>Experiment with the charts to find the correct size your <code>&lt;div&gt;</code> will need to be to hold the chart with your data in it nicely.</p>
-<p>You can also make your own d3 chart in a separate .js file, link to that and pass your data on to it. Information <a href="docs/custom-charts.html">here</a> on using your own chart.</p>
+<p>You can also make your own d3 chart in a separate .js file, link to that in your HTML head and pass your data on to it after Tabletop.js returns. Information <a href="docs/custom-charts.html">here</a> on using your own chart.</p>
 <h3 id="bar-chart">Bar Chart</h3>
 <p>To create a bar chart you&#39;ll need to add a placeholder <code>&lt;div&gt;</code> in your HTML with an id.</p>
 <pre><code class="lang-HTML">&lt;div id=&quot;barChart&quot;&gt;&lt;/div&gt;
 </code></pre>
 <p>In your CSS, give it dimensions.</p>
-<pre><code class="lang-CSS">barChart {height: 400px; max-width: 600px; background: #F8CDCD;}
+<pre><code class="lang-CSS">#barChart {height: 400px; max-width: 600px; background: #F8CDCD;}
 </code></pre>
 <p>In a <code>&lt;script&gt;</code> tag set up your options.</p>
 <pre><code class="lang-javascript">var barOptions = {labels: &quot;name&quot;, units: &quot;cuddleability&quot;, m: [60, 60, 30, 150], w: 600, h: 400, div: &quot;#barChart&quot;, xaxis: &quot;no. of pennies&quot;, hiColor: &quot;#FF317D&quot;}
@@ -118,5 +123,6 @@
         <h4><a href="/">Home Page</a></h4>
       </footer>
     </div>
+    <script>hljs.initHighlightingOnLoad();</script>
   </body>
 </html>

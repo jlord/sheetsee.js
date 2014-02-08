@@ -2,15 +2,15 @@
 
 _[View Demo](/demos/demo-chart.html)_
 
-Sheetsee.js provides three [d3.js](http://d3js.org/) chart options to use with your spreadsheet data: a bar chart, line chart and pie graph. You can also plug in your own custom d3.js chart to sheetsee, read about that [here](custom-charts.md).
+Sheetsee.js provides three [d3.js](http://d3js.org/) chart options to use with your spreadsheet data: a bar chart, line graph and pie chart. You can also plug in your own custom d3.js chart to sheetsee, read about that [here](custom-charts.md).
 
 ## Make a Chart
 
-Sheetsee.js comes with a d3.js bar, pie and line chart. Each requires your data be an _array of objects_, with objects containing "label" and "units" key/value pairs. See the section above on Your Data to learn about formatting.
+Sheetsee.js comes with a d3.js bar, pie and line chart. Each requires your data be an _array of objects_, with objects containing `label` and `units` key/value pairs. See the section above on Your Data to learn about formatting.
 
 Experiment with the charts to find the correct size your `<div>` will need to be to hold the chart with your data in it nicely.
 
-You can also make your own d3 chart in a separate .js file, link to that and pass your data on to it. Information [here](docs/custom-charts.md) on using your own chart.
+You can also make your own d3 chart in a separate .js file, link to that in your HTML head and pass your data on to it after Tabletop.js returns. Information [here](docs/custom-charts.md) on using your own chart.
 
 ### Bar Chart
 
@@ -23,7 +23,7 @@ To create a bar chart you'll need to add a placeholder `<div>` in your HTML with
 In your CSS, give it dimensions.
 
 ```CSS
-barChart {height: 400px; max-width: 600px; background: #F8CDCD;}
+#barChart {height: 400px; max-width: 600px; background: #F8CDCD;}
 ```
 
 In a `<script>` tag set up your options.

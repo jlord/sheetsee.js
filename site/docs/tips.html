@@ -6,13 +6,40 @@
     <meta name="description" content="sheetsee.js, google, spreadsheet, visualize, data, javascript">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>such site, very sheetsee.js</title>
+    <script src="/js/highlight.pack.js"></script>
+
+    <link rel="stylesheet" href="/assets/styles/atelier-forest.light.css">
+    
     <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
     <link rel="shortcut icon" href=""/>
     <link href='../assets/style.css' rel='stylesheet'>
   </head>
+  <style>.hljs { background: #f0f0f0; color: #494949;</style>
   <body>
     <div class="container">
       <h1 id="tips">Tips</h1>
+<p>A few things to think about beyond charts, maps and tables.</p>
+<h2 id="icanhaz-js">ICanHaz.js</h2>
+<p>You can use templates for more than just tables. Use them to create lists <code>ol</code>, <code>ul</code>; array of images... You&#39;ll need a placeholder <code>&lt;div&gt;</code> in your HTML, a <code>&lt;script&gt;</code> for your template and a script to call ICanHaz from your Tabletop.js callback.</p>
+<p><em>HTML</em></p>
+<pre><code class="lang-HTML">&lt;div id=&quot;divID&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p><em>Tempalte</em></p>
+<pre><code class="lang-JavaScript">&lt;script id=&quot;divID&quot; type=&quot;text/html&quot;&gt;
+  {{#rows}}
+    &lt;div&gt;&lt;img class=&quot;photo&quot; src=&quot;{{some-variable}}&quot;&gt;&lt;/div&gt;
+  {{/rows}}
+&lt;/script&gt;
+</code></pre>
+<p><em>Tempalte</em></p>
+<pre><code class="lang-JavaScript">&lt;script type=&quot;text/html&quot;&gt;
+  // your other Sheetsee.js, Tabletop code above
+  var html = Sheetsee.ich.divID({&#39;rows&#39;: data})
+  $(&#39;#divID&#39;).html(html)
+&lt;/script&gt;
+</code></pre>
+<p><em>non-table template</em></p>
+<p><img src="http://jlord.s3.amazonaws.com/wp-content/uploads/lending-ss.png" alt="lib"></p>
 <h2 id="query-strings">Query Strings</h2>
 <p>If your spreadsheet contains address information, using templates (Sheetsee.js uses a form of Mustache), you can embed those elements into a query string (aka a search URL) like Google Maps URL or Yelp. If you search for a location in Google Maps, you&#39;ll notice it creates a URL for that search.</p>
 <p>So, if you have information in your spreadsheet that would go inside a query string, make a template for inserting them into a link on your page.</p>
@@ -28,6 +55,8 @@
 <p>With a some CSS and such, the resulting website has a table with the hack spots and a button for viewing in Google Maps or Yelp:</p>
 <p><img src="http://jlord.s3.amazonaws.com/wp-content/uploads/Screen-Shot-2013-09-15-at-6.43.54-PM.png" alt="img"></p>
 <p>When the page builds, it creates the correct link for each row. When someone clicks on the buttons it takes them directly to the Google Map search result for that address. BAM!</p>
+<h1 id="ifttt">IFTTT</h1>
+<p><a href="http://www.ifttt.com">Ifttt.com</a> offers lots of options sending data from your actions (Twitter, Instagram, GitHub, Pocket...) to Google Spreadsheets.</p>
 
    
       <footer>
@@ -64,5 +93,6 @@
         <h4><a href="/">Home Page</a></h4>
       </footer>
     </div>
+    <script>hljs.initHighlightingOnLoad();</script>
   </body>
 </html>

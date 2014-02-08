@@ -41,9 +41,15 @@ _The variables inside the {{}} must match the column headers in your spreadsheet
 
 ```javascript
 <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function() { // IE6 doesn't do DOMContentLoaded
-        Sheetsee.makeTable(gData, "#siteTable", 10)
-        Sheetsee.initiateTableFilter(gData, "#tableFilter", "#siteTable")
+    document.addEventListener('DOMContentLoaded', function() {
+      var tableOptions = {
+                          "data": gData, 
+                          "pagination": 10, 
+                          "tableDiv": "#fullTable", 
+                          "filterDiv": "#fullTableFilter"
+                          }
+      Sheetsee.makeTable(tableOptions)
+      Sheetsee.initiateTableFilter(tableOptions)
     })
 </script>
 ```
@@ -56,34 +62,44 @@ To create another table, simply repeat the steps except for `initiateTableFilter
 <script>Sheetsee.makeTable(otherData, "#secondTable", 10)</script>
 ```
 
-Learn more about the things you can do with [mustache.js](http://mustache.github.io/).
+Learn more about the things you can do with [ICanHaz.js](http://icanhazjs.com).
 
-### Sheetsee.makeTable(data, targetDiv, pagination)
+### Sheetsee.makeTable(tableOptions)
 
-You'll call this to make a table out of a **data** and tell it what **targetDiv** in the html to render it in (this should also be the same id as your script template id) and how many **rows** you want it to show per "page" of the table. If you don't include the pagination number, it will default to showing all rows on one page.
+You pass in an object containing:
+
+- `data` your data array
+- `pagination` how many rows displayed at one time, defaults to all
+- `tableDiv` the <div> placeholder in your HTML
+- `filterDiv` the `<div>` containing your `<input>` filter if using search
 
 ```javascript
-Sheetsee.makeTable(gData, "#siteTable", 10)
+var tableOptions = {
+                    "data": gData, 
+                    "pagination": 10, 
+                    "tableDiv": "#fullTable", 
+                    "filterDiv": "#fullTableFilter"
+                    }
+Sheetsee.makeTable(tableOptions)
 ```
 
 #### Pagination
 
-If you do not put in a number for pagination, by default it will show all of the data at once. With pagination, at the bottom of your table it will add this for naviagtion, which you can style in your CSS:
+If you do not put in a number for pagination, by default it will show all of the data at once. With pagination, HTML will be added at the bottom of your table for naviagtion, which you can style in your CSS:
 
-HTML:
+_HTML_
 
 ```HTML
 <div id='Pagination' currentPage class='table-pagination'>
-  Showing page currentPage of totalPages
+  Showing page {{currentPage}} of {{totalPages}}
   <a class='pagination-pre'>Previous</a><a class='pagination-next'>Next</a>
 </div>
 ```
 
-CSS:
+_CSS_
 
 ```CSS
 <style>
-  body {font-family: Helvetica Neue; Helvetica, Arial, sans-serif; }
   #Pagination {background: #eee;}
   .pagination-next, .pagination-pre {cursor: hand;}
   .no-pag {color: #acacac;}
@@ -92,18 +108,18 @@ CSS:
 
 ## Table Filter/Search
 
-If you want to have an input to allow users to search/filter the data in the table, you'll add an input to your HTML. Give it an ide and if you want, placeholder text:
+If you want to have an input to allow users to search/filter the data in the table, you'll add an input to your HTML. Give it an id and if you want, placeholder text:
 
 ```javascript
 <input id="tableFilter" type="text" placeholder="filter by.."></input>
 ```
 
-### Sheetsee.initiateTableFilter(data, filterDiv, tableDiv)
+### Sheetsee.initiateTableFilter(tableOptions)
 
-You will then call this function to make that input live:
+You will then call this function with your `tableOptions` to make that input live and connected to your table:
 
 ```javascript
-Sheetsee.initiateTableFilter(gData, "#TableFilter", "#siteTable")
+Sheetsee.initiateTableFilter(tableOptions)
 ```
 
 It will connect that input to your data as well as inject this HTML for a button, which you can style yourself in your CSS:
@@ -112,3 +128,5 @@ It will connect that input to your data as well as inject this HTML for a button
 <span class="clear button">Clear</span>
 <span class="noMatches">no matches</span>
 ```
+
+_[View Demo](/demos/demo-table.html)_

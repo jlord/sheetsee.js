@@ -6,10 +6,15 @@
     <meta name="description" content="sheetsee.js, google, spreadsheet, visualize, data, javascript">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>such site, very sheetsee.js</title>
+    <script src="/js/highlight.pack.js"></script>
+
+    <link rel="stylesheet" href="/assets/styles/atelier-forest.light.css">
+    
     <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
     <link rel="shortcut icon" href=""/>
     <link href='../assets/style.css' rel='stylesheet'>
   </head>
+  <style>.hljs { background: #f0f0f0; color: #494949;</style>
   <body>
     <div class="container">
       <h1 id="sheetsee-tables">Sheetsee-tables</h1>
@@ -37,9 +42,15 @@
 </code></pre>
 <h4 id="your-script-execution">Your <code>&lt;script&gt;</code> Execution</h4>
 <pre><code class="lang-javascript">&lt;script type=&quot;text/javascript&quot;&gt;
-    document.addEventListener(&#39;DOMContentLoaded&#39;, function() { // IE6 doesn&#39;t do DOMContentLoaded
-        Sheetsee.makeTable(gData, &quot;#siteTable&quot;, 10)
-        Sheetsee.initiateTableFilter(gData, &quot;#tableFilter&quot;, &quot;#siteTable&quot;)
+    document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
+      var tableOptions = {
+                          &quot;data&quot;: gData, 
+                          &quot;pagination&quot;: 10, 
+                          &quot;tableDiv&quot;: &quot;#fullTable&quot;, 
+                          &quot;filterDiv&quot;: &quot;#fullTableFilter&quot;
+                          }
+      Sheetsee.makeTable(tableOptions)
+      Sheetsee.initiateTableFilter(tableOptions)
     })
 &lt;/script&gt;
 </code></pre>
@@ -48,39 +59,51 @@
 &lt;script id=&quot;secondTable&quot;&gt; // your table template here &lt;/script&gt;
 &lt;script&gt;Sheetsee.makeTable(otherData, &quot;#secondTable&quot;, 10)&lt;/script&gt;
 </code></pre>
-<p>Learn more about the things you can do with <a href="http://mustache.github.io/">mustache.js</a>.</p>
-<h3 id="sheetsee-maketable-data-targetdiv-pagination-">Sheetsee.makeTable(data, targetDiv, pagination)</h3>
-<p>You&#39;ll call this to make a table out of a <strong>data</strong> and tell it what <strong>targetDiv</strong> in the html to render it in (this should also be the same id as your script template id) and how many <strong>rows</strong> you want it to show per &quot;page&quot; of the table. If you don&#39;t include the pagination number, it will default to showing all rows on one page.</p>
-<pre><code class="lang-javascript">Sheetsee.makeTable(gData, &quot;#siteTable&quot;, 10)
+<p>Learn more about the things you can do with <a href="http://icanhazjs.com">ICanHaz.js</a>.</p>
+<h3 id="sheetsee-maketable-tableoptions-">Sheetsee.makeTable(tableOptions)</h3>
+<p>You pass in an object containing:</p>
+<ul>
+<li><code>data</code> your data array</li>
+<li><code>pagination</code> how many rows displayed at one time, defaults to all</li>
+<li><code>tableDiv</code> the <div> placeholder in your HTML</li>
+<li><code>filterDiv</code> the <code>&lt;div&gt;</code> containing your <code>&lt;input&gt;</code> filter if using search</li>
+</ul>
+<pre><code class="lang-javascript">var tableOptions = {
+                    &quot;data&quot;: gData, 
+                    &quot;pagination&quot;: 10, 
+                    &quot;tableDiv&quot;: &quot;#fullTable&quot;, 
+                    &quot;filterDiv&quot;: &quot;#fullTableFilter&quot;
+                    }
+Sheetsee.makeTable(tableOptions)
 </code></pre>
 <h4 id="pagination">Pagination</h4>
-<p>If you do not put in a number for pagination, by default it will show all of the data at once. With pagination, at the bottom of your table it will add this for naviagtion, which you can style in your CSS:</p>
-<p>HTML:</p>
+<p>If you do not put in a number for pagination, by default it will show all of the data at once. With pagination, HTML will be added at the bottom of your table for naviagtion, which you can style in your CSS:</p>
+<p><em>HTML</em></p>
 <pre><code class="lang-HTML">&lt;div id=&#39;Pagination&#39; currentPage class=&#39;table-pagination&#39;&gt;
-  Showing page currentPage of totalPages
+  Showing page {{currentPage}} of {{totalPages}}
   &lt;a class=&#39;pagination-pre&#39;&gt;Previous&lt;/a&gt;&lt;a class=&#39;pagination-next&#39;&gt;Next&lt;/a&gt;
 &lt;/div&gt;
 </code></pre>
-<p>CSS:</p>
+<p><em>CSS</em></p>
 <pre><code class="lang-CSS">&lt;style&gt;
-  body {font-family: Helvetica Neue; Helvetica, Arial, sans-serif; }
   #Pagination {background: #eee;}
   .pagination-next, .pagination-pre {cursor: hand;}
   .no-pag {color: #acacac;}
 &lt;/style&gt;
 </code></pre>
 <h2 id="table-filter-search">Table Filter/Search</h2>
-<p>If you want to have an input to allow users to search/filter the data in the table, you&#39;ll add an input to your HTML. Give it an ide and if you want, placeholder text:</p>
+<p>If you want to have an input to allow users to search/filter the data in the table, you&#39;ll add an input to your HTML. Give it an id and if you want, placeholder text:</p>
 <pre><code class="lang-javascript">&lt;input id=&quot;tableFilter&quot; type=&quot;text&quot; placeholder=&quot;filter by..&quot;&gt;&lt;/input&gt;
 </code></pre>
-<h3 id="sheetsee-initiatetablefilter-data-filterdiv-tablediv-">Sheetsee.initiateTableFilter(data, filterDiv, tableDiv)</h3>
-<p>You will then call this function to make that input live:</p>
-<pre><code class="lang-javascript">Sheetsee.initiateTableFilter(gData, &quot;#TableFilter&quot;, &quot;#siteTable&quot;)
+<h3 id="sheetsee-initiatetablefilter-tableoptions-">Sheetsee.initiateTableFilter(tableOptions)</h3>
+<p>You will then call this function with your <code>tableOptions</code> to make that input live and connected to your table:</p>
+<pre><code class="lang-javascript">Sheetsee.initiateTableFilter(tableOptions)
 </code></pre>
 <p>It will connect that input to your data as well as inject this HTML for a button, which you can style yourself in your CSS:</p>
 <pre><code class="lang-HTML">&lt;span class=&quot;clear button&quot;&gt;Clear&lt;/span&gt;
 &lt;span class=&quot;noMatches&quot;&gt;no matches&lt;/span&gt;
 </code></pre>
+<p><em><a href="/demos/demo-table.html">View Demo</a></em></p>
 
    
       <footer>
@@ -117,5 +140,6 @@
         <h4><a href="/">Home Page</a></h4>
       </footer>
     </div>
+    <script>hljs.initHighlightingOnLoad();</script>
   </body>
 </html>
