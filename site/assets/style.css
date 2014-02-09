@@ -11,7 +11,7 @@ ul, ol {text-indent: 0; margin: 0; padding-left: 20px;}
 ul li {padding-bottom: 6px; line-height: 22px;}
 
 footer {font-size: 10px; padding-top: 20px; margin-top: 60px; border-top: 1px solid #CCF4FF;  -webkit-column-count: 6; -webkit-column-gap: 20px; -moz-column-count: 6; -moz-column-gap: 20px;height: 125px;}
-footer ul {list-style: none; padding-left: 0px;}
+footer ul {list-style: none; padding-left: 0px; font-family: Libre Baskerville, Baskerville, Georgia, serif;}
 footer li {line-height: inherit;}
 footer h4 {-webkit-column-break-before: always; }
 footer h4 {margin-top: 0px;}
