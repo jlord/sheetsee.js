@@ -2,7 +2,7 @@
 
 _[View Demo](/demos/demo-chart.html)_
 
-Sheetsee.js provides three [d3.js](http://d3js.org/) chart options to use with your spreadsheet data: a bar chart, line graph and pie chart. You can also use a custom d3.js chart with Sheetsee, read about that [here](custom-charts.md).
+Sheetsee.js provides three [D3.js](http://d3js.org/) chart options to use with your spreadsheet data: a bar chart, line graph and pie chart. You can also use a custom D3 chart with Sheetsee, read about that [here](custom-charts.md).
 
 ## Make a Chart
 
@@ -10,7 +10,7 @@ Each chart requires your data be an _array of objects_, with objects containing 
 
 Experiment with the charts to find the correct size your `<div>` will need to be to hold the chart with your data in it nicely.
 
-You can also make your own d3 chart in a separate .js file, link to that in your HTML head and pass your data on to it after Tabletop.js returns. Information [here](docs/custom-charts.md) on using your own chart.
+You can also make your own D3 chart in a separate .js file, link to that in your HTML head and pass your data on to it after Tabletop.js returns. Information [here](custom-charts.md) on using your own chart.
 
 ### Bar Chart
 
