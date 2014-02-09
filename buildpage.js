@@ -42,9 +42,11 @@ function applyTemplate(html, name) {
   if (name === "index") {
     content.rootstyle = "."
     content.rootdoc = "docs"
+    content.rootdemo = ""
   } else {
      content.rootstyle = ".."
      content.rootdoc = "."
+     content.rootdemo = ".."
   }
   var file = "template.hbs"
   var rawTemplate =  fs.readFileSync(file).toString()
