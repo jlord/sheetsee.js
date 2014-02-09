@@ -10,10 +10,10 @@ tr {height: 50px;}
 ul, ol {text-indent: 0; margin: 0; padding-left: 20px;}
 ul li {padding-bottom: 6px; line-height: 22px;}
 
-footer {font-size: 10px; padding-top: 20px; margin-top: 60px; border-top: 1px solid #CCF4FF;  -webkit-column-count: 6; -webkit-column-gap: 20px; -moz-column-count: 6; -moz-column-gap: 20px;height: 125px;}
+footer {padding-top: 20px; margin-top: 60px; border-top: 1px solid #CCF4FF;  -webkit-column-count: 6; column-count: 6; -webkit-column-gap: 20px; column-gap: 20px; -moz-column-count: 6; -moz-column-gap: 20px; height: 125px;}
 footer ul {list-style: none; padding-left: 0px; font-family: Libre Baskerville, Baskerville, Georgia, serif;}
-footer li {line-height: inherit;}
-footer h4 {-webkit-column-break-before: always; }
+footer li {line-height: inherit; font-size: 10px;}
+footer h4 {font-size: 10px; -webkit-column-break-before: always; break-before: always; -moz-column-break-before: always; }
 footer h4 {margin-top: 0px;}
 footer a {border: none;}
 
@@ -22,7 +22,7 @@ footer a {border: none;}
 
 /* older css */
 
-body {font-family: Libre Baskerville, Baskerville, Georgia, serif; background: #fff; color: #333; font-size: 14px; border: 10px #47CCFC solid; margin: 0px; padding: 20px 20px 100px 20px; }
+body {font-family: Libre Baskerville, Baskerville, Georgia, serif; font-size: 14px; background: #fff; color: #333;  border: 10px #47CCFC solid; margin: 0px; padding: 20px 20px 100px 20px; }
 h1, h2, h3, h4, h5, h6 {font-family: Helvetica, Arial, sans-serif;}
 h2 {margin-top: 40px;}
 
@@ -49,6 +49,3 @@ code {font-family: "Consolas", "Ubuntu Mono", monospace; line-height: 22px; back
 
 /* Map Popup Style */
 .leaflet-popup-content h2 {margin-bottom: 4px; margin-top: auto;}
-
-
-@media only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 320px) and (max-width: 1024px) {}

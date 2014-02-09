@@ -15,7 +15,7 @@ cpr('./demos', './site/demos', function(err, files) {
   })
 })
 
-fs.readFile('new-readme.md', function(err, file) {
+fs.readFile('readme.md', function(err, file) {
   if (err) return console.log(err)
   var name = "index"
   var content = file.toString()
@@ -50,16 +50,16 @@ function applyTemplate(html, name) {
   var rawTemplate =  fs.readFileSync(file).toString()
   var template = hbs.compile(rawTemplate)
   var page = template(content)
-  writeFile(page, name) 
+  writeFile(page, name)
 }
 
 function writeFile(page, name) {
   if (name === "index") {
-    return fs.writeFileSync('./site/' + name + '.html' , page)  
+    return fs.writeFileSync('./site/' + name + '.html' , page)
   }
   mkdirp('./site/docs', function (err) {
     if (err) return console.error(err)
-    fs.writeFileSync('./site/docs/' + name + '.html' , page)  
+    fs.writeFileSync('./site/docs/' + name + '.html' , page)
   })
 }
 
@@ -71,4 +71,3 @@ function changeExtensions(html, name) {
   var newHtml = html.replace(/\.md/g, '.html')
   return newHtml
 }
-

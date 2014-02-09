@@ -4,7 +4,7 @@ A few things to think about beyond charts, maps and tables.
 
 ## ICanHaz.js
 
-You can use templates for more than just tables. Use them to create lists `ol`, `ul`; array of images... You'll need a placeholder `<div>` in your HTML, a `<script>` for your template and a script to call ICanHaz from your Tabletop.js callback.
+You can use templates for more than just tables. Use them to create lists `ol`, `ul`; array of images... You'll need a placeholder `<div>` in your HTML, a `<script>` for your template and a script to call ICanHaz from your Tabletop.js callback. For a live example, see the bottom photo grid of the [sheetsee-table demo](../demos/demo-table.html).
   
 _HTML_
 
@@ -12,7 +12,7 @@ _HTML_
 <div id="divID"></div>
 ```
 
-_Tempalte_
+_Template_
 
 ```JavaScript
 <script id="divID" type="text/html">
@@ -22,7 +22,7 @@ _Tempalte_
 </script>
 ```
 
-_Tempalte_
+_Script_
 
 ```JavaScript
 <script type="text/html">
@@ -32,7 +32,7 @@ _Tempalte_
 </script>
 ```
 
-_non-table template_
+_non-table example output_
 
 ![lib](http://jlord.s3.amazonaws.com/wp-content/uploads/lending-ss.png)
 
@@ -64,6 +64,33 @@ With a some CSS and such, the resulting website has a table with the hack spots 
 
 When the page builds, it creates the correct link for each row. When someone clicks on the buttons it takes them directly to the Google Map search result for that address. BAM!
 
-# IFTTT
+## IFTTT
 
 [Ifttt.com](http://www.ifttt.com) offers lots of options sending data from your actions (Twitter, Instagram, GitHub, Pocket...) to Google Spreadsheets.
+
+## Row Numbers
+
+When Tabletop.js returns your spreadsheet data, it adds a key/value of `rownumber`. This is great to use when you need to uniquely match or find a row in your data.
+
+## Images
+
+Your spreadsheet can contain URLs to images which you can use to display the images on the page you build. Your template would look something like this:
+
+```HTML
+<img src='{{imgurl}}'/>
+```
+
+## Data as Classes
+
+You can use your data as classes to style with CSS. For instance, if you had data about recipes and a column called 'Taste' that contained either 'savory' or 'sweet'. In a table of the recipes you could do something like:
+
+```HTML
+<tr><td class="{{taste}}"></tr>
+```
+
+Then in your CSS:
+
+```CSS
+td .savory {}
+td .sweet {}
+```
