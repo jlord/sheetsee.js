@@ -31,12 +31,12 @@
     <h1>Pretty Pennies</h1>
     <div id="photogrid"></div>
     <p><em><a onClick='window.location="view-source:" + window.location.href'>View Source</a></em></p>
-  
+
     <footer>
       <h4 id="getting-started">Getting Started</h4>
       <ul>
         <li><a href="../docs/about.html">About Sheetsee.js</a></li>
-        <li><a href="../docs/building.html">Building Sheetsee</a></li>        
+        <li><a href="../docs/building.html">Building Sheetsee</a></li>
         <li><a href="../docs/basics.html">Basics</a></li>
       </ul>
       <h4 id="ideas">Ideas</h4>
@@ -63,6 +63,7 @@
         <li><a href="http://www.twitter.com/jllord">@jllord</a></li>
         <li><a href="https://github.com/jlord/sheetsee.js/issues/new">File an issue</a></li>
       </ul>
+      <h4 id="home"><a href="/">Home</a></h4>
     </footer>
 </div>
 
@@ -107,7 +108,7 @@
     var calOptions = {"data": california, "pagination": 5, "tableDiv": "#calTable", "filterDiv": "#calFilter"}
     Sheetsee.makeTable(calOptions)
     Sheetsee.initiateTableFilter(calOptions)
-    
+
     var html = Sheetsee.ich.photogrid({'rows': data})
     $('#photogrid').html(html)
 

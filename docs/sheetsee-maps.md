@@ -25,23 +25,23 @@ Next you'll need to create geoJSON out of your data so that it can be mapped.
 
 ### Sheetsee.createGeoJSON(data, optionsJSON)
 
-This takes in your **data** and the parts of your data, **optionsJSON**,  that you plan on including in your map's popups. If you're not going to have popups on your markers, don't worry about it then and just pass in your data (by default it will use all the row's information). 
+This takes in your **data** and the parts of your data, **optionsJSON**,  that you plan on including in your map's popups. These will be column headers in your spreadsheet. If you're not going to have popups on your markers, don't worry about it then and just pass in your data (by default it will use all the row's information).
 
 ```javascript
 var optionsJSON = ["name", "breed", "cuddlability"]
 var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
 ```
 
-It will return an _array_ in the special geoJSON format that map making things love. 
+It will return an _array_ in the special geoJSON format that map making things love.
 
-```javascript
+```JAVASCRIPT
 [{
   "geometry": {"type": "Point", "coordinates": [long, lat]},
   "properties": {
     "marker-size": "small",
     "marker-color": lineItem.hexcolor
   },
-  "opts": {the options you pass in},
+  "opts": {},
 }}
 ```
 
@@ -65,7 +65,7 @@ You can add tiles from awesome mapmakers like [Stamen](examples.map-20v6611k) or
 
 ### Sheetsee.addMarkerLayer(geoJSON, map)
 
-To add makers, lines or shapes to your map, use this function and pass in your **geoJSON** so that it can get the coordinates and your **map** so that it places the markers there. You can customize what the content in your marker's popup looks like with a **popupTemplate**, which is an ICanHaz.js template in HTML and can reference the column headers you included in your optionsJSON. 
+To add makers, lines or shapes to your map, use this function and pass in your **geoJSON** so that it can get the coordinates and your **map** so that it places the markers there. You can customize what the content in your marker's popup looks like with a **popupTemplate**, which is an ICanHaz.js template in HTML and can reference the column headers you included in your optionsJSON.
 
 ```javascript
 var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, popupTemplate)

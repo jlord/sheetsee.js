@@ -18,12 +18,12 @@
   <body>
     <div class="container">
       <h1 id="custom-charts">Custom Charts</h1>
-<p>It&#39;s easy to take a <a href="http://d3js.org/">d3.js</a> chart of your own and use it with Sheetsee.js. If you make it into a module, anyone can use your chart, too!</p>
+<p>It&#39;s easy to take a <a href="http://d3js.org/">D3.js</a> chart of your own and use it with Sheetsee.js. If you make it into a module, anyone can use your chart, too!</p>
 <p>Sheetsee charts currently work by taking in some options, like so:</p>
 <pre><code class="lang-javascript">var pieOptions = {labels: &quot;name&quot;, units: &quot;units&quot;, m: [80, 80, 80, 80], w: 600, h: 400, div: &quot;#pieChart&quot;, hiColor: &quot;#14ECC8&quot;}
 </code></pre>
-<p>The <em>labels</em> represent the actual thing you&#39;re charting and <em>units</em> are how many of those things. Margin, width and height are <em>m, w, h</em> and the div to build your chart in is <em>div</em>. Finally, you can supply a highlight color if you want.</p>
-<p>So, your chart could take the same options, but map them into your d3 code with the correct variables. An example from <a href="https://github.com/maxogden/sheetsee-d3bubble">maxogden/sheetsee-d3bubble</a>:</p>
+<p>The <em>labels</em> represent the actual thing you&#39;re charting and <em>units</em> are how many of those things. Margin, width and height are <em>m, w, h</em> and the <code>&lt;div&gt;</code> to build your chart in is <em>div</em>. Finally, you can supply a highlight color if you want.</p>
+<p>So, your chart could take the same options, but map them into your D3 code with the correct variables. An example from <a href="https://github.com/maxogden/sheetsee-d3bubble">maxogden/sheetsee-d3bubble</a>:</p>
 <p><em>Append the d3.js code with a map of your sheetsee options</em></p>
 <pre><code class="lang-JavaScript">Sheetsee.d3BubbleChart = function(data, options) {
     var tree = {name: &quot;data&quot;, children: []}
@@ -69,6 +69,7 @@
   }
 &lt;/script&gt;
 </code></pre>
+<p>There are lots of charts to get excited about in the <a href="https://github.com/mbostock/d3/wiki/Gallery">D3 gallery</a>.</p>
 <p><em>View the <a href="https://github.com/maxogden/sheetsee-d3bubble">entire source</a></em></p>
 
    
