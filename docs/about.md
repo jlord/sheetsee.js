@@ -2,19 +2,19 @@
 
 Sheetsee.js began as a part of my [Code for America](http://www.codeforamerica.org) 2012 Fellowship project, [See Penny Work](http://www.seepennywork.in). The idea and original code was to enable cities to easily publish and maintain themselves their budget data. The original sheetsee.js was built into Wordpress templates so that with the See Penny Work template, you could create pages that you only had to name and they would be populated with maps, charts and tables based on the page name corelating with a project in the spreadsheet.
 
-In early 2013, after the CfA Fellowship, I recieved a grant from Mozilla Open News to pull out the sheetsee.js bits and make it a standalone open source library. That brought us to version 2.
+In early 2013, after the CfA Fellowship, I recieved a grant from [Mozilla Open News](http://opennews.org/) to pull out the sheetsee.js bits and make it a standalone open source library. That brought us to version 2.
 
-The present version makes the project modular, customizable and with more maping and table features. 
+The present version makes the project modular, customizable and with more maping and table features.
 
 ## Built on top of Tabletop.js
-Sheetsee would not exist were it not for [tabletop.js](https://github.com/jsoma/tabletop) a library that handles the messy interactions with the Google Spreadsheets API for you and returns a lovely JSON of your data. Every instance of Sheetsee begins with running tabletop.js.
+Sheetsee would not exist were it not for [tabletop.js](https://github.com/jsoma/tabletop) a library that handles the messy interactions with the Google Spreadsheets API for you and returns a lovely array of your data. Every instance of Sheetsee begins with running tabletop.js.
 
 ### Sheetsee.js + Mapbox.js + d3.js
-Once you've got the data, the meat of Sheetsee comes into play. You can now decide if you want to map, chart or display your data in a table. Sheetsee's table module, sheetsee-tables, comes with sorting, filtering and pagination. Sheetsee-maps is built ontop of [Leaflet.js](http://leafletjs.com/) and [Mapbox.js](https://www.mapbox.com/mapbox.js/) and allows you to customize colors and popups of points, lines, polygons or multipolygons. Finally, Sheetee-charts comes with three basic [d3.js](http://d3js.org) charts: bar, circle and line. It is difficult to make a chart that can suit many types of data, but it is easy to choose your own d3 chart and plug it in to sheetsee. Documentation for creating a d3 module is [here](docs/custom-chart.md).
+Once you've got the data, the meat of Sheetsee comes into play. You can now decide if you want to map, chart or display your data in a table. Sheetsee's table module, **sheetsee-tables**, comes with sorting, filtering and pagination. **Sheetsee-maps** is built ontop of [Leaflet.js](http://leafletjs.com/) and [Mapbox.js](https://www.mapbox.com/mapbox.js/) and allows you to customize colors and popups of points, lines, polygons or multipolygons. Finally, **Sheetee-charts** comes with three basic [d3.js](http://d3js.org) charts: bar, circle and line. It is difficult to make a chart that can suit many types of data, but it is easy to choose your own d3 chart and plug it in to sheetsee. Documentation for creating a d3 module is [here](docs/custom-chart.md).
 
 ## Hacked on Openly
 - Sheetsee.js is open source software with a [BSD license](docs/license.md).
-- Sheetsee.js is built and maintained by [jlord](http://www.github.com/jlord) ([twitter](http://www.twitter.com/jllord)) with support from [contributors](https://github.com/jlord/sheetsee.js/graphs/contributors).
+- Sheetsee.js is a labor of love by [jlord](http://www.github.com/jlord) ([twitter](http://www.twitter.com/jllord)) with support from [contributors](https://github.com/jlord/sheetsee.js/graphs/contributors).
 
 ## Contact
 - File a [new issue](https://github.com/jlord/sheetsee.js/issues/new) for ideas and bug reports.

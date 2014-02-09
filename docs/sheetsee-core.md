@@ -83,13 +83,13 @@ Returns an _array of objects_ matching the category's filter.
 
 Takes **data** as an _array of objects_ and a _string_ for **category** (a column header from your spreadsheet) you want tally how often an element occured.
 
-```javascript
+```JAVASCRIPT
 getOccurance(data, "kind")
 ```
 
 Returns an object with keys and values for each variation of the category and its occurance.
 
-```javascript
+```JAVASCRIPT
 {"dog": 3, "cat": 3}
 ```
 
@@ -99,7 +99,7 @@ If you use `getOccurance()` and want to then chart that data with d3.js, you'll 
 
 This function takes in your data, as an _object_, and an _array_ of hexidecimal color strings which you define.
 
-```javascript
+```JAVASCRIPT
 var kinds = getOccurance(data, "kind")
 var kindColors = ["#ff00ff", "#DCF13C"]
 
@@ -108,7 +108,7 @@ var kindData = makeColorArrayOfObjects(mostPopBreeds, breedColors)
 
 It will return an array of objects formatted to go directly into a d3 chart with the appropriate _units_ and _label keys_, like so:
 
-```javascript
+```JAVASCRIPT
 [{"label": "dog", "units": 2, "hexcolor": "#ff00ff"}, {"label": "cat", "units": 3, "hexcolor": "#DCF13C"}]
 ```
 
@@ -118,18 +118,18 @@ If you pass in an array of just one color it will repeat that color for all item
 
 If you're using data, the data directly from Tabletop, you'll need to format it before you use the d3 charts. You'll need to determine what part of your data you want to chart - what will be your label, what your charting, and what will be your units, how many of them are there (this should be a number).
 
-```javascript
+```JAVASCRIPT
 var data =  [{"name": "coco", "kind": "dog", "cuddablity": 5}, {"name": "unagi", "kind": "cat", "cuddlability": 0}]
 ```
 
 For istance, if from our original data above we want to chart the age of each cat, we'll use:
 
-```javascript
+```JAVASCRIPT
 Sheetsee.addUnitsLabels(data, "name", "cuddlability")
 ```
 
 Which will return an array, ready for the d3 charts:
 
-```javascript
+```JAVASCRIPT
 [{"label": "coco", "kind": "dog", "units": 5}, {"label": "unagi", "kind": "cat", "units": 0}]
 ```
