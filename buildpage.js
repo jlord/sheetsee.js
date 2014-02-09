@@ -42,7 +42,7 @@ function applyTemplate(html, name) {
   if (name === "index") {
     content.rootstyle = "."
     content.rootdoc = "docs"
-    content.rootdemo = ""
+    content.rootdemo = "."
   } else {
      content.rootstyle = ".."
      content.rootdoc = "."
