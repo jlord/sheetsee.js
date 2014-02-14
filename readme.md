@@ -36,7 +36,6 @@ Demos pages for the documentation.
 - [Table Demo](./demos/demo-table.html)
 - [Map Demo](./demos/demo-map.html)
 - [Chart Demo](./demos/demo-chart.html)
-- [Basic Template](./demos/template.html)
 
 ## Documentation
 
