@@ -22,7 +22,7 @@ Each of **sheetsee.js**'s features are divided into modules. Use just the parts 
 
 ## Making Things
 
-What can you make with **Sheetsee.js**? Lost of things, here are some examples:
+What can you make with **Sheetsee.js**? Lots of things, here are some examples:
 
 - [Hack-Spots](http://jlord.github.io/hack-spots)
 - [Combine with IFTTT](http://jlord.us/instagram/)
