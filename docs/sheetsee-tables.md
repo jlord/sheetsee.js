@@ -1,6 +1,6 @@
 # Sheetsee-tables
 
-_[View Demo](/demos/demo-table.html)_
+_[View Demo](../demos/demo-table.html)_
 
 With this module you can create tables of your data that are sortable, searchable and paginate-able.
 
@@ -43,9 +43,9 @@ _The variables inside the {{}} must match the column headers in your spreadsheet
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
       var tableOptions = {
-                          "data": gData, 
-                          "pagination": 10, 
-                          "tableDiv": "#fullTable", 
+                          "data": gData,
+                          "pagination": 10,
+                          "tableDiv": "#fullTable",
                           "filterDiv": "#fullTableFilter"
                           }
       Sheetsee.makeTable(tableOptions)
@@ -75,9 +75,9 @@ You pass in an object containing:
 
 ```javascript
 var tableOptions = {
-                    "data": gData, 
-                    "pagination": 10, 
-                    "tableDiv": "#fullTable", 
+                    "data": gData,
+                    "pagination": 10,
+                    "tableDiv": "#fullTable",
                     "filterDiv": "#fullTableFilter"
                     }
 Sheetsee.makeTable(tableOptions)

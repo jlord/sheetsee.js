@@ -1,6 +1,6 @@
 # Sheetsee-maps
 
-_[View Demo](/demos/demo-map.html)_
+_[View Demo](../demos/demo-map.html)_
 
 Sheetsee.js uses [Mapbox.js](http://mapbox.com/mapbox.js) and [Leaflet.js](http://leafletjs.com/) to make maps of your **points**, **polygons**, **lines** or **multipolygons** (all coordinate based). Details on what that actually looks like [here](http://leafletjs.com/examples/geojson.html).
 
