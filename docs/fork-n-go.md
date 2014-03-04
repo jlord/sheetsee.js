@@ -19,7 +19,7 @@ What all of this means is that Sheetsee.js projects, hosted on gh-pages branches
 A Fork-n-Go example from my [blog post](http://jlord.us/fork-n-go/) on the topic:
 
 ### Hack Spots Fork-n-Go
- 
+
 I made this website to collect hack spots all over the world from friends and friends of friends (the spreadsheet is wide open, so you can add some, too!). It’s using sheetsee to power the table, map and other elements of the page. Its source is in this repo, with just a gh-pages branch. To create an instance of this site for yourself all you need to do:
 
 - Create a Google spreadsheet with the same headers (just copy and paste header row from the original). Click File > Publish to Web, then Start Publishing.
