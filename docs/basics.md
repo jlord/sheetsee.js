@@ -30,6 +30,7 @@ Ignoring some HTML things to conserve space, you get the point. This is a basic 
 ```HTML
 <html>
   <head>
+    <meta charset="utf-8">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.1.0/tabletop.min.js"></script>
     <script type="text/javascript" src='js/sheetsee.js'></script>
