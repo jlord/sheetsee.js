@@ -91,4 +91,4 @@ You should have an address in a box at the bottom, your key is the portion betwe
 
 ### CSS
 
-Sheetsee.js comes with a bare minimum stylesheet, `sss.csss`, which contains elements you'll want to style when using the feature they correspond to.
+Sheetsee.js comes with a bare minimum stylesheet, `sss.css`, which contains elements you'll want to style when using the feature they correspond to.
