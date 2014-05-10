@@ -16,7 +16,7 @@
   <body>
     <div class="container">
       <h1 id="sheetsee-tables">Sheetsee-tables</h1>
-<p><em><a href="../demos/demo-table.html">View Demo</a></em></p>
+<p>see: <a href="jlord.github.io/sheetsee.js">jlord.github.io/sheetsee.js</a></p>
 <p>With this module you can create tables of your data that are sortable, searchable and paginate-able.</p>
 <p>You&#39;ll need a placeholder <code>&lt;div&gt;</code> in your html, a <code>&lt;script&gt;</code> mustache template and a <code>&lt;script&gt;</code> that initiates the table.</p>
 <h2 id="your-html-placeholder-div-">Your HTML Placeholder <code>&lt;div&gt;</code></h2>
@@ -65,12 +65,15 @@
 <li><code>pagination</code> how many rows displayed at one time, defaults to all</li>
 <li><code>tableDiv</code> the <div> placeholder in your HTML</li>
 <li><code>filterDiv</code> the <code>&lt;div&gt;</code> containing your <code>&lt;input&gt;</code> filter if using search</li>
+<li><code>templateID</code> if you are reusing a template or your templateID is different than your <code>tableDiv</code> (if you don&#39;t include this, it will assume it matches <code>tableDiv</code>)</li>
 </ul>
 <pre><code class="lang-javascript">var tableOptions = {
                     &quot;data&quot;: gData,
                     &quot;pagination&quot;: 10,
                     &quot;tableDiv&quot;: &quot;#fullTable&quot;,
-                    &quot;filterDiv&quot;: &quot;#fullTableFilter&quot;
+                    &quot;filterDiv&quot;: &quot;#fullTableFilter&quot;,
+                    &quot;templateID&quot;: &quot;fullTable&quot;
+
                     }
 Sheetsee.makeTable(tableOptions)
 </code></pre>
