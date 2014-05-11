@@ -20,7 +20,7 @@ Each of **sheetsee.js**'s features are divided into modules. Use just the parts 
 | **sheetsee-charts** | Includes 3 basic d3 charts: bar, line and pie. You can also [use your own](docs/custom-charts.md).  | [Doc](./docs/sheetsee-charts.md) |
 
 
-## Making Things
+## In the Wild
 
 What can you make with **Sheetsee.js**? Lots of things, here are some examples:
 
@@ -29,33 +29,15 @@ What can you make with **Sheetsee.js**? Lots of things, here are some examples:
 
 **List your sheetsee project here: file an [issue or pull request](http://www.github.com/jlord/sheetsee.js).**
 
-## Demos
-
-Demos pages for the documentation.
-
-- [Table Demo](./demos/demo-table.html)
-- [Map Demo](./demos/demo-map.html)
-- [Chart Demo](./demos/demo-chart.html)
-
-## Documentation
+# Resources & Documentation
 
 More resources on using Sheetsee.js:
 
-#### Getting Started
+| Getting Started | Ideas | Use | Demos |
+| --- | --- | --- | --- |
+| [About Sheetsee.js](./docs/about.md)<br> [Building Sheetsee](./docs/building.md)<br> [Basics](./docs/basics.md) | [Fork-n-Go](./docs/fork-n-go.md)<br> [Tips!](./docs/tips.md)<br> [Custom charts](./docs/custom-charts.md) | [Sheetsee-core](./docs/sheetsee-core.md)<br> [Sheetsee-tables](./docs/sheetsee-tables.md)<br> [Sheetsee-maps](./docs/sheetsee-maps.md)<br> [Sheetsee-charts](./docs/sheetsee-charts.md) | [Table Demo](./demos/demo-table.html)<br> [Map Demo](./demos/demo-map.html)<br> [Chart Demo](./demos/demo-chart.html) |
 
-- [About Sheetsee.js](./docs/about.md)
-- [Building Sheetsee](./docs/building.md)
-- [Basics](./docs/basics.md)
+## Note on New Google Spreadsheets
 
-#### Ideas
+Google recently updated their Google Spreadsheets and the API. For a bit this was breaking things using the old API, including Tabletop. This has been fixed and the latest version of tabletop.js works on both old and new spreadsheets. **Be sure to include at least version 1.3.4 in your project.**
 
-- [Fork-n-Go](./docs/fork-n-go.md)
-- [Tips!](./docs/tips.md)
-- [Custom charts](./docs/custom-charts.md)
-
-#### Use
-
-- [Sheetsee-core](./docs/sheetsee-core.md)
-- [Sheetsee-tables](./docs/sheetsee-tables.md)
-- [Sheetsee-maps](./docs/sheetsee-maps.md)
-- [Sheetsee-charts](./docs/sheetsee-charts.md)
