@@ -18,12 +18,27 @@
       <h1 id="sheetsee-maps">Sheetsee-maps</h1>
 <p><em><a href="../demos/demo-map.html">View Demo</a></em></p>
 <p>Sheetsee.js uses <a href="http://mapbox.com/mapbox.js">Mapbox.js</a> and <a href="http://leafletjs.com/">Leaflet.js</a> to make maps of your <strong>points</strong>, <strong>polygons</strong>, <strong>lines</strong> or <strong>multipolygons</strong> (all coordinate based). Details on what that actually looks like <a href="http://leafletjs.com/examples/geojson.html">here</a>.</p>
-<p>You&#39;ll create a placeholder <code>&lt;div&gt;</code> in your HTML, CSS giving it a size and fire up a map from within <code>&lt;script&gt;</code> tags. You can also customize your popup content.</p>
-<h2 id="your-html-placeholder-div-">Your HTML Placeholder <code>&lt;div&gt;</code></h2>
-<p>Create an empty <code>&lt;div&gt;</code> in your HTML, with an id (name). Add CSS to give it dimensions</p>
-<pre><code class="lang-HTML">&lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
-</code></pre>
-<p><em>CSS</em></p>
+<h3 id="maps-polygons-and-lines">Maps: Polygons and Lines</h3>
+<p>Sheetsee-maps now supports polygons and lines. So long as you have the correct coordinate structure in your cells, Sheetsee will add them to the geoJSON it creates for your maps. More details for coordinates of lines and polygons in geoJSON are <a href="http://leafletjs.com/examples/geojson.html">here</a>, but briefly:</p>
+<p>A linestring:</p>
+<pre><code>[-122.41722106933594, 37.7663045891584], [-122.40477561950684, 37.77695634643178]
+</code></pre><p>A polygon:</p>
+<pre><code>[-122.41790771484375, 37.740381166384914], [-122.41790771484375, 37.74520008134973], [-122.40966796874999, 37.74520008134973],[-122.40966796874999, 37.740381166384914], [-122.41790771484375, 37.740381166384914]
+</code></pre><p>A Multipolygon:</p>
+<pre><code>[[-122.431640625, 37.79106586542567], [-122.431640625, 37.797441398913286], [-122.42666244506835, 37.797441398913286],[-122.42666244506835, 37.79106586542567], [-122.431640625, 37.79106586542567]],
+[[-122.43352890014648, 37.78197638783258], [-122.43352890014648, 37.789031004883654], [-122.42443084716797, 37.789031004883654], [-122.42443084716797, 37.78197638783258], [-122.43352890014648, 37.78197638783258]]
+
+### The Parts
+
+You&#39;ll create a placeholder `&lt;div&gt;` in your HTML, CSS giving it a size and fire up a map from within `&lt;script&gt;` tags. You can also customize your popup content.
+
+## Your HTML Placeholder `&lt;div&gt;`
+
+Create an empty `&lt;div&gt;` in your HTML, with an id (name). Add CSS to give it dimensions
+
+```HTML
+&lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
+</code></pre><p><em>CSS</em></p>
 <pre><code class="lang-CSS">#map {width: 500px; height: 500px;}
 </code></pre>
 <h2 id="your-script-functions">Your <code>&lt;script&gt;</code> Functions</h2>
@@ -59,7 +74,7 @@ var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
 <p>Example template:</p>
 <pre><code class="lang-javascript">var popupTemplate = &quot;&lt;h4&gt;Hello {{name}}&lt;/h4&gt;&quot;
 </code></pre>
-<h4 id="source-from-the-map-demo-demos-demo-map-html-">Source from the <a href="/demos/demo-map.html">map demo</a>:</h4>
+<h4 id="source-from-the-map-demo-https-github-com-jlord-sheetsee-js-blob-master-demos-demo-map-html-">Source from the <a href="https://github.com/jlord/sheetsee.js/blob/master/demos/demo-map.html">map demo</a>:</h4>
 <pre><code class="lang-JavaScript">&lt;script type=&quot;text/javascript&quot;&gt;
   document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
     var gData
