@@ -1,5 +1,5 @@
 ;(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-if (typeof window.Sheetsee === 'undefined') window.Sheetsee = {}; window.Sheetsee = require('sheetsee-core'); var extend = require('lodash.assign'); extend(window.Sheetsee, require('sheetsee-tables'), require('sheetsee-maps'), require('sheetsee-charts')); module.exports = Sheetsee;
+if (typeof window.Sheetsee === 'undefined') window.Sheetsee = {}; window.Sheetsee = require('sheetsee-core'); var extend = require('lodash.assign'); extend(window.Sheetsee, require('sheetsee-maps'), require('sheetsee-charts'), require('sheetsee-tables')); module.exports = Sheetsee;
 },{"lodash.assign":3,"sheetsee-charts":28,"sheetsee-core":31,"sheetsee-maps":32,"sheetsee-tables":59}],2:[function(require,module,exports){
 /*!
 ICanHaz.js version 0.10.2 -- by @HenrikJoreteg
@@ -10737,7 +10737,6 @@ module.exports.createGeoJSON = function(data, optionsJSON) {
     var hasGeo = confirmGeo(lineItem)
 
     if (hasGeo && !lineItem.lat && !lineItem.long) handleLatLong(lineItem)
-    console.log("New Line", lineItem)
     if (lineItem.linestring || lineItem.multipolygon) hasGeo = true
     if (!hasGeo) return
 
@@ -10806,7 +10805,8 @@ function pointJSON(lineItem, type, optionObj) {
   return pointFeature
 }
 
-module.exports.shapeJSON = function(lineItem, type, optionObj) {
+module.exports.shapeJSON = shapeJSON
+function shapeJSON(lineItem, type, optionObj) {
   var lowercaseType = type.toLowerCase()
   var coords
   if (type !== "LineString") {
@@ -25276,7 +25276,7 @@ function makeTable(opts, filteredList) {
   var currentStart = (currentPage * opts.pagination) - opts.pagination
   var currentEnd = currentPage * opts.pagination
   var currentRows = data.slice(currentStart, currentEnd)
-  table(currentRows, opts.tableDiv)
+  table(currentRows, opts)
   if (opts.data.length > opts.pagination) writePreNext(opts.tableDiv, currentPage, currentPage, totalPages, data, opts.pagination)
   
 }
@@ -25362,12 +25362,14 @@ function clearPreNext() {
 }
 
 module.exports.table = table
-function table(data, targetDiv) {
-  var templateID = targetDiv.replace("#", "")
+function table(data, opts) {
+  if (opts.templateID) {
+    var templateID = opts.templateID
+  } else var templateID = opts.targetDiv.replace("#", "")
   var tableContents = ich[templateID]({
     rows: data
   })
-  $(targetDiv).html(tableContents)
+  $(opts.tableDiv).html(tableContents)
 }
 },{"icanhaz":2}]},{},[1])
 ;
