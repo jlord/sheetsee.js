@@ -26,6 +26,7 @@ What can you make with **Sheetsee.js**? Lots of things, here are some examples:
 
 - [Hack-Spots](http://jlord.github.io/hack-spots)
 - [Combine with IFTTT](http://jlord.us/instagram/)
+- [Real Python Support Desk](http://www.realpyhon.com/support)
 
 **List your sheetsee project here: file an [issue or pull request](http://www.github.com/jlord/sheetsee.js).**
 
