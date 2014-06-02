@@ -25365,7 +25365,7 @@ module.exports.table = table
 function table(data, opts) {
   if (opts.templateID) {
     var templateID = opts.templateID
-  } else var templateID = opts.targetDiv.replace("#", "")
+  } else var templateID = opts.tableDiv.replace("#", "")
   var tableContents = ich[templateID]({
     rows: data
   })
