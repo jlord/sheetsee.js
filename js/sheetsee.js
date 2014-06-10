@@ -10859,7 +10859,7 @@ function makePopupTemplate(geoJSON) {
   var mustacheKeys = mustachify(keys)
 
   var template = {}
-  template.name ="popup"
+  template.name = "popup" + Math.random()
   template.template = templateString(mustacheKeys)
   return template
 }
@@ -10893,7 +10893,7 @@ module.exports.addMarkerLayer = function(geoJSON, map, template) {
   }
   else {
    var template = {"template": template}
-   template.name = "popup"
+   template.name = "popup" + Math.random()
    ich.addTemplate(template.name, template.template)
   }
   var features = {
@@ -10910,7 +10910,7 @@ module.exports.addMarkerLayer = function(geoJSON, map, template) {
 
   layer.eachLayer(function(marker) {
     var popupContent = ich[template.name](marker.feature.opts)
-    marker.bindPopup(popupContent.html(), {closeButton: false})
+    marker.bindPopup(Content.html(), {closeButton: false})
   })
   return layer
 }
