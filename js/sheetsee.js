@@ -10910,7 +10910,7 @@ module.exports.addMarkerLayer = function(geoJSON, map, template) {
 
   layer.eachLayer(function(marker) {
     var popupContent = ich[template.name](marker.feature.opts)
-    marker.bindPopup(Content.html(), {closeButton: false})
+    marker.bindPopup(popupContent.html(), {closeButton: false})
   })
   return layer
 }

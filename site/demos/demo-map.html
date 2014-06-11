@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
     <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic'>
-    <script type='text/javascript' src='../js/tabletop1.3.3.js'></script>
+    <script type='text/javascript' src='../js/tabletop1.3.4.js'></script>
     <script type='text/javascript' src='../js/sheetsee.js'></script>
     <link rel='stylesheet' type='text/css' href='http://api.tiles.mapbox.com/mapbox.js/v1.0.0/mapbox.css'  />
     <link rel='stylesheet' type='text/css' href='../assets/style.css'>
   </head>
   <style>
-    #map {max-width: 800px; height: 500px;}
+    #map, #shapesmap {max-width: 800px; height: 500px;}
     .leaflet-popup-content li {list-style:none;}
     .leaflet-popup-content {width: 102px;}
     .leaflet-popup-content img {width: 100px;}
@@ -24,6 +24,9 @@
       <p><em><a href="https://docs.google.com/a/github.com/spreadsheet/ccc?key=0Ao5u1U6KYND7dGN5QngweVJUWE16bTRob0d2a3dCbnc&usp=drive_web#gid=0" target="_blank">spreadsheet</a></em><p>
       <div id="map"></div>
       <p><em><a onClick='window.location="view-source:" + window.location.href'>View Source</a> // <a href="../docs/sheetsee-maps.html">View Documentation</a></em></p>
+      <h2>Using linestrings, polygons and multipolygons</h2>
+      <div id="shapesmap"></div>
+      <p><em><a onClick='window.location="view-source:" + window.location.href'>View Source</a> // <a href="https://docs.google.com/spreadsheets/d/1jOz6yFY5nIDre5RYtVROYPgIbkgh9lIddsyXo0-79_0/edit?usp=drive_web" target="_blank">View Spreadsheet</a></em></p>
 
       <footer>
         <h4 id="getting-started">Getting Started</h4>
@@ -62,7 +65,9 @@
     <script type="text/javascript">
       document.addEventListener('DOMContentLoaded', function() {
         var URL = "0Ao5u1U6KYND7dGN5QngweVJUWE16bTRob0d2a3dCbnc"
+        var URL2 = "1jOz6yFY5nIDre5RYtVROYPgIbkgh9lIddsyXo0-79_0"
         Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } )
+        Tabletop.init( { key: URL2, callback: shapesMap, simpleSheet: true } )
       })
 
       function showInfo(data) {
@@ -73,8 +78,18 @@
         var geoJSON = Sheetsee.createGeoJSON(data, optionsJSON)
         var map = Sheetsee.loadMap("map")
         Sheetsee.addTileLayer(map, 'examples.map-20v6611k')
-        var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, template)
+        Sheetsee.addMarkerLayer(geoJSON, map, template)
       }
+
+      function shapesMap(data) {
+        var opts = ['description']
+        var geojson = Sheetsee.createGeoJSON(data, opts)
+        var plytemplate = "<h4>{{description}}</h4>"
+        var shapesmap = Sheetsee.loadMap("shapesmap")
+        Sheetsee.addTileLayer(shapesmap, 'examples.map-20v6611k')
+        Sheetsee.addMarkerLayer(geojson, shapesmap, plytemplate)
+      }
+
     </script>
   </body>
 </html>
