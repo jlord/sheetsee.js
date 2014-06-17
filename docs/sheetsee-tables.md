@@ -22,7 +22,7 @@ You can then style `.tHeader` in your CSS to make them look how you want.
 
 You'll want to set your table options and pass them into `Sheetsee.makeTable()`. If you want to add a search/filter, pass your options into `Sheetsee.initiateTableFilter()`
 
-## Funtions
+## Functions
 
 ### Sheetsee.makeTable(tableOptions)
 
