@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sheetsee.js</title>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='description' content='sheetsee.js, google, spreadsheet, visualize, data, javascript'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script type='text/javascript' src='/js/highlight.pack.js'></script>
+    <link rel='stylesheet' href='/assets/styles/atelier-forest.light.css'>
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic'>
+    <link rel='stylesheet' href='../assets/style.css'>
+    <link rel="shortcut icon" href=''/>
+  </head>
+  <style>.hljs { background: #f0f0f0; color: #494949; }</style>
+  <body>
+    <div class="container">
+      <h1 id="sheetsee-charts">Sheetsee-charts</h1>
+<p><em><a href="../demos/demo-chart.html">View Demo</a></em></p>
+<p>Sheetsee.js provides three <a href="http://d3js.org/">D3.js</a> chart options to use with your spreadsheet data: a bar chart, line graph and pie chart. You can also use a custom D3 chart with Sheetsee, read about that <a href="custom-charts.html">here</a>.</p>
+<h2 id="make-a-chart">Make a Chart</h2>
+<p>Each chart requires your data be an <em>array of objects</em>, with objects containing <code>label</code> and <code>units</code> key/value pairs.</p>
+<p>Experiment with the charts to find the correct size your <code>&lt;div&gt;</code> will need to be to hold the chart with your data in it nicely.</p>
+<p>You can also make your own D3 chart in a separate .js file, link to that in your HTML head and pass your data on to it after Tabletop.js returns. Information <a href="custom-charts.html">here</a> on using your own chart.</p>
+<h3 id="bar-chart">Bar Chart</h3>
+<p>To create a bar chart you&#39;ll need to add a placeholder <code>&lt;div&gt;</code> in your HTML with an id.</p>
+<pre><code class="lang-HTML">&lt;div id=&quot;barChart&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p>In your CSS, give it dimensions.</p>
+<pre><code class="lang-CSS">#barChart {height: 400px; max-width: 600px; background: #F8CDCD;}
+</code></pre>
+<p>You&#39;ll also have these CSS elements to style however you&#39;d like:</p>
+<pre><code class="lang-CSS">.labels text {text-align: right;}
+.bar .labels text {fill: #333;}
+.bar rect {fill: #e6e6e6;}
+.axis {shape-rendering: crispEdges;}
+.x.axis line {stroke: #fff; fill: none;}
+.x.axis path {fill: none;}
+.x.axis text {fill: #333;}
+.xLabel {font-family: sans-serif; font-size: 9px;}
+</code></pre>
+<p>In a <code>&lt;script&gt;</code> tag set up your options.</p>
+<pre><code class="lang-JAVASCRIPT">var barOptions = {labels: &quot;name&quot;, units: &quot;cuddleability&quot;, m: [60, 60, 30, 150], w: 600, h: 400, div: &quot;#barChart&quot;, xaxis: &quot;no. of pennies&quot;, hiColor: &quot;#FF317D&quot;}
+</code></pre>
+<ul>
+<li><strong>labels</strong> is a string, usually a column header, it&#39;s what you call what you&#39;re charting</li>
+<li><strong>units</strong> is a string, usually a column header, it&#39;s the value you&#39;re charting</li>
+<li><strong>m</strong> is margins: top, right, bottom, left</li>
+<li><strong>w</strong> and <strong>h</strong> are width and height, this should match your CSS specs</li>
+<li><strong>div</strong> is the id for the <code>&lt;div&gt;</code> in your HTML</li>
+<li><strong>xaxis</strong> is optional text label for your x axis</li>
+<li><strong>hiColor</strong> is the highlight color of your choosing!</li>
+</ul>
+<p>Then call the <code>d3BarChart()</code> function with your <strong>data</strong> and <strong>options</strong>.</p>
+<pre><code class="lang-javascript">Sheetsee.d3BarChart(data, barOptions)
+</code></pre>
+<h3 id="line-chart">Line Chart</h3>
+<p>To create a line chart you&#39;ll need to add a placeholder <code>&lt;div&gt;</code> in your html with an id.</p>
+<pre><code class="lang-HTML">&lt;div id=&quot;lineChart&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p>In your CSS, give it dimensions.</p>
+<pre><code class="lang-CSS">#lineChart {height: 400px; max-width: 600px; background: #F8CDCD;}
+</code></pre>
+<p>And these chart elements to style:</p>
+<pre><code class="lang-CSS">.axis {shape-rendering: crispEdges;}
+.x.axis .minor, .y.axis .minor {stroke-opacity: .5;}
+.x.axis {stroke-opacity: 1;}
+.y.axis line, .y.axis path {fill: none; stroke: #acacac; stroke-width: 1;}
+.bigg {-webkit-transition: all .2s ease-in-out; -webkit-transform: scale(2);}
+path.chartLine {stroke: #333; stroke-width: 3; fill: none;}
+div.tooltip {position: absolute; text-align: left; padding: 4px 8px; width: auto; font-size: 10px; height: auto; background: #fff; border: 0px; pointer-events: none;}
+circle {fill: #e6e6e6;}
+</code></pre>
+<p>In a <code>&lt;script&gt;</code> tag set up your options.</p>
+<pre><code class="lang-javascript">var lineOptions = {labels: &quot;name&quot;, units: &quot;cuddleability&quot;, m: [80, 100, 120, 100], w: 600, h: 400, div: &quot;#lineChart&quot;, yaxis: &quot;no. of pennies&quot;, hiColor: &quot;#14ECC8&quot;}
+</code></pre>
+<ul>
+<li><strong>labels</strong> is a string, usually a column header, it&#39;s what you call what you&#39;re charting</li>
+<li><strong>units</strong> is a string, usually a column header, it&#39;s the value you&#39;re charting</li>
+<li><strong>m</strong> is your margins: top, right, bottom, left</li>
+<li><strong>w</strong> and <strong>h</strong> are width and height, this should match your CSS specs</li>
+<li><strong>div</strong> is the id for the <code>&lt;div&gt;</code> in your HTML</li>
+<li><strong>yaxis</strong> is optional text label for your y axis</li>
+<li><strong>hiColor</strong> is the highlight color of your choosing!</li>
+</ul>
+<p>Then call the <code>d3LineChart()</code> function with your <strong>data</strong> and <strong>options</strong>.</p>
+<pre><code class="lang-JAVASCRIPT">Sheetsee.d3LineChart(data, lineOptions)
+</code></pre>
+<h3 id="pie-chart">Pie Chart</h3>
+<p>To create a bar chart you&#39;ll need to add a placeholder <code>&lt;div&gt;</code> in your html with an id.</p>
+<pre><code class="lang-HTML">&lt;div id=&quot;pieChart&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p>In your CSS, give it dimensions.</p>
+<pre><code class="lang-CSS">#pieChart {height: 400px; max-width: 600px; background: #F8CDCD;}
+</code></pre>
+<p>Style chart elements:</p>
+<pre><code class="lang-CSS">.arc path { stroke: #fff;}
+</code></pre>
+<p>In a <code>&lt;script&gt;</code> tag set up your options.</p>
+<pre><code class="lang-JAVASCRIPT">var pieOptions = {labels: &quot;name&quot;, units: &quot;units&quot;, m: [80, 80, 80, 80], w: 600, h: 400, div: &quot;#pieChart&quot;, hiColor: &quot;#14ECC8&quot;}
+</code></pre>
+<ul>
+<li><strong>labels</strong> is a string, usually a column header, it&#39;s what you call what you&#39;re charting</li>
+<li><strong>units</strong> is a string, usually a column header, it&#39;s the value you&#39;re charting</li>
+<li><strong>m</strong> is your margins: top, right, bottom, left</li>
+<li><strong>w</strong> and <strong>h</strong> are width and height, this should match your CSS specs</li>
+<li><strong>div</strong> is the id for the <code>&lt;div&gt;</code> in your HTML</li>
+<li><strong>hiColor</strong> is the highlight color of your choosing!</li>
+</ul>
+<p>Then call the <code>d3PieChart()</code> function with your <strong>data</strong> and <strong>options</strong>.</p>
+<pre><code class="lang-JAVASCRIPT">Sheetsee.d3PieChart(data, pieOptions)
+</code></pre>
+
+
+      <footer>
+        <h4 id="getting-started">Getting Started</h4>
+        <ul>
+        <li><a href="./about.html">About Sheetsee</a></li>
+        <li><a href="./building.html">Building Sheetsee</a></li>
+        <li><a href="./basics.html">Basics</a></li>
+        </ul>
+        <h4 id="ideas">Ideas</h4>
+        <ul>
+        <li><a href="./fork-n-go.html">Fork-n-Go</a></li>
+        <li><a href="./tips.html">Tips!</a></li>
+        <li><a href="./custom-charts.html">Custom charts</a></li>
+        </ul>
+        <h4>Demos</h4>
+        <ul>
+        <li><a href="../demos/demo-table.html">Table Demo</a></li>
+        <li><a href="../demos/demo-map.html">Map Demo</a></li>
+        <li><a href="../demos/demo-chart.html">Chart Demo</a></li>
+        </ul>
+        <h4 id="use">Use</h4>
+        <ul>
+        <li><a href="./sheetsee-core.html">Sheetsee-core</a></li>
+        <li><a href="./sheetsee-tables.html">Sheetsee-tables</a></li>
+        <li><a href="./sheetsee-maps.html">Sheetsee-maps</a></li>
+        <li><a href="./sheetsee-charts.html">Sheetsee-charts</a></li>
+        </ul>
+        <h4 id="use">Contact</h4>
+        <ul>
+        <li><a href="http://www.twitter.com/jllord">@jllord</a></li>
+        <li><a href="https://github.com/jlord/sheetsee.js/issues/new">File an issue</a></li>
+        </ul>
+        <h4><a href="http://jlord.github.io/sheetsee.js">Home Page</a></h4>
+      </footer>
+    </div>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

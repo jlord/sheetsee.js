@@ -30,8 +30,9 @@ Ignoring some HTML things to conserve space, you get the point. This is a basic 
 ```HTML
 <html>
   <head>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.1.0/tabletop.min.js"></script>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="js/tabletop.js"></script>
     <script type="text/javascript" src='js/sheetsee.js'></script>
     <link rel="stylesheet" type="text/css" href="css/sss.css">
   </head>
@@ -90,4 +91,4 @@ You should have an address in a box at the bottom, your key is the portion betwe
 
 ### CSS
 
-Sheetsee.js comes with a bare minimum stylesheet, `sss.csss`, which contains elements you'll want to style when using the feature they correspond to.
+Sheetsee.js comes with a bare minimum stylesheet, `sss.css`, which contains elements you'll want to style when using the feature they correspond to.

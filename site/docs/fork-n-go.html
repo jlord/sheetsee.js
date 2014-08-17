@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sheetsee.js</title>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='description' content='sheetsee.js, google, spreadsheet, visualize, data, javascript'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script type='text/javascript' src='/js/highlight.pack.js'></script>
+    <link rel='stylesheet' href='/assets/styles/atelier-forest.light.css'>
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic'>
+    <link rel='stylesheet' href='../assets/style.css'>
+    <link rel="shortcut icon" href=''/>
+  </head>
+  <style>.hljs { background: #f0f0f0; color: #494949; }</style>
+  <body>
+    <div class="container">
+      <h1 id="fork-n-go">Fork-n-Go</h1>
+<p>A Fork-n-Go project is a project on GitHub that in a few clicks and starting with a fork, gives another user a live website that they control with an easy to swap-for-your-own Google Spreadsheet database.</p>
+<p>To awesome things that make this possible: <strong>Forking</strong> and <a href="http://pages.github.com"><strong>GitHub Pages</strong></a>.</p>
+<p>On GitHub, a <strong>fork</strong> is a full copy of a repository, on your account, that you can manage and edit. It&#39;s done with the click of a button.</p>
+<p><strong>GitHub Pages</strong> is the hosting service that GitHub provides free to all users, organizations <em>and</em> repositories. This means everyone of these entities or project can have it&#39;s own website at a predictable domain:</p>
+<ul>
+<li><strong>organizations</strong>: orgname.github.io</li>
+<li><strong>users</strong>: username.github.io</li>
+<li><strong>repositories</strong>: username.github.io/repositoryname</li>
+</ul>
+<p>To have a website for a repository all you need is a branch named <code>gh-pages</code>. GitHub will then look in that branch for web files and serve them up at the address.</p>
+<p>What all of this means is that Sheetsee.js projects, hosted on gh-pages branches on GitHub, can easily be forked and connected to another spreadsheet giving another user a live website of their own really easily.</p>
+<p>A Fork-n-Go example from my <a href="http://jlord.us/fork-n-go/">blog post</a> on the topic:</p>
+<h3 id="hack-spots-fork-n-go">Hack Spots Fork-n-Go</h3>
+<p>I made this website to collect hack spots all over the world from friends and friends of friends (the spreadsheet is wide open, so you can add some, too!). It’s using sheetsee to power the table, map and other elements of the page. Its source is in this repo, with just a gh-pages branch. To create an instance of this site for yourself all you need to do:</p>
+<ul>
+<li>Create a Google spreadsheet with the same headers (just copy and paste header row from the original). Click File &gt; Publish to Web, then Start Publishing.</li>
+<li>Fork the original repository.</li>
+<li>Edit the HTML file directly on GitHub.com to replace the original spreadsheet’s unique key with your spreadsheet’s key (found in your spreadsheet’s URL).
+Commit your change.</li>
+</ul>
+<p>Now you have the same site connected to a spreadsheet that you manage — it’s live and can be found at yourGitHubName.github.io/theReposName.</p>
+<p><img src="http://jlord.s3.amazonaws.com/wp-content/uploads/forkcommit1.png" alt="forkcommit"></p>
+
+
+      <footer>
+        <h4 id="getting-started">Getting Started</h4>
+        <ul>
+        <li><a href="./about.html">About Sheetsee</a></li>
+        <li><a href="./building.html">Building Sheetsee</a></li>
+        <li><a href="./basics.html">Basics</a></li>
+        </ul>
+        <h4 id="ideas">Ideas</h4>
+        <ul>
+        <li><a href="./fork-n-go.html">Fork-n-Go</a></li>
+        <li><a href="./tips.html">Tips!</a></li>
+        <li><a href="./custom-charts.html">Custom charts</a></li>
+        </ul>
+        <h4>Demos</h4>
+        <ul>
+        <li><a href="../demos/demo-table.html">Table Demo</a></li>
+        <li><a href="../demos/demo-map.html">Map Demo</a></li>
+        <li><a href="../demos/demo-chart.html">Chart Demo</a></li>
+        </ul>
+        <h4 id="use">Use</h4>
+        <ul>
+        <li><a href="./sheetsee-core.html">Sheetsee-core</a></li>
+        <li><a href="./sheetsee-tables.html">Sheetsee-tables</a></li>
+        <li><a href="./sheetsee-maps.html">Sheetsee-maps</a></li>
+        <li><a href="./sheetsee-charts.html">Sheetsee-charts</a></li>
+        </ul>
+        <h4 id="use">Contact</h4>
+        <ul>
+        <li><a href="http://www.twitter.com/jllord">@jllord</a></li>
+        <li><a href="https://github.com/jlord/sheetsee.js/issues/new">File an issue</a></li>
+        </ul>
+        <h4><a href="http://jlord.github.io/sheetsee.js">Home Page</a></h4>
+      </footer>
+    </div>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

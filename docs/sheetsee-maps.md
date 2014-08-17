@@ -1,8 +1,32 @@
 # Sheetsee-maps
 
-_[View Demo](/demos/demo-map.html)_
+_[View Demo](../demos/demo-map.html)_
 
 Sheetsee.js uses [Mapbox.js](http://mapbox.com/mapbox.js) and [Leaflet.js](http://leafletjs.com/) to make maps of your **points**, **polygons**, **lines** or **multipolygons** (all coordinate based). Details on what that actually looks like [here](http://leafletjs.com/examples/geojson.html).
+
+### Maps: Polygons and Lines
+
+Sheetsee-maps now supports polygons and lines. So long as you have the correct coordinate structure in your cells, Sheetsee will add them to the geoJSON it creates for your maps. More details for coordinates of lines and polygons in geoJSON are [here](http://leafletjs.com/examples/geojson.html), but briefly:
+
+A linestring:
+
+```
+[-122.41722106933594, 37.7663045891584], [-122.40477561950684, 37.77695634643178]
+```
+
+A polygon:
+
+```
+[-122.41790771484375, 37.740381166384914], [-122.41790771484375, 37.74520008134973], [-122.40966796874999, 37.74520008134973],[-122.40966796874999, 37.740381166384914], [-122.41790771484375, 37.740381166384914]
+```
+
+A Multipolygon:
+
+```
+[[-122.431640625, 37.79106586542567], [-122.431640625, 37.797441398913286], [-122.42666244506835, 37.797441398913286],[-122.42666244506835, 37.79106586542567], [-122.431640625, 37.79106586542567]],
+[[-122.43352890014648, 37.78197638783258], [-122.43352890014648, 37.789031004883654], [-122.42443084716797, 37.789031004883654], [-122.42443084716797, 37.78197638783258], [-122.43352890014648, 37.78197638783258]]
+
+### The Parts
 
 You'll create a placeholder `<div>` in your HTML, CSS giving it a size and fire up a map from within `<script>` tags. You can also customize your popup content.
 
@@ -77,7 +101,7 @@ Example template:
 var popupTemplate = "<h4>Hello {{name}}</h4>"
 ```
 
-#### Source from the [map demo](/demos/demo-map.html):
+#### Source from the [map demo](https://github.com/jlord/sheetsee.js/blob/master/demos/demo-map.html):
 
 ```JavaScript
 <script type="text/javascript">

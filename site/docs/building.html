@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sheetsee.js</title>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='description' content='sheetsee.js, google, spreadsheet, visualize, data, javascript'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script type='text/javascript' src='/js/highlight.pack.js'></script>
+    <link rel='stylesheet' href='/assets/styles/atelier-forest.light.css'>
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic'>
+    <link rel='stylesheet' href='../assets/style.css'>
+    <link rel="shortcut icon" href=''/>
+  </head>
+  <style>.hljs { background: #f0f0f0; color: #494949; }</style>
+  <body>
+    <div class="container">
+      <h1 id="right-sizing">Right-sizing</h1>
+<p>You can customize your sheetsee.js build with just the parts you want to use. If you want to just use the full version, you can grab it here at <a href="https://github.com/jlord/sheetsee.js/blob/master/js/sheetsee.js">github.com/jlord/sheetsee.js</a>.</p>
+<p>All bundle comes with <a href="">mapbox.js</a> and <a href="">handlebars.js</a> (since both are available on <a href="http://www.npmjs.org">NPM</a>). Additionally you&#39;ll need to also include <a href="https://github.com/jsoma/tabletop">tabletop.js</a> and <a href="http://www.jquery.com">jQuery</a> in your HTML head like so:</p>
+<pre><code class="lang-HTML">&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.1.0/tabletop.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p><strong>To build your Sheetsee you&#39;ll need <a href="http://www.nodejs.org">Node.js</a> and <a href="http://www.npmjs.org">NPM</a> (the latter comes with the former in most installs) on your computer and a command line.</strong></p>
+<h4 id="get-node-npm">Get Node/NPM</h4>
+<p>Download Node.js from <a href="http://nodejs.org/download">nodejs.org/download</a>. For most users you can just download the Mac <em>.pkg</em> or Windows <em>.msi</em>. Follow the install instructions, both include NPM. Once they&#39;re installed, proceed:</p>
+<h2 id="install-sheetsee-from-npm">Install <code>sheetsee</code> from NPM</h2>
+<p>The <code>sheetsee</code> (with no &#39;.js&#39;) module is the tool for building custom Sheetsee.js builds. Install <code>sheetsee</code> globally and then run it within the folder of your soon-to-be sheetsee.js project.</p>
+<p><em>Install globally</em></p>
+<pre><code class="lang-bash">npm install -g sheetsee
+</code></pre>
+<p><em>Run from within a project folder</em></p>
+<pre><code class="lang-bash">sheetsee [options]
+</code></pre>
+<p>Here are the options for the different modules. If you want save the generated file as <em>sheetsee.js</em> then add the <code>--save</code> option.</p>
+<ul>
+<li><code>-m</code> or <code>-maps</code> for maps</li>
+<li><code>-t</code> or <code>-tables</code> for tables</li>
+<li><code>-c</code> or <code>-charts</code> for charts</li>
+<li><code>--save</code> to write out the file*</li>
+</ul>
+<p><em>* otherwise, defaults to standardout on your console which you can</em> <code>| pbcopy</code></p>
+<p>So for instance, <code>sheetsee -m -t --save</code> will build you a Sheetsee.js with the basic <strong>data</strong> functions, the <strong>map</strong> and <strong>tables</strong> sections built in and save it as a file named <strong>sheetsee.js</strong>. Running <code>sheetsee -m -t | pbcopy</code> will save the output to your clipboard.</p>
+
+
+      <footer>
+        <h4 id="getting-started">Getting Started</h4>
+        <ul>
+        <li><a href="./about.html">About Sheetsee</a></li>
+        <li><a href="./building.html">Building Sheetsee</a></li>
+        <li><a href="./basics.html">Basics</a></li>
+        </ul>
+        <h4 id="ideas">Ideas</h4>
+        <ul>
+        <li><a href="./fork-n-go.html">Fork-n-Go</a></li>
+        <li><a href="./tips.html">Tips!</a></li>
+        <li><a href="./custom-charts.html">Custom charts</a></li>
+        </ul>
+        <h4>Demos</h4>
+        <ul>
+        <li><a href="../demos/demo-table.html">Table Demo</a></li>
+        <li><a href="../demos/demo-map.html">Map Demo</a></li>
+        <li><a href="../demos/demo-chart.html">Chart Demo</a></li>
+        </ul>
+        <h4 id="use">Use</h4>
+        <ul>
+        <li><a href="./sheetsee-core.html">Sheetsee-core</a></li>
+        <li><a href="./sheetsee-tables.html">Sheetsee-tables</a></li>
+        <li><a href="./sheetsee-maps.html">Sheetsee-maps</a></li>
+        <li><a href="./sheetsee-charts.html">Sheetsee-charts</a></li>
+        </ul>
+        <h4 id="use">Contact</h4>
+        <ul>
+        <li><a href="http://www.twitter.com/jllord">@jllord</a></li>
+        <li><a href="https://github.com/jlord/sheetsee.js/issues/new">File an issue</a></li>
+        </ul>
+        <h4><a href="http://jlord.github.io/sheetsee.js">Home Page</a></h4>
+      </footer>
+    </div>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

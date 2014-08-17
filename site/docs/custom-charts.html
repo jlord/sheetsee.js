@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sheetsee.js</title>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='description' content='sheetsee.js, google, spreadsheet, visualize, data, javascript'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script type='text/javascript' src='/js/highlight.pack.js'></script>
+    <link rel='stylesheet' href='/assets/styles/atelier-forest.light.css'>
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic'>
+    <link rel='stylesheet' href='../assets/style.css'>
+    <link rel="shortcut icon" href=''/>
+  </head>
+  <style>.hljs { background: #f0f0f0; color: #494949; }</style>
+  <body>
+    <div class="container">
+      <h1 id="custom-charts">Custom Charts</h1>
+<p>It&#39;s easy to take a <a href="http://d3js.org/">D3.js</a> chart of your own and use it with Sheetsee.js. If you make it into a module, anyone can use your chart, too!</p>
+<p>Sheetsee charts currently work by taking in some options, like so:</p>
+<pre><code class="lang-javascript">var pieOptions = {labels: &quot;name&quot;, units: &quot;units&quot;, m: [80, 80, 80, 80], w: 600, h: 400, div: &quot;#pieChart&quot;, hiColor: &quot;#14ECC8&quot;}
+</code></pre>
+<p>The <em>labels</em> represent the actual thing you&#39;re charting and <em>units</em> are how many of those things. Margin, width and height are <em>m, w, h</em> and the <code>&lt;div&gt;</code> to build your chart in is <em>div</em>. Finally, you can supply a highlight color if you want.</p>
+<p>So, your chart could take the same options, but map them into your D3 code with the correct variables. An example from <a href="https://github.com/maxogden/sheetsee-d3bubble">maxogden/sheetsee-d3bubble</a>:</p>
+<p><em>Append the d3.js code with a map of your sheetsee options</em></p>
+<pre><code class="lang-JavaScript">Sheetsee.d3BubbleChart = function(data, options) {
+    var tree = {name: &quot;data&quot;, children: []}
+    var groups = {}
+
+    // data needs to look like this:
+    // var data = { name: &quot;wahtever&quot;, children: [
+    //   { name: &quot;group1&quot;, children: [
+    //     { name: &#39;bob&#39;, size: 3},
+    //     { name: &#39;judy&#39;, size: 5}
+    //   ]},
+    //   { name: &quot;group2&quot;, children: [
+    //     { name: &#39;jim&#39;, size: 10},
+    //     { name: &#39;bill&#39;, size: 5}
+    //   ]}
+    // ]}
+
+    data.map(function(r) {
+        var groupName = r[options.group]
+        groups[groupName] = true
+    })
+
+    Object.keys(groups).map(function(groupName) {
+        var groupMembers = []
+        data.map(function(r) {
+            if (r[options.group] !== groupName) return
+            groupMembers.push({name: r[options.name], size: r[options.size]})
+        })
+        tree.children.push({name: groupName, children: groupMembers})
+    })
+
+  // the rest of the code
+</code></pre>
+<p><em>In your HTML call it like so</em></p>
+<pre><code class="lang-JavaScript">&lt;script type=&quot;text/javascript&quot;&gt;
+  document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
+    var URL = &quot;0AvFUWxii39gXdFhqZzdTeU5DTWtOdENkQ1Y5bHdqT0E&quot;
+    Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } )
+  })
+
+  function showInfo(data) {
+    Sheetsee.d3BubbleChart(data, { name: &#39;name&#39;, size: &#39;cuddlability&#39;, group: &#39;kind&#39;, div: &#39;#stuff&#39;})
+  }
+&lt;/script&gt;
+</code></pre>
+<p>There are lots of charts to get excited about in the <a href="https://github.com/mbostock/d3/wiki/Gallery">D3 gallery</a>.</p>
+<p><em>View the <a href="https://github.com/maxogden/sheetsee-d3bubble">entire source</a></em></p>
+
+
+      <footer>
+        <h4 id="getting-started">Getting Started</h4>
+        <ul>
+        <li><a href="./about.html">About Sheetsee</a></li>
+        <li><a href="./building.html">Building Sheetsee</a></li>
+        <li><a href="./basics.html">Basics</a></li>
+        </ul>
+        <h4 id="ideas">Ideas</h4>
+        <ul>
+        <li><a href="./fork-n-go.html">Fork-n-Go</a></li>
+        <li><a href="./tips.html">Tips!</a></li>
+        <li><a href="./custom-charts.html">Custom charts</a></li>
+        </ul>
+        <h4>Demos</h4>
+        <ul>
+        <li><a href="../demos/demo-table.html">Table Demo</a></li>
+        <li><a href="../demos/demo-map.html">Map Demo</a></li>
+        <li><a href="../demos/demo-chart.html">Chart Demo</a></li>
+        </ul>
+        <h4 id="use">Use</h4>
+        <ul>
+        <li><a href="./sheetsee-core.html">Sheetsee-core</a></li>
+        <li><a href="./sheetsee-tables.html">Sheetsee-tables</a></li>
+        <li><a href="./sheetsee-maps.html">Sheetsee-maps</a></li>
+        <li><a href="./sheetsee-charts.html">Sheetsee-charts</a></li>
+        </ul>
+        <h4 id="use">Contact</h4>
+        <ul>
+        <li><a href="http://www.twitter.com/jllord">@jllord</a></li>
+        <li><a href="https://github.com/jlord/sheetsee.js/issues/new">File an issue</a></li>
+        </ul>
+        <h4><a href="http://jlord.github.io/sheetsee.js">Home Page</a></h4>
+      </footer>
+    </div>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

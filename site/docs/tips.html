@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sheetsee.js</title>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='description' content='sheetsee.js, google, spreadsheet, visualize, data, javascript'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script type='text/javascript' src='/js/highlight.pack.js'></script>
+    <link rel='stylesheet' href='/assets/styles/atelier-forest.light.css'>
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic'>
+    <link rel='stylesheet' href='../assets/style.css'>
+    <link rel="shortcut icon" href=''/>
+  </head>
+  <style>.hljs { background: #f0f0f0; color: #494949; }</style>
+  <body>
+    <div class="container">
+      <h1 id="tips">Tips</h1>
+<p>A few things to think about beyond charts, maps and tables.</p>
+<h2 id="icanhaz-js">ICanHaz.js</h2>
+<p>You can use templates for more than just tables. Use them to create lists <code>ol</code>, <code>ul</code>; array of images... You&#39;ll need a placeholder <code>&lt;div&gt;</code> in your HTML, a <code>&lt;script&gt;</code> for your template and a script to call ICanHaz from your Tabletop.js callback. For a live example, see the bottom photo grid of the <a href="../demos/demo-table.html">sheetsee-table demo</a>.</p>
+<p><em>HTML</em></p>
+<pre><code class="lang-HTML">&lt;div id=&quot;divID&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p><em>Template</em></p>
+<pre><code class="lang-JavaScript">&lt;script id=&quot;divID&quot; type=&quot;text/html&quot;&gt;
+  {{#rows}}
+    &lt;div&gt;&lt;img class=&quot;photo&quot; src=&quot;{{some-variable}}&quot;&gt;&lt;/div&gt;
+  {{/rows}}
+&lt;/script&gt;
+</code></pre>
+<p><em>Script</em></p>
+<pre><code class="lang-JavaScript">&lt;script type=&quot;text/html&quot;&gt;
+  // your other Sheetsee.js, Tabletop code above
+  var html = Sheetsee.ich.divID({&#39;rows&#39;: data})
+  $(&#39;#divID&#39;).html(html)
+&lt;/script&gt;
+</code></pre>
+<p><em>non-table example output</em></p>
+<p><img src="http://jlord.s3.amazonaws.com/wp-content/uploads/lending-ss.png" alt="lib"></p>
+<h2 id="query-strings">Query Strings</h2>
+<p>If your spreadsheet contains address information, using templates (Sheetsee.js uses a form of Mustache), you can embed those elements into a query string (aka a search URL) like Google Maps URL or Yelp. If you search for a location in Google Maps, you&#39;ll notice it creates a URL for that search.</p>
+<p>So, if you have information in your spreadsheet that would go inside a query string, make a template for inserting them into a link on your page.</p>
+<p>The basic elements are: a spreadsheet with address info + HTML template to create the query string.</p>
+<p>The Sheetsee <a href="jlord.github.io/hack-spots">Hack-Spots</a> is an does such a thing. Here is the spreadsheet, with address information</p>
+<p><img src="http://jlord.s3.amazonaws.com/wp-content/uploads/Screen-Shot-2013-09-15-at-6.49.19-PM.png" alt="img"></p>
+<p>In the HTML template for the table on the <a href="jlord.github.io/hack-spots">Hack-Spots</a> page, the button’s links look like this:</p>
+<pre><code class="lang-HTML">&lt;a class=&quot;button&quot; href=&quot;https://maps.google.com/maps?q={{address}},{{city}},{{state}}&quot; target=&quot;_blank&quot;&gt;View in Google Maps&lt;/a&gt;
+&lt;a class=&quot;button&quot; href=&quot;http://www.yelp.com/search?find_desc={{name}}&amp;find_loc={{city}},{{state}}&quot; target=&quot;_blank&quot;&gt;Find on Yelp&lt;/a&gt;
+</code></pre>
+<p>Here is the exact line of code on GitHub.</p>
+<p>We’re inserting the address, city, and state details from the spreadsheet into the structure of a query string for Google maps and Yelp. You can figure out the query string of a service by just using it (type in an address in Google Maps) and looking at the resulting URL.</p>
+<p>With a some CSS and such, the resulting website has a table with the hack spots and a button for viewing in Google Maps or Yelp:</p>
+<p><img src="http://jlord.s3.amazonaws.com/wp-content/uploads/Screen-Shot-2013-09-15-at-6.43.54-PM.png" alt="img"></p>
+<p>When the page builds, it creates the correct link for each row. When someone clicks on the buttons it takes them directly to the Google Map search result for that address. BAM!</p>
+<h2 id="ifttt">IFTTT</h2>
+<p><a href="http://www.ifttt.com">Ifttt.com</a> offers lots of options sending data from your actions (Twitter, Instagram, GitHub, Pocket...) to Google Spreadsheets.</p>
+<h2 id="row-numbers">Row Numbers</h2>
+<p>When Tabletop.js returns your spreadsheet data, it adds a key/value of <code>rownumber</code>. This is great to use when you need to uniquely match or find a row in your data.</p>
+<h2 id="images">Images</h2>
+<p>Your spreadsheet can contain URLs to images which you can use to display the images on the page you build. Your template would look something like this:</p>
+<pre><code class="lang-HTML">&lt;img src=&#39;{{imgurl}}&#39;/&gt;
+</code></pre>
+<h2 id="data-as-classes">Data as Classes</h2>
+<p>You can use your data as classes to style with CSS. For instance, if you had data about recipes and a column called &#39;Taste&#39; that contained either &#39;savory&#39; or &#39;sweet&#39;. In a table of the recipes you could do something like:</p>
+<pre><code class="lang-HTML">&lt;tr&gt;&lt;td class=&quot;{{taste}}&quot;&gt;&lt;/tr&gt;
+</code></pre>
+<p>Then in your CSS:</p>
+<pre><code class="lang-CSS">td .savory {}
+td .sweet {}
+</code></pre>
+
+
+      <footer>
+        <h4 id="getting-started">Getting Started</h4>
+        <ul>
+        <li><a href="./about.html">About Sheetsee</a></li>
+        <li><a href="./building.html">Building Sheetsee</a></li>
+        <li><a href="./basics.html">Basics</a></li>
+        </ul>
+        <h4 id="ideas">Ideas</h4>
+        <ul>
+        <li><a href="./fork-n-go.html">Fork-n-Go</a></li>
+        <li><a href="./tips.html">Tips!</a></li>
+        <li><a href="./custom-charts.html">Custom charts</a></li>
+        </ul>
+        <h4>Demos</h4>
+        <ul>
+        <li><a href="../demos/demo-table.html">Table Demo</a></li>
+        <li><a href="../demos/demo-map.html">Map Demo</a></li>
+        <li><a href="../demos/demo-chart.html">Chart Demo</a></li>
+        </ul>
+        <h4 id="use">Use</h4>
+        <ul>
+        <li><a href="./sheetsee-core.html">Sheetsee-core</a></li>
+        <li><a href="./sheetsee-tables.html">Sheetsee-tables</a></li>
+        <li><a href="./sheetsee-maps.html">Sheetsee-maps</a></li>
+        <li><a href="./sheetsee-charts.html">Sheetsee-charts</a></li>
+        </ul>
+        <h4 id="use">Contact</h4>
+        <ul>
+        <li><a href="http://www.twitter.com/jllord">@jllord</a></li>
+        <li><a href="https://github.com/jlord/sheetsee.js/issues/new">File an issue</a></li>
+        </ul>
+        <h4><a href="http://jlord.github.io/sheetsee.js">Home Page</a></h4>
+      </footer>
+    </div>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

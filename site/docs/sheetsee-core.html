@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sheetsee.js</title>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='description' content='sheetsee.js, google, spreadsheet, visualize, data, javascript'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script type='text/javascript' src='/js/highlight.pack.js'></script>
+    <link rel='stylesheet' href='/assets/styles/atelier-forest.light.css'>
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic'>
+    <link rel='stylesheet' href='../assets/style.css'>
+    <link rel="shortcut icon" href=''/>
+  </head>
+  <style>.hljs { background: #f0f0f0; color: #494949; }</style>
+  <body>
+    <div class="container">
+      <h1 id="sheetsee-core">Sheetsee-core</h1>
+<p>This is the core module in sheetsee and is included in all builds. It contains the functions for building your custom file as well as the basic data manipulation functions.</p>
+<h2 id="working-with-your-data">Working With Your Data</h2>
+<p>Tabletop.js will fetch the data from your spreadsheet and return it as an <em>array of objects</em>. Sheetsee.js has functions built in to help you filter or reorganize the data if you&#39;d like.</p>
+<h3 id="sheetsee-getgroupcount-data-groupterm-">Sheetsee.getGroupCount(data, groupTerm)</h3>
+<p>This takes in your data, an <em>array of objects</em>, and searches for a <em>string</em>, <strong>groupTerm</strong>, in each piece of your <strong>data</strong> (formerly the cells of your spreadsheet). It returns the number of times it found the <strong>groupTerm</strong>.</p>
+<pre><code class="lang-JAVASCRIPT">getGroupCount(data, &quot;cat&quot;)
+// returns a number
+</code></pre>
+<h3 id="sheetsee-getcolumntotal-data-column-">Sheetsee.getColumnTotal(data, column)</h3>
+<p>Given your <strong>data</strong>, an <em>array of objects</em>, and a <em>string</em> <strong>column</strong> header, this functions sums each cell in that column(so this collumn you mention best have numbers).</p>
+<pre><code class="lang-JAVASCRIPT">getColumnTotal(data, &quot;cuddlability&quot;)
+// returns number
+</code></pre>
+<h3 id="sheetsee-getaveragefromcolumn-data-column-">Sheetsee.getAveragefromColumn(data, column)</h3>
+<p>A really simple function that builds on <code>getColumnTotal()</code> by returning the average number in a <strong>column</strong> of numbers.</p>
+<pre><code class="lang-JAVASCRIPT">getColumnAverage(data, &quot;cuddlability&quot;)
+// returns number
+</code></pre>
+<h3 id="sheetsee-getmin-data-column-">Sheetsee.getMin(data, column)</h3>
+<p>This will return an <em>array</em> of <em>object</em> or <em>objects</em> (if there is a tie) of the element with the lowest <em>number</em> value in the <strong>column</strong> you specify from your <strong>data</strong>.</p>
+<pre><code class="lang-JAVASCRIPT">getMin(data, &quot;cuddlability&quot;)
+// returns array
+</code></pre>
+<h3 id="sheetsee-getmax-data-column-">Sheetsee.getMax(data, column)</h3>
+<p>This will return an <em>array</em> of <em>object</em> or <em>objects</em> (if there is a tie) of the element with the highest <em>number</em> value in the <strong>column</strong> you specify from your <strong>data</strong>.</p>
+<pre><code class="lang-JAVASCRIPT">getMin(data, &quot;cuddlability&quot;)
+// returns array
+</code></pre>
+<h3 id="don-t-forget-javascript-math">Don&#39;t Forget JavaScript Math</h3>
+<p>Create variables that are the sums, differences, multiples and so forth of others. Lots of info on that <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Math">here on MDN</a>.</p>
+<pre><code class="lang-JAVASCRIPT">var profit09 = Sheetsee.getColumnTotal(data, &quot;2009&quot;)
+var profit10 = Sheetsee.getColumnTotal(data, &quot;2010&quot;)
+var difference = profit09 - profit10
+</code></pre>
+<h4 id="what-these-little-bits-are-good-for">What These Little Bits are Good For</h4>
+<p>You don&#39;t have to just create tables of your data. You can have other portions of your page that show things like, &quot;The difference taco consumption between last week and this week is...&quot; These are easy to create with JavaScript math functions and knowing a little bit more about <a href="http://icanhazjs.com/">icanhaz.js</a>.</p>
+<h3 id="sheetsee-getmatches-data-filter-category-">Sheetsee.getMatches(data, filter, category)</h3>
+<p>Takes <strong>data</strong> as an <em>array of objects</em>, a <em>string</em> you&#39;d like to <strong>filter</strong> and a <em>string</em> of the <strong>category</strong> you want it to look in (a column header from your spreadsheet).</p>
+<pre><code class="lang-JAVASCRIPT">getMatches(data, &quot;dog&quot;, &quot;kind&quot;)
+</code></pre>
+<p>Returns an <em>array of objects</em> matching the category&#39;s filter.</p>
+<pre><code class="lang-JAVASCRIPT">[{&quot;name&quot;: &quot;coco&quot;, &quot;kind&quot;: &quot;dog&quot;...}, {&quot;name&quot;: &quot;wolfgang&quot;, &quot;kind&quot;: &quot;dog&quot;...},{&quot;name&quot;: &quot;cooc&quot;, &quot;kind&quot;: &quot;dog&quot;...} ]
+</code></pre>
+<h3 id="sheetsee-getoccurance-data-category-">Sheetsee.getOccurance(data, category)</h3>
+<p>Takes <strong>data</strong> as an <em>array of objects</em> and a <em>string</em> for <strong>category</strong> (a column header from your spreadsheet) you want tally how often an element occured.</p>
+<pre><code class="lang-JAVASCRIPT">getOccurance(data, &quot;kind&quot;)
+</code></pre>
+<p>Returns an object with keys and values for each variation of the category and its occurance.</p>
+<pre><code class="lang-JAVASCRIPT">{&quot;dog&quot;: 3, &quot;cat&quot;: 3}
+</code></pre>
+<h3 id="sheetsee-makecolorarrayofobject-data-colors-">Sheetsee.makeColorArrayOfObject(data, colors)</h3>
+<p>If you use <code>getOccurance()</code> and want to then chart that data with d3.js, you&#39;ll need to make it into an <em>array</em> (instead of an object) and add colors back in (since the hexcolor column applies to the datapoints in your original dataset and not this new dataset).</p>
+<p>This function takes in your data, as an <em>object</em>, and an <em>array</em> of hexidecimal color strings which you define.</p>
+<pre><code class="lang-JAVASCRIPT">var kinds = getOccurance(data, &quot;kind&quot;)
+var kindColors = [&quot;#ff00ff&quot;, &quot;#DCF13C&quot;]
+
+var kindData = makeColorArrayOfObjects(mostPopBreeds, breedColors)
+</code></pre>
+<p>It will return an array of objects formatted to go directly into a d3 chart with the appropriate <em>units</em> and <em>label keys</em>, like so:</p>
+<pre><code class="lang-JAVASCRIPT">[{&quot;label&quot;: &quot;dog&quot;, &quot;units&quot;: 2, &quot;hexcolor&quot;: &quot;#ff00ff&quot;}, {&quot;label&quot;: &quot;cat&quot;, &quot;units&quot;: 3, &quot;hexcolor&quot;: &quot;#DCF13C&quot;}]
+</code></pre>
+<p>If you pass in an array of just one color it will repeat that color for all items. If you pass fewer colors than data elements it will repeat the sequences of colors for the remainder elements.</p>
+<h3 id="sheetsee-addunitslabels-arrayobj-oldlabel-oldunits-">Sheetsee.addUnitsLabels(arrayObj, oldLabel, oldUnits)</h3>
+<p>If you&#39;re using data, the data directly from Tabletop, you&#39;ll need to format it before you use the d3 charts. You&#39;ll need to determine what part of your data you want to chart - what will be your label, what your charting, and what will be your units, how many of them are there (this should be a number).</p>
+<pre><code class="lang-JAVASCRIPT">var data =  [{&quot;name&quot;: &quot;coco&quot;, &quot;kind&quot;: &quot;dog&quot;, &quot;cuddablity&quot;: 5}, {&quot;name&quot;: &quot;unagi&quot;, &quot;kind&quot;: &quot;cat&quot;, &quot;cuddlability&quot;: 0}]
+</code></pre>
+<p>For istance, if from our original data above we want to chart the age of each cat, we&#39;ll use:</p>
+<pre><code class="lang-JAVASCRIPT">Sheetsee.addUnitsLabels(data, &quot;name&quot;, &quot;cuddlability&quot;)
+</code></pre>
+<p>Which will return an array, ready for the d3 charts:</p>
+<pre><code class="lang-JAVASCRIPT">[{&quot;label&quot;: &quot;coco&quot;, &quot;kind&quot;: &quot;dog&quot;, &quot;units&quot;: 5}, {&quot;label&quot;: &quot;unagi&quot;, &quot;kind&quot;: &quot;cat&quot;, &quot;units&quot;: 0}]
+</code></pre>
+
+
+      <footer>
+        <h4 id="getting-started">Getting Started</h4>
+        <ul>
+        <li><a href="./about.html">About Sheetsee</a></li>
+        <li><a href="./building.html">Building Sheetsee</a></li>
+        <li><a href="./basics.html">Basics</a></li>
+        </ul>
+        <h4 id="ideas">Ideas</h4>
+        <ul>
+        <li><a href="./fork-n-go.html">Fork-n-Go</a></li>
+        <li><a href="./tips.html">Tips!</a></li>
+        <li><a href="./custom-charts.html">Custom charts</a></li>
+        </ul>
+        <h4>Demos</h4>
+        <ul>
+        <li><a href="../demos/demo-table.html">Table Demo</a></li>
+        <li><a href="../demos/demo-map.html">Map Demo</a></li>
+        <li><a href="../demos/demo-chart.html">Chart Demo</a></li>
+        </ul>
+        <h4 id="use">Use</h4>
+        <ul>
+        <li><a href="./sheetsee-core.html">Sheetsee-core</a></li>
+        <li><a href="./sheetsee-tables.html">Sheetsee-tables</a></li>
+        <li><a href="./sheetsee-maps.html">Sheetsee-maps</a></li>
+        <li><a href="./sheetsee-charts.html">Sheetsee-charts</a></li>
+        </ul>
+        <h4 id="use">Contact</h4>
+        <ul>
+        <li><a href="http://www.twitter.com/jllord">@jllord</a></li>
+        <li><a href="https://github.com/jlord/sheetsee.js/issues/new">File an issue</a></li>
+        </ul>
+        <h4><a href="http://jlord.github.io/sheetsee.js">Home Page</a></h4>
+      </footer>
+    </div>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

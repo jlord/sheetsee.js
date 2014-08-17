@@ -1,5 +1,25 @@
 ### Sheetsee v3
 
+## May 10, 2014
+### Better Table Template Options
+
+Updated `sheetsee-tables` to allow you to re-use a template (rather than duplicating it for each different table you wanted to create). Previously it assumed your HTML table `div` id matched your script template `id`. This means that you can pass in an extra key/value pair in your table options into `Sheetsee.maketable()`. The new pair it takes is: `"templateID" : "yourtemplateid"`. Example below, full `sheetsee-tables` documentation [here](docs/sheetsee-tables.html).
+
+```JavaScript
+var tableOptions = {
+                    "data": gData,
+                    "pagination": 10,
+                    "tableDiv": "#fullTable",
+                    "filterDiv": "#fullTableFilter",
+                    "templateID": "tableTemplte"
+                    }
+Sheetsee.makeTable(tableOptions)
+```
+
+## May 2014
+### Important Google Spreadsheets & Tabletop News
+
+Google recently updated their Google Spreadsheets and the API. For a bit this was breaking things using the old API, including Tabletop. This has been fixed and the latest version of tabletop.js works on both old and new spreadsheets. **Be sure to include at least version 1.3.4 in your project.**
 
 ## August 13, 2013
 ### Charting Intake
