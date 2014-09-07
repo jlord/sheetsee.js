@@ -21,7 +21,7 @@
 <h2 id="your-html-placeholder">Your HTML Placeholder</h2>
 <p>This is as simple as an empty <code>&lt;div&gt;</code> with an id.</p>
 <h2 id="your-template">Your Template</h2>
-<p>Your template is the mockup of what you&#39;d like your table to look like and what content it should show. The style is up to you! It is an HTML template inside of <code>&lt;script&gt;</code> tags.</p>
+<p>Your template is the mockup of what you&#39;d like your table to look like and what content it should show. The style is up to you! It is an HTML template inside of <code>&lt;script&gt;</code> tags. <strong>The id of the template should be the same as the HTML placeholder it corresponds to but with &quot;_template&quot; on the end. Unless you&#39;re using one template, for multiple divs, in which case, you&#39;ll pass in the template name in the options of <code>makeTable()</code></strong></p>
 <h3 id="sorting">Sorting</h3>
 <p>If you want users to be able to click on headers and sort that column, your template must include table headers with the class <code>tHeader</code>.</p>
 <p>You can then style <code>.tHeader</code> in your CSS to make them look how you want.</p>
@@ -35,7 +35,7 @@
 <li><code>pagination</code> how many rows displayed at one time, defaults to all</li>
 <li><code>tableDiv</code> the <div> placeholder in your HTML</li>
 <li><code>filterDiv</code> the <code>&lt;div&gt;</code> containing your <code>&lt;input&gt;</code> filter if using search</li>
-<li><code>templateID</code> if you are reusing a template or your templateID is different than your <code>tableDiv</code> (if you don&#39;t include this, it will assume it matches <code>tableDiv</code>)</li>
+<li><code>templateID</code> if you are reusing a template, use it&#39;s name here (if you don&#39;t include this, it will assume it matches <code>tableDiv</code> + <code>_template</code>)</li>
 </ul>
 <pre><code class="lang-javascript">var tableOptions = {
                     &quot;data&quot;: gData,

@@ -68,7 +68,7 @@
     </footer>
 </div>
 
-<script id="fullTable" type="text/html">
+<script id="fullTable_template" type="text/html">
   <table>
     <tr><th class="tHeader">City</th><th class="tHeader">Place Name</th><th class="tHeader">Year</th><th class="tHeader">Image</th></tr>
       {{#rows}}
@@ -94,8 +94,8 @@
 
 <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', function() {
-  	var URL = "0Ao5u1U6KYND7dGN5QngweVJUWE16bTRob0d2a3dCbnc"
-  	Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } )
+    var URL = "0Ao5u1U6KYND7dGN5QngweVJUWE16bTRob0d2a3dCbnc"
+    Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } )
   })
 
   function showInfo(data) {

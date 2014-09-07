@@ -10,7 +10,7 @@ This is as simple as an empty `<div>` with an id.
 
 ## Your Template
 
-Your template is the mockup of what you'd like your table to look like and what content it should show. The style is up to you! It is an HTML template inside of `<script>` tags.
+Your template is the mockup of what you'd like your table to look like and what content it should show. The style is up to you! It is an HTML template inside of `<script>` tags. **The id of the template should be the same as the HTML placeholder it corresponds to but with "_template" on the end. Unless you're using one template, for multiple divs, in which case, you'll pass in the template name in the options of `makeTable()`**
 
 ### Sorting
 
@@ -22,7 +22,7 @@ You can then style `.tHeader` in your CSS to make them look how you want.
 
 You'll want to set your table options and pass them into `Sheetsee.makeTable()`. If you want to add a search/filter, pass your options into `Sheetsee.initiateTableFilter()`
 
-## Functions
+## Funtions
 
 ### Sheetsee.makeTable(tableOptions)
 
@@ -32,7 +32,7 @@ You pass in an object containing:
 - `pagination` how many rows displayed at one time, defaults to all
 - `tableDiv` the <div> placeholder in your HTML
 - `filterDiv` the `<div>` containing your `<input>` filter if using search
-- `templateID` if you are reusing a template or your templateID is different than your `tableDiv` (if you don't include this, it will assume it matches `tableDiv`)
+- `templateID` if you are reusing a template, use it's name here (if you don't include this, it will assume it matches `tableDiv` + `_template`)
 
 ```javascript
 var tableOptions = {
