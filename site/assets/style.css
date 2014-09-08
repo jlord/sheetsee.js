@@ -29,6 +29,7 @@ h1, h2, h3, h4, h5, h6 {font-family: Source Sans Pro, Arial, sans-serif;}
 h2 {margin-top: 40px;}
 
 img {width: 100%;}
+hr {border: 2px solid #CCF4FF;}
 
 p a, a {color: #535353; text-decoration: none; padding-bottom: 0px; border-bottom: 2px #CCF4FF solid;}
 a:hover {color: #47CCFC;}

@@ -1,22 +1,23 @@
 # Fork-n-Go
 
-A Fork-n-Go project is a project on GitHub that in a few clicks and starting with a fork, gives another user a live website that they control with an easy to swap-for-your-own Google Spreadsheet database.
+<img src="https://raw.githubusercontent.com/jlord/forkngo/gh-pages/badges/sky.png" style="width: 200px;">
 
-To awesome things that make this possible: **Forking** and [**GitHub Pages**](http://pages.github.com).
+A Fork-n-Go project is a project on GitHub that in a few clicks, starting with a fork, gives another user a live website that they control with an easy to swap-for-your-own Google Spreadsheet database.
 
-On GitHub, a **fork** is a full copy of a repository, on your account, that you can manage and edit. It's done with the click of a button.
+Two awesome things that make this possible: **Forking**, the tool on GitHub that allows you to copy a public repository onto your account, and [**GitHub Pages**](http://pages.github.com), GitHub's free web hosting service for ever repository, account and organization.
 
-**GitHub Pages** is the hosting service that GitHub provides free to all users, organizations _and_ repositories. This means everyone of these entities or project can have it's own website at a predictable domain:
+I've built a whole other website on the idea with lots of examples: [jlord.github.io/forkngo](http://jlord.github.io/forkngo/)
 
-- **organizations**: orgname.github.io
-- **users**: username.github.io
-- **repositories**: username.github.io/repositoryname
+---
+## How
 
-To have a website for a repository all you need is a branch named `gh-pages`. GitHub will then look in that branch for web files and serve them up at the address.
+To have a website for a repository hosted by GitHub Pages all you need is a branch named `gh-pages`. GitHub will then look in that branch for web files and serve them up at the address.
 
-What all of this means is that Sheetsee.js projects, hosted on gh-pages branches on GitHub, can easily be forked and connected to another spreadsheet giving another user a live website of their own really easily.
+So Sheetsee.js projects, hosted on `gh-pages` branches on GitHub, can easily be forked and connected to another spreadsheet giving another user a live website of their own—with data they control—really easily.
 
-A Fork-n-Go example from my [blog post](http://jlord.us/fork-n-go/) on the topic:
+## Example
+
+A Fork-n-Go example from my [blog post](http://jlord.github.io/blog/fork-n-go) on the topic:
 
 ### Hack Spots Fork-n-Go
 
