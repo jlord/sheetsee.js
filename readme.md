@@ -1,11 +1,7 @@
 
 ![sheetseeimg](https://raw.github.com/jlord/sheetsee-cache/master/img/sheetsee-03.png)
 
-# Sheetsee.js
-
 **Sheetsee.js** is a client-side library for connecting Google Spreadsheets to a website and visualizing the information in tables, maps and charts.
-
-Google Spreadsheets can be used as simple and collaborative databases, they make getting a data driven site going much easier than traditional databases. Read more about using spreadsheets for databases [here](./docs/basics.md).
 
 ## Modules
 
@@ -19,6 +15,9 @@ Each of **sheetsee.js**'s features are divided into modules. Use just the parts 
 | **sheetsee-maps**   | For making maps with your point, line or polygon spreadsheet data. Built on Mapbox.js.              | [Doc](./docs/sheetsee-maps.md)   |
 | **sheetsee-charts** | Includes 3 basic d3 charts: bar, line and pie. You can also [use your own](docs/custom-charts.md).  | [Doc](./docs/sheetsee-charts.md) |
 
+## Spreadsheets!?
+
+Google Spreadsheets can be used as simple and collaborative databases, they make getting a data driven site going much easier than traditional databases. Read more about using spreadsheets for databases [here](./docs/basics.md).
 
 ## In the Wild
 
@@ -36,7 +35,10 @@ More resources on using Sheetsee.js:
 
 | Getting Started | Ideas | Use | Demos |
 | --- | --- | --- | --- |
-| [About Sheetsee.js](./docs/about.md)<br> [Building Sheetsee](./docs/building.md)<br> [Basics](./docs/basics.md) | [Fork-n-Go](./docs/fork-n-go.md)<br> [Tips!](./docs/tips.md)<br> [Custom charts](./docs/custom-charts.md) | [Sheetsee-core](./docs/sheetsee-core.md)<br> [Sheetsee-tables](./docs/sheetsee-tables.md)<br> [Sheetsee-maps](./docs/sheetsee-maps.md)<br> [Sheetsee-charts](./docs/sheetsee-charts.md) | [Table Demo](./demos/demo-table.html)<br> [Map Demo](./demos/demo-map.html)<br> [Chart Demo](./demos/demo-chart.html) |
+| [About Sheetsee.js](./docs/about.md) | [Fork-n-Go](./docs/fork-n-go.md) | [Sheetsee-core](./docs/sheetsee-core.md) | [Table Demo](./demos/demo-table.html) |
+| [Building Sheetsee](./docs/building.md) | [Tips!](./docs/tips.md) | [Sheetsee-tables](./docs/sheetsee-tables.md) | [Table Demo](./demos/demo-table.html) |
+| [Basics](./docs/basics.md) | [Custom charts](./docs/custom-charts.md) | [Sheetsee-maps](./docs/sheetsee-maps.md) | [Map Demo](./demos/demo-map.html) |
+|  |  |  [Sheetsee-charts](./docs/sheetsee-charts.md) | [Chart Demo](./demos/demo-chart.html) |
 
 ## Note on New Google Spreadsheets
 

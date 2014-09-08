@@ -33,11 +33,12 @@ img {width: 100%;}
 p a, a {color: #535353; text-decoration: none; padding-bottom: 0px; border-bottom: 2px #CCF4FF solid;}
 a:hover {color: #47CCFC;}
 a:active {color: #47CCFC;}
-/*a:visited {color: #333;}*/
 small {padding: 10px 0px;}
 p, ol {line-height: 1.4;}
 text {font-size: 12px;}
 
+body.index p:nth-of-type(2) {font-size: 30px;}
+body.index table {border: 4px solid #CCF4FF; padding: 18px;}
 .home-link {color: #47CCFC;}
 
 pre {word-wrap: break-word; padding: 10px; background: #F8F8F8;}

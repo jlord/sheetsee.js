@@ -38,7 +38,7 @@ glob("docs/*.md", function (err, files) {
 })
 
 function applyTemplate(html, name) {
-  var content = {content: html}
+  var content = {content: html, name: name}
   if (name === "index") {
     content.rootstyle = "."
     content.rootdoc = "docs"
