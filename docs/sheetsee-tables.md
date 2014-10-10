@@ -62,7 +62,7 @@ _CSS_
 
 ```CSS
 #Pagination {background: #eee;}
-.pagination-next, .pagination-pre {cursor: hand;}
+.pagination-next, .pagination-pre {cursor: pointer;}
 .no-pag {color: #acacac;}
 ```
 

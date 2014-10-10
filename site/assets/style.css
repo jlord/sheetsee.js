@@ -53,7 +53,7 @@ code {font-family: "Source Code Pro", monospace; font-size: 14px; line-height: 1
 
 /* Table */
 .ssExample table {min-width: 600px;}
-.tHeader::after {content: " \2193 \2191 "; font-size: 10px; padding-left: 3px; cursor: hand;}
+.tHeader::after {content: " \2193 \2191 "; font-size: 10px; padding-left: 3px; cursor: pointer;}
 
 /* Map Popup Style */
 .leaflet-popup-content h2 {margin-bottom: 4px; margin-top: auto;}
