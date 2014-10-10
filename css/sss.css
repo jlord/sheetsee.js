@@ -12,7 +12,7 @@ input {background-color: transparent; padding: 0px;}
 .tHeader::after {content: " \2193 \2191 "; font-size: 10px; padding-left: 3px;}
 .noMatches {margin-left: 20px; font-size: 11px; visibility: hidden;}
 #Pagination {background: #eee;}
-.pagination-next, .pagination-pre {cursor: hand;}
+.pagination-next, .pagination-pre {cursor: pointer;}
 .no-pag {color: #acacac;}
 
 /* Overflow for large tables and chart */
