@@ -1,6 +1,5 @@
 {
   "name": "sheetsee",
-  "version": "1.0.0",
   "main": [
     "js/sheetsee.js",
     "css/sss.css"
