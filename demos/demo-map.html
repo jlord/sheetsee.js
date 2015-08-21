@@ -78,7 +78,7 @@
                      + "<li><h4>{{placename}}</h4></li></ul>"
         var geoJSON = Sheetsee.createGeoJSON(data, optionsJSON)
         var map = Sheetsee.loadMap("map")
-        Sheetsee.addTileLayer(map, 'examples.map-20v6611k')
+        Sheetsee.addTileLayer(map, 'jllord.n7aml2bc')
         Sheetsee.addMarkerLayer(geoJSON, map, template)
       }
 
@@ -87,7 +87,7 @@
         var geojson = Sheetsee.createGeoJSON(data, opts)
         var plytemplate = "<h4>{{description}}</h4>"
         var shapesmap = Sheetsee.loadMap("shapesmap")
-        Sheetsee.addTileLayer(shapesmap, 'examples.map-20v6611k')
+        Sheetsee.addTileLayer(shapesmap, 'jllord.n7aml2bc')
         Sheetsee.addMarkerLayer(geojson, shapesmap, plytemplate)
       }
 
