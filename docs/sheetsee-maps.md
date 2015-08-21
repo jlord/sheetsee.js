@@ -82,10 +82,10 @@ var map = Sheetsee.loadMap("map")
 To add a tile layer (aka a custom map scheme/design/background) you'll use this function which takes in your **map** and the source of the **tileLayer**. This source can be a Mapbox id, a URL to a TileJSON or your own generated TileJSON. See [Mapbox's Documentation](http://mapbox.com/mapbox.js/api/v1.0.2/#L.mapbox.tileLayer) for more information.
 
 ```javascript
-Sheetsee.addTileLayer(map, 'examples.map-20v6611k')
+Sheetsee.addTileLayer(map, 'jllord.n7aml2bc')
 ```
 
-You can add tiles from awesome mapmakers like [Stamen](examples.map-20v6611k) or create your own in Mapbox's [Tilemill](http://www.mapbox.com/tilemill) or [online](https://tiles.mapbox.com/newmap#3.00/0.00/0.00).
+You can add tiles from awesome mapmakers like [Stamen](http://maps.stamen.com/#toner/12/37.7706/-122.3782) or create your own in Mapbox's [Tilemill](http://www.mapbox.com/tilemill) or [online](https://tiles.mapbox.com/newmap#3.00/0.00/0.00).
 
 ### Sheetsee.addMarkerLayer(geoJSON, map)
 
@@ -119,7 +119,7 @@ var popupTemplate = "<h4>Hello {{name}}</h4>"
                  + "<li><h4>{{placename}}</h4></li></ul>"
     var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
     var map = Sheetsee.loadMap("map")
-    Sheetsee.addTileLayer(map, 'examples.map-20v6611k')
+    Sheetsee.addTileLayer(map, 'jllord.n7aml2bc')
     var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, template)
   }
 </script>
