@@ -10886,7 +10886,7 @@ function mustachify(array) {
   return newArray
 }
 
-module.exports.addMarkerLayer = function(geoJSON, map, template) {
+module.exports.addMarkerLayer = function(geoJSON, map, template, clusterMarkers) {
   if (!template) {
     template = makePopupTemplate(geoJSON)
     ich.addTemplate(template.name, template.template)
@@ -10905,13 +10905,29 @@ module.exports.addMarkerLayer = function(geoJSON, map, template) {
     style: function(feature) { return feature.properties }
   })
   var bounds = layer.getBounds()
-  layer.addTo(map)
+
+  // check option and Leaflet extension
+  var cluster = clusterMarkers && 'MarkerClusterGroup' in L
+  if (cluster) {
+    var clusterGroup = new L.MarkerClusterGroup()
+  }
+
   map.fitBounds(bounds)
 
   layer.eachLayer(function(marker) {
     var popupContent = ich[template.name](marker.feature.opts)
     marker.bindPopup(popupContent.html(), {closeButton: false})
+    if (cluster) {
+      clusterGroup.addLayer(marker)
+    }
   })
+
+  if (cluster) {
+    map.addLayer(clusterGroup)
+  } else {
+    layer.addTo(map)
+  }
+
   return layer
 }
 
