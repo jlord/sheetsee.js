@@ -4,7 +4,7 @@
 
 A Fork-n-Go project is a project on GitHub that in a few clicks, starting with a fork, gives another user a live website that they control with an easy to swap-for-your-own Google Spreadsheet database.
 
-Two awesome things that make this possible: **Forking**, the tool on GitHub that allows you to copy a public repository onto your account, and [**GitHub Pages**](http://pages.github.com), GitHub's free web hosting service for ever repository, account and organization.
+Two awesome things that make this possible: **Forking**, the tool on GitHub that allows you to copy a public repository onto your account, and [**GitHub Pages**](http://pages.github.com), GitHub's free web hosting service for every repository, account and organization.
 
 I've built a whole other website on the idea with lots of examples: [jlord.github.io/forkngo](http://jlord.github.io/forkngo/)
 

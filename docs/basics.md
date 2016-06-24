@@ -38,11 +38,11 @@ Ignoring some HTML things to conserve space, you get the point. This is a basic 
   </head>
   <body>
   <div id="placeholder"></div>
-  
+
   <script id="placeholder" type="text/html">
     // template if you so desire!
   </script>
-  
+
   <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
         var URL = "YOURSPREADSHEETSKEYHERE"
@@ -60,7 +60,7 @@ Ignoring some HTML things to conserve space, you get the point. This is a basic 
 
 ![sheetsee](https://raw.github.com/jllord/sheetsee-cache/master/img/spreadsheettodata.png)
 
-Your Google Spreadsheet should be set up with row one as your column headers. Row two and beyond should be your data.  Each header and row becomes an oject in the final array that Tabletop.js delivers of your data.
+Your Google Spreadsheet should be set up with row one as your column headers. Row two and beyond should be your data.  Each header and row becomes an object in the final array that Tabletop.js delivers of your data.
 
 ![sheetsee](https://raw.github.com/jllord/sheetsee-cache/master/img/nonos.png)
 
