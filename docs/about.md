@@ -4,15 +4,15 @@ Sheetsee.js began as a part of my [Code for America](http://www.codeforamerica.o
 
 In early 2013, after the CfA Fellowship, I recieved a grant from [Mozilla Open News](http://opennews.org/) to pull out the sheetsee.js bits and make it a standalone open source library. That brought us to version 2.
 
-The present version makes the project modular, customizable and with more maping and table features.
+The present version makes the project modular, customizable and with more mapping and table features.
 
 ## Built on top of Tabletop.js
 Sheetsee pairs with [tabletop.js](https://github.com/jsoma/tabletop) a library that handles the messy interactions with the Google Spreadsheets API for you and returns a lovely array of your data. Every instance of Sheetsee begins with running tabletop.js. Well, actually, if you have some data on hand already in JSON format, you can use Sheetsee too :)
 
 ### Sheetsee.js + Mapbox.js + d3.js
-Once you've got the data, you're ready to Sheetsee. You can now decide if you want to map, chart or display your data in a table. Sheetsee's table module, **sheetsee-tables**, comes with sorting, filtering and pagination. Tables use [icanhaz.js](http://www.icanhazjs.com) for very mustache.js-like templating. 
+Once you've got the data, you're ready to Sheetsee. You can now decide if you want to map, chart or display your data in a table. Sheetsee's table module, **sheetsee-tables**, comes with sorting, filtering and pagination. Tables use [icanhaz.js](http://www.icanhazjs.com) for very mustache.js-like templating.
 
-**Sheetsee-maps** is built ontop of [Leaflet.js](http://leafletjs.com/) and [Mapbox.js](https://www.mapbox.com/mapbox.js/) and allows you to customize colors and popups of points, lines, polygons or multipolygons. 
+**Sheetsee-maps** is built ontop of [Leaflet.js](http://leafletjs.com/) and [Mapbox.js](https://www.mapbox.com/mapbox.js/) and allows you to customize colors and popups of points, lines, polygons or multipolygons.
 
 Finally, **Sheetee-charts** comes with three basic [d3.js](http://d3js.org) charts: bar, circle and line. It is difficult to make a chart that can suit many types of data, but it is easy to choose your own d3 chart and plug it in to sheetsee. Documentation for creating a d3 module is [here](docs/custom-chart.md).
 
