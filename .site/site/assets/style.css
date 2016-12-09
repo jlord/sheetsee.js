@@ -1,0 +1,59 @@
+.container {max-width: 800px; margin: 0 auto; overflow: auto;}
+
+h3 {padding-top: 18px;}
+h1 {font-size: 36px;}
+
+table {border-spacing: 0;}
+tbody tr:nth-child(odd) {background-color: #f3f3f3;}
+thead {text-align: left; font-family: Source Sans Pro, Arial, sans-serif;}
+td {min-width: 140px; vertical-align: top; padding: 8px;}
+td a {line-height: 24px;}
+tr {height: 50px;}
+ul, ol {text-indent: 0; margin: 0; padding-left: 20px;}
+ul li {padding-bottom: 6px; line-height: 22px;}
+
+footer {padding-top: 20px; margin-top: 60px; border-top: 4px solid #CCF4FF;  -webkit-column-count: 6; column-count: 6; -webkit-column-gap: 20px; column-gap: 20px; -moz-column-count: 6; -moz-column-gap: 20px; height: 125px;}
+footer ul {list-style: none; padding-left: 0px; font-family: Source Sans Pro, Baskerville, Georgia, serif;}
+footer li {line-height: inherit; font-size: 12px;}
+footer h4 {font-size: 14px; -webkit-column-break-before: always; break-before: always; -moz-column-break-before: always; }
+footer h4 {margin-top: 0px;}
+footer a {border: none;}
+
+.half {max-width: 50%; display: inline-block; vertical-align: top;}
+.half:nth-child(odd) {padding-left: 20px;}
+
+/* older css */
+
+body {font-family: 'Source Sans Pro'; font-size: 18px; background: #fff; color: #535353;  border: 10px #47CCFC solid; margin: 0px; padding: 20px 20px 100px 20px; overflow: auto; }
+h1, h2, h3, h4, h5, h6 {font-family: Source Sans Pro, Arial, sans-serif;}
+h2 {margin-top: 40px;}
+
+img {width: 100%;}
+hr {border: 2px solid #CCF4FF;}
+
+p a, a {color: #535353; text-decoration: none; padding-bottom: 0px; border-bottom: 2px #CCF4FF solid;}
+a:hover {color: #47CCFC;}
+a:active {color: #47CCFC;}
+small {padding: 10px 0px;}
+p, ol {line-height: 1.4;}
+text {font-size: 12px;}
+
+body.index p:nth-of-type(2) {font-size: 30px;}
+body.index table {border: 4px solid #CCF4FF; padding: 18px;}
+.home-link {color: #47CCFC;}
+
+pre {word-wrap: break-word; padding: 10px; background: #F8F8F8;}
+pre code {padding: 0;}
+code {font-family: "Source Code Pro", monospace; font-size: 14px; line-height: 1; background: #F8F8F8; color: #636363; font-weight: 400; padding: 2px 6px; border-radius: 2px;}
+.hljs { background: #F8F8F8; color: #494949; line-height: 1.4em; }
+
+/* funsies */
+::selection {background: #44FFB4;}
+::-moz-selection {background: #44FFB4;}
+
+/* Table */
+.ssExample table {min-width: 600px;}
+.tHeader::after {content: " \2193 \2191 "; font-size: 10px; padding-left: 3px; cursor: pointer;}
+
+/* Map Popup Style */
+.leaflet-popup-content h2 {margin-bottom: 4px; margin-top: auto;}

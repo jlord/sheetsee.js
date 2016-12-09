@@ -1,0 +1,25 @@
+/* General */
+
+body {margin: 0px auto;}
+a {color: #333;}
+input:focus {outline: none;}
+
+/* Table */
+
+table {text-align: left; width: 100%}
+th {padding: 10px 0px;}
+td, text {padding: 3px 20px 3px 0px; font-size: 14px;}
+.noMatches {margin-left: 20px; font-size: 11px; font-style: italic; visibility: hidden;}
+
+/* Line Chart */
+
+.axis {shape-rendering: crispEdges;}
+.x.axis .minor, .y.axis .minor {stroke-opacity: .5;}
+.x.axis {stroke-opacity: 1;}
+.y.axis line, .y.axis path {fill: none; stroke: #acacac; stroke-width: 1;}
+.bigg {-webkit-transition: all .2s ease-in-out; -webkit-transform: scale(2);}
+path.chartLine {stroke: #333; stroke-width: 3; fill: none;}
+div.tooltip {position: absolute; text-align: left; padding: 4px 8px; width: auto; font-size: 10px; height: auto; background: #fff; border: 0px; pointer-events: none;}
+circle {fill: #e6e6e6;}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 320px) and (max-width: 1024px) {}

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sheetsee.js</title>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='description' content='sheetsee.js, google, spreadsheet, visualize, data, javascript'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="shortcut icon" href="../favicon.png">
+    <script type='text/javascript' src='../js/highlight.js'></script>
+    <link rel='stylesheet' href='../assets/styles/highlight.css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900,400italic|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet' href='../assets/style.css'>
+    <link rel="shortcut icon" href=''/>
+  </head>
+  <body class="sheetsee-maps">
+    <div class="container">
+      <h1 id="sheetsee-maps">Sheetsee-maps</h1>
+<p><em><a href="../demos/demo-map.html">View Demo</a></em></p>
+<p>Sheetsee.js uses <a href="http://mapbox.com/mapbox.js">Mapbox.js</a> and <a href="http://leafletjs.com/">Leaflet.js</a> to make maps of your <strong>points</strong>, <strong>polygons</strong>, <strong>lines</strong> or <strong>multipolygons</strong> (all coordinate based). Details on what that actually looks like <a href="http://leafletjs.com/examples/geojson.html">here</a>.</p>
+<h3 id="maps-polygons-and-lines">Maps: Polygons and Lines</h3>
+<p>Sheetsee-maps now supports polygons and lines. So long as you have the correct coordinate structure in your cells, Sheetsee will add them to the geoJSON it creates for your maps. More details for coordinates of lines and polygons in geoJSON are <a href="http://leafletjs.com/examples/geojson.html">here</a>, but briefly:</p>
+<p>A linestring:</p>
+<pre><code>[-122.41722106933594, 37.7663045891584], [-122.40477561950684, 37.77695634643178]
+</code></pre><p>A polygon:</p>
+<pre><code>[-122.41790771484375, 37.740381166384914], [-122.41790771484375, 37.74520008134973], [-122.40966796874999, 37.74520008134973],[-122.40966796874999, 37.740381166384914], [-122.41790771484375, 37.740381166384914]
+</code></pre><p>A Multipolygon:</p>
+<pre><code>[[-122.431640625, 37.79106586542567], [-122.431640625, 37.797441398913286], [-122.42666244506835, 37.797441398913286],[-122.42666244506835, 37.79106586542567], [-122.431640625, 37.79106586542567]],
+[[-122.43352890014648, 37.78197638783258], [-122.43352890014648, 37.789031004883654], [-122.42443084716797, 37.789031004883654], [-122.42443084716797, 37.78197638783258], [-122.43352890014648, 37.78197638783258]]
+
+### The Parts
+
+You&#39;ll create a placeholder `&lt;div&gt;` in your HTML, CSS giving it a size and fire up a map from within `&lt;script&gt;` tags. You can also customize your popup content.
+
+## Your HTML Placeholder `&lt;div&gt;`
+
+Create an empty `&lt;div&gt;` in your HTML, with an id (name). Add CSS to give it dimensions
+
+```HTML
+&lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
+</code></pre><p><em>CSS</em></p>
+<pre><code class="lang-CSS">#map {width: 500px; height: 500px;}
+</code></pre>
+<h2 id="your-script-functions">Your <code>&lt;script&gt;</code> Functions</h2>
+<p>Next you&#39;ll need to create geoJSON out of your data so that it can be mapped.</p>
+<h3 id="sheetsee-creategeojson-data-optionsjson-">Sheetsee.createGeoJSON(data, optionsJSON)</h3>
+<p>This takes in your <strong>data</strong> and the parts of your data, <strong>optionsJSON</strong>,  that you plan on including in your map&#39;s popups. These will be column headers in your spreadsheet. If you&#39;re not going to have popups on your markers, don&#39;t worry about it then and just pass in your data (by default it will use all the row&#39;s information).</p>
+<pre><code class="lang-javascript">var optionsJSON = [&quot;name&quot;, &quot;breed&quot;, &quot;cuddlability&quot;]
+var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
+</code></pre>
+<p>It will return an <em>array</em> in the special geoJSON format that map making things love.</p>
+<pre><code class="lang-JAVASCRIPT">[{
+  &quot;geometry&quot;: {&quot;type&quot;: &quot;Point&quot;, &quot;coordinates&quot;: [long, lat]},
+  &quot;properties&quot;: {
+    &quot;marker-size&quot;: &quot;small&quot;,
+    &quot;marker-color&quot;: lineItem.hexcolor
+  },
+  &quot;opts&quot;: {},
+}}
+</code></pre>
+<h3 id="sheetsee-loadmap-mapdiv-">Sheetsee.loadMap(mapDiv)</h3>
+<p>To create a simple map, with no data, you simply call <code>.loadMap()</code> and pass in a <em>string</em> of the <strong>mapDiv</strong> (with no &#39;#&#39;) from your HTML.</p>
+<pre><code class="lang-javascript">var map = Sheetsee.loadMap(&quot;map&quot;)
+</code></pre>
+<h3 id="sheetsee-addtilelayer-map-tilelayer-">Sheetsee.addTileLayer(map, tileLayer)</h3>
+<p>To add a tile layer (aka a custom map scheme/design/background) you&#39;ll use this function which takes in your <strong>map</strong> and the source of the <strong>tileLayer</strong>. This source can be a Mapbox id, a URL to a TileJSON or your own generated TileJSON. See <a href="http://mapbox.com/mapbox.js/api/v1.0.2/#L.mapbox.tileLayer">Mapbox&#39;s Documentation</a> for more information.</p>
+<pre><code class="lang-javascript">Sheetsee.addTileLayer(map, &#39;jllord.n7aml2bc&#39;)
+</code></pre>
+<p>You can add tiles from awesome mapmakers like <a href="http://maps.stamen.com/#toner/12/37.7706/-122.3782">Stamen</a> or create your own in Mapbox&#39;s <a href="http://www.mapbox.com/tilemill">Tilemill</a> or <a href="https://tiles.mapbox.com/newmap#3.00/0.00/0.00">online</a>.</p>
+<h3 id="sheetsee-addmarkerlayer-geojson-map-">Sheetsee.addMarkerLayer(geoJSON, map)</h3>
+<p>To add makers, lines or shapes to your map, use this function and pass in your <strong>geoJSON</strong> so that it can get the coordinates and your <strong>map</strong> so that it places the markers there. You can customize what the content in your marker&#39;s popup looks like with a <strong>popupTemplate</strong>, which is an ICanHaz.js template in HTML and can reference the column headers you included in your optionsJSON.</p>
+<pre><code class="lang-javascript">var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, popupTemplate)
+</code></pre>
+<p>Example template:</p>
+<pre><code class="lang-javascript">var popupTemplate = &quot;&lt;h4&gt;Hello {{name}}&lt;/h4&gt;&quot;
+</code></pre>
+<h4 id="source-from-the-map-demo-https-github-com-jlord-sheetsee-js-blob-master-demos-demo-map-html-">Source from the <a href="https://github.com/jlord/sheetsee.js/blob/master/demos/demo-map.html">map demo</a>:</h4>
+<pre><code class="lang-JavaScript">&lt;script type=&quot;text/javascript&quot;&gt;
+  document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
+    var gData
+    var URL = &quot;0Ao5u1U6KYND7dGN5QngweVJUWE16bTRob0d2a3dCbnc&quot;
+    Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } )
+  })
+
+  function showInfo(data) {
+    gData = data
+    var optionsJSON = [&quot;placename&quot;, &quot;photo-url&quot;]
+    var template = &quot;&lt;ul&gt;&lt;li&gt;&lt;a href=&#39;{{photo-url}}&#39; target=&#39;_blank&#39;&gt;&quot;
+                 + &quot;&lt;img src=&#39;{{photo-url}}&#39;&gt;&lt;/a&gt;&lt;/li&gt;&quot;
+                 + &quot;&lt;li&gt;&lt;h4&gt;{{placename}}&lt;/h4&gt;&lt;/li&gt;&lt;/ul&gt;&quot;
+    var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
+    var map = Sheetsee.loadMap(&quot;map&quot;)
+    Sheetsee.addTileLayer(map, &#39;jllord.n7aml2bc&#39;)
+    var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, template)
+  }
+&lt;/script&gt;
+</code></pre>
+
+
+      <footer>
+        <h4 id="getting-started">Getting Started</h4>
+        <ul>
+        <li><a href="./about.html">About Sheetsee</a></li>
+        <li><a href="./building.html">Building Sheetsee</a></li>
+        <li><a href="./basics.html">Basics</a></li>
+        </ul>
+        <h4 id="ideas">Ideas</h4>
+        <ul>
+        <li><a href="./fork-n-go.html">Fork-n-Go</a></li>
+        <li><a href="./tips.html">Tips!</a></li>
+        <li><a href="./custom-charts.html">Custom charts</a></li>
+        </ul>
+        <h4>Demos</h4>
+        <ul>
+        <li><a href="../demos/demo-table.html">Table Demo</a></li>
+        <li><a href="../demos/demo-map.html">Map Demo</a></li>
+        <li><a href="../demos/demo-chart.html">Chart Demo</a></li>
+        </ul>
+        <h4 id="use">Use</h4>
+        <ul>
+        <li><a href="./sheetsee-core.html">Sheetsee-core</a></li>
+        <li><a href="./sheetsee-tables.html">Sheetsee-tables</a></li>
+        <li><a href="./sheetsee-maps.html">Sheetsee-maps</a></li>
+        <li><a href="./sheetsee-charts.html">Sheetsee-charts</a></li>
+        </ul>
+        <h4 id="use">Contact</h4>
+        <ul>
+        <li><a href="http://www.twitter.com/jllord">@jllord</a></li>
+        <li><a href="https://github.com/jlord/sheetsee.js/issues/new">File an issue</a></li>
+        </ul>
+        <h4><a class="home-link" href="http://jlord.github.io/sheetsee.js">Home Page</a></h4>
+      </footer>
+    </div>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
