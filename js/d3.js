@@ -5877,7 +5877,7 @@
     return d3_layout_hierarchyRebind(treemap, hierarchy);
   };
   d3.csv = d3_dsv(",", "text/csv");
-  d3.tsv = d3_dsv("	", "text/tab-separated-values");
+  d3.tsv = d3_dsv(" ", "text/tab-separated-values");
   d3.geo = {};
   var d3_geo_radians = Math.PI / 180;
   d3.geo.azimuthal = function() {
