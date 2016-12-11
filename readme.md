@@ -21,7 +21,7 @@ Google Spreadsheets can be used as simple and collaborative databases, they make
 
 ## In the Wild
 
-What can you make with **Sheetsee.js**? Lots of things, here are some examples:
+What can you make with **Sheetsee.js**? Lost of things, here are some examples:
 
 - [Hack-Spots](http://jlord.github.io/hack-spots)
 - [Combine with IFTTT](http://jlord.us/blog/your-own-instagram.html)
