@@ -1,0 +1,42 @@
+{
+  "name": "sheetsee.js",
+  "version": "0.0.0",
+  "description": "sheetsee.js documentation",
+  "main": "buildpage.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "build": "node buildpage.js",
+    "copy-site": "cp -r ./site ./.site",
+    "git-co": "git checkout gh-pages && git reset --hard origin/gh-pages",
+    "paste-site": "cp -r ./.guide/* . && rm -rf ./.guide",
+    "git-stage": "npm run copy-site && npm run git-co && npm run paste-site",
+    "git-commit": "git add -A . && git commit -a -m 'gh-pages update'",
+    "git-push": "git push origin gh-pages --force && git checkout master",
+    "deploy": "npm run git-stage && npm run git-commit && npm run git-push"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jlord/sheetsee.js.git"
+  },
+  "keywords": [
+    "spreadsheet",
+    "data",
+    "visualize",
+    "google"
+  ],
+  "author": "jlord",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/jlord/sheetsee.js/issues"
+  },
+  "dependencies": {
+    "glob": "~3.2.8",
+    "marked": "~0.3.1",
+    "handlebars": "~1.3.0",
+    "mkdirp": "~0.3.5",
+    "path": "~0.4.9",
+    "cpr": "~0.1.1"
+  }
+}
