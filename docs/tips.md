@@ -44,7 +44,7 @@ So, if you have information in your spreadsheet that would go inside a query str
 
 The basic elements are: a spreadsheet with address info + HTML template to create the query string.
 
-The Sheetsee [Hack-Spots](jlord.github.io/hack-spots) is an does such a thing. Here is the spreadsheet, with address information
+The Sheetsee [Hack-Spots](jlord.github.io/hack-spots) is an example that does such a thing. Here is the spreadsheet, with address information:
 
 ![img](http://jlord.s3.amazonaws.com/wp-content/uploads/Screen-Shot-2013-09-15-at-6.49.19-PM.png)
 
