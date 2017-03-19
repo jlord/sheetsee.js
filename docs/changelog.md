@@ -1,6 +1,6 @@
-### Sheetsee v3
+### March 2017 Sheetsee v4
 
-## May 10, 2014
+## May 10, 2014, Sheetsee v3
 ### Better Table Template Options
 
 Updated `sheetsee-tables` to allow you to re-use a template (rather than duplicating it for each different table you wanted to create). Previously it assumed your HTML table `div` id matched your script template `id`. This means that you can pass in an extra key/value pair in your table options into `Sheetsee.maketable()`. The new pair it takes is: `"templateID" : "yourtemplateid"`. Example below, full `sheetsee-tables` documentation [here](docs/sheetsee-tables.html).
