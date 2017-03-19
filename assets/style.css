@@ -24,13 +24,14 @@ footer a {border: none;}
 
 /* older css */
 
-body {font-family: 'Source Sans Pro'; font-size: 18px; background: #fff; color: #535353;  border: 10px #47CCFC solid; margin: 0px; padding: 20px 20px 100px 20px; overflow: auto; }
+body {font-family: 'Source Sans Pro'; background: #fff; color: #535353;  border: 10px #47CCFC solid; margin: 0px; padding: 20px 20px 100px 20px; overflow: auto; }
 h1, h2, h3, h4, h5, h6 {font-family: Source Sans Pro, Arial, sans-serif;}
 h2 {margin-top: 40px;}
 
 img {width: 100%;}
 hr {border: 2px solid #CCF4FF;}
 
+p {font-size: 18px;}
 p a, a {color: #535353; text-decoration: none; padding-bottom: 0px; border-bottom: 2px #CCF4FF solid;}
 a:hover {color: #47CCFC;}
 a:active {color: #47CCFC;}
@@ -44,8 +45,9 @@ body.index table {border: 4px solid #CCF4FF; padding: 18px;}
 
 pre {word-wrap: break-word; padding: 10px; background: #F8F8F8;}
 pre code {padding: 0;}
-code {font-family: "Source Code Pro", monospace; font-size: 14px; line-height: 1; background: #F8F8F8; color: #636363; font-weight: 400; padding: 2px 6px; border-radius: 2px;}
-.hljs { background: #F8F8F8; color: #494949; line-height: 1.4em; }
+code {font-family: "Source Code Pro", monospace; line-height: 1; font-size: 14px; background: #F8F8F8; color: #636363; font-weight: 400; padding: 2px 6px; border-radius: 2px;}
+h3 code {font-weight: bold; background: #CCF4FF; font-size: 19px;}
+.hljs {background: #F8F8F8; color: #494949; line-height: 1.4em;}
 
 /* funsies */
 ::selection {background: #44FFB4;}
