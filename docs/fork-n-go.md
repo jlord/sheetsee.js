@@ -6,14 +6,14 @@ A Fork-n-Go project is a project on GitHub that in a few clicks, starting with a
 
 Two awesome things that make this possible: **Forking**, the tool on GitHub that allows you to copy a public repository onto your account, and [**GitHub Pages**](http://pages.github.com), GitHub's free web hosting service for every repository, account and organization.
 
-I've built a whole other website on the idea with lots of examples: [jlord.github.io/forkngo](http://jlord.github.io/forkngo/)
+I've built a whole other website on the idea with lots of examples: [jlord.github.io/forkngo](http://jlord.github.io/forkngo)
 
 ---
 ## How
 
-To have a website for a repository hosted by GitHub Pages all you need is a branch named `gh-pages`. GitHub will then look in that branch for web files and serve them up at the address.
+To have a website for a repository hosted by GitHub Pages all you need is to have webfiles uploaded and to tell GitHub the name of the branch you want it to host (in your repository's settings).
 
-So Sheetsee.js projects, hosted on `gh-pages` branches on GitHub, can easily be forked and connected to another spreadsheet giving another user a live website of their own—with data they control—really easily.
+So Sheetsee.js projects, hosted on GitHub, can easily be forked and connected to another spreadsheet giving another user a live website of their own—with data they control—really easily.
 
 ## Example
 
