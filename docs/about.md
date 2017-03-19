@@ -14,7 +14,7 @@ Sheetsee comes into play after you use [Tabletop.js](https://github.com/jsoma/ta
 
 ### Mustache, Leaflet
 
-Sheetsee uses the [Mustache.js](https://mustache.github.io)library for templates in `sheetsee-tables` and map popups in `sheetsee-maps`. The maps are generated using the [Leaflet.js](http://leafletjs.com) library.
+Sheetsee uses the [Mustache.js](https://mustache.github.io) library for templates in `sheetsee-tables` and map popups in `sheetsee-maps`. The maps are generated using the [Leaflet.js](http://leafletjs.com) library.
 
 ## Hacked on Openly
 - Sheetsee.js is open source software with a [BSD license](docs/license.md).
