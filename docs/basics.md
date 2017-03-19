@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded',    function() {
 6. Define the function that [Tabletop.js](https://github.com/jsoma/tabletop) calls when it returns with the data. This function will contain all the Sheetsee.js methods you want to use.
 
 ```JS
-function callback(data) {
+function callback (data) {
     // All the Sheetsee things you want to do!
 }
 ```
@@ -45,11 +45,11 @@ Ignoring some HTML things to conserve space, you get the point. This is a basic 
   </script>
 
   <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function() {
-        var URL = "YOURSPREADSHEETSKEYHERE"
+    document.addEventListener('DOMContentLoaded', function () {
+        var URL = 'YOURSPREADSHEETSKEYHERE'
         Tabletop.init( { key: URL, callback: myData, simpleSheet: true } )
     })
-    function myData(data) {
+    function myData (data) {
         All the sheetsee things you want to do!
     }
   </script>

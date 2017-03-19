@@ -1,5 +1,12 @@
 ### March 2017 Sheetsee v4
 
+sheetsee-core changes
+
+Methods for charts have been removed:
+- `Sheetsee.makeColorArrayOfObject(data, colors)`
+- `Sheetsee.addUnitsLabels(arrayObj, oldLabel, oldUnits)`
+
+
 ## May 10, 2014, Sheetsee v3
 ### Better Table Template Options
 

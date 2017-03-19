@@ -1,8 +1,8 @@
 # About
 
-Sheetsee.js began as a part of my [Code for America](http://www.codeforamerica.org) 2012 Fellowship project. The original idea was to make a way for cities to easily publish and maintain budget data themselves. Originally, the JavaScript was part of a WordPress theme that could be connected to a spreadsheet, allowing new pages to be created with charts, maps and tables automatically generated from the data.
+Sheetsee.js began as a part of a [Code for America](http://www.codeforamerica.org) 2012 Fellowship project. The original idea was to make a way for cities to easily publish and maintain budget data themselves. Originally, the JavaScript was part of a WordPress theme that could be connected to a spreadsheet, allowing new pages to be created with charts, maps and tables automatically generated from the data.
 
-In early 2013, after the CfA Fellowship, I received a grant from [Mozilla Open News](http://opennews.org) to pull out the JavaScript bits and make it a standalone open source library: sheetsee.js.
+In early 2013, after the CfA Fellowship and through a grant from [Mozilla Open News](http://opennews.org), the JavaScript bits were pulled out to make it a standalone open source library: sheetsee.js.
 
 Since then there have been a few updates to the library but it was not until 2017 when Sheetsee got it's next major upgrade.
 
