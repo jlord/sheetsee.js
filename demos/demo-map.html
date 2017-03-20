@@ -4,20 +4,17 @@
     <meta charset='utf-8'>
     <title>Sheetsee Maps Demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900,400italic|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
     <link rel="shortcut icon" href="../favicon.png">
-    <script type='text/javascript' src='../js/tabletop1.3.4.js'></script>
-    <script type='text/javascript' src='../js/sheetsee.js'></script>
-    <link rel='stylesheet' type='text/css' href='http://api.tiles.mapbox.com/mapbox.js/v1.0.0/mapbox.css'  />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+    <script type='text/javascript' src='../js/temp-maps.js'></script>
     <link rel='stylesheet' type='text/css' href='../assets/style.css'>
   </head>
   <style>
-    #map, #shapesmap {max-width: 800px; height: 500px;}
-    .leaflet-popup-content li {list-style:none;}
+    #map {width: 800px; height: 500px; background: #CCF4FF;}
     .leaflet-popup-content {width: 102px;}
     .leaflet-popup-content img {width: 100px;}
-    a {border: none;}
   </style>
   <body>
     <div class="container">
@@ -25,9 +22,6 @@
       <p><em><a href="https://docs.google.com/a/github.com/spreadsheet/ccc?key=0Ao5u1U6KYND7dGN5QngweVJUWE16bTRob0d2a3dCbnc&usp=drive_web#gid=0" target="_blank">spreadsheet</a></em><p>
       <div id="map"></div>
       <p><em><a onClick='window.location="view-source:" + window.location.href'>View Source</a> // <a href="../docs/sheetsee-maps.html">View Documentation</a></em></p>
-      <h2>Using linestrings, polygons and multipolygons</h2>
-      <div id="shapesmap"></div>
-      <p><em><a onClick='window.location="view-source:" + window.location.href'>View Source</a> // <a href="https://docs.google.com/spreadsheets/d/1jOz6yFY5nIDre5RYtVROYPgIbkgh9lIddsyXo0-79_0/edit?usp=drive_web" target="_blank">View Spreadsheet</a></em></p>
 
       <footer>
         <h4 id="getting-started">Getting Started</h4>
@@ -40,13 +34,11 @@
         <ul>
           <li><a href="../docs/fork-n-go.html">Fork-n-Go</a></li>
           <li><a href="../docs/tips.html">Tips!</a></li>
-          <li><a href="../docs/custom-charts.html">Custom charts</a></li>
         </ul>
         <h4>Demos</h4>
         <ul>
           <li><a href="./demo-table.html">Table Demo</a></li>
           <li><a href="./demo-map.html">Map Demo</a></li>
-          <li><a href="./demo-chart.html">Chart Demo</a></li>
         </ul>
         <h4 id="use">Use</h4>
         <ul>
@@ -62,35 +54,26 @@
         </ul>
         <h4><a class="home-link" href="http://jlord.github.io/sheetsee.js">Home Page</a></h4>
       </footer>
+    </div>
 
     <script type="text/javascript">
       document.addEventListener('DOMContentLoaded', function() {
-        var URL = "0Ao5u1U6KYND7dGN5QngweVJUWE16bTRob0d2a3dCbnc"
-        var URL2 = "1jOz6yFY5nIDre5RYtVROYPgIbkgh9lIddsyXo0-79_0"
-        Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } )
-        Tabletop.init( { key: URL2, callback: shapesMap, simpleSheet: true } )
+        var URL = '0Ao5u1U6KYND7dGN5QngweVJUWE16bTRob0d2a3dCbnc'
+        Tabletop.init({key: URL, callback: showInfo, simpleSheet: true})
       })
 
-      function showInfo(data) {
-        var optionsJSON = ["placename", "photo-url"]
-        var template = "<ul><li><a href='{{photo-url}}' target='_blank'>"
-                     + "<img src='{{photo-url}}'></a></li>"
-                     + "<li><h4>{{placename}}</h4></li></ul>"
-        var geoJSON = Sheetsee.createGeoJSON(data, optionsJSON)
-        var map = Sheetsee.loadMap("map")
-        Sheetsee.addTileLayer(map, 'jllord.n7aml2bc')
-        Sheetsee.addMarkerLayer(geoJSON, map, template)
+      function showInfo (data) {
+        console.log(data)
+        var popup = "<a href='{{PhotoUrl}}' target='_blank'>"
+          + "<img src='{{PhotoUrl}}'></a><h4>{{PlaceName}}</h4>"
+        var mapOptions = {
+          data: data,
+          mapDiv: 'map',
+          geoJSONincludes: ['PlaceName', 'PhotoUrl'],
+          template: popup
+        }
+        Sheetsee.loadMap(mapOptions)
       }
-
-      function shapesMap(data) {
-        var opts = ['description']
-        var geojson = Sheetsee.createGeoJSON(data, opts)
-        var plytemplate = "<h4>{{description}}</h4>"
-        var shapesmap = Sheetsee.loadMap("shapesmap")
-        Sheetsee.addTileLayer(shapesmap, 'jllord.n7aml2bc')
-        Sheetsee.addMarkerLayer(geojson, shapesmap, plytemplate)
-      }
-
     </script>
   </body>
 </html>
