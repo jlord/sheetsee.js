@@ -6,7 +6,7 @@ Here are partially set up projects to get you going!
 
 <img src="../img/glitch.png" style="width: 100px;">
 
-The [spreadsheet.glitch.me](https://spreadsheet.glitch.me) site will give you an endpoint to use that will return your spreadsheet to you as JSON. The [sheetseetemplate.glitch.me](https://sheetseetemplate.glitch.me) site provides template to get started with Sheetsee; it's already set up with a server so that your data is backed up.
+The [spreadsheet.glitch.me](https://spreadsheet.glitch.me) site will give you an endpoint to use that will return your spreadsheet to you as JSON. The [sheetsee.glitch.me](https://sheetsee.glitch.me) site provides template to get started with Sheetsee; it's already set up with a server so that your data is backed up.
 
 ## Fork-n-Go
 
