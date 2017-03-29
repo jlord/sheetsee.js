@@ -1,11 +1,11 @@
 # Tips
 
-A few things to think about beyond charts, maps and tables.
+A few things to think about beyond maps and tables.
 
-## ICanHaz.js
+## Mustache
 
-You can use templates for more than just tables. Use them to create lists `ol`, `ul`; array of images... You'll need a placeholder `<div>` in your HTML, a `<script>` for your template and a script to call ICanHaz from your Tabletop.js callback. For a live example, see the bottom photo grid of the [sheetsee-table demo](../demos/demo-table.html).
-  
+You can use templates for more than just tables. Use them to create lists `ol`, `ul`; array of images... You'll need a placeholder `<div>` in your HTML, a `<script>` for your template. In your Tabletop.js callback use Mustache to pass your data into the template and add it to the DOM.
+
 _HTML_
 
 ```HTML
@@ -15,7 +15,7 @@ _HTML_
 _Template_
 
 ```JavaScript
-<script id="divID" type="text/html">
+<script id="divID_template" type="text/html">
   {{#rows}}
     <div><img class="photo" src="{{some-variable}}"></div>
   {{/rows}}
@@ -26,19 +26,26 @@ _Script_
 
 ```JavaScript
 <script type="text/html">
-  // your other Sheetsee.js, Tabletop code above
-  var html = Sheetsee.ich.divID({'rows': data})
-  $('#divID').html(html)
+  document.addEventListener('DOMContentLoaded', function() {
+    var URL = 'YOURSPREADSHEETSKEYHERE'
+    Tabletop.init({key: URL, callback: showData, simpleSheet: true})
+  })
+
+  function showData (data) {
+    var template = document.querySelector('divID_template').innerHTML
+    var html = Sheetsee.Mustache.render(template, {'rows': data})
+    document.getElementByID('divID').innerHTML = html
+  }
 </script>
 ```
 
-_non-table example output_
+_non-table example_
 
 ![lib](http://jlord.s3.amazonaws.com/wp-content/uploads/lending-ss.png)
 
 ## Query Strings
 
-If your spreadsheet contains address information, using templates (Sheetsee.js uses a form of Mustache), you can embed those elements into a query string (aka a search URL) like Google Maps URL or Yelp. If you search for a location in Google Maps, you'll notice it creates a URL for that search.
+If your spreadsheet contains address information, using templates (Sheetsee uses Mustache.js), you can embed those elements into a query string (aka a search URL) like Google Maps URL or Yelp. If you search for a location in Google Maps, you'll notice it creates a URL for that search.
 
 So, if you have information in your spreadsheet that would go inside a query string, make a template for inserting them into a link on your page.
 
@@ -54,9 +61,8 @@ In the HTML template for the table on the [Hack-Spots](jlord.github.io/hack-spot
 <a class="button" href="https://maps.google.com/maps?q={{address}},{{city}},{{state}}" target="_blank">View in Google Maps</a>
 <a class="button" href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Find on Yelp</a>
 ```
-Here is the exact line of code on GitHub.
 
-We’re inserting the address, city, and state details from the spreadsheet into the structure of a query string for Google maps and Yelp. You can figure out the query string of a service by just using it (type in an address in Google Maps) and looking at the resulting URL.
+Above we're inserting the address, city, and state details from the spreadsheet into the structure of a query string for Google maps and Yelp. You can figure out the query string of a service by just using it (type in an address in Google Maps) and looking at the resulting URL.
 
 With a some CSS and such, the resulting website has a table with the hack spots and a button for viewing in Google Maps or Yelp:
 
