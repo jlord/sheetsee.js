@@ -16,11 +16,15 @@
   <body class="sheetsee-maps">
     <div class="container">
       <h1 id="sheetsee-maps">sheetsee-maps</h1>
-<p>see: <a href="http://jlord.github.io/sheetsee.js">jlord.github.io/sheetsee.js</a>
-demo: <a href="http://jlord.github.io/sheetsee.js/demos/demo-map.html">maps</a></p>
 <p>Sheetsee uses this module to handle maps in your projects. This module uses (and includes) <a href="http://leafletjs.com">Leaflet.js</a> to make maps of your <strong>points</strong>, <strong>polygons</strong>, <strong>lines</strong> or <strong>multipolygons</strong> (all coordinate based). Details on what that actually looks like <a href="http://leafletjs.com/examples/geojson.html">here</a>. It uses (and includes) <a href="https://mustache.github.io">Mustache.js</a> templates for marker popups.</p>
+<p>You&#39;ll need to include Leaflet&#39;s map CSS in your HTML&#39;s head:</p>
+<pre><code class="lang-html">&lt;head&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/leaflet@1.0.3/dist/leaflet.css&quot; /&gt;
+&lt;/head&gt;
+</code></pre>
 <h2 id="maps-polygons-and-lines">Maps: Polygons and Lines</h2>
 <p>Sheetsee-maps supports polygons and lines; so long as you have the correct coordinate structure in your cells. More details for coordinates of lines and polygons in geoJSON are <a href="http://leafletjs.com/examples/geojson.html">here</a>, but briefly:</p>
+<p><strong>Must use lowercase spreadsheet column headers: &#39;lat&#39; and &#39;long&#39;.</strong></p>
 <p><strong>A linestring:</strong></p>
 <pre><code class="lang-text">[-122.41722106933594, 37.7663045891584], [-122.40477561950684, 37.77695634643178]
 </code></pre>
@@ -48,13 +52,14 @@ demo: <a href="http://jlord.github.io/sheetsee.js/demos/demo-map.html">maps</a><
 var geoJSON = Sheetsee.createGeoJSON(data, optionsJSON)
 </code></pre>
 <p>It will return an <em>array</em> in the special <a href="http://geojson.org">geoJSON format</a> that map making things love.</p>
-<h3 id="-sheetsee-loadmap-mapoptions-"><code>Sheetsee.loadMap(mapOptions)</code></h3>
+<h3 id="-sheetsee-loadmap-options-"><code>Sheetsee.loadMap(options)</code></h3>
+<p>This method will generate a map for you on the page (it also generates the geoJSON for the map).</p>
 <ul>
-<li><strong>object</strong> <strong>required</strong> <em>object</em><ul>
+<li><strong>options</strong>  <em>object</em> <strong>required</strong><ul>
 <li><code>data</code> your spreadsheet data array <strong>required</strong></li>
 <li><code>mapDiv</code> the <code>id</code> of the <code>div</code> in your HTML to contain the map <strong>required</strong></li>
 <li><code>geoJSONincludes</code> array of strings of column headers to include in popups</li>
-<li><code>template</code> HTML/<a href="https://mustache.github.io/">Mustache</a> template for popups</li>
+<li><code>template</code> HTML/<a href="https://mustache.github.io">Mustache</a> template for popups</li>
 <li><code>cluster</code> a true/false boolean, do you want your markers clustered</li>
 <li><code>hexcolor</code> pick one color for your markers</li>
 </ul>
@@ -68,11 +73,13 @@ var geoJSON = Sheetsee.createGeoJSON(data, optionsJSON)
   cluster: true, // optional
   hexcolor: &#39;#e91e63&#39; // optional
 }
-
-var map = Sheetsee.loadMap(&quot;map&quot;)
+Sheetsee.loadMap(mapOptions)
 </code></pre>
+<p><strong>Breaking Changes</strong> The latest version of Sheetsee replaces three methods (&#39;loadMap&#39;, &#39;addTileLayer&#39;, &#39;addMarkerLayer&#39;) with one <code>loadMap</code> which takes in an object of map options.</p>
 <h4 id="marker-colors">Marker colors</h4>
-<p>If you create a column title <code>hexcolor</code> in your spreadsheet and fill each cell with hex color codes, those will be used to color your markers. If you define a color in <code>hexcolors</code> in the options you pass to your map it will override colors in the spreadsheet data.</p>
+<p>If you create a column title <code>hexcolor</code> in your spreadsheet and fill each cell with hex color codes, those will be used to color your markers. If you define a color for <code>hexcolor</code> in the options you pass to your map it will override colors in the spreadsheet data.</p>
+<p><em><a href="http://jlord.us/sheetsee.js/demos/demo-maps.html">View Demo</a></em>
+<em><a href="http://jlord.us/sheetsee.js">Visit Site</a></em></p>
 
 
       <footer>

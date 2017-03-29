@@ -1,13 +1,20 @@
 # sheetsee-maps
 
-see: [jlord.github.io/sheetsee.js](http://jlord.github.io/sheetsee.js)
-demo: [maps](http://jlord.github.io/sheetsee.js/demos/demo-map.html)
-
 Sheetsee uses this module to handle maps in your projects. This module uses (and includes) [Leaflet.js](http://leafletjs.com) to make maps of your **points**, **polygons**, **lines** or **multipolygons** (all coordinate based). Details on what that actually looks like [here](http://leafletjs.com/examples/geojson.html). It uses (and includes) [Mustache.js](https://mustache.github.io) templates for marker popups.
+
+You'll need to include Leaflet's map CSS in your HTML's head:
+
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+</head>
+```
 
 ## Maps: Polygons and Lines
 
 Sheetsee-maps supports polygons and lines; so long as you have the correct coordinate structure in your cells. More details for coordinates of lines and polygons in geoJSON are [here](http://leafletjs.com/examples/geojson.html), but briefly:
+
+**Must use lowercase spreadsheet column headers: 'lat' and 'long'.**
 
 **A linestring:**
 
@@ -56,13 +63,15 @@ var geoJSON = Sheetsee.createGeoJSON(data, optionsJSON)
 
 It will return an _array_ in the special [geoJSON format](http://geojson.org) that map making things love.
 
-### `Sheetsee.loadMap(mapOptions)`
+### `Sheetsee.loadMap(options)`
 
-- **object** **required** _object_
+This method will generate a map for you on the page (it also generates the geoJSON for the map).
+
+- **options**  _object_ **required**
   - `data` your spreadsheet data array **required**
   - `mapDiv` the `id` of the `div` in your HTML to contain the map **required**
   - `geoJSONincludes` array of strings of column headers to include in popups
-  - `template` HTML/[Mustache](https://mustache.github.io/) template for popups
+  - `template` HTML/[Mustache](https://mustache.github.io) template for popups
   - `cluster` a true/false boolean, do you want your markers clustered
   - `hexcolor` pick one color for your markers
 
@@ -75,10 +84,14 @@ var mapOptions = {
   cluster: true, // optional
   hexcolor: '#e91e63' // optional
 }
-
-var map = Sheetsee.loadMap("map")
+Sheetsee.loadMap(mapOptions)
 ```
+
+**Breaking Changes** The latest version of Sheetsee replaces three methods ('loadMap', 'addTileLayer', 'addMarkerLayer') with one `loadMap` which takes in an object of map options.
 
 #### Marker colors
 
-If you create a column title `hexcolor` in your spreadsheet and fill each cell with hex color codes, those will be used to color your markers. If you define a color in `hexcolors` in the options you pass to your map it will override colors in the spreadsheet data.
+If you create a column title `hexcolor` in your spreadsheet and fill each cell with hex color codes, those will be used to color your markers. If you define a color for `hexcolor` in the options you pass to your map it will override colors in the spreadsheet data.
+
+_[View Demo](http://jlord.us/sheetsee.js/demos/demo-maps.html)_
+_[Visit Site](http://jlord.us/sheetsee.js)_
