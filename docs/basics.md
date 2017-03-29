@@ -4,24 +4,28 @@ Spreadsheets are a great _lightweight_ databases. Google Spreadsheets in particu
 
 ## The Short & Sweet
 
-1. Link to Sheetsee.js and [Tabletop.js](https://github.com/jsoma/tabletop) in your HTML head.
-2. Link to sheetsee's default stylesheet, `sss.css`.
-3. Create a place holder `<div>`, with `id`, in your HTML the map or table you want.
-4. Create templates for tables in `<script>` tags with an `id` matching the `<div>` plus `_template`.
-5. Inside of another `<script>` tag initialize [Tabletop.js](https://github.com/jsoma/tabletop). Once it fetches your spreadsheet data, pass it onto Sheetsee.
+- Link to Sheetsee.js and [Tabletop.js](https://github.com/jsoma/tabletop) in your HTML head.
+- Link to sheetsee's default stylesheet, `sss.css`.
+- Create a place holder `<div>`, with `id`, in your HTML the map or table you want.
+- Create templates for tables in `<script>` tags with an `id` matching the `<div>` plus `_template`.
+- Inside of another `<script>` tag initialize [Tabletop.js](https://github.com/jsoma/tabletop). Once it fetches your spreadsheet data, pass it onto Sheetsee.
+
 ```JS
 document.addEventListener('DOMContentLoaded', function() {
   var URL = 'YOURSPREADSHEETSKEYHERE'
   Tabletop.init({key: URL, callback: callback, simpleSheet: true})
 })
 ```
-6. Define the function that [Tabletop.js](https://github.com/jsoma/tabletop) calls when it returns with the data. This function will contain all the Sheetsee.js methods you want to use.
+
+- Define the function that [Tabletop.js](https://github.com/jsoma/tabletop) calls when it returns with the data. This function will contain all the Sheetsee.js methods you want to use.
+
 ```JS
 function callback (data) {
   // All the Sheetsee things you want to do!
 }
 ```
-7. Set it and forget. Now all you need to do is edit the spreadsheet and visitors will get the latest information every time they load the page.
+
+- Set it and forget. Now all you need to do is edit the spreadsheet and visitors will get the latest information every time they load the page.
 
 ## Bare Minimum Setup
 

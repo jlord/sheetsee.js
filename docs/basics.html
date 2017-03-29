@@ -18,24 +18,28 @@
       <h1 id="spreadsheets-as-databases">Spreadsheets as Databases</h1>
 <p>Spreadsheets are a great <em>lightweight</em> databases. Google Spreadsheets in particular are easy to work with and share, making this unlike most traditional database setups. That being said, traditional databases are great for bigger, more secure jobs. If you&#39;re storing lots and lots and lots of information, or storing sensitive or complex information—the spreadsheet is not for you. But if you&#39;re working on small to medium sized personal or community projects, try a spreadsheet!</p>
 <h2 id="the-short-sweet">The Short &amp; Sweet</h2>
-<ol>
+<ul>
 <li>Link to Sheetsee.js and <a href="https://github.com/jsoma/tabletop">Tabletop.js</a> in your HTML head.</li>
 <li>Link to sheetsee&#39;s default stylesheet, <code>sss.css</code>.</li>
 <li>Create a place holder <code>&lt;div&gt;</code>, with <code>id</code>, in your HTML the map or table you want.</li>
 <li>Create templates for tables in <code>&lt;script&gt;</code> tags with an <code>id</code> matching the <code>&lt;div&gt;</code> plus <code>_template</code>.</li>
-<li>Inside of another <code>&lt;script&gt;</code> tag initialize <a href="https://github.com/jsoma/tabletop">Tabletop.js</a>. Once it fetches your spreadsheet data, pass it onto Sheetsee.<pre><code class="lang-JS">document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
-var URL = &#39;YOURSPREADSHEETSKEYHERE&#39;
-Tabletop.init({key: URL, callback: callback, simpleSheet: true})
+<li>Inside of another <code>&lt;script&gt;</code> tag initialize <a href="https://github.com/jsoma/tabletop">Tabletop.js</a>. Once it fetches your spreadsheet data, pass it onto Sheetsee.</li>
+</ul>
+<pre><code class="lang-JS">document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
+  var URL = &#39;YOURSPREADSHEETSKEYHERE&#39;
+  Tabletop.init({key: URL, callback: callback, simpleSheet: true})
 })
 </code></pre>
-</li>
-<li>Define the function that <a href="https://github.com/jsoma/tabletop">Tabletop.js</a> calls when it returns with the data. This function will contain all the Sheetsee.js methods you want to use.<pre><code class="lang-JS">function callback (data) {
-// All the Sheetsee things you want to do!
+<ul>
+<li>Define the function that <a href="https://github.com/jsoma/tabletop">Tabletop.js</a> calls when it returns with the data. This function will contain all the Sheetsee.js methods you want to use.</li>
+</ul>
+<pre><code class="lang-JS">function callback (data) {
+  // All the Sheetsee things you want to do!
 }
 </code></pre>
-</li>
+<ul>
 <li>Set it and forget. Now all you need to do is edit the spreadsheet and visitors will get the latest information every time they load the page.</li>
-</ol>
+</ul>
 <h2 id="bare-minimum-setup">Bare Minimum Setup</h2>
 <p>Ignoring some HTML things to conserve space, you get the point. This is a basic setup:</p>
 <pre><code class="lang-HTML">&lt;html&gt;
