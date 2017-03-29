@@ -22,6 +22,14 @@ footer a {border: none;}
 .half {max-width: 50%; display: inline-block; vertical-align: top;}
 .half:nth-child(odd) {padding-left: 20px;}
 
+img[alt=sheetseeimg] {
+  width: 400px;
+  margin: 0 auto;
+}
+
+p:first-of-type {
+  text-align: center;
+}
 /* older css */
 
 body {font-family: 'Source Sans Pro'; background: #fff; color: #535353;  border: 10px #47CCFC solid; margin: 0px; padding: 20px 20px 100px 20px; overflow: auto; }
@@ -48,6 +56,17 @@ pre code {padding: 0;}
 code {font-family: "Source Code Pro", monospace; line-height: 1; font-size: 14px; background: #F8F8F8; color: #636363; font-weight: 400; padding: 2px 6px; border-radius: 2px;}
 h3 code {font-weight: bold; background: #CCF4FF; font-size: 19px;}
 .hljs {background: #F8F8F8; color: #494949; line-height: 1.4em;}
+
+.new-news {
+  color: #47CCFC;
+  font-size: 30px;
+  font-weight: bold;
+  border: 8px solid #47CCFC;
+  /*border-radius: 3px;*/
+  display: inline-block;
+  padding: 6px 16px;
+  margin-top: 40px;
+}
 
 /* funsies */
 ::selection {background: #44FFB4;}
