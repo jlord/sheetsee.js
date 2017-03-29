@@ -27,7 +27,7 @@ img[alt=sheetseeimg] {
   margin: 0 auto;
 }
 
-p:first-of-type {
+.index p:first-of-type {
   text-align: center;
 }
 /* older css */

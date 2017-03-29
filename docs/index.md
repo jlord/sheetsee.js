@@ -19,13 +19,11 @@ Each of Sheetsee's functions are divided into modules. Use just the parts you ne
 | **sheetsee-tables** | Contains everything you'll need to create a table including sortable columns, pagination and search.| [Doc](./docs/sheetsee-tables.md) |
 | **sheetsee-maps**   | For making maps with your point, line or polygon spreadsheet data. Built with Leaflet.js.              | [Doc](./docs/sheetsee-maps.md)   |
 
-<hr>
-
 <div class="new-news">New News!</div>
 
-## Get your Spreadsheet as JSON or Try Sheetsee out with Glitch!
+## Get your Spreadsheet as JSON or Try Sheetsee with Glitch!
 
-The [spreadsheet.glitch.me](https://spreadsheet.glitch.me) site will give you an endpoint to use that will return your spreadsheet to you as JSON. The [sheetsee.glitch.me](https://sheetsee.glitch.me) site provides template to get started from with Sheetsee already set up on a server so that your data is backed up.
+The [spreadsheet.glitch.me](https://spreadsheet.glitch.me) site will give you an endpoint to use that will return your spreadsheet to you as JSON. The [sheetseetemplate.glitch.me](https://sheetseetemplate.glitch.me) site provides template to get started with Sheetsee; it's already set up with a server so that your data is backed up.
 
 ### Or fork a site!
 
@@ -43,6 +41,6 @@ More resources on using Sheetsee:
 
 | Getting Started | Ideas | Use | Demos |
 | --- | --- | --- | --- |
-| [About Sheetsee.js](./docs/about.md) | [Fork-n-Go](./docs/fork-n-go.md) | [Sheetsee-core](./docs/sheetsee-core.md) | [Table Demo](./demos/demo-table.html) |
+| [About Sheetsee.js](./docs/about.md) | [Templates](./docs/templates.md) | [Sheetsee-core](./docs/sheetsee-core.md) | [Table Demo](./demos/demo-table.html) |
 | [Building Sheetsee](./docs/building.md) | [Tips!](./docs/tips.md) | [Sheetsee-tables](./docs/sheetsee-tables.md) | [Table Demo](./demos/demo-table.html) |
 | [Basics](./docs/basics.md) | [Custom charts](./docs/custom-charts.md) | [Sheetsee-maps](./docs/sheetsee-maps.md) | [Map Demo](./demos/demo-map.html) |
