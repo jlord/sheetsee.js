@@ -1,12 +1,12 @@
 # sheetsee-tables
 
-Sheetsee uses this module to make tables. With this module you can create tables of your spreadsheet data that are sortable, searchable and paginate-able.
+Sheetsee,js uses this module to make tables. With this module you can create tables with your spreadsheet data that are sortable, searchable and paginate-able.
 
-You'll need a placeholder `<div>` in your html, a `<script>` [mustache](https://mustache.github.io) template and a `<script>` that initiates the table.
+You'll need a placeholder `<div>` in your html, a `<script>` with a [Mustache.js](https://mustache.github.io) template and a `<script>` that tells Sheetsee to build the table.
 
 ## Your HTML Placeholder
 
-This is as simple as an empty `<div>` with an id.
+This is as simple as an empty `<div>` with an `id`.
 
 ## Your Template
 
@@ -20,22 +20,28 @@ If you want users to be able to click on headers and sort that column, your temp
 
 You can then style `.tHeader` in your CSS to make them look how you want.
 
+**You must also make the inner text of your table headers have the same capitalization as in your spreadsheet. It's ok to have spaces in your table header but don't use spaces in your spreadsheet headers.**
+
+- Spreadsheet column name: 'PlaceName'
+  - OK table header: 'Place Name'
+  - Not OK table header:  'PLACENAME', 'placename'
+
 ## Your Script
 
 You'll want to set your table options and pass them into `Sheetsee.makeTable()`. If you want to add a search/filter, pass your options into `Sheetsee.initiateTableFilter()`.
 
 ## Methods
 
-Functions for you to use! There are just two :tada:
+Functions for you to use! There are just two, woo!
 
 ### `Sheetsee.makeTable(tableOptions)`
 
 You pass in an object containing:
 
-- `data` _array_ your data from Tabletop.js
+- `data` _array_ your data from Tabletop.js **required**
 - `pagination` _number_ how many rows displayed at one time, defaults to all
-- `tableDiv` _string_ the `<div>` `id` placeholder in your HTML, includes the hash `#`
-- `filterDiv` _string_ the `<div>` `id` containing your `<input>` filter if using search, includes the hash `#`
+- `tableDiv` _string_ the `<div>` `id` placeholder in your HTML, includes the hash `#` **required**
+- `filterDiv` _string_ the `<div>` `id` containing your `<input>` filter if using search, includes the hash `#` **required if using filter**
 - `templateID` _string_ the `id` of your `<script>` tag with the template, defaults to assume it's the same as `tableDiv` + `_template`.
 
 ```javascript
@@ -44,7 +50,7 @@ var tableOptions = {
   "pagination": 10,
   "tableDiv": "#fullTable",
   "filterDiv": "#fullTableFilter",
-  "templateID": "fullTable"
+  "templateID": "fullTable_template"
 }
 Sheetsee.makeTable(tableOptions)
 ```
@@ -73,22 +79,17 @@ _CSS_
 
 ### `Sheetsee.initiateTableFilter(tableOptions)`
 
-If you want to have an input to allow users to search/filter the data in the table, you'll add an input to your HTML. Give it an id and if you want add placeholder text:
+If you want to have an input to allow users to search/filter the data in the table, you'll add an input to your HTML. Give it an id and if you want add placeholder text. You'll also need to add a 'clear' button using the `.clear` CSS class.
 
 ```javascript
 <input id="tableFilter" type="text" placeholder="filter by.."></input>
+<a href="#" class=".clear">Clear</a>
 ```
 
 Then you'll pass your `tableOptions` object into this method:
 
 ```javascript
 Sheetsee.initiateTableFilter(tableOptions)
-```
-
-You should also add a 'clear' button using the `.clear` CSS class.
-
-```HTML
-<a href="#" class=".clear">Clear</a>
 ```
 
 ## Example
@@ -123,10 +124,13 @@ _JavaScript_
       "pagination": 10,
       "tableDiv": "#siteTable",
       "filterDiv": "#siteTableFilter",
-      "templateID": "tableTemplate"
+      "templateID": "siteTable_template"
     }
     Sheetsee.makeTable(tableOptions)
     Sheetsee.initiateTableFilter(tableOptions)
   })
 </script>
 ```
+
+_[View Demo](http://jlord.us/sheetsee.js/demos/demo-table.html)_
+_[Visit Site](http://jlord.us/sheetsee.js)_
