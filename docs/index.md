@@ -25,13 +25,13 @@ Each of Sheetsee's functions are divided into modules. Use just the parts you ne
 
 The [spreadsheet.glitch.me](https://spreadsheet.glitch.me) site will give you an endpoint to use that will return your spreadsheet to you as JSON. The [sheetsee.glitch.me](https://sheetsee.glitch.me) site provides template to get started with Sheetsee; it's already set up with a server so that your data is backed up.
 
-### Or fork a site!
+### Or Fork a Site!
 
-There are site templates hooked up to Sheetsee that are ready to be forked on GitHub and used by you, check out the [Fork-n-go site](https://jlord.us/forkngo).
+There are site templates hooked up to Sheetsee that are ready to be forked on GitHub and used by you, check out the [Fork-n-go site](http://jlord.us/forkngo).
 
 ## Sheetsee Updates
 
-Sheetsee has just been re-written and there are some breaking changes. Also some nice ones, like dependencies removed. See the [Changelog]() for details.
+Sheetsee has just been re-written and there are some breaking changes. Also some nice ones, like dependencies removed. The API for maps with Sheetsee have changed, [see the docs](https://github.com/jlord/sheetsee-maps#sheetseeloadmapoptions).
 
 <hr>
 
@@ -39,8 +39,8 @@ Sheetsee has just been re-written and there are some breaking changes. Also some
 
 More resources on using Sheetsee:
 
-| Getting Started | Ideas | Use | Demos |
+| Getting Started | Ideas | Demos | Use |
 | --- | --- | --- | --- |
-| [About Sheetsee.js](./docs/about.md) | [Templates](./docs/templates.md) | [Sheetsee-core](./docs/sheetsee-core.md) | [Table Demo](./demos/demo-table.html) |
-| [Building Sheetsee](./docs/building.md) | [Tips!](./docs/tips.md) | [Sheetsee-tables](./docs/sheetsee-tables.md) | [Table Demo](./demos/demo-table.html) |
-| [Basics](./docs/basics.md) | [Custom charts](./docs/custom-charts.md) | [Sheetsee-maps](./docs/sheetsee-maps.md) | [Map Demo](./demos/demo-map.html) |
+| [About Sheetsee](./docs/about.md) | [Templates](./docs/templates.md) | [Table Demo](./demos/demo-table.html) | [Sheetsee-core](./docs/sheetsee-core.md) |
+| [Building Sheetsee](./docs/building.md) | [Tips!](./docs/tips.md) |  [Map Demo](./demos/demo-map.html) | [Sheetsee-tables](./docs/sheetsee-tables.md) |
+| [Basics](./docs/basics.md) | | | [Sheetsee-maps](./docs/sheetsee-maps.md) |
