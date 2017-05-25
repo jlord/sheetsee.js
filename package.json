@@ -1,0 +1,36 @@
+{
+  "name": "sheetsee.js",
+  "version": "0.0.0",
+  "description": "sheetsee.js documentation",
+  "main": "scripts/buildpage.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "build": "node scripts/buildpage.js",
+    "clear": "node scripts/clear.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jlord/sheetsee.js.git"
+  },
+  "keywords": [
+    "spreadsheet",
+    "data",
+    "visualize",
+    "google"
+  ],
+  "author": "jlord",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/jlord/sheetsee.js/issues"
+  },
+  "dependencies": {
+    "glob": "~3.2.8",
+    "marked": "~0.3.1",
+    "mustache": "^2.3.0",
+    "path": "~0.4.9"
+  },
+  "devDependencies": {
+  }
+}

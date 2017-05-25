@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sheetsee.js</title>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='description' content='sheetsee.js, google, spreadsheet, visualize, data, javascript'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="shortcut icon" href="../favicon.png">
+    <script type='text/javascript' src='../assets/highlight.js'></script>
+    <link rel='stylesheet' href='../assets/highlight.css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900,400italic|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet' href='../assets/style.css'>
+    <link rel="shortcut icon" href=''/>
+  </head>
+  <body class="sheetsee-maps">
+    <div class="container">
+      <h1 id="sheetsee-maps">sheetsee-maps</h1>
+<p>Sheetsee uses this module to handle maps in your projects. This module uses (and includes) <a href="http://leafletjs.com">Leaflet.js</a> to make maps of your <strong>points</strong>, <strong>polygons</strong>, <strong>lines</strong> or <strong>multipolygons</strong> (all coordinate based). Details on what that actually looks like <a href="http://leafletjs.com/examples/geojson.html">here</a>. It uses (and includes) <a href="https://mustache.github.io">Mustache.js</a> templates for marker popups.</p>
+<p>You&#39;ll need to include Leaflet&#39;s map CSS in your HTML&#39;s head:</p>
+<pre><code class="lang-html">&lt;head&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/leaflet@1.0.3/dist/leaflet.css&quot; /&gt;
+&lt;/head&gt;
+</code></pre>
+<h2 id="maps-polygons-and-lines">Maps: Polygons and Lines</h2>
+<p>Sheetsee-maps supports polygons and lines; so long as you have the correct coordinate structure in your cells. More details for coordinates of lines and polygons in geoJSON are <a href="http://leafletjs.com/examples/geojson.html">here</a>, but briefly:</p>
+<p><strong>Must use lowercase spreadsheet column headers: &#39;lat&#39; and &#39;long&#39;.</strong></p>
+<p><strong>A linestring:</strong></p>
+<pre><code class="lang-text">[-122.41722106933594, 37.7663045891584], [-122.40477561950684, 37.77695634643178]
+</code></pre>
+<p><strong>A polygon:</strong></p>
+<pre><code class="lang-text">[-122.41790771484375, 37.740381166384914], [-122.41790771484375, 37.74520008134973], [-122.40966796874999, 37.74520008134973],[-122.40966796874999, 37.740381166384914], [-122.41790771484375, 37.740381166384914]
+</code></pre>
+<p><strong>A Multipolygon:</strong></p>
+<pre><code class="lang-text">[[-122.431640625, 37.79106586542567], [-122.431640625, 37.797441398913286], [-122.42666244506835, 37.797441398913286],[-122.42666244506835, 37.79106586542567], [-122.431640625, 37.79106586542567]],
+[[-122.43352890014648, 37.78197638783258], [-122.43352890014648, 37.789031004883654], [-122.42443084716797, 37.789031004883654], [-122.42443084716797, 37.78197638783258], [-122.43352890014648, 37.78197638783258]]
+</code></pre>
+<h2 id="to-use">To Use</h2>
+<p>This module is used as a part of <a href="http://jlord.us/sheetsee.js">Sheetsee.js</a>. You can download the <a href="https://github.com/jlord/sheetsee.js/blob/master/js/sheetsee.js">full version</a> or build your own with a <a href="https://github.com/jlord/sheetsee">command line tool</a>.</p>
+<p>You&#39;ll create a little bit of HTML and then some JavaScript in your HTML to use this. You can customize marker color, popup content and enable/disable clustering in your map.</p>
+<h2 id="methods">Methods</h2>
+<p>Here are the functions you can use!</p>
+<h3 id="-sheetsee-creategeojson-data-optionsjson-"><code>Sheetsee.createGeoJSON(data, optionsJSON)</code></h3>
+<ul>
+<li><strong>data</strong> <em>JSON array</em> of data</li>
+<li><strong>optionsJSON</strong> <em>array</em> of strings, spreadsheet column title</li>
+</ul>
+<p>If you&#39;d like to just generate geoJSON from a spreadsheet you can use this method.</p>
+<p>This takes in your spreadsheet <strong>data</strong> in JSON format (which you can get with <a href="">Tabletop.js</a>)and the parts of your data, <strong>optionsJSON</strong>,  that you plan on including in your map&#39;s popups. These will be column headers in your spreadsheet in an array of strings.</p>
+<p>If you&#39;re not going to have popups on your markers, don&#39;t worry about it then and just pass in your data (by default it will use all the row&#39;s information).</p>
+<pre><code class="lang-javascript">var optionsJSON = [&#39;name&#39;, &#39;breed&#39;, &#39;cuddlability&#39;]
+var geoJSON = Sheetsee.createGeoJSON(data, optionsJSON)
+</code></pre>
+<p>It will return an <em>array</em> in the special <a href="http://geojson.org">geoJSON format</a> that map making things love.</p>
+<h3 id="-sheetsee-loadmap-options-"><code>Sheetsee.loadMap(options)</code></h3>
+<p>This method will generate a map for you on the page (it also generates the geoJSON for the map).</p>
+<ul>
+<li><strong>options</strong>  <em>object</em> <strong>required</strong><ul>
+<li><code>data</code> your spreadsheet data array <strong>required</strong></li>
+<li><code>mapDiv</code> the <code>id</code> of the <code>div</code> in your HTML to contain the map <strong>required</strong></li>
+<li><code>geoJSONincludes</code> array of strings of column headers to include in popups</li>
+<li><code>template</code> HTML/<a href="https://mustache.github.io">Mustache</a> template for popups</li>
+<li><code>cluster</code> a true/false boolean, do you want your markers clustered</li>
+<li><code>hexcolor</code> pick one color for your markers</li>
+</ul>
+</li>
+</ul>
+<pre><code class="lang-js">var mapOptions = {
+  data: data, // required
+  mapDiv: &#39;map&#39;, //required
+  geoJSONincludes: [&#39;Name&#39;, &#39;Animal&#39;, &#39;Rating&#39;], // optional
+  template: &#39;&lt;p&gt;{{Name}}—{{Animal}}—{{Rating}}&lt;/p&gt;&#39;, // optional
+  cluster: true, // optional
+  hexcolor: &#39;#e91e63&#39; // optional
+}
+Sheetsee.loadMap(mapOptions)
+</code></pre>
+<p><strong>Breaking Changes</strong> The latest version of Sheetsee replaces three methods (&#39;loadMap&#39;, &#39;addTileLayer&#39;, &#39;addMarkerLayer&#39;) with one <code>loadMap</code> which takes in an object of map options.</p>
+<h4 id="marker-colors">Marker colors</h4>
+<p>If you create a column title <code>hexcolor</code> in your spreadsheet and fill each cell with hex color codes, those will be used to color your markers. If you define a color for <code>hexcolor</code> in the options you pass to your map it will override colors in the spreadsheet data.</p>
+<p><em><a href="http://jlord.us/sheetsee.js/demos/demo-maps.html">View Demo</a></em>
+<em><a href="http://jlord.us/sheetsee.js">Visit Site</a></em></p>
+
+
+      <footer>
+        <h4 id="getting-started">Getting Started</h4>
+        <ul>
+        <li><a href="./about.html">About Sheetsee</a></li>
+        <li><a href="./building.html">Building Sheetsee</a></li>
+        <li><a href="./basics.html">Basics</a></li>
+        </ul>
+        <h4 id="ideas">Ideas</h4>
+        <ul>
+        <li><a href="./templates.html">Templates</a></li>
+        <li><a href="./tips.html">Tips!</a></li>
+        </ul>
+        <h4>Demos</h4>
+        <ul>
+        <li><a href="../demos/demo-table.html">Table Demo</a></li>
+        <li><a href="../demos/demo-map.html">Map Demo</a></li>
+        </ul>
+        <h4 id="use">Use</h4>
+        <ul>
+        <li><a href="./sheetsee-core.html">Sheetsee-core</a></li>
+        <li><a href="./sheetsee-tables.html">Sheetsee-tables</a></li>
+        <li><a href="./sheetsee-maps.html">Sheetsee-maps</a></li>
+        </ul>
+        <h4 id="use">Contact</h4>
+        <ul>
+        <li><a href="http://www.twitter.com/jllord">@jllord</a></li>
+        <li><a href="https://github.com/jlord/sheetsee.js/issues/new">File an issue</a></li>
+        </ul>
+        <h4><a class="home-link" href="../index.html">Home</a></h4>
+      </footer>
+    </div>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

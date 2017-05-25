@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sheetsee.js</title>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='description' content='sheetsee.js, google, spreadsheet, visualize, data, javascript'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="shortcut icon" href="../favicon.png">
+    <script type='text/javascript' src='../assets/highlight.js'></script>
+    <link rel='stylesheet' href='../assets/highlight.css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900,400italic|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet' href='../assets/style.css'>
+    <link rel="shortcut icon" href=''/>
+  </head>
+  <body class="sheetsee-tables">
+    <div class="container">
+      <h1 id="sheetsee-tables">sheetsee-tables</h1>
+<p>Sheetsee,js uses this module to make tables. With this module you can create tables with your spreadsheet data that are sortable, searchable and paginate-able.</p>
+<p>You&#39;ll need a placeholder <code>&lt;div&gt;</code> in your html, a <code>&lt;script&gt;</code> with a <a href="https://mustache.github.io">Mustache.js</a> template and a <code>&lt;script&gt;</code> that tells Sheetsee to build the table.</p>
+<h2 id="your-html-placeholder">Your HTML Placeholder</h2>
+<p>This is as simple as an empty <code>&lt;div&gt;</code> with an <code>id</code>.</p>
+<h2 id="your-template">Your Template</h2>
+<p>Your template is the mockup of what you&#39;d like your table to look like and what content it should show. The style is up to you! It is a <a href="https://mustache.github.io">mustache</a> template inside of <code>&lt;script&gt;</code> tags.</p>
+<p><strong>The <code>id</code> of the template should be the same as the HTML placeholder it corresponds to but with &quot;_template&quot; on the end.</strong></p>
+<h3 id="sorting">Sorting</h3>
+<p>If you want users to be able to click on headers and sort that column, your template must include table headers with the class <code>tHeader</code>.</p>
+<p>You can then style <code>.tHeader</code> in your CSS to make them look how you want.</p>
+<p><strong>You must also make the inner text of your table headers have the same capitalization as in your spreadsheet. It&#39;s ok to have spaces in your table header but don&#39;t use spaces in your spreadsheet headers.</strong></p>
+<ul>
+<li>Spreadsheet column name: &#39;PlaceName&#39;<ul>
+<li>OK table header: &#39;Place Name&#39;</li>
+<li>Not OK table header:  &#39;PLACENAME&#39;, &#39;placename&#39;</li>
+</ul>
+</li>
+</ul>
+<h2 id="your-script">Your Script</h2>
+<p>You&#39;ll want to set your table options and pass them into <code>Sheetsee.makeTable()</code>. If you want to add a search/filter, pass your options into <code>Sheetsee.initiateTableFilter()</code>.</p>
+<h2 id="methods">Methods</h2>
+<p>Functions for you to use! There are just two, woo!</p>
+<h3 id="-sheetsee-maketable-tableoptions-"><code>Sheetsee.makeTable(tableOptions)</code></h3>
+<p>You pass in an object containing:</p>
+<ul>
+<li><code>data</code> <em>array</em> your data from Tabletop.js <strong>required</strong></li>
+<li><code>pagination</code> <em>number</em> how many rows displayed at one time, defaults to all</li>
+<li><code>tableDiv</code> <em>string</em> the <code>&lt;div&gt;</code> <code>id</code> placeholder in your HTML, includes the hash <code>#</code> <strong>required</strong></li>
+<li><code>filterDiv</code> <em>string</em> the <code>&lt;div&gt;</code> <code>id</code> containing your <code>&lt;input&gt;</code> filter if using search, includes the hash <code>#</code> <strong>required if using filter</strong></li>
+<li><code>templateID</code> <em>string</em> the <code>id</code> of your <code>&lt;script&gt;</code> tag with the template, defaults to assume it&#39;s the same as <code>tableDiv</code> + <code>_template</code>.</li>
+</ul>
+<pre><code class="lang-javascript">var tableOptions = {
+  &quot;data&quot;: data,
+  &quot;pagination&quot;: 10,
+  &quot;tableDiv&quot;: &quot;#fullTable&quot;,
+  &quot;filterDiv&quot;: &quot;#fullTableFilter&quot;,
+  &quot;templateID&quot;: &quot;fullTable_template&quot;
+}
+Sheetsee.makeTable(tableOptions)
+</code></pre>
+<h4 id="pagination">Pagination</h4>
+<p>If you do not put in a number for pagination, by default it will show all of the data at once. With pagination, HTML will be added at the bottom of your table for navigation, which you can style in your CSS:</p>
+<p><em>HTML</em></p>
+<pre><code class="lang-HTML">&lt;div id=&#39;Pagination&#39; currentPage class=&#39;table-pagination&#39;&gt;
+  Showing page {{currentPage}} of {{totalPages}}
+  &lt;a class=&#39;pagination-pre&#39;&gt;Previous&lt;/a&gt;&lt;a class=&#39;pagination-next&#39;&gt;Next&lt;/a&gt;
+&lt;/div&gt;
+</code></pre>
+<p><em>CSS</em></p>
+<pre><code class="lang-CSS">#Pagination {}
+.pagination-next {}
+.pagination-pre {}
+.no-pag {}
+</code></pre>
+<h3 id="-sheetsee-initiatetablefilter-tableoptions-"><code>Sheetsee.initiateTableFilter(tableOptions)</code></h3>
+<p>If you want to have an input to allow users to search/filter the data in the table, you&#39;ll add an input to your HTML. Give it an id and if you want add placeholder text. You&#39;ll also need to add a &#39;clear&#39; button using the <code>.clear</code> CSS class.</p>
+<pre><code class="lang-javascript">&lt;input id=&quot;tableFilter&quot; type=&quot;text&quot; placeholder=&quot;filter by..&quot;&gt;&lt;/input&gt;
+&lt;a href=&quot;#&quot; class=&quot;.clear&quot;&gt;Clear&lt;/a&gt;
+</code></pre>
+<p>Then you&#39;ll pass your <code>tableOptions</code> object into this method:</p>
+<pre><code class="lang-javascript">Sheetsee.initiateTableFilter(tableOptions)
+</code></pre>
+<h2 id="example">Example</h2>
+<p><em>HTML</em></p>
+<pre><code class="lang-HTML">&lt;input id=&quot;siteTableFilter&quot; type=&quot;text&quot;&gt;&lt;/input&gt;&lt;a href=&quot;#&quot; class=&quot;.clear&quot;&gt;Clear&lt;/a&gt;
+&lt;div id=&quot;siteTable&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p><em>Template</em></p>
+<pre><code class="lang-JavaScript">&lt;script id=&quot;tableTemplate&quot; type=&quot;text/html&quot;&gt;
+    &lt;table&gt;
+    &lt;tr&gt;&lt;th class=&quot;tHeader&quot;&gt;City&lt;/th&gt;&lt;th class=&quot;tHeader&quot;&gt;Place Name&lt;/th&gt;&lt;th class=&quot;tHeader&quot;&gt;Year&lt;/th&gt;&lt;th class=&quot;tHeader&quot;&gt;Image&lt;/th&gt;&lt;/tr&gt;
+      {{#rows}}
+        &lt;tr&gt;&lt;td&gt;{{city}}&lt;/td&gt;&lt;td&gt;{{placename}}&lt;/td&gt;&lt;td&gt;{{year}}&lt;/td&gt;&lt;td&gt;{{image}}&lt;/td&gt;&lt;/tr&gt;
+      {{/rows}}
+  &lt;/table&gt;
+&lt;/script&gt;
+</code></pre>
+<p><em>JavaScript</em></p>
+<pre><code class="lang-javascript">&lt;script type=&quot;text/javascript&quot;&gt;
+  document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
+    var tableOptions = {
+      &quot;data&quot;: data,
+      &quot;pagination&quot;: 10,
+      &quot;tableDiv&quot;: &quot;#siteTable&quot;,
+      &quot;filterDiv&quot;: &quot;#siteTableFilter&quot;,
+      &quot;templateID&quot;: &quot;siteTable_template&quot;
+    }
+    Sheetsee.makeTable(tableOptions)
+    Sheetsee.initiateTableFilter(tableOptions)
+  })
+&lt;/script&gt;
+</code></pre>
+<p><em><a href="http://jlord.us/sheetsee.js/demos/demo-table.html">View Demo</a></em>
+<em><a href="http://jlord.us/sheetsee.js">Visit Site</a></em></p>
+
+
+      <footer>
+        <h4 id="getting-started">Getting Started</h4>
+        <ul>
+        <li><a href="./about.html">About Sheetsee</a></li>
+        <li><a href="./building.html">Building Sheetsee</a></li>
+        <li><a href="./basics.html">Basics</a></li>
+        </ul>
+        <h4 id="ideas">Ideas</h4>
+        <ul>
+        <li><a href="./templates.html">Templates</a></li>
+        <li><a href="./tips.html">Tips!</a></li>
+        </ul>
+        <h4>Demos</h4>
+        <ul>
+        <li><a href="../demos/demo-table.html">Table Demo</a></li>
+        <li><a href="../demos/demo-map.html">Map Demo</a></li>
+        </ul>
+        <h4 id="use">Use</h4>
+        <ul>
+        <li><a href="./sheetsee-core.html">Sheetsee-core</a></li>
+        <li><a href="./sheetsee-tables.html">Sheetsee-tables</a></li>
+        <li><a href="./sheetsee-maps.html">Sheetsee-maps</a></li>
+        </ul>
+        <h4 id="use">Contact</h4>
+        <ul>
+        <li><a href="http://www.twitter.com/jllord">@jllord</a></li>
+        <li><a href="https://github.com/jlord/sheetsee.js/issues/new">File an issue</a></li>
+        </ul>
+        <h4><a class="home-link" href="../index.html">Home</a></h4>
+      </footer>
+    </div>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
