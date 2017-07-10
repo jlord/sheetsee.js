@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 ![sheetseeimg](img/next-sheetsee.png)
 
 ### Sheetsee.js is a client-side library for connecting Google Spreadsheets to a website and visualizing the information with tables and charts.
@@ -17,3 +18,10 @@
 | `sheetsee-core`   | **Included in every build**. Has helpful working-with-your-data functions.           | [jlord/sheetsee-core](https://github.com/jlord/sheetsee-core)   |
 | `sheetsee-tables` | Contains everything you'll need to create a table including sortable columns, pagination and search. Uses Mustache.js templating.| [jlord/sheetsee-tables](https://github.com/jlord/sheetsee-tables) |
 | `sheetsee-maps`   | For making maps with your point, line or polygon spreadsheet data. Uses Leaflet.js and Mustache.js.              | [jlord/sheetsee-maps](https://github.com/jlord/sheetsee-maps)   |
+=======
+![sheetsee](https://raw.github.com/jllord/sheetsee-cache/master/img/sheetsee-03.png)
+
+These are the files for [jllord.github.io/sheetsee.js](jllord.github.io/sheetsee.js), the example and documentation website for [Sheetsee.js](http://www.github.com/jllord/sheetsee.js).
+
+[License BSD!](https://github.com/jllord/sheetsee.js/blob/gh-pages/license.md)
+>>>>>>> origin/v2-gh-pages
