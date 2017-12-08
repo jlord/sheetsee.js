@@ -1,52 +1,19 @@
-# Updates! Updates! 
 
- I'm building the changes to sheetsee.js. Through a Knight-Mozilla Open News Grant I'll be making lots of improvements and working with WBEZ to make a sheetssee awesome. Newness will include: stripping it of all CfA project-specific idiosyncrasies and making it really easy to understand and stand up, more out of the box vizualization options, sortable tables of data, data caching and documentation galore!
+![sheetseeimg](https://raw.github.com/jlord/sheetsee-cache/master/img/sheetsee-03.png)
 
- This branch will remain for now and branch `twoOh` will eventually have the new client-side version on it. I'm also working on a server-side version which, for now is here: [github.com/jllord/sheetsee-cache](http://github.com/jllord/sheetsee-cache).
+### Sheetsee.js is a client-side library for connecting Google Spreadsheets to a website and visualizing the information with tables and charts.
 
- Woo!
+---
 
-# Hi!
+**This repository is for the [project website](http://jlord.github.io/sheetsee.js) and provides a [compiled version sheetsee.js](./js/sheetsee.js).** Use the compiled version if you want _all_ of what is available in Sheetsee. If you want just the parts that you're going to use in your project and nothing more, you can [build a custom version](./docs/building.md).
 
-Sheetsee.js is a javascript library mashup that allows you to fill a website with content from a Google Spreadsheet. The web content and visualizations will update with every auto save by Google. That's cool. No pushing or uploading changes. 
+**Each part of Sheetsee has its own repository and issues should be opened there.** General issues/pull requests for the site are OK here.
 
-It was created and is the intregal part of my Code for America project, [See Penny Work](http://www.seepennywork.in). This is a tool-kit for cities to easily visualize budgets and manage the data through a Google Spreadsheet (open data!). Check out the [illustrated readme](http://www.github.com/codeforamerica/wp-splost) for that project to get a sense of the potential. 
+### Repositories for Sheetsee Components
 
-Because it was created for my CfA project, it's really customized to that project's needs  but I hope to be generalizing it soon. There is all kinds of stuff you can do once you have data in a Google Spreadsheet. I'm also using it on my own website [here](http://www.jlord.us/dashboard).
-
-![diagram](https://raw.github.com/jllord/sheetsee.js/master/images/sheetsee_diagram.png)
-
-### Set it and forget it. 
-
-Once you've hooked up your spreadsheet and your website through sheetsee.js, all you'll need to interact with is the spreadsheet. Think of it as a super simple CMS. 
-
-You can view a working sample of the bits in action at [jllord.github.com/sheetsee.js/](http://jllord.github.com/sheetsee.js/)
-
-## The bits
-
-It all starts with [tabletop.js](http://builtbybalance.com/Tabletop/). With that you can pile on any other library to style and visualize your data. 
-
-You can feed [d3.js](http://d3js.org/) the data it needs to make charts. 
-
-You can feed [leaflet.js](http://leaflet.cloudmade.com/) the data it needs to make maps.
-
-Use [mustache.js](http://mustache.github.com/) to create templates for the data in your spreadsheet.
-
-
-## More on how to set it up
-
-For now, check out the [readme](http://www.github.com/codeforamerica/wp-splost) for my CfA project which talks about the set up. 
-
-## License 
-
-This repo is BSD Licensed, read more in [license.md](https://github.com/jllord/sheetsee.js/blob/master/license.md).
-
-# Updates
-
-### 4 Oct 2012
-
-I may have done some funky merging, but things appear to be ok. 
-
-### 25 Nov 2012 
-
-I've made many changes in sheetsee.js while developing it's parent project (the CfA project mentioned in this readme) and haven't refelcted that in this separate repo - until now! Fresh update with sheetsee.js the way it is in the larger project.
+| Component              | Description                                                                                            | Repo                         |
+| ------------------- | --------------------------------------------------------------------------------------------------- | ---------------------------- |
+| `sheetsee`   | Command line module for building a custom version of Sheetsee.           | [jlord/sheetsee](https://github.com/jlord/sheetsee)   |
+| `sheetsee-core`   | **Included in every build**. Has helpful working-with-your-data functions.           | [jlord/sheetsee-core](https://github.com/jlord/sheetsee-core)   |
+| `sheetsee-tables` | Contains everything you'll need to create a table including sortable columns, pagination and search. Uses Mustache.js templating.| [jlord/sheetsee-tables](https://github.com/jlord/sheetsee-tables) |
+| `sheetsee-maps`   | For making maps with your point, line or polygon spreadsheet data. Uses Leaflet.js and Mustache.js.              | [jlord/sheetsee-maps](https://github.com/jlord/sheetsee-maps)   |

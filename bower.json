@@ -1,0 +1,25 @@
+{
+  "name": "sheetsee",
+  "main": [
+    "js/sheetsee.js",
+    "css/sss.css"
+  ],
+  "ignore": [
+    "contributing.md",
+    "docs",
+    "demos",
+    "img",
+    "site"
+  ],
+  "homepage": "http://jlord.github.io/sheetsee.js",
+  "description": "Sheetsee.js is a library for easily creating tables, charts and maps from spreadsheet data.",
+  "keywords": [
+    "spreadsheet",
+    "tables",
+    "maps"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.9.0",
+    "tabletop": ">= 1.3.5"
+  }
+}
