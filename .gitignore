@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 .DS_Store
 node_modules/
+=======
+node_modules
+>>>>>>> origin/v2-gh-pages
