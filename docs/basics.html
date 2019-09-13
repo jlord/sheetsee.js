@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sheetsee.js</title>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='description' content='sheetsee.js, google, spreadsheet, visualize, data, javascript'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="shortcut icon" href="../favicon.png">
+    <script type='text/javascript' src='../assets/highlight.js'></script>
+    <link rel='stylesheet' href='../assets/highlight.css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900,400italic|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet' href='../assets/style.css'>
+    <link rel="shortcut icon" href=''/>
+  </head>
+  <body class="basics">
+    <div class="container">
+      <h1 id="spreadsheets-as-databases">Spreadsheets as Databases</h1>
+<p>Spreadsheets are a great <em>lightweight</em> databases. Google Spreadsheets in particular are easy to work with and share, making this unlike most traditional database setups. That being said, traditional databases are great for bigger, more secure jobs. If you&#39;re storing lots and lots and lots of information, or storing sensitive or complex information—the spreadsheet is not for you. But if you&#39;re working on small to medium sized personal or community projects, try a spreadsheet!</p>
+<h2 id="the-short-sweet">The Short &amp; Sweet</h2>
+<ul>
+<li>Link to Sheetsee.js and <a href="https://github.com/jsoma/tabletop">Tabletop.js</a> in your HTML head.</li>
+<li>Link to sheetsee&#39;s default stylesheet, <code>sss.css</code>.</li>
+<li>Create a place holder <code>&lt;div&gt;</code>, with <code>id</code>, in your HTML the map or table you want.</li>
+<li>Create templates for tables in <code>&lt;script&gt;</code> tags with an <code>id</code> matching the <code>&lt;div&gt;</code> plus <code>_template</code>.</li>
+<li>Inside of another <code>&lt;script&gt;</code> tag initialize <a href="https://github.com/jsoma/tabletop">Tabletop.js</a>. Once it fetches your spreadsheet data, pass it onto Sheetsee.</li>
+</ul>
+<pre><code class="lang-JS">document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
+  var URL = &#39;YOURSPREADSHEETSKEYHERE&#39;
+  Tabletop.init({key: URL, callback: callback, simpleSheet: true})
+})
+</code></pre>
+<ul>
+<li>Define the function that <a href="https://github.com/jsoma/tabletop">Tabletop.js</a> calls when it returns with the data. This function will contain all the Sheetsee.js methods you want to use.</li>
+</ul>
+<pre><code class="lang-JS">function callback (data) {
+  // All the Sheetsee things you want to do!
+}
+</code></pre>
+<ul>
+<li>Set it and forget. Now all you need to do is edit the spreadsheet and visitors will get the latest information every time they load the page.</li>
+</ul>
+<h2 id="bare-minimum-setup">Bare Minimum Setup</h2>
+<p>Ignoring some HTML things to conserve space, you get the point. This is a basic setup:</p>
+<pre><code class="lang-HTML">&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;js/tabletop.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&#39;js/sheetsee.js&#39;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;css/sss.css&quot;&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;div id=&quot;placeholder&quot;&gt;&lt;/div&gt;
+
+  &lt;script id=&quot;placeholder&quot; type=&quot;text/html&quot;&gt;
+    // template if you so desire!
+  &lt;/script&gt;
+
+  &lt;script type=&quot;text/javascript&quot;&gt;
+    document.addEventListener(&#39;DOMContentLoaded&#39;, function () {
+        var URL = &#39;YOURSPREADSHEETSKEYHERE&#39;
+        Tabletop.init( { key: URL, callback: myData, simpleSheet: true } )
+    })
+    function myData (data) {
+      // All the sheetsee things you want to do!
+    }
+  &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="your-data">Your Data</h2>
+<p><img src="https://raw.github.com/jllord/sheetsee-cache/master/img/spreadsheettodata.png" alt="sheetsee"></p>
+<p>Your Google Spreadsheet should be set up with row one as your column headers. Row two and beyond should be your data.  Each header and row becomes an object in the final array that <a href="https://github.com/jsoma/tabletop">Tabletop.js</a> delivers of your data.</p>
+<p><img src="https://raw.github.com/jllord/sheetsee-cache/master/img/nonos.png" alt="sheetsee"></p>
+<p>There shouldn&#39;t be any breaks or horizontal organization in the spreadsheet. But, feel free to format the style of your spreadsheet as you wish; borders, fonts and colors and such do not transfer or affect your data exporting.</p>
+<pre><code>[{&quot;name&quot;:&quot;Coco&quot;,&quot;breed&quot;:&quot;Teacup Maltese&quot;,&quot;kind&quot;:&quot;Dog&quot;,&quot;cuddlability&quot;:&quot;5&quot;,&quot;lat&quot;:&quot;37.74832&quot;,&quot;long&quot;:&quot;-122.402158&quot;,&quot;picurl&quot;:&quot;http://distilleryimage8.s3.amazonaws.com/98580826813011e2bbe622000a9f1270_7.jpg&quot;,&quot;hexcolor&quot;:&quot;#ECECEC&quot;,&quot;rowNumber&quot;:1}...]
+</code></pre><h3 id="hexcolor">Hexcolor</h3>
+<p><img src="https://raw.github.com/jllord/sheetsee-cache/master/img/hexcolors.png" alt="sheetsee"></p>
+<p>You can add a column to your spreadsheet with the heading <em>hexcolor</em> (case insensitive) and add colors to be used in maps. The color scheme is up to you, all you need to do is fill the column with hexidecimal color values. This <a href="http://color.hailpixel.com/">color picker</a> by <a href="https://twitter.com/hailpixel">Devin Hunt</a> is really nice. #Funtip: Coloring the background of the cell it&#39;s hexcolor brings delight!</p>
+<h3 id="geocoding">Geocoding</h3>
+<p>If you intend to map your data and only have addresses you&#39;ll need to geocode the addresses into lat/long coordinates. Mapbox built a <a href="http://mapbox.com/tilemill/docs/guides/google-docs/#geocoding">plugin</a> that does this for you in Google Docs. You can also use websites like <a href="http://www.latlong.net">latlong.net</a> to get the coordinates and paste them into rows with column headers <em>lat</em> and <em>long</em>.</p>
+<h3 id="publishing-your-spreadsheet">Publishing Your Spreadsheet</h3>
+<p><img src="https://raw.github.com/jllord/sheetsee-cache/master/img/publish.png" alt="sheetsee"></p>
+<p>You need to do this in order to generate a unique key for your spreadsheet, which <a href="https://github.com/jsoma/tabletop">Tabletop.js</a> will use to get your spreadsheet data. In your Google Spreadsheet, click <em>File</em> &gt; <em>Publish to the Web</em>. Then in the next window click <em>Start Publishing</em>; it will then turn into a <em>Stop Publishing</em> button.</p>
+<p><img src="https://raw.github.com/jllord/sheetsee-cache/master/img/key.png" alt="sheetsee"></p>
+<p>You should have an address in a box at the bottom, your key is the portion between the = and the &amp;. You&#39;ll retrieve this later when you hook up your site to the spreadsheet. <em>Actually, you technically can use the whole URL, but it&#39;s so long...</em></p>
+<h3 id="css">CSS</h3>
+<p>Sheetsee.js comes with a bare minimum stylesheet, <code>sss.css</code>, which contains elements you&#39;ll want to style when using the feature they correspond to. Use it if you want, or as a starting off point to create your own styles.</p>
+
+
+      <footer>
+        <h4 id="getting-started">Getting Started</h4>
+        <ul>
+        <li><a href="./about.html">About Sheetsee</a></li>
+        <li><a href="./building.html">Building Sheetsee</a></li>
+        <li><a href="./basics.html">Basics</a></li>
+        </ul>
+        <h4 id="ideas">Ideas</h4>
+        <ul>
+        <li><a href="./templates.html">Templates</a></li>
+        <li><a href="./tips.html">Tips!</a></li>
+        </ul>
+        <h4>Demos</h4>
+        <ul>
+        <li><a href="../demos/demo-table.html">Table Demo</a></li>
+        <li><a href="../demos/demo-map.html">Map Demo</a></li>
+        </ul>
+        <h4 id="use">Use</h4>
+        <ul>
+        <li><a href="./sheetsee-core.html">Sheetsee-core</a></li>
+        <li><a href="./sheetsee-tables.html">Sheetsee-tables</a></li>
+        <li><a href="./sheetsee-maps.html">Sheetsee-maps</a></li>
+        </ul>
+        <h4 id="use">Contact</h4>
+        <ul>
+        <li><a href="http://www.twitter.com/jllord">@jllord</a></li>
+        <li><a href="https://github.com/jlord/sheetsee.js/issues/new">File an issue</a></li>
+        </ul>
+        <h4><a class="home-link" href="../index.html">Home</a></h4>
+      </footer>
+    </div>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sheetsee.js</title>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='description' content='sheetsee.js, google, spreadsheet, visualize, data, javascript'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="shortcut icon" href="../favicon.png">
+    <script type='text/javascript' src='../assets/highlight.js'></script>
+    <link rel='stylesheet' href='../assets/highlight.css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900,400italic|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet' href='../assets/style.css'>
+    <link rel="shortcut icon" href=''/>
+  </head>
+  <body class="sheetsee-core">
+    <div class="container">
+      <h1 id="sheetsee-core">sheetsee-core</h1>
+<p>This module is included in every Sheetsee build. It contains methods for basic data manipulation you might want to do.</p>
+<h2 id="working-with-your-data">Working With Your Data</h2>
+<p>Sheetsee pairs with <a href="https://github.com/jsoma/tabletop">Tabletop.js</a> which will fetch the data from your spreadsheet and return it as an <em>array of objects</em>. You&#39;ll use these methods from Sheetsee after you have that data.</p>
+<h2 id="methods">Methods</h2>
+<p>Here are the functions you can use!</p>
+<h3 id="-sheetsee-getkeywordcount-data-keyword-"><code>Sheetsee.getKeywordCount(data, keyword)</code></h3>
+<ul>
+<li><code>data</code> <em>array of objects</em></li>
+<li><code>keyword</code> <em>string</em></li>
+<li>Returns <em>number</em></li>
+</ul>
+<p>Given your <strong>data</strong> and <strong>keyword</strong> to search by, this function returns the number of times it occurs throughout all of the data.</p>
+<pre><code class="lang-javascript">getGroupCount(data, &#39;cat&#39;)
+// returns a number
+</code></pre>
+<h3 id="-sheetsee-getkeyword-data-keyword-"><code>Sheetsee.getKeyword(data, keyword)</code></h3>
+<ul>
+<li><code>data</code> <em>array of objects</em></li>
+<li><code>keyword</code> <em>string</em></li>
+<li>Returns <em>number</em></li>
+</ul>
+<p>Given your <strong>data</strong> and a <strong>keyword</strong> to search by, this function returns every row which contains a match to the keyword.</p>
+<pre><code class="lang-javascript">getKeyword(data, &#39;cat&#39;)
+// returns array of objects
+</code></pre>
+<h3 id="-sheetsee-getcolumntotal-data-column-"><code>Sheetsee.getColumnTotal(data, column)</code></h3>
+<ul>
+<li><code>data</code> <em>array of objects</em></li>
+<li><code>column</code> <em>string</em></li>
+<li>Returns <em>number</em></li>
+</ul>
+<p><em>Use only with columns of numbers</em></p>
+<p>Given your <strong>data</strong>  and <strong>column</strong> header, this function sums each cell in that column and returns the value.</p>
+<pre><code class="lang-javascript">getColumnTotal(data, &#39;cuddlability&#39;)
+// returns number
+</code></pre>
+<h3 id="-sheetsee-getcolumnaverage-data-column-"><code>Sheetsee.getColumnAverage(data, column)</code></h3>
+<ul>
+<li><code>data</code> <em>array of objects</em></li>
+<li><code>column</code> <em>string</em></li>
+<li>Returns <em>number</em></li>
+</ul>
+<p>Given your <strong>data</strong>  and <strong>column</strong> header, this function returns the average value of every cell in the column.</p>
+<pre><code class="lang-javascript">getColumnAverage(data, &#39;cuddlability&#39;)
+// returns number
+</code></pre>
+<h3 id="-sheetsee-getmin-data-column-"><code>Sheetsee.getMin(data, column)</code></h3>
+<ul>
+<li><code>data</code> <em>array of objects</em></li>
+<li><code>column</code> <em>string</em></li>
+<li>Returns <em>array</em></li>
+</ul>
+<p>Given your <strong>data</strong>  and <strong>column</strong> header, this function returns an array of the rows with the lowest values within the specified column.</p>
+<pre><code class="lang-javascript">getMin(data, &#39;cuddlability&#39;)
+// returns array
+</code></pre>
+<h3 id="-sheetsee-getmax-data-column-"><code>Sheetsee.getMax(data, column)</code></h3>
+<ul>
+<li><code>data</code> <em>array of objects</em></li>
+<li><code>column</code> <em>string</em></li>
+<li>Returns <em>array</em></li>
+</ul>
+<p>Given your <strong>data</strong>  and <strong>column</strong> header, this function returns an array of the rows with the highest values within the specified column.</p>
+<pre><code class="lang-javascript">getMin(data, &#39;cuddlability&#39;)
+// returns array of objects
+</code></pre>
+<h3 id="-sheetsee-getmatches-data-filter-column-"><code>Sheetsee.getMatches(data, filter, column)</code></h3>
+<ul>
+<li><code>data</code> <em>array of objects</em></li>
+<li><code>filter</code> <em>string</em></li>
+<li><code>column</code> <em>string</em></li>
+<li>Returns <em>array</em></li>
+</ul>
+<p>Takes <strong>data</strong>, a <strong>filter</strong> term to search by within a <strong>column</strong> and returns every row that matches,</p>
+<pre><code class="lang-javascript">getMatches(data, &#39;dog&#39;, &#39;kind&#39;)
+// returns array of objects
+// [{&#39;name&#39;: &#39;coco&#39;, &#39;kind&#39;: &#39;dog&#39;...}, {&#39;name&#39;: &#39;wolfgang&#39;, &#39;kind&#39;: &#39;dog&#39;...},{&#39;name&#39;: &#39;cooc&#39;, &#39;kind&#39;: &#39;dog&#39;...} ]
+</code></pre>
+<h3 id="-sheetsee-getoccurance-data-column-"><code>Sheetsee.getOccurance(data, column)</code></h3>
+<ul>
+<li><code>data</code> <em>array of objects</em></li>
+<li><code>column</code> <em>string</em></li>
+<li>Returns <em>object</em></li>
+</ul>
+<p>Takes <strong>data</strong> <strong>column</strong> header and returns an object with key/value pairs of how often an item occurs in the column.</p>
+<pre><code class="lang-JAVASCRIPT">getOccurance(data, &#39;kind&#39;)
+// Returns an object
+// {&#39;dog&#39;: 3, &#39;cat&#39;: 3}
+</code></pre>
+<h3 id="math">Math</h3>
+<p>Don&#39;t Forget JavaScript Math! Create variables that are the sums, differences, multiples and so forth of others. Lots of info on that <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Math">here on MDN</a>.</p>
+<pre><code class="lang-javascript">var profit09 = Sheetsee.getColumnTotal(data, &#39;2009&#39;)
+var profit10 = Sheetsee.getColumnTotal(data, &#39;2010&#39;)
+var difference = profit09 - profit10
+</code></pre>
+
+
+      <footer>
+        <h4 id="getting-started">Getting Started</h4>
+        <ul>
+        <li><a href="./about.html">About Sheetsee</a></li>
+        <li><a href="./building.html">Building Sheetsee</a></li>
+        <li><a href="./basics.html">Basics</a></li>
+        </ul>
+        <h4 id="ideas">Ideas</h4>
+        <ul>
+        <li><a href="./templates.html">Templates</a></li>
+        <li><a href="./tips.html">Tips!</a></li>
+        </ul>
+        <h4>Demos</h4>
+        <ul>
+        <li><a href="../demos/demo-table.html">Table Demo</a></li>
+        <li><a href="../demos/demo-map.html">Map Demo</a></li>
+        </ul>
+        <h4 id="use">Use</h4>
+        <ul>
+        <li><a href="./sheetsee-core.html">Sheetsee-core</a></li>
+        <li><a href="./sheetsee-tables.html">Sheetsee-tables</a></li>
+        <li><a href="./sheetsee-maps.html">Sheetsee-maps</a></li>
+        </ul>
+        <h4 id="use">Contact</h4>
+        <ul>
+        <li><a href="http://www.twitter.com/jllord">@jllord</a></li>
+        <li><a href="https://github.com/jlord/sheetsee.js/issues/new">File an issue</a></li>
+        </ul>
+        <h4><a class="home-link" href="../index.html">Home</a></h4>
+      </footer>
+    </div>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

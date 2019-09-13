@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sheetsee.js</title>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='description' content='sheetsee.js, google, spreadsheet, visualize, data, javascript'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="shortcut icon" href="../favicon.png">
+    <script type='text/javascript' src='../assets/highlight.js'></script>
+    <link rel='stylesheet' href='../assets/highlight.css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900,400italic|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet' href='../assets/style.css'>
+    <link rel="shortcut icon" href=''/>
+  </head>
+  <body class="about">
+    <div class="container">
+      <h1 id="about">About</h1>
+<p>Sheetsee.js began as a part of a <a href="http://www.codeforamerica.org">Code for America</a> 2012 Fellowship project. The original idea was to make a way for cities to easily publish and maintain budget data themselves. Originally, the JavaScript was part of a WordPress theme that could be connected to a spreadsheet, allowing new pages to be created with charts, maps and tables automatically generated from the data.</p>
+<p>In early 2013, after the CfA Fellowship and through a grant from <a href="http://opennews.org">Mozilla Open News</a>, the JavaScript bits were pulled out to make it a standalone open source library: sheetsee.js.</p>
+<p>Since then there have been a few updates to the library but it was not until 2017 when Sheetsee got it&#39;s next major upgrade.</p>
+<p>In Spring of 2017 Sheetsee was cleaned up and downsized. Charting support and some dependencies were removed to make maintenance and overall size better.</p>
+<h2 id="dependencies">Dependencies</h2>
+<p>Sheetsee comes into play after you use <a href="https://github.com/jsoma/tabletop">Tabletop.js</a>, a library that handles the messy interactions with the Google Spreadsheets API for you and returns a lovely array of your data. At the end of the day, however, Sheetsee just wants an array of JSON data, if you have some on hand already, you can use Sheetsee too :)</p>
+<h3 id="mustache-leaflet">Mustache, Leaflet</h3>
+<p>Sheetsee uses the <a href="https://mustache.github.io">Mustache.js</a> library for templates in <code>sheetsee-tables</code> and map popups in <code>sheetsee-maps</code>. The maps are generated using the <a href="http://leafletjs.com">Leaflet.js</a> library.</p>
+<h2 id="hacked-on-openly">Hacked on Openly</h2>
+<ul>
+<li>Sheetsee.js is open source software with a <a href="docs/license.html">BSD license</a>.</li>
+<li>Sheetsee.js is a labor of love by <a href="http://www.github.com/jlord">jlord</a> (<a href="http://www.twitter.com/jllord">Twitter</a>)</li>
+</ul>
+<h2 id="contact-contribute">Contact &amp; Contribute</h2>
+<p>Issues with this website can be opened on the <a href="https://github.com/jlord/sheetsee/issues/new">sheetsee.js repository</a>. Otherwise, if your issue falls specifically with one of the modules, you can file it on its particular repo:</p>
+<ul>
+<li><a href="http://www.github.com/jlord/sheetsee/issues/new">sheetsee (CLI)</a></li>
+<li><a href="http://www.github.com/jlord/sheetsee-core/issues/new">sheetsee-core</a></li>
+<li><a href="http://www.github.com/jlord/sheetsee-tables/issues/new">sheetsee-tables</a></li>
+<li><a href="http://www.github.com/jlord/sheetsee-maps/issues/new">sheetsee-maps</a></li>
+</ul>
+<h2 id="thanks-y-all">Thanks, y&#39;all</h2>
+<p>Thanks to <a href="http://www.codeforamerica.org">Code for America</a> for providing the platform me to build the first version of sheetsee.js for Macon, Georgia.</p>
+<p>Thanks to <a href="http://www.twitter.com/dansinker">Dan Sinker</a> at <a href="http://www.mozillaopennews.org/">Open News</a> for having faith and getting things together to make this Code Sprint happen and thanks to <a href="https://twitter.com/whatsnewmedia">Matt Green</a> at WBEZ for being a willing partner.</p>
+<p>Thanks to <a href="http://www.twitter.com/maxogden">Max Ogden</a> for emotional support, teaching me JavaScript and answering lots of questions.</p>
+<p>Thanks to all the authors and contributors to <a href="https://github.com/jsoma/tabletop">Tabletop.js</a>, <a href="http://leafletjs.com">Leaflet.js</a> and <a href="https://mustache.github.io">Mustache.js</a>. Thanks to Google and the Internet for existing and to all those who&#39;ve written tutorials or asked or answered a question on StackOverflow.</p>
+<p>Thanks to Mom and Dad for getting a computer in 1996 and the mIRC scripts I started writing that I suppose would eventually lead me here.</p>
+
+
+      <footer>
+        <h4 id="getting-started">Getting Started</h4>
+        <ul>
+        <li><a href="./about.html">About Sheetsee</a></li>
+        <li><a href="./building.html">Building Sheetsee</a></li>
+        <li><a href="./basics.html">Basics</a></li>
+        </ul>
+        <h4 id="ideas">Ideas</h4>
+        <ul>
+        <li><a href="./templates.html">Templates</a></li>
+        <li><a href="./tips.html">Tips!</a></li>
+        </ul>
+        <h4>Demos</h4>
+        <ul>
+        <li><a href="../demos/demo-table.html">Table Demo</a></li>
+        <li><a href="../demos/demo-map.html">Map Demo</a></li>
+        </ul>
+        <h4 id="use">Use</h4>
+        <ul>
+        <li><a href="./sheetsee-core.html">Sheetsee-core</a></li>
+        <li><a href="./sheetsee-tables.html">Sheetsee-tables</a></li>
+        <li><a href="./sheetsee-maps.html">Sheetsee-maps</a></li>
+        </ul>
+        <h4 id="use">Contact</h4>
+        <ul>
+        <li><a href="http://www.twitter.com/jllord">@jllord</a></li>
+        <li><a href="https://github.com/jlord/sheetsee.js/issues/new">File an issue</a></li>
+        </ul>
+        <h4><a class="home-link" href="../index.html">Home</a></h4>
+      </footer>
+    </div>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
