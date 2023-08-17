@@ -1,0 +1,83 @@
+跳至主要內容
+
+本文還有簡體中文版。
+
+GitHub 文檔
+拉取請求/與拉取請求協作/提出變更/關於拉取請求
+關於拉取請求
+在本文中
+關於拉取請求
+草稿拉取請求
+比較頁面和拉取請求頁面上的提交之間的差異
+進一步閱讀
+通過拉取請求，您可以告訴其他人您已推送到 GitHub 存儲庫中的分支的更改。打開拉取請求後，您可以與協作者討論和審查潛在的更改，並在更改合併到基礎分支之前添加後續提交。
+
+平台導航
+蘋果
+視窗
+Linux
+關於拉取請求
+注意：處理拉取請求時，請記住以下幾點：
+
+如果您使用共享存儲庫模型，我們建議您為拉取請求使用主題分支。雖然您可以從任何分支或提交發送拉取請求，但如果您需要更新建議的更改，則可以使用主題分支推送後續提交。
+當強制推送提交拉取請求時要非常小心。強制推送會更改存儲庫歷史記錄並可能損壞您的拉取請求。如果其他協作者在強制推送之前對項目進行分支，則強制推送可能會覆蓋協作者基於其工作的提交。
+您可以在 GitHub.com、使用 GitHub Desktop、GitHub Codespaces、GitHub Mobile 以及使用 GitHub CLI 時創建拉取請求。
+
+初始化拉取請求後，您將看到一個審核頁面，其中顯示了您的分支（比較分支）和存儲庫的基礎分支之間的更改的高級概述。您可以添加建議更改的摘要，查看提交所做的更改，添加標籤、里程碑和受讓人，以及@提及個人貢獻者或團隊。有關更多信息，請參閱“創建拉取請求”。
+
+創建拉取請求後，您可以從主題分支推送提交，將其添加到現有的拉取請求中。這些提交將按時間順序顯示在您的拉取請求中，並且更改將在“更改的文件”選項卡中可見。
+
+Other contributors can review your proposed changes, add review comments, contribute to the pull request discussion, and even add commits to the pull request. By default, in public repositories, any user can submit reviews that approve or request changes to a pull request. Organization owners and repository admins can limit who is able to give approving pull request reviews or request changes. For more information, see "Managing pull request reviews in your organization" and "Managing pull request reviews in your repository."
+
+You can see information about the branch's current deployment status and past deployment activity on the "Conversation" tab. For more information, see "Viewing deployment activity for your repository."
+
+After you're happy with the proposed changes, you can merge the pull request. If you're working in a shared repository model, you create a pull request and you, or someone else, will merge your changes from your feature branch into the base branch you specify in your pull request. For more information, see "Merging a pull request."
+
+If status checks are required for a repository, the required status checks must pass before you can merge your branch into the protected branch. For more information, see "About protected branches."
+
+You can link a pull request to an issue to show that a fix is in progress and to automatically close the issue when someone merges the pull request. For more information, see "Linking a pull request to an issue."
+
+Tips:
+
+To toggle between collapsing and expanding all outdated review comments in a pull request, hold down Alt and click Show outdated or Hide outdated. For more shortcuts, see "Keyboard shortcuts."
+You can squash commits when merging a pull request to gain a more streamlined view of changes. For more information, see "About pull request merges."
+You can visit your dashboard to quickly find links to recently updated pull requests you're working on or subscribed to. For more information, see "About your personal dashboard."
+
+Draft pull requests
+Draft pull requests are available in public repositories with GitHub Free for organizations and legacy per-repository billing plans, and in public and private repositories with GitHub Team, GitHub Enterprise Server, and GitHub Enterprise Cloud. For more information, see "GitHub’s plans."
+
+When you create a pull request, you can choose to create a pull request that is ready for review or a draft pull request. Draft pull requests cannot be merged, and code owners are not automatically requested to review draft pull requests. For more information about creating a draft pull request, see "Creating a pull request" and "Creating a pull request from a fork."
+
+When you're ready to get feedback on your pull request, you can mark your draft pull request as ready for review. Marking a pull request as ready for review will request reviews from any code owners. You can convert a pull request to a draft at any time. For more information, see "Changing the stage of a pull request."
+
+Differences between commits on compare and pull request pages
+The compare and pull request pages use different methods to calculate the diff for changed files:
+
+Compare pages show the diff between the tip of the head ref and the current common ancestor (that is, the merge base) of the head and base ref.
+Pull request pages show the diff between the tip of the head ref and the common ancestor of the head and base ref at the time when the pull request was created. Consequently, the merge base used for the comparison might be different.
+Further reading
+"GitHub glossary" in the GitHub glossary
+"About branches"
+"Commenting on a pull request"
+"Closing a pull request"
+Help and support
+這位醫生對您有幫助嗎？
+
+隱私政策
+幫助我們使這些文檔變得更加出色！
+所有 GitHub 文檔都是開源的。發現有什麼錯誤或不清楚的地方嗎？提交拉取請求。
+
+了解如何做出貢獻
+
+還需要幫助嗎？
+詢問 GitHub 社區
+聯繫支持人員
+合法的
+© 2023 GitHub, Inc.
+條款
+隱私
+地位
+價錢
+專家服務
+博客
+
