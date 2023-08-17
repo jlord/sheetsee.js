@@ -1,0 +1,271 @@
+GitHub 安全獎勵範圍目標規則常見問題解答提交漏洞
+GitHub 錯誤賞金
+軟件安全研究人員越來越多地與互聯網公司合作來尋找漏洞。我們的賞金計劃向這些研究人員致敬，並為關鍵漏洞提供 30,000 美元或更多的獎勵。
+
+如果您發現漏洞，請在此處提交。
+
+您可以在我們的規則、範圍、目標和常見問題解答部分找到有用的信息。
+
+快樂黑客！
+
+獎勵
+所有賞金提交均由 GitHub 使用特意簡單的等級進行評級。每個漏洞都是獨一無二的，但以下是我們內部用於評級和獎勵提交的粗略指南：
+
+$20,000 - $30,000+
+批判的
+嚴重的嚴重問題會給我們的廣大用戶或 GitHub 產品本身帶來直接和直接的風險。它們通常會影響我們的應用程序堆棧或基礎設施之一中相對較低級別/基礎的組件。例如：
+
+在我們的生產網絡中的服務器上執行任意代碼/命令
+對生產數據庫進行任意 SQL 查詢
+繞過登錄過程，密碼或 2FA
+訪問敏感的生產用戶數據或訪問內部生產系統
+訪問 GitHub Actions 服務中其他用戶的數據
+嚴重漏洞的上限為 30,000 美元，這只是一個指導方針，GitHub 可能會對特殊報告獎勵更高的金額。
+
+$10,000 - $20,000
+高的
+高嚴重性問題允許攻擊者讀取或修改他們無權訪問的高度敏感數據。它們的範圍通常比關鍵問題更窄，儘管它們仍然可能授予攻擊者廣泛的訪問權限。例如：
+
+將攻擊者控制的內容注入繞過 CSP 的 GitHub.com (XSS)
+繞過授權邏輯以授予存儲庫或包協作者比預期更多的訪問權限
+在公開資源（例如 S3 存儲桶）中發現敏感用戶或 GitHub 數據
+覆蓋應該無法訪問的客戶存儲庫或包
+獲得對只有員工才能訪問的非關鍵資源的訪問權限
+使用 GitHub Actions 存儲庫範圍內的 GitHub 令牌訪問該存儲庫之外的高風險私有內容
+將身份驗證憑據從客戶端應用程序發送到非預期服務器
+在不需要用戶交互的客戶端應用程序中執行代碼，例如在存儲庫克隆時或通過協議處理程序執行任意代碼
+4,000 美元- 10,000 美元
+中等的
+中等嚴重性問題允許攻擊者讀取或修改他們無權訪問的有限數量的數據。它們通常授予對不太敏感的信息的訪問權限，而不是對高嚴重性問題的訪問權限。例如：
+
+公開私人存儲庫中的問題標題，該存儲庫應該是無法訪問的
+將攻擊者控制的內容注入 GitHub.com (XSS)，但不繞過 CSP 或使用其他用戶的會話執行敏感操作
+繞過 CSRF 驗證以進行低風險操作，例如為存儲庫添加星標或從郵件列表中取消訂閱
+在需要最少預期用戶交互的客戶端應用程序中執行代碼，例如對存儲庫或用戶不希望導致代碼執行的包執行操作
+包完整性妥協，即下載與定義的完整性不匹配的包package-lock.json
+$617 - $2,000
+低的
+低嚴重性問題允許攻擊者訪問極其有限的數據量。它們可能會違反對某些內容如何工作的預期，但幾乎不允許權限升級或觸發攻擊者意外行為的能力。例如：
+
+未經用戶同意，向任意用戶註冊以訪問“早期訪問功能”
+創建一個問題評論，通過提供格式錯誤的 URL 繞過我們的圖像代理過濾器
+在沒有可利用性證明或獲取敏感信息的情況下觸發詳細或調試錯誤頁面
+觸發可能影響許多用戶的應用程序異常
+將 JavaScript 事件處理程序注入鏈接等，這些問題可通過 GitHub.com 上的 CSP 緩解
+公開 npm 上存在的私有包，這些包應該是不可訪問的，例如通過錯誤消息（但不能通過定時攻擊，這是不合格的）
+影響 GitHub 產品但不僅限於該產品的新型供應鏈漏洞
+文件或 GitHub Enterprise Server等憑證.npmrc在日誌中洩露
+範圍
+GitHub 運行多種服務，但只有以下域下的提交才有資格獲得獎勵。下面未列出的任何 GitHub 擁有的域名都不在範圍內，沒有資格獲得獎勵，也不在我們的合法安全港覆蓋範圍內。
+
+github.com
+這是我們託管面向用戶的 GitHub 服務的主域。github.com下的所有子域都在範圍內，除了：
+博客.github.com
+社區.github.com
+email.enterprise.github.com
+email.finance.github.com
+email.staging.finance.github.com
+email.support.github.com
+email.verify.github.com
+google7650dcf6146f04d8.github.com
+k1._domainkey.github.com
+k1._domainkey.mcmail.github.com
+mcmail.github.com
+資源.github.com
+*.resources.github.com
+sgmail.github.com
+*.sgmail.github.com
+shop.github.com
+smtp.github.com
+*.smtp.github.com
+githubassets.com
+這是我們託管靜態資產的域。githubassets.com下的所有子域均在範圍內。
+githubusercontent.com
+這是我們用於託管和呈現用戶數據的域。githubusercontent.com下的所有子域均在範圍內。
+githubapp.com
+這是我們用於託管面向員工的服務的域。githubapp.com下的所有子域都在範圍內，除了：
+atom-io.githubapp.com
+atom-io-staging.githubapp.com
+email.enterprise-staging.githubapp.com
+email.haystack.githubapp.com
+回复.githubapp.com
+githubwebhooks.net
+這是我們用於接收面向員工的服務的 Webhook 的域。githubwebhooks.net下的所有子域均在範圍內。
+github.net
+這是我們託管 GitHub 內部生產服務的域。其中許多服務無法從我們的內部網絡外部訪問。github.net下的所有子域都在範圍內。
+npmjs.com
+這是 npm 面向公眾的網站的域名。npmjs.com下的所有子域都在範圍內。
+npmjs.org
+這是 npm 註冊表、面向公眾的數據庫和 API 的域。npmjs.org下的所有子域都在範圍內。
+目標
+除了我們的範圍之外，我們還想分享 G​​itHub 服務的高級概述：
+
+所有用戶均可使用核心 GitHub 服務
+GitHub.com
+GitHub API
+GitHub 雲服務提供商
+GitHub 操作
+GitHub 頁面
+GitHub 要點
+面向企業客戶的本地和託管 GitHub
+GitHub 企業服務器
+GitHub 企業雲
+由 GitHub 擁有和運營的 GitHub 應用程序
+依賴機器人
+用於訪問 GitHub 的第一方客戶端
+GitHub 桌面版
+GitHub 移動版
+GitHub CLI
+其他 GitHub 服務
+GitHub 副駕駛
+GitHub 教育
+GitHub 學習實驗室
+基礎設施由 GitHub 擁有和運營
+*.githubapp.com
+*.github.net
+GitHub 憑證
+新項目管理
+npm 註冊表
+npm CLI
+Rules
+ 
+Before you start
+Check the list of domains that are in scope for the Bug Bounty program and the list of targets for useful information for getting started.
+
+Check the list of bugs that have been classified as ineligible. Submissions which are ineligible will likely be closed as Not Applicable.
+
+Check the GitHub Changelog for recently launched features.
+
+Never attempt non-technical attacks such as social engineering, phishing, or physical attacks against our employees, users, or infrastructure.
+
+When in doubt, contact us at bounty@github.com.
+
+By participating in GitHub’s Bug Bounty program (the “Program”), you acknowledge that you have read and agree to GitHub’s Terms of Service as well as the following:
+
+you are not currently a GitHub employee or contractor, were not a GitHub employee or contractor within six months prior to submission, and you did not collaborate on your submission with anyone who was.
+
+your participation in the Program will not violate any law applicable to you, or disrupt or compromise any data that is not your own.
+
+you are solely responsible for any applicable taxes, withholding or otherwise, arising from or relating to your participation in the Program, including from any bounty payments.
+
+GitHub reserves the right to terminate or discontinue the Program at its discretion.
+
+Only test for vulnerabilities on sites you know to be operated by GitHub and are in-scope. Some sites hosted on subdomains of GitHub.com are operated by third parties and should not be tested.
+
+We cannot reward any individual on any U.S. sanctions list, or any individual residing in any U.S.-sanctioned country or region. For more information, please see https://www.hackerone.com/disclosure-guidelines.
+
+ 
+Legal safe harbor
+Your research is covered by the GitHub Bug Bounty Program Legal Safe Harbor policy. In summary:
+
+We consider security research and vulnerability disclosure activities conducted consistent with this policy as “authorized” conduct under the Computer Fraud and Abuse Act, the DMCA, and other applicable computer use laws such as Cal. Penal Code 502(c). We waive any potential DMCA claim against you for circumventing the technological measures we have used to protect the applications in this bug bounty program’s scope.
+
+We want you to coordinate disclosure through our bug bounty program, and don’t want researchers put in fear of legal consequences because of their good faith attempts to comply with our bug bounty policy. We cannot bind any third party, so do not assume this protection extends to any third party. If in doubt, ask us before engaging in any specific action you think might go outside the bounds of our policy.
+
+Because both identifying and non-identifying information can put a researcher at risk, we limit what we share with third parties. We may provide non-identifying substantive information from your report to an affected third party, but only after notifying you and receiving a commitment that the third party will not pursue legal action against you. We will only share identifying information (name, email address, phone number, etc.) with a third party if you give your written permission.
+
+If your security research as part of the bug bounty program violates certain restrictions in our site policies, the safe harbor terms permit a limited exemption.
+
+ 
+Performing your research
+Do not impact other users with your testing, this includes testing vulnerabilities in repositories or organizations you do not own. If you are attempting to find an authorization bypass, you must use accounts you own.
+
+We recommend adding your HackerOne @wearehackerone.com email address to any GitHub account that you use to perform security research and testing. If you use multiple GitHub accounts for testing, you can use aliases of your HackerOne email address. Clearly identifying accounts that are associated with bounty research helps our teams to differentiate between possibly malicious activity and that of researchers involved in our Bug Bounty program. Please note that adding your HackerOne email address does not provide any exemptions to our Terms of Service or permit you to act beyond our bounty rules and scope.
+
+The following are never allowed and are ineligible for reward. We may suspend your GitHub account and ban your IP address for:
+
+Performing distributed denial of service (DDoS) or other volumetric attacks
+Spamming content
+Large-scale vulnerability scanners, scrapers, or automated tools which produce excessive amounts of traffic.
+Note: We do allow the use of automated tools so long as they do not produce excessive amounts of traffic. For example, running one nmap scan against one host is allowed, but sending 65,000 requests in two minutes using Burp Suite Intruder is excessive.
+Researching denial-of-service attacks is allowed and eligible for rewards only if you follow these rules:
+
+There are no limits for researching denial of service vulnerabilities against your own instance of GitHub Enterprise Server. We strongly recommend/prefer this method for researching denial of service issues.
+If you choose to test on GitHub proper (i.e. https://github.com)
+Research must be performed in organizations or repositories you own
+Stop immediately if you believe you have affected the availability of our services. Don’t worry about demonstrating the full impact of your vulnerability, GitHub’s security team will be able to determine the impact.
+ 
+Handling personally identifiable information (PII)
+Personally identifying information (PII) includes:
+legal and/or full names
+names or usernames combined with other identifiers like phone numbers or email addresses
+health or financial information (including insurance information, social security numbers, etc.)
+information about political or religious affiliations
+information about race, ethnicity, sexual orientation, gender, or other identifying information that could be used for discriminatory purposes
+Do not intentionally access others’ PII. If you suspect a service provides access to PII, limit queries to your own personal information.
+
+Report the vulnerability immediately and do not attempt to access any other data. The GitHub Security team will assess the scope and impact of the PII exposure.
+
+Limit the amount of data returned from services. For SQL injection, for example, limit the number of rows returned
+
+You must delete all your local, stored, or cached copies of data containing PII as soon as possible. We may ask you to sign a certificate of deletion and confidentiality agreement regarding the exact information you accessed. This agreement will not affect your bounty reward.
+
+We may ask you for the usernames and IP addresses used during your testing to assess the impact of the vulnerability
+ 
+Reporting your vulnerability
+Submissions must include written instructions for reproducing the vulnerability. Submissions without clear reproduction steps or which only include reproduction steps in video form may be ineligible for a reward.
+
+When reporting vulnerabilities you must keep all information on HackerOne. Do not post information to video-sharing or pastebin sites. Videos and images can be uploaded directly via HackerOne.
+
+For vulnerabilities involving personally identifiable information, please explain the kind of PII you believe is exposed and limit the amount of PII data included in your submissions. For textual information and screenshots, please only include redacted data in your submission.
+
+During the course of an investigation, it may take time to resolve the issue you have reported. We ask that you refrain from publicly disclosing details regarding an issue you’ve reported until the fix has been publicly made available.
+
+ 
+Receiving your award
+All reward amounts are determined by our severity guidelines.
+
+In addition to the bounty reward, some reports will also receive a coupon code that can be redeemed for swag items at the GitHub Bug Bounty Merch Shop. For more information about the store, please visit the shop’s FAQ page.
+
+When duplicates occur, we only award the first report that was received (provided that it can be fully reproduced).
+
+You are free to publish write-ups about your vulnerability, and GitHub will not limit what you write. We may pay out your reward before the vulnerability is patched, so we may ask that you delay publishing to keep other GitHub users safe.
+
+GitHub is a CVE Numbering Authority (CNA) for GitHub Enterprise Server. Eligible Bug Bounty submissions that affect GitHub Enterprise Server may be assigned CVEs. These CVEs will be shared with submitters via HackerOne and listed in the GitHub Enterprise Server release notes.
+
+If you would prefer to donate your bounty reward to an established 501(c)(3) charitable organization, GitHub will match your donation. If the bounty has already been processed into your account, it can no longer be donated through HackerOne and is no longer eligible for matching donations. To reduce the likelihood of a bounty being processed before it can be donated, we recommend changing your payment preferences to monthly in your account settings. To donate your reward and have it matched, submit a support ticket to HackerOne with the following information:
+
+the report ID for which you want to donate the bounty;
+the name and website of the charity you want to donate to;
+that you would like the donation matched using GitHub’s process; and
+whether you want to be named as the donor or would prefer to remain anonymous. Keep in mind that we can only attribute the donation to you if the charity allows us to give a name.
+FAQs
+ 
+How is the bounty reward determined?
+Our security and development teams take many factors into account when determining a reward. These factors include the complexity of successfully exploiting the vulnerability, the potential exposure, as well as the percentage of impacted users and systems. Sometimes an otherwise critical vulnerability has a very low impact simply because it is mitigated by some other component, e.g., it requires user interaction, it relies on an obscure web browser, or it would need to be combined with another vulnerability that does not currently exist. Our teams use our documented severity guidelines to determine the bounty reward amounts rather than correlating with CVSS ratings. Additionally, at least two GitHub security engineers agree on the severity and amount before a payout is made.
+
+ 
+Can I submit a video proof-of-concept?
+You can certainly attach a video if you believe it will clarify your submission. However, all submissions must also include step-by-step instructions to reproduce the bug. The security team will let you know if we think a video will clarify your report. Submissions which only include video reproduction steps will have a longer response time and we may close your submission as Not Applicable.
+
+ 
+Did my submission just get rejected by a bot?
+You may get a response that appears to be from a bot. The bot does some work for us, but only when we tell it to. We “do our own stunts” at GitHub Security. An application security engineer at GitHub triages each submission. In most cases, we use the bot to automate messaging and other tasks for us. Rest assured, a human did look at your submission.
+
+ 
+Can I submit my report via a third-party or vulnerability broker?
+GitHub’s Bug Bounty program is designed to both reward individual researchers and increase the security of all GitHub users. We don’t believe that disclosing GitHub vulnerabilities to third parties achieves either of those goals. As a result, any vulnerabilities that are disclosed to third-party before being submitted to our program are ineligible for rewards.
+
+ 
+Why does severity on HackerOne not match the reward I was given?
+We do not always update HackerOne with the assessed severity because we track that information internally. Our payout guidelines and the value of the reward dictate our assessment of severity, not the severity on HackerOne.
+
+ 
+Where is your PGP key? I want to use it when I submit a vulnerability.
+If you absolutely believe encrypting the message is necessary, please read our instructions and caveats for PGP submissions.
+
+ 
+What kinds of DoS submissions are valid?
+As noted in the performing your research section, denial of service research is best done on your own instance of GHES. Causing an availability issue is simply not helpful. We are only interested in denial of service issues at the application layer (logic bombs, ReDoS, etc.). Volumetric attack submissions are not eligible for rewards and we may suspend your GitHub account or temporarily ban your IP address.
+
+ 
+How can I earn an invitation to the GitHub VIP program?
+We’re stoked to hear you’d like to become a Hacktocat! In order to receive an invitation, you must earn $20,000 in our program and have submitted at least 2 reports in the last 2 years.
+
+ 
+What are the benefits of joining the VIP program?
+Our VIP Hacktocats gain access to a Slack channel with Hubbers, exclusive Hacktocat swag, access to beta features, and more!
+
+Historical bounty hunters
+© 2023 GitHub, Inc. Terms Privacy Security
+𝛑
