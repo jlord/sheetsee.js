@@ -23,7 +23,7 @@ Each of Sheetsee's functions are divided into modules. Use just the parts you ne
 
 ## Get your Spreadsheet as JSON or Try Sheetsee with Glitch!
 
-The [spreadsheet.glitch.me](https://spreadsheet.glitch.me) site will give you an endpoint to use that will return your spreadsheet to you as JSON. The [sheetsee.glitch.me](https://sheetsee.glitch.me) site provides template to get started with Sheetsee; it's already set up with a server so that your data is backed up.
+The [spreadsheet.glitch.me](https://spreadsheet.glitch.me) site will give you an endpoint to use that will return your spreadsheet to you as JSON. The [sheetseetemplate.glitch.me](https://sheetseetemplate.glitch.me) site provides template to get started with Sheetsee; it's already set up with a server so that your data is backed up.
 
 ### Or Fork a Site!
 
