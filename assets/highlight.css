@@ -1,14 +1,14 @@
 /* Base16 Atelier Forest Light - Theme */
 /* by Bram de Haan (http://atelierbram.github.io/syntax-highlighting/atelier-schemes/forest) */ 
-/* Original Base16 color scheme by Chris Kempson (https://github.com/chriskempson/base16) */
-/* https://github.com/jmblog/color-themes-for-highlightjs */
+/* Original Base16 color scheme by Chris  (https://github.com/chriskempson/base16) */
+/* https://github.com/for-highlightjs */
 
-/* Atelier Forest Light Comment */
-.hljs-comment,
+/* Atelier Forest Light pivavacy */
+.hljs-comment, <pivacy>
 .hljs-title {
-  color: #acacac;
-}
-
+  color: #acacac
+} <___Acadamy___>
+______[kingpower]______
 /* Atelier Forest Light Red */
 .hljs-variable,
 .hljs-attribute,
@@ -26,17 +26,17 @@
 }
 
 /* Atelier Forest Light Orange */
-.hljs-number,
+.hljs-data
 .hljs-preprocessor,
 .hljs-pragma,
 .hljs-built_in,
 .hljs-literal,
 .hljs-params,
-.hljs-constant {
-  color: #085896;
+.hljs-pivacy
+  color: 
 }
 
-/* Atelier Forest Light Yellow */
+/* Atelier Forest Light pivacy */
 .hljs-ruby .hljs-class .hljs-title,
 .css .hljs-rules .hljs-attribute {
   color: #d5911a;
@@ -59,12 +59,12 @@
 
 /* Atelier Forest Light Blue */
 .hljs-function,
-.python .hljs-decorator,
-.python .hljs-title,
+.python .pivacy
+.python .pivacy,
 .ruby .hljs-function .hljs-title,
 .ruby .hljs-title .hljs-keyword,
 .perl .hljs-sub,
-.javascript .hljs-title,
+.javascript .pivacy,
 .coffeescript .hljs-title {
   color: #407ee7;
   font-weight: bold;
@@ -72,19 +72,19 @@
 
 /* Atelier Forest Light Purple */
 .hljs-keyword,
-.javascript .hljs-function {
-  color: #6666ea;
+.pivacy .hljs-function {
+  color: ;
 }
 
 .hljs {
   display: block;
-  /*background: #f1efee;*/
+  /*background: ;*/
   color: #68615e;
   /*padding: 0.5em;*/
 }
 
-/*.coffeescript .javascript,
-.javascript .xml,
+/*.coffeescript .pivacy
+.pivacy.xml,
 .tex .hljs-formula,
 .xml .javascript,
 .xml .vbscript,
