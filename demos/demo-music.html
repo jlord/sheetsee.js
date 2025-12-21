@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>Sheetsee Music Assistant Demo</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900,400italic|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" href="../favicon.png">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
+    <script type='text/javascript' src='../js/sheetsee.js'></script>
+    <link rel='stylesheet' type='text/css' href='../assets/style.css'>
+  </head>
+  <style>
+    #Pagination {border-top: 4px solid #CCF4FF; margin: 10px 0px; padding-top: 10px; display: inline-block;}
+    #Pagination a {cursor: pointer;}
+    .no-pag {color: #acacac; border: none;}
+    .no-pag:hover {color: #acacac;}
+    input {border: none; border-bottom: 1px solid #333;margin: 10px 0px; width: 200px; font-size: 16px; padding-bottom: 6px;}
+    .tHeader {padding: 8px; cursor: pointer; text-align: left;}
+    .music-player {margin: 20px 0; padding: 10px; background: #f5f5f5; border-radius: 5px;}
+    .play-button {background: #CCF4FF; border: none; padding: 5px 10px; cursor: pointer; border-radius: 3px;}
+  </style>
+  <body>
+    <div class="container">
+      <h1>Music Playlist Assistant</h1>
+      <p><em><a href="https://docs.google.com/spreadsheets/d/1EXAMPLE_KEY/edit" target="_blank">Sample Music Spreadsheet</a></em></p>
+      <input id="musicTableFilter" type="text" placeholder="filter by artist, song, genre..."></input>
+      <a class="clear">Clear</a>
+      <div id="musicTable">Loading playlist...</div>
+      <div class="music-player">
+        <h3>Now Playing</h3>
+        <div id="now-playing">Select a song to play</div>
+        <button class="play-button" id="play-button">Play</button>
+      </div>
+      <p><em><a onClick='window.location="view-source:" + window.location.href'>View Source</a> // <a href="../docs/sheetsee-tables.html">View Documentation</a></em></p>
+
+      <footer>
+        <h4 id="getting-started">Getting Started</h4>
+        <ul>
+          <li><a href="../docs/about.html">About Sheetsee</a></li>
+          <li><a href="../docs/building.html">Building Sheetsee</a></li>
+          <li><a href="../docs/basics.html">Basics</a></li>
+        </ul>
+        <h4 id="ideas">Ideas</h4>
+        <ul>
+          <li><a href="../docs/templates.html">Templates</a></li>
+          <li><a href="../docs/tips.html">Tips!</a></li>
+        </ul>
+        <h4>Demos</h4>
+        <ul>
+          <li><a href="./demo-table.html">Table Demo</a></li>
+          <li><a href="./demo-map.html">Map Demo</a></li>
+          <li><a href="./demo-music.html">Music Assistant Demo</a></li>
+        </ul>
+        <h4 id="use">Use</h4>
+        <ul>
+          <li><a href="../docs/sheetsee-core.html">Sheetsee-core</a></li>
+          <li><a href="../docs/sheetsee-tables.html">Sheetsee-tables</a></li>
+          <li><a href="../docs/sheetsee-maps.html">Sheetsee-maps</a></li>
+        </ul>
+        <h4 id="use">Contact</h4>
+        <ul>
+          <li><a href="http://www.twitter.com/jllord">@jllord</a></li>
+          <li><a href="https://github.com/jlord/sheetsee.js/issues/new">File an issue</a></li>
+        </ul>
+        <h4><a class="home-link" href="../index.html">Home</a></h4>
+      </footer>
+    </div>
+
+    <script id="musicTable_template" type="text/html">
+      <table>
+        <tr><th class="tHeader">Artist</th><th class="tHeader">Song</th><th class="tHeader">Genre</th><th class="tHeader">Year</th><th class="tHeader">Duration</th><th>Play</th></tr>
+          {{#rows}}
+            <tr data-song="{{Song}}" data-artist="{{Artist}}">
+              <td>{{Artist}}</td>
+              <td>{{Song}}</td>
+              <td>{{Genre}}</td>
+              <td>{{Year}}</td>
+              <td>{{Duration}}</td>
+              <td><button class="play-button" onclick="selectSong('{{Song}}', '{{Artist}}')">▶</button></td>
+            </tr>
+          {{/rows}}
+      </table>
+    </script>
+
+    <script type="text/javascript">
+      let currentSong = null;
+
+      document.addEventListener('DOMContentLoaded', function() {
+        // Example spreadsheet key - replace with actual music data spreadsheet
+        var URL = "1EXAMPLE_KEY_FOR_MUSIC_DATA"
+        Tabletop.init({key: URL, callback: showPlaylist, simpleSheet: true})
+      })
+
+      function showPlaylist (data) {
+        var tableOptions = {
+          "data": data,
+          "pagination": 15,
+          "tableDiv": "#musicTable",
+          "filterDiv": "#musicTableFilter"
+        }
+        Sheetsee.makeTable(tableOptions)
+        Sheetsee.initiateTableFilter(tableOptions)
+      }
+
+      function selectSong(song, artist) {
+        currentSong = {song: song, artist: artist};
+        document.getElementById('now-playing').textContent = `${song} by ${artist}`;
+        document.getElementById('play-button').style.display = 'inline-block';
+      }
+
+      document.getElementById('play-button').addEventListener('click', function() {
+        if (currentSong) {
+          alert(`Playing: ${currentSong.song} by ${currentSong.artist}\n\n(In a real implementation, this would integrate with a music API or player)`);
+        }
+      });
+    </script>
+  </body>
+</html>

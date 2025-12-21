@@ -32,7 +32,7 @@ This repository contains the documentation site and a pre-compiled full version 
 ## File Structure
 
 - `/docs/` - Markdown documentation (edit these, not generated HTML)
-- `/demos/` - Working examples showing integration patterns (see `demo-table.html`, `demo-map.html`)
+- `/demos/` - Working examples showing integration patterns (see `demo-table.html`, `demo-map.html`, `demo-music.html`)
 - `/js/sheetsee.js` - Pre-compiled full library (UMD module, ~15KB minified)
 - `/scripts/buildpage.js` - Doc generation script using glob/marked/mustache
 - `/scripts/template.hbs` - Handlebars template for HTML page layout
