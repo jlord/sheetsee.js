@@ -1,5 +1,5 @@
 
-![sheetseeimg](https://raw.github.com/jlord/sheetsee-cache/master/img/sheetsee-03.png)
+![sheetseeimg](img/next-sheetsee.png)
 
 ### Sheetsee.js is a client-side library for connecting Google Spreadsheets to a website and visualizing the information with tables and charts.
 

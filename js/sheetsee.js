@@ -14288,7 +14288,7 @@ function perpareSort (event) {
   if (!tblOpts.sortMeta.sorted || tblOpts.sortMeta.sorted === 'descending') {
     tblOpts.sortMeta.sorted = 'ascending'
   } else if (tblOpts.sortMeta.sorted === 'ascending') tblOpts.sortMeta.sorted = 'descending'
-
+  // TODO maybe make all keys in data lowercase...
   tblOpts.sortMeta.sortBy = event.target.innerHTML.replace(/\s/g, '').replace(/\W/g, '')
   tblOpts.tableDiv = '#' + event.target.closest('div').getAttribute('id')
   sortData()
@@ -14303,8 +14303,8 @@ function sortData () {
   sortGroup.sort(function (a, b) {
     var aa = a[tblOpts.sortMeta.sortBy].toLowerCase()
     var bb = b[tblOpts.sortMeta.sortBy].toLowerCase()
-    aa = aa.match(/^[\d\.,]$/) ? Number(aa) : aa
-    bb = bb.match(/^[\d\.,]$/) ? Number(bb) : bb
+    aa = aa.match(/^[\d,]$/) ? Number(aa) : aa
+    bb = bb.match(/^[\d,]$/) ? Number(bb) : bb
 
     if (aa < bb) return -1
     if (aa > bb) return 1
